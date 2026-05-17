@@ -1,0 +1,551 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/overview.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/overview.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/overview.md:\n# Project Manual Overview\n\nThis project creates illustrated story plans for fictional public-facing demos.\nThe planner should produce clear scenes, readable captions, and concrete visual\ndescriptions. Use the manual files as the source of truth when they are relevant.\nDo not stop to explain the manual to the user; produce the requested artifact.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "3c85b78b-c427-4bc5-846f-6f933a43a396",
+      "object": "chat.completion",
+      "created": 1779004638,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/overview.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 17,
+        "total_tokens": 418,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "434df5e1-441b-42ad-a7fd-9464c356146d",
+      "object": "chat.completion",
+      "created": 1779004639,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Chain: Rescue in Ruinfall\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone scout peers at the ruined city from a ridge.\",\n      \"visual_description\": \"Dawn light breaks over crumbling spires and collapsed walls. Tattered royal banners flap in the wind. The scout crouches behind a mossy stone, studying the silent city.\",\n      \"characters\": [\"scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The scout reports to the rescue party in a hidden camp.\",\n      \"visual_description\": \"A campfire flickers among the ruins of an old mill. The scout gestures toward the city while a knight, a mage, and a rogue listen intently. Armor gleams dully in the firelight.\",\n      \"characters\": [\"scout\", \"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Frightened townspeople whisper warnings at the city's edge.\",\n      \"visual_description\": \"Huddled near a broken well, townspeople in ragged clothes clutch children and baskets. One old woman points a trembling hand toward the distant castle. Fear is in their eyes.\",\n      \"characters\": [\"old woman\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party enters through the cracked castle gates.\",\n      \"visual_description\": \"Massive iron gates stand ajar, one hinge broken. The knight pushes the left door open while the mage lights a glowing orb. Dust and shadows spill out.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march through a courtyard.\",\n      \"visual_description\": \"A company of armored soldiers in faded livery marches in lockstep, their faces hidden behind visors. The party hides behind a collapsed colonnade, watching.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A magic door blocks the path to the inner keep.\",\n      \"visual_description\": \"A stone door carved with glowing runes pulses with blue light. Strange symbols spiral outward. The mage steps forward, hand raised, studying the enchantment.\",\n      \"characters\": [\"mage\", \"knight\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The mage disarms the door's riddle trap.\",\n      \"visual_description\": \"The mage traces a pattern in the air. The runes flicker, then fade. The door grinds open to reveal a dark corridor beyond.\",\n      \"characters\": [\"mage\", \"knight\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A cursed tower looms above a ruined chapel.\",\n      \"visual_description\": \"A twisted black spire leans over a roofless chapel. Strange whispers seem to emanate from its windows. The rogue peers up, one hand on a dagger.\",\n      \"characters\": [\"rogue\", \"knight\", \"mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a dragon echo from a tavern cellar.\",\n      \"visual_description\": \"In a dim cellar tavern, a grizzled man leans over a barrel, spreading his hands wide. The party listens as he describes a dragon seen circling the old keep.\",\n      \"characters\": [\"grizzled man\", \"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party climbs the cursed tower's winding stair.\",\n      \"visual_description\": \"Narrow stone steps spiral upward. Cobwebs brush their faces. The knight's torch throws long, wavering shadows. A faint, rhythmic thumping comes from above.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They find the captive in a high chamber.\",\n      \"visual_description\": \"A single figure in torn robes stands chained to a pillar near a window. Moonlight streams in. The captive looks up, eyes wide with hope and exhaustion.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rogue picks the lock while the knight stands guard.\",\n      \"visual_description\": \"The rogue works a set of picks into the manacles. The knight faces the door, sword drawn. The mage mutters a warding spell.\",\n      \"characters\": [\"rogue\", \"knight\", \"mage\", \"captive\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Alarm bells ring as the escape is discovered.\",\n      \"visual_description\": \"The manacles fall. From below, a bell clangs wildly. Shouts echo in the stairwell. The party freezes, then moves as one toward the tower's lower door.\",\n      \"characters\": [\"captive\", \"rogue\", \"knight\", \"mage\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Armored patrols charge into the tower courtyard.\",\n      \"visual_description\": \"Soldiers burst through an archway, swords drawn. The knight meets them with a shield bash. The mage hurls a burst of light that staggers the front rank.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the market square.\",\n      \"visual_description\": \"Stalls and awnings collapse as the party runs. The rogue kicks over a cart to slow the pursuing guards. The mage shields the captive from falling debris.\",\n      \"characters\": [\"rogue\", \"captive\", \"mage\", \"knight\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon's shadow passes overhead.\",\n      \"visual_description\": \"A massive winged shape blots out the sun. The party ducks into a doorway. The dragon roars, circling the old keep, but does not descend on them.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape across a crumbling bridge.\",\n      \"visual_description\": \"A stone bridge spans a deep gorge. Half the parapet is gone. The party runs across, the captive supported by the knight. Behind them, soldiers reach the bridgehead.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them, sealing their escape.\",\n      \"visual_description\": \"The mage turns and thrusts a hand forward. A crack runs through the bridge, then the span crumbles into the gorge. The party watches from the far side, safe for now.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 507,
+        "completion_tokens": 1592,
+        "total_tokens": 2099,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 123
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Chain: Rescue in Ruinfall\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone scout peers at the ruined city from a ridge.\",\n      \"visual_description\": \"Dawn light breaks over crumbling spires and collapsed walls. Tattered royal banners flap in the wind. The scout crouches behind a mossy stone, studying the silent city.\",\n      \"characters\": [\"scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The scout reports to the rescue party in a hidden camp.\",\n      \"visual_description\": \"A campfire flickers among the ruins of an old mill. The scout gestures toward the city while a knight, a mage, and a rogue listen intently. Armor gleams dully in the firelight.\",\n      \"characters\": [\"scout\", \"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Frightened townspeople whisper warnings at the city's edge.\",\n      \"visual_description\": \"Huddled near a broken well, townspeople in ragged clothes clutch children and baskets. One old woman points a trembling hand toward the distant castle. Fear is in their eyes.\",\n      \"characters\": [\"old woman\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party enters through the cracked castle gates.\",\n      \"visual_description\": \"Massive iron gates stand ajar, one hinge broken. The knight pushes the left door open while the mage lights a glowing orb. Dust and shadows spill out.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march through a courtyard.\",\n      \"visual_description\": \"A company of armored soldiers in faded livery marches in lockstep, their faces hidden behind visors. The party hides behind a collapsed colonnade, watching.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A magic door blocks the path to the inner keep.\",\n      \"visual_description\": \"A stone door carved with glowing runes pulses with blue light. Strange symbols spiral outward. The mage steps forward, hand raised, studying the enchantment.\",\n      \"characters\": [\"mage\", \"knight\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The mage disarms the door's riddle trap.\",\n      \"visual_description\": \"The mage traces a pattern in the air. The runes flicker, then fade. The door grinds open to reveal a dark corridor beyond.\",\n      \"characters\": [\"mage\", \"knight\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A cursed tower looms above a ruined chapel.\",\n      \"visual_description\": \"A twisted black spire leans over a roofless chapel. Strange whispers seem to emanate from its windows. The rogue peers up, one hand on a dagger.\",\n      \"characters\": [\"rogue\", \"knight\", \"mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a dragon echo from a tavern cellar.\",\n      \"visual_description\": \"In a dim cellar tavern, a grizzled man leans over a barrel, spreading his hands wide. The party listens as he describes a dragon seen circling the old keep.\",\n      \"characters\": [\"grizzled man\", \"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party climbs the cursed tower's winding stair.\",\n      \"visual_description\": \"Narrow stone steps spiral upward. Cobwebs brush their faces. The knight's torch throws long, wavering shadows. A faint, rhythmic thumping comes from above.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They find the captive in a high chamber.\",\n      \"visual_description\": \"A single figure in torn robes stands chained to a pillar near a window. Moonlight streams in. The captive looks up, eyes wide with hope and exhaustion.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rogue picks the lock while the knight stands guard.\",\n      \"visual_description\": \"The rogue works a set of picks into the manacles. The knight faces the door, sword drawn. The mage mutters a warding spell.\",\n      \"characters\": [\"rogue\", \"knight\", \"mage\", \"captive\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Alarm bells ring as the escape is discovered.\",\n      \"visual_description\": \"The manacles fall. From below, a bell clangs wildly. Shouts echo in the stairwell. The party freezes, then moves as one toward the tower's lower door.\",\n      \"characters\": [\"captive\", \"rogue\", \"knight\", \"mage\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Armored patrols charge into the tower courtyard.\",\n      \"visual_description\": \"Soldiers burst through an archway, swords drawn. The knight meets them with a shield bash. The mage hurls a burst of light that staggers the front rank.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the market square.\",\n      \"visual_description\": \"Stalls and awnings collapse as the party runs. The rogue kicks over a cart to slow the pursuing guards. The mage shields the captive from falling debris.\",\n      \"characters\": [\"rogue\", \"captive\", \"mage\", \"knight\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon's shadow passes overhead.\",\n      \"visual_description\": \"A massive winged shape blots out the sun. The party ducks into a doorway. The dragon roars, circling the old keep, but does not descend on them.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape across a crumbling bridge.\",\n      \"visual_description\": \"A stone bridge spans a deep gorge. Half the parapet is gone. The party runs across, the captive supported by the knight. Behind them, soldiers reach the bridgehead.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\", \"armored patrols\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them, sealing their escape.\",\n      \"visual_description\": \"The mage turns and thrusts a hand forward. A crack runs through the bridge, then the span crumbles into the gorge. The party watches from the far side, safe for now.\",\n      \"characters\": [\"knight\", \"mage\", \"rogue\", \"captive\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Chain: Rescue in Ruinfall",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A lone scout peers at the ruined city from a ridge.",
+        "visual_description": "Dawn light breaks over crumbling spires and collapsed walls. Tattered royal banners flap in the wind. The scout crouches behind a mossy stone, studying the silent city.",
+        "characters": [
+          "scout"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The scout reports to the rescue party in a hidden camp.",
+        "visual_description": "A campfire flickers among the ruins of an old mill. The scout gestures toward the city while a knight, a mage, and a rogue listen intently. Armor gleams dully in the firelight.",
+        "characters": [
+          "scout",
+          "knight",
+          "mage",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Frightened townspeople whisper warnings at the city's edge.",
+        "visual_description": "Huddled near a broken well, townspeople in ragged clothes clutch children and baskets. One old woman points a trembling hand toward the distant castle. Fear is in their eyes.",
+        "characters": [
+          "old woman",
+          "townspeople"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party enters through the cracked castle gates.",
+        "visual_description": "Massive iron gates stand ajar, one hinge broken. The knight pushes the left door open while the mage lights a glowing orb. Dust and shadows spill out.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Armored patrols march through a courtyard.",
+        "visual_description": "A company of armored soldiers in faded livery marches in lockstep, their faces hidden behind visors. The party hides behind a collapsed colonnade, watching.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "armored patrols"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "A magic door blocks the path to the inner keep.",
+        "visual_description": "A stone door carved with glowing runes pulses with blue light. Strange symbols spiral outward. The mage steps forward, hand raised, studying the enchantment.",
+        "characters": [
+          "mage",
+          "knight",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The mage disarms the door's riddle trap.",
+        "visual_description": "The mage traces a pattern in the air. The runes flicker, then fade. The door grinds open to reveal a dark corridor beyond.",
+        "characters": [
+          "mage",
+          "knight",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "A cursed tower looms above a ruined chapel.",
+        "visual_description": "A twisted black spire leans over a roofless chapel. Strange whispers seem to emanate from its windows. The rogue peers up, one hand on a dagger.",
+        "characters": [
+          "rogue",
+          "knight",
+          "mage"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Rumors of a dragon echo from a tavern cellar.",
+        "visual_description": "In a dim cellar tavern, a grizzled man leans over a barrel, spreading his hands wide. The party listens as he describes a dragon seen circling the old keep.",
+        "characters": [
+          "grizzled man",
+          "knight",
+          "mage",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The party climbs the cursed tower's winding stair.",
+        "visual_description": "Narrow stone steps spiral upward. Cobwebs brush their faces. The knight's torch throws long, wavering shadows. A faint, rhythmic thumping comes from above.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They find the captive in a high chamber.",
+        "visual_description": "A single figure in torn robes stands chained to a pillar near a window. Moonlight streams in. The captive looks up, eyes wide with hope and exhaustion.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The rogue picks the lock while the knight stands guard.",
+        "visual_description": "The rogue works a set of picks into the manacles. The knight faces the door, sword drawn. The mage mutters a warding spell.",
+        "characters": [
+          "rogue",
+          "knight",
+          "mage",
+          "captive"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Alarm bells ring as the escape is discovered.",
+        "visual_description": "The manacles fall. From below, a bell clangs wildly. Shouts echo in the stairwell. The party freezes, then moves as one toward the tower's lower door.",
+        "characters": [
+          "captive",
+          "rogue",
+          "knight",
+          "mage"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Armored patrols charge into the tower courtyard.",
+        "visual_description": "Soldiers burst through an archway, swords drawn. The knight meets them with a shield bash. The mage hurls a burst of light that staggers the front rank.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive",
+          "armored patrols"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The party flees through the market square.",
+        "visual_description": "Stalls and awnings collapse as the party runs. The rogue kicks over a cart to slow the pursuing guards. The mage shields the captive from falling debris.",
+        "characters": [
+          "rogue",
+          "captive",
+          "mage",
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "A dragon's shadow passes overhead.",
+        "visual_description": "A massive winged shape blots out the sun. The party ducks into a doorway. The dragon roars, circling the old keep, but does not descend on them.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The final escape across a crumbling bridge.",
+        "visual_description": "A stone bridge spans a deep gorge. Half the parapet is gone. The party runs across, the captive supported by the knight. Behind them, soldiers reach the bridgehead.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive",
+          "armored patrols"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The bridge collapses behind them, sealing their escape.",
+        "visual_description": "The mage turns and thrusts a hand forward. A crack runs through the bridge, then the span crumbles into the gorge. The party watches from the far side, safe for now.",
+        "characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 10,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 10,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.5555555555555556,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "knight",
+          "mage",
+          "rogue"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "old woman",
+          "townspeople"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "armored patrols"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage",
+          "knight",
+          "rogue"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage",
+          "knight",
+          "rogue"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rogue",
+          "knight",
+          "mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "grizzled man",
+          "knight",
+          "mage",
+          "rogue"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rogue",
+          "knight",
+          "mage",
+          "captive"
+        ],
+        "forbidden_words": [
+          "guard",
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "captive",
+          "rogue",
+          "knight",
+          "mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive",
+          "armored patrols"
+        ],
+        "forbidden_words": [
+          "knight",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rogue",
+          "captive",
+          "mage",
+          "knight"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive",
+          "armored patrols"
+        ],
+        "forbidden_words": [
+          "knight",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "knight",
+          "mage",
+          "rogue",
+          "captive"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 10
+}

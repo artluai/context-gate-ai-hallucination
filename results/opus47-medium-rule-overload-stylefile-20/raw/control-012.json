@@ -1,0 +1,531 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018112-P642wQGes1rJhXT2ShOQ",
+      "object": "chat.completion",
+      "created": 1779018112,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 130,
+        "total_tokens": 848,
+        "cost": 0.00684,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00684,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.00325
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 52,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018116-dtycqLCgsNqhEr4udWql",
+      "object": "chat.completion",
+      "created": 1779018116,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A weary band approaches the ruined royal city at dawn.\",\n      \"visual_description\": \"Wide shot of three figures cresting a misty hill, the shattered spires of a once-great city silhouetted against a pale orange sunrise.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The map reveals the prisoner's tower.\",\n      \"visual_description\": \"Close-up of a hand-drawn parchment map spread across a mossy stone, with Veyra pointing to a circled tower while Brindle leans in.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Their court mage catches up, breathless and yawning.\",\n      \"visual_description\": \"A robed mage stumbles down the hill clutching a glowing staff, robes askew, while the others wait with crossed arms.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"At the broken castle gates, rusted iron looms.\",\n      \"visual_description\": \"Massive iron-spiked gates hang twisted on their hinges, vines crawling through, the trio dwarfed beneath the archway.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople whisper of the cursed tower.\",\n      \"visual_description\": \"A huddle of ragged citizens in a shadowed alley, pointing fearfully toward a distant black spire wreathed in green mist.\",\n      \"characters\": [\"Captain Veyra\", \"Goodwife Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Brindle scouts the rooftops for patrols.\",\n      \"visual_description\": \"Brindle crouches on a tiled rooftop, peering down at armored soldiers marching in formation through a cobbled square.\",\n      \"characters\": [\"Brindle the Scout\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tattered royal banners flutter over the empty plaza.\",\n      \"visual_description\": \"A windswept plaza with torn crimson banners bearing a golden stag sigil, Veyra standing among them with a hand on her sword hilt.\",\n      \"characters\": [\"Captain Veyra\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A drowsy palace steward is found napping in the archives.\",\n      \"visual_description\": \"A plump steward asleep at a dusty desk, head on an open ledger, candle guttering, as Olwen gently shakes his shoulder.\",\n      \"characters\": [\"Mage Olwen\", \"Steward Pemby\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Pemby mumbles the secret way beneath the city.\",\n      \"visual_description\": \"The steward gestures sleepily at a trapdoor hidden under a moth-eaten rug, dust swirling in lantern light.\",\n      \"characters\": [\"Captain Veyra\", \"Mage Olwen\", \"Steward Pemby\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Distant dragon rumors echo through the catacombs.\",\n      \"visual_description\": \"The trio descend a narrow stone stair, lantern light flickering across carved reliefs of winged beasts as a low rumble shakes dust from the ceiling.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A sealed magic door bars the way forward.\",\n      \"visual_description\": \"An arched door etched with glowing blue runes blocks a corridor, Olwen tracing symbols in the air while the others watch warily.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Olwen unravels the binding spell.\",\n      \"visual_description\": \"Runes flare gold then dissolve, the door swinging inward into a vast vaulted chamber, Olwen's staff blazing with light.\",\n      \"characters\": [\"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive heir chained in a crystal cell.\",\n      \"visual_description\": \"A young noble in tattered finery slumps inside a faceted crystal prison, hands shackled, looking up as the rescuers enter.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Brindle picks the crystalline locks.\",\n      \"visual_description\": \"Close-up of slender tools twisting inside a glowing keyhole, Aldric's wrist freed as the shackle clatters to the floor.\",\n      \"characters\": [\"Brindle the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Armored patrols converge in the upper halls.\",\n      \"visual_description\": \"A line of helmeted soldiers with halberds charges down a torchlit corridor, banners snapping behind them.\",\n      \"characters\": [\"Iron Patrol Captain\", \"Captain Veyra\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Veyra holds the stairwell while the others flee.\",\n      \"visual_description\": \"Sparks fly as Veyra crosses blades with the patrol captain on a narrow spiral stair, urging the others upward over her shoulder.\",\n      \"characters\": [\"Captain Veyra\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party races for the great stone bridge.\",\n      \"visual_description\": \"Four figures sprint across moonlit cobbles toward a long arched bridge spanning a black chasm, the city burning behind them.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge as Olwen collapses it behind them.\",\n      \"visual_description\": \"Mid-span, Olwen turns and slams her staff down; stones crumble into the abyss as the rescuers reach the far side, dawn breaking ahead.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2341,
+        "total_tokens": 3227,
+        "cost": 0.062955,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.062955,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.058525
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A weary band approaches the ruined royal city at dawn.\",\n      \"visual_description\": \"Wide shot of three figures cresting a misty hill, the shattered spires of a once-great city silhouetted against a pale orange sunrise.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The map reveals the prisoner's tower.\",\n      \"visual_description\": \"Close-up of a hand-drawn parchment map spread across a mossy stone, with Veyra pointing to a circled tower while Brindle leans in.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Their court mage catches up, breathless and yawning.\",\n      \"visual_description\": \"A robed mage stumbles down the hill clutching a glowing staff, robes askew, while the others wait with crossed arms.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"At the broken castle gates, rusted iron looms.\",\n      \"visual_description\": \"Massive iron-spiked gates hang twisted on their hinges, vines crawling through, the trio dwarfed beneath the archway.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople whisper of the cursed tower.\",\n      \"visual_description\": \"A huddle of ragged citizens in a shadowed alley, pointing fearfully toward a distant black spire wreathed in green mist.\",\n      \"characters\": [\"Captain Veyra\", \"Goodwife Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Brindle scouts the rooftops for patrols.\",\n      \"visual_description\": \"Brindle crouches on a tiled rooftop, peering down at armored soldiers marching in formation through a cobbled square.\",\n      \"characters\": [\"Brindle the Scout\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tattered royal banners flutter over the empty plaza.\",\n      \"visual_description\": \"A windswept plaza with torn crimson banners bearing a golden stag sigil, Veyra standing among them with a hand on her sword hilt.\",\n      \"characters\": [\"Captain Veyra\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A drowsy palace steward is found napping in the archives.\",\n      \"visual_description\": \"A plump steward asleep at a dusty desk, head on an open ledger, candle guttering, as Olwen gently shakes his shoulder.\",\n      \"characters\": [\"Mage Olwen\", \"Steward Pemby\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Pemby mumbles the secret way beneath the city.\",\n      \"visual_description\": \"The steward gestures sleepily at a trapdoor hidden under a moth-eaten rug, dust swirling in lantern light.\",\n      \"characters\": [\"Captain Veyra\", \"Mage Olwen\", \"Steward Pemby\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Distant dragon rumors echo through the catacombs.\",\n      \"visual_description\": \"The trio descend a narrow stone stair, lantern light flickering across carved reliefs of winged beasts as a low rumble shakes dust from the ceiling.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A sealed magic door bars the way forward.\",\n      \"visual_description\": \"An arched door etched with glowing blue runes blocks a corridor, Olwen tracing symbols in the air while the others watch warily.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Olwen unravels the binding spell.\",\n      \"visual_description\": \"Runes flare gold then dissolve, the door swinging inward into a vast vaulted chamber, Olwen's staff blazing with light.\",\n      \"characters\": [\"Mage Olwen\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive heir chained in a crystal cell.\",\n      \"visual_description\": \"A young noble in tattered finery slumps inside a faceted crystal prison, hands shackled, looking up as the rescuers enter.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Brindle picks the crystalline locks.\",\n      \"visual_description\": \"Close-up of slender tools twisting inside a glowing keyhole, Aldric's wrist freed as the shackle clatters to the floor.\",\n      \"characters\": [\"Brindle the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Armored patrols converge in the upper halls.\",\n      \"visual_description\": \"A line of helmeted soldiers with halberds charges down a torchlit corridor, banners snapping behind them.\",\n      \"characters\": [\"Iron Patrol Captain\", \"Captain Veyra\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Veyra holds the stairwell while the others flee.\",\n      \"visual_description\": \"Sparks fly as Veyra crosses blades with the patrol captain on a narrow spiral stair, urging the others upward over her shoulder.\",\n      \"characters\": [\"Captain Veyra\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party races for the great stone bridge.\",\n      \"visual_description\": \"Four figures sprint across moonlit cobbles toward a long arched bridge spanning a black chasm, the city burning behind them.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge as Olwen collapses it behind them.\",\n      \"visual_description\": \"Mid-span, Olwen turns and slams her staff down; stones crumble into the abyss as the rescuers reach the far side, dawn breaking ahead.\",\n      \"characters\": [\"Captain Veyra\", \"Brindle the Scout\", \"Mage Olwen\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Lost Heir",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A weary band approaches the ruined royal city at dawn.",
+        "visual_description": "Wide shot of three figures cresting a misty hill, the shattered spires of a once-great city silhouetted against a pale orange sunrise.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The map reveals the prisoner's tower.",
+        "visual_description": "Close-up of a hand-drawn parchment map spread across a mossy stone, with Veyra pointing to a circled tower while Brindle leans in.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Their court mage catches up, breathless and yawning.",
+        "visual_description": "A robed mage stumbles down the hill clutching a glowing staff, robes askew, while the others wait with crossed arms.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "At the broken castle gates, rusted iron looms.",
+        "visual_description": "Massive iron-spiked gates hang twisted on their hinges, vines crawling through, the trio dwarfed beneath the archway.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Frightened townspeople whisper of the cursed tower.",
+        "visual_description": "A huddle of ragged citizens in a shadowed alley, pointing fearfully toward a distant black spire wreathed in green mist.",
+        "characters": [
+          "Captain Veyra",
+          "Goodwife Mira"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Brindle scouts the rooftops for patrols.",
+        "visual_description": "Brindle crouches on a tiled rooftop, peering down at armored soldiers marching in formation through a cobbled square.",
+        "characters": [
+          "Brindle the Scout",
+          "Iron Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Tattered royal banners flutter over the empty plaza.",
+        "visual_description": "A windswept plaza with torn crimson banners bearing a golden stag sigil, Veyra standing among them with a hand on her sword hilt.",
+        "characters": [
+          "Captain Veyra"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "A drowsy palace steward is found napping in the archives.",
+        "visual_description": "A plump steward asleep at a dusty desk, head on an open ledger, candle guttering, as Olwen gently shakes his shoulder.",
+        "characters": [
+          "Mage Olwen",
+          "Steward Pemby"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Pemby mumbles the secret way beneath the city.",
+        "visual_description": "The steward gestures sleepily at a trapdoor hidden under a moth-eaten rug, dust swirling in lantern light.",
+        "characters": [
+          "Captain Veyra",
+          "Mage Olwen",
+          "Steward Pemby"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Distant dragon rumors echo through the catacombs.",
+        "visual_description": "The trio descend a narrow stone stair, lantern light flickering across carved reliefs of winged beasts as a low rumble shakes dust from the ceiling.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A sealed magic door bars the way forward.",
+        "visual_description": "An arched door etched with glowing blue runes blocks a corridor, Olwen tracing symbols in the air while the others watch warily.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Olwen unravels the binding spell.",
+        "visual_description": "Runes flare gold then dissolve, the door swinging inward into a vast vaulted chamber, Olwen's staff blazing with light.",
+        "characters": [
+          "Mage Olwen"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find the captive heir chained in a crystal cell.",
+        "visual_description": "A young noble in tattered finery slumps inside a faceted crystal prison, hands shackled, looking up as the rescuers enter.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Brindle picks the crystalline locks.",
+        "visual_description": "Close-up of slender tools twisting inside a glowing keyhole, Aldric's wrist freed as the shackle clatters to the floor.",
+        "characters": [
+          "Brindle the Scout",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Armored patrols converge in the upper halls.",
+        "visual_description": "A line of helmeted soldiers with halberds charges down a torchlit corridor, banners snapping behind them.",
+        "characters": [
+          "Iron Patrol Captain",
+          "Captain Veyra"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Veyra holds the stairwell while the others flee.",
+        "visual_description": "Sparks fly as Veyra crosses blades with the patrol captain on a narrow spiral stair, urging the others upward over her shoulder.",
+        "characters": [
+          "Captain Veyra",
+          "Iron Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The party races for the great stone bridge.",
+        "visual_description": "Four figures sprint across moonlit cobbles toward a long arched bridge spanning a black chasm, the city burning behind them.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross the bridge as Olwen collapses it behind them.",
+        "visual_description": "Mid-span, Olwen turns and slams her staff down; stones crumble into the abyss as the rescuers reach the far side, dawn breaking ahead.",
+        "characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 3,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 3,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.16666666666666666,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Goodwife Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Iron Patrol Captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mage Olwen",
+          "Steward Pemby"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Mage Olwen",
+          "Steward Pemby"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mage Olwen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iron Patrol Captain",
+          "Captain Veyra"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Iron Patrol Captain"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Veyra",
+          "Brindle the Scout",
+          "Mage Olwen",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 12
+}

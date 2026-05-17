@@ -1,0 +1,537 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "31591012-9c1a-41f0-a9cb-0b8c87cd3601",
+      "object": "chat.completion",
+      "created": 1779004947,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "c85869a9-ee94-40d6-935b-c441f7735b31",
+      "object": "chat.completion",
+      "created": 1779004948,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Gauntlet\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Three travelers stand before massive iron gates, twisted and scarred, with a broken royal crest half-hidden beneath moss.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the outer market.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point fearfully toward the inner city, their faces lit by a single guttering torch.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Heska\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol blocks a narrow street.\",\n      \"visual_description\": \"Three guards in rusted plate armor raise halberds, their visors down, standing before a crumbling archway.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Captain Vorn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Elena scouts the old royal palace entrance.\",\n      \"visual_description\": \"A grand doorway carved with leering griffins, its stone steps cracked and overgrown with thorny vines.\",\n      \"characters\": [\"Elena\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Dorn disarms a trap in the courtyard.\",\n      \"visual_description\": \"Dorn kneels beside a pressure plate, his hand hovering over a thin wire while a rusty spike glints nearby.\",\n      \"characters\": [\"Dorn\", \"Elena\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Lira reads a fading mural of the city's fall.\",\n      \"visual_description\": \"A fresco showing a king with a cracked crown and a shadowy dragon shape high above the towers.\",\n      \"characters\": [\"Lira\", \"Elena\", \"Dorn\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A cursed tower looms ahead, its door pulsing with runes.\",\n      \"visual_description\": \"A spiral tower of black stone, its entrance shimmering with sickly green light and carved warnings.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The party enters the tower and faces a mirror trap.\",\n      \"visual_description\": \"A circular room lined with tall mirrors, each reflecting a different, twisted version of the group.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Dorn shatters the illusion mirror.\",\n      \"visual_description\": \"Dorn swings a hammer into the central mirror, shards flying as the false reflections scream and dissolve.\",\n      \"characters\": [\"Dorn\", \"Elena\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They find the captive in a suspended cage.\",\n      \"visual_description\": \"A rusted iron cage hangs from the tower ceiling, inside a pale figure in torn robes clutches a silver key.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian rises from the floor.\",\n      \"visual_description\": \"A translucent knight in ancient armor, wielding a greatsword of blue flame, drifts upward through the flagstones.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\", \"Warden Kael\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Lira uses a binding spell to hold the warden.\",\n      \"visual_description\": \"Golden threads of light shoot from Lira's hands and wrap around the spectral knight, slowing its advance.\",\n      \"characters\": [\"Lira\", \"Elena\", \"Dorn\", \"Maren\", \"Warden Kael\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Elena retrieves the key and frees the captive.\",\n      \"visual_description\": \"Elena turns the silver key in the cage lock, the bars groaning open as Maren stumbles out.\",\n      \"characters\": [\"Elena\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The tower begins to collapse as they flee.\",\n      \"visual_description\": \"Cracks race up the walls, dust and stone shower down, and the green runes on the door fade to black.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Old royal banners hang torn above the escape path.\",\n      \"visual_description\": \"Tattered pennants with the same broken crest snap in a hot wind, lining a plaza littered with rubble.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Patrols converge on the plaza.\",\n      \"visual_description\": \"Armored figures pour from two side streets, forming a shield wall as Captain Vorn shouts orders.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\", \"Captain Vorn\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party races across the stone bridge.\",\n      \"visual_description\": \"A long, narrow bridge arches over a dry moat filled with jagged rocks, the far gate open and beckoning.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They escape into the misty hills beyond the city.\",\n      \"visual_description\": \"Four figures silhouetted against a pale dawn, the ruined city and its temptations fading behind a veil of fog.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1377,
+        "total_tokens": 1881,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Gauntlet\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Three travelers stand before massive iron gates, twisted and scarred, with a broken royal crest half-hidden beneath moss.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the outer market.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point fearfully toward the inner city, their faces lit by a single guttering torch.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Heska\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol blocks a narrow street.\",\n      \"visual_description\": \"Three guards in rusted plate armor raise halberds, their visors down, standing before a crumbling archway.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Captain Vorn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Elena scouts the old royal palace entrance.\",\n      \"visual_description\": \"A grand doorway carved with leering griffins, its stone steps cracked and overgrown with thorny vines.\",\n      \"characters\": [\"Elena\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Dorn disarms a trap in the courtyard.\",\n      \"visual_description\": \"Dorn kneels beside a pressure plate, his hand hovering over a thin wire while a rusty spike glints nearby.\",\n      \"characters\": [\"Dorn\", \"Elena\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Lira reads a fading mural of the city's fall.\",\n      \"visual_description\": \"A fresco showing a king with a cracked crown and a shadowy dragon shape high above the towers.\",\n      \"characters\": [\"Lira\", \"Elena\", \"Dorn\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A cursed tower looms ahead, its door pulsing with runes.\",\n      \"visual_description\": \"A spiral tower of black stone, its entrance shimmering with sickly green light and carved warnings.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The party enters the tower and faces a mirror trap.\",\n      \"visual_description\": \"A circular room lined with tall mirrors, each reflecting a different, twisted version of the group.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Dorn shatters the illusion mirror.\",\n      \"visual_description\": \"Dorn swings a hammer into the central mirror, shards flying as the false reflections scream and dissolve.\",\n      \"characters\": [\"Dorn\", \"Elena\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They find the captive in a suspended cage.\",\n      \"visual_description\": \"A rusted iron cage hangs from the tower ceiling, inside a pale figure in torn robes clutches a silver key.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian rises from the floor.\",\n      \"visual_description\": \"A translucent knight in ancient armor, wielding a greatsword of blue flame, drifts upward through the flagstones.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\", \"Warden Kael\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Lira uses a binding spell to hold the warden.\",\n      \"visual_description\": \"Golden threads of light shoot from Lira's hands and wrap around the spectral knight, slowing its advance.\",\n      \"characters\": [\"Lira\", \"Elena\", \"Dorn\", \"Maren\", \"Warden Kael\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Elena retrieves the key and frees the captive.\",\n      \"visual_description\": \"Elena turns the silver key in the cage lock, the bars groaning open as Maren stumbles out.\",\n      \"characters\": [\"Elena\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The tower begins to collapse as they flee.\",\n      \"visual_description\": \"Cracks race up the walls, dust and stone shower down, and the green runes on the door fade to black.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Old royal banners hang torn above the escape path.\",\n      \"visual_description\": \"Tattered pennants with the same broken crest snap in a hot wind, lining a plaza littered with rubble.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Patrols converge on the plaza.\",\n      \"visual_description\": \"Armored figures pour from two side streets, forming a shield wall as Captain Vorn shouts orders.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\", \"Captain Vorn\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party races across the stone bridge.\",\n      \"visual_description\": \"A long, narrow bridge arches over a dry moat filled with jagged rocks, the far gate open and beckoning.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They escape into the misty hills beyond the city.\",\n      \"visual_description\": \"Four figures silhouetted against a pale dawn, the ruined city and its temptations fading behind a veil of fog.\",\n      \"characters\": [\"Elena\", \"Dorn\", \"Lira\", \"Maren\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Gauntlet",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "Three travelers stand before massive iron gates, twisted and scarred, with a broken royal crest half-hidden beneath moss.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Townspeople whisper warnings in the outer market.",
+        "visual_description": "Huddled figures in tattered cloaks point fearfully toward the inner city, their faces lit by a single guttering torch.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Heska"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrol blocks a narrow street.",
+        "visual_description": "Three guards in rusted plate armor raise halberds, their visors down, standing before a crumbling archway.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Captain Vorn"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Elena scouts the old royal palace entrance.",
+        "visual_description": "A grand doorway carved with leering griffins, its stone steps cracked and overgrown with thorny vines.",
+        "characters": [
+          "Elena"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Dorn disarms a trap in the courtyard.",
+        "visual_description": "Dorn kneels beside a pressure plate, his hand hovering over a thin wire while a rusty spike glints nearby.",
+        "characters": [
+          "Dorn",
+          "Elena",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Lira reads a fading mural of the city's fall.",
+        "visual_description": "A fresco showing a king with a cracked crown and a shadowy dragon shape high above the towers.",
+        "characters": [
+          "Lira",
+          "Elena",
+          "Dorn"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "A cursed tower looms ahead, its door pulsing with runes.",
+        "visual_description": "A spiral tower of black stone, its entrance shimmering with sickly green light and carved warnings.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The party enters the tower and faces a mirror trap.",
+        "visual_description": "A circular room lined with tall mirrors, each reflecting a different, twisted version of the group.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Dorn shatters the illusion mirror.",
+        "visual_description": "Dorn swings a hammer into the central mirror, shards flying as the false reflections scream and dissolve.",
+        "characters": [
+          "Dorn",
+          "Elena",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They find the captive in a suspended cage.",
+        "visual_description": "A rusted iron cage hangs from the tower ceiling, inside a pale figure in torn robes clutches a silver key.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A spectral guardian rises from the floor.",
+        "visual_description": "A translucent knight in ancient armor, wielding a greatsword of blue flame, drifts upward through the flagstones.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren",
+          "Warden Kael"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Lira uses a binding spell to hold the warden.",
+        "visual_description": "Golden threads of light shoot from Lira's hands and wrap around the spectral knight, slowing its advance.",
+        "characters": [
+          "Lira",
+          "Elena",
+          "Dorn",
+          "Maren",
+          "Warden Kael"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Elena retrieves the key and frees the captive.",
+        "visual_description": "Elena turns the silver key in the cage lock, the bars groaning open as Maren stumbles out.",
+        "characters": [
+          "Elena",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The tower begins to collapse as they flee.",
+        "visual_description": "Cracks race up the walls, dust and stone shower down, and the green runes on the door fade to black.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Old royal banners hang torn above the escape path.",
+        "visual_description": "Tattered pennants with the same broken crest snap in a hot wind, lining a plaza littered with rubble.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Patrols converge on the plaza.",
+        "visual_description": "Armored figures pour from two side streets, forming a shield wall as Captain Vorn shouts orders.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren",
+          "Captain Vorn"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The party races across the stone bridge.",
+        "visual_description": "A long, narrow bridge arches over a dry moat filled with jagged rocks, the far gate open and beckoning.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They escape into the misty hills beyond the city.",
+        "visual_description": "Four figures silhouetted against a pale dawn, the ruined city and its temptations fading behind a veil of fog.",
+        "characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 4,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 4,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2222222222222222,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Heska"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Captain Vorn"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Dorn",
+          "Elena",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lira",
+          "Elena",
+          "Dorn"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "king"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Dorn",
+          "Elena",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren",
+          "Warden Kael"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lira",
+          "Elena",
+          "Dorn",
+          "Maren",
+          "Warden Kael"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren",
+          "Captain Vorn"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elena",
+          "Dorn",
+          "Lira",
+          "Maren"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 16
+}

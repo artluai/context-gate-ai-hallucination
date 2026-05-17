@@ -1,0 +1,569 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018777-JC9ORDr2riXmVQMtgTAy",
+      "object": "chat.completion",
+      "created": 1779018777,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 155,
+        "total_tokens": 873,
+        "cost": 0.007465,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.007465,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.003875
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 62,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018781-hyhek44pLQ81cAhmB6gR",
+      "object": "chat.completion",
+      "created": 1779018781,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue at Hollowcrown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A rescue party gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crouch on a windswept hill at dawn, looking down at a crumbling royal city wreathed in mist, broken spires piercing the clouds.\",\n      \"characters\": [\"Captain Aren\", \"Mira the Mapwright\", \"Brindle the Scout\", \"Sable the Spellbinder\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the lost royal city.\",\n      \"visual_description\": \"Close-up of a weathered parchment held down by stones, ink lines tracing castle gates, towers, and a single red circle around a dungeon keep.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They slip past the cracked castle gates.\",\n      \"visual_description\": \"Massive iron gates hang twisted from their hinges; the party tiptoes through long shadows cast by toppled statues of forgotten kings.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A cursed tower looms, whispering temptations.\",\n      \"visual_description\": \"A leaning black tower with violet runes glowing along its stones; spectral hands reach from the windows toward the travelers below.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Brindle resists the lure of dragon-hoard rumors.\",\n      \"visual_description\": \"A peasant in tattered cloak gestures wildly toward a smoking pit, gold coins scattered at the edge; Brindle shakes his head and pulls the party onward.\",\n      \"characters\": [\"Brindle the Scout\", \"Old Hask the Beggar\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople huddle in a market ruin.\",\n      \"visual_description\": \"A collapsed bazaar with overturned stalls; women and children clutch each other beneath a torn awning as the party approaches with raised hands.\",\n      \"characters\": [\"Captain Aren\", \"Mira the Mapwright\", \"Goodwife Ellin\", \"Tomkin the Orphan\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tomkin reveals where the captive is held.\",\n      \"visual_description\": \"A small boy traces a path in the ash on the cobblestones, pointing toward a distant keep crowned by a black banner.\",\n      \"characters\": [\"Tomkin the Orphan\", \"Mira the Mapwright\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol marches through the square.\",\n      \"visual_description\": \"Six soldiers in blackened plate stomp past a fountain, halberds gleaming; the party presses flat against a broken wall in deep shadow.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Sable lulls a drowsy gate official to deeper sleep.\",\n      \"visual_description\": \"A round, snoring clerk slumps over a podium of keys; Sable trails silver smoke from her fingertips over his head while Brindle lifts a ring of keys.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Brindle the Scout\", \"Warden Pomly\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They confront a sealed magic door.\",\n      \"visual_description\": \"An obsidian door inlaid with shifting silver glyphs blocks a corridor; the glyphs rearrange whenever the party blinks.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Mira solves the door's shifting riddle.\",\n      \"visual_description\": \"Mira sketches glyphs into a notebook, comparing them to her map; the silver patterns lock into a single open archway of pale light.\",\n      \"characters\": [\"Mira the Mapwright\", \"Sable the Spellbinder\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They descend into the banner-draped throne hall.\",\n      \"visual_description\": \"Tattered royal banners in crimson and gold hang from a vaulted ceiling above a cracked throne; dust motes drift in shafts of broken stained-glass light.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The captive princess is found chained in the vault.\",\n      \"visual_description\": \"A young woman in a torn green gown sits straight-backed against a stone pillar, iron cuffs around her wrists, eyes fierce and unbroken.\",\n      \"characters\": [\"Princess Liora\", \"Captain Aren\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Brindle picks the locks while alarms begin to ring.\",\n      \"visual_description\": \"Close-up of nimble fingers working a curved pick in an iron cuff; in the background, a brass bell shudders in a high arched window.\",\n      \"characters\": [\"Brindle the Scout\", \"Princess Liora\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The patrol returns and the chase begins.\",\n      \"visual_description\": \"Black-armored soldiers pour through an archway with torches and crossbows; the party sprints down a corridor lined with shattered mirrors.\",\n      \"characters\": [\"Captain Aren\", \"Princess Liora\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Sable conjures a wall of mist to slow pursuit.\",\n      \"visual_description\": \"Thick silver fog billows up from Sable's outstretched palms, swallowing the corridor behind them; shadowy figures grope helplessly inside.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\", \"Princess Liora\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race onto the last bridge above a foaming gorge.\",\n      \"visual_description\": \"A narrow stone bridge arcs over a deep river chasm; the party runs across as ropes snap and stones crumble behind their heels.\",\n      \"characters\": [\"Captain Aren\", \"Princess Liora\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"On the far side, they look back at the ruined city.\",\n      \"visual_description\": \"The rescuers stand on a forested ridge at sunset, the broken city behind them shrouded in violet smoke; Princess Liora pulls a hood up, eyes set on the road ahead.\",\n      \"characters\": [\"Princess Liora\", \"Captain Aren\", \"Mira the Mapwright\", \"Brindle the Scout\", \"Sable the Spellbinder\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2589,
+        "total_tokens": 3475,
+        "cost": 0.069155,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.069155,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.064725
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue at Hollowcrown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A rescue party gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crouch on a windswept hill at dawn, looking down at a crumbling royal city wreathed in mist, broken spires piercing the clouds.\",\n      \"characters\": [\"Captain Aren\", \"Mira the Mapwright\", \"Brindle the Scout\", \"Sable the Spellbinder\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the lost royal city.\",\n      \"visual_description\": \"Close-up of a weathered parchment held down by stones, ink lines tracing castle gates, towers, and a single red circle around a dungeon keep.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They slip past the cracked castle gates.\",\n      \"visual_description\": \"Massive iron gates hang twisted from their hinges; the party tiptoes through long shadows cast by toppled statues of forgotten kings.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A cursed tower looms, whispering temptations.\",\n      \"visual_description\": \"A leaning black tower with violet runes glowing along its stones; spectral hands reach from the windows toward the travelers below.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Brindle resists the lure of dragon-hoard rumors.\",\n      \"visual_description\": \"A peasant in tattered cloak gestures wildly toward a smoking pit, gold coins scattered at the edge; Brindle shakes his head and pulls the party onward.\",\n      \"characters\": [\"Brindle the Scout\", \"Old Hask the Beggar\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople huddle in a market ruin.\",\n      \"visual_description\": \"A collapsed bazaar with overturned stalls; women and children clutch each other beneath a torn awning as the party approaches with raised hands.\",\n      \"characters\": [\"Captain Aren\", \"Mira the Mapwright\", \"Goodwife Ellin\", \"Tomkin the Orphan\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tomkin reveals where the captive is held.\",\n      \"visual_description\": \"A small boy traces a path in the ash on the cobblestones, pointing toward a distant keep crowned by a black banner.\",\n      \"characters\": [\"Tomkin the Orphan\", \"Mira the Mapwright\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol marches through the square.\",\n      \"visual_description\": \"Six soldiers in blackened plate stomp past a fountain, halberds gleaming; the party presses flat against a broken wall in deep shadow.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Sable lulls a drowsy gate official to deeper sleep.\",\n      \"visual_description\": \"A round, snoring clerk slumps over a podium of keys; Sable trails silver smoke from her fingertips over his head while Brindle lifts a ring of keys.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Brindle the Scout\", \"Warden Pomly\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They confront a sealed magic door.\",\n      \"visual_description\": \"An obsidian door inlaid with shifting silver glyphs blocks a corridor; the glyphs rearrange whenever the party blinks.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Mira solves the door's shifting riddle.\",\n      \"visual_description\": \"Mira sketches glyphs into a notebook, comparing them to her map; the silver patterns lock into a single open archway of pale light.\",\n      \"characters\": [\"Mira the Mapwright\", \"Sable the Spellbinder\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They descend into the banner-draped throne hall.\",\n      \"visual_description\": \"Tattered royal banners in crimson and gold hang from a vaulted ceiling above a cracked throne; dust motes drift in shafts of broken stained-glass light.\",\n      \"characters\": [\"Captain Aren\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The captive princess is found chained in the vault.\",\n      \"visual_description\": \"A young woman in a torn green gown sits straight-backed against a stone pillar, iron cuffs around her wrists, eyes fierce and unbroken.\",\n      \"characters\": [\"Princess Liora\", \"Captain Aren\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Brindle picks the locks while alarms begin to ring.\",\n      \"visual_description\": \"Close-up of nimble fingers working a curved pick in an iron cuff; in the background, a brass bell shudders in a high arched window.\",\n      \"characters\": [\"Brindle the Scout\", \"Princess Liora\", \"Captain Aren\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The patrol returns and the chase begins.\",\n      \"visual_description\": \"Black-armored soldiers pour through an archway with torches and crossbows; the party sprints down a corridor lined with shattered mirrors.\",\n      \"characters\": [\"Captain Aren\", \"Princess Liora\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Sable conjures a wall of mist to slow pursuit.\",\n      \"visual_description\": \"Thick silver fog billows up from Sable's outstretched palms, swallowing the corridor behind them; shadowy figures grope helplessly inside.\",\n      \"characters\": [\"Sable the Spellbinder\", \"Captain Aren\", \"Princess Liora\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race onto the last bridge above a foaming gorge.\",\n      \"visual_description\": \"A narrow stone bridge arcs over a deep river chasm; the party runs across as ropes snap and stones crumble behind their heels.\",\n      \"characters\": [\"Captain Aren\", \"Princess Liora\", \"Brindle the Scout\", \"Sable the Spellbinder\", \"Mira the Mapwright\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"On the far side, they look back at the ruined city.\",\n      \"visual_description\": \"The rescuers stand on a forested ridge at sunset, the broken city behind them shrouded in violet smoke; Princess Liora pulls a hood up, eyes set on the road ahead.\",\n      \"characters\": [\"Princess Liora\", \"Captain Aren\", \"Mira the Mapwright\", \"Brindle the Scout\", \"Sable the Spellbinder\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue at Hollowcrown",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A rescue party gathers at the edge of the ruined city.",
+        "visual_description": "Four travelers crouch on a windswept hill at dawn, looking down at a crumbling royal city wreathed in mist, broken spires piercing the clouds.",
+        "characters": [
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Brindle the Scout",
+          "Sable the Spellbinder"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Mira unrolls a map of the lost royal city.",
+        "visual_description": "Close-up of a weathered parchment held down by stones, ink lines tracing castle gates, towers, and a single red circle around a dungeon keep.",
+        "characters": [
+          "Mira the Mapwright",
+          "Captain Aren"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They slip past the cracked castle gates.",
+        "visual_description": "Massive iron gates hang twisted from their hinges; the party tiptoes through long shadows cast by toppled statues of forgotten kings.",
+        "characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A cursed tower looms, whispering temptations.",
+        "visual_description": "A leaning black tower with violet runes glowing along its stones; spectral hands reach from the windows toward the travelers below.",
+        "characters": [
+          "Sable the Spellbinder",
+          "Captain Aren"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Brindle resists the lure of dragon-hoard rumors.",
+        "visual_description": "A peasant in tattered cloak gestures wildly toward a smoking pit, gold coins scattered at the edge; Brindle shakes his head and pulls the party onward.",
+        "characters": [
+          "Brindle the Scout",
+          "Old Hask the Beggar",
+          "Captain Aren"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Frightened townspeople huddle in a market ruin.",
+        "visual_description": "A collapsed bazaar with overturned stalls; women and children clutch each other beneath a torn awning as the party approaches with raised hands.",
+        "characters": [
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Goodwife Ellin",
+          "Tomkin the Orphan"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Tomkin reveals where the captive is held.",
+        "visual_description": "A small boy traces a path in the ash on the cobblestones, pointing toward a distant keep crowned by a black banner.",
+        "characters": [
+          "Tomkin the Orphan",
+          "Mira the Mapwright",
+          "Captain Aren"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "An armored patrol marches through the square.",
+        "visual_description": "Six soldiers in blackened plate stomp past a fountain, halberds gleaming; the party presses flat against a broken wall in deep shadow.",
+        "characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Sable lulls a drowsy gate official to deeper sleep.",
+        "visual_description": "A round, snoring clerk slumps over a podium of keys; Sable trails silver smoke from her fingertips over his head while Brindle lifts a ring of keys.",
+        "characters": [
+          "Sable the Spellbinder",
+          "Brindle the Scout",
+          "Warden Pomly"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They confront a sealed magic door.",
+        "visual_description": "An obsidian door inlaid with shifting silver glyphs blocks a corridor; the glyphs rearrange whenever the party blinks.",
+        "characters": [
+          "Sable the Spellbinder",
+          "Captain Aren",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Mira solves the door's shifting riddle.",
+        "visual_description": "Mira sketches glyphs into a notebook, comparing them to her map; the silver patterns lock into a single open archway of pale light.",
+        "characters": [
+          "Mira the Mapwright",
+          "Sable the Spellbinder"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They descend into the banner-draped throne hall.",
+        "visual_description": "Tattered royal banners in crimson and gold hang from a vaulted ceiling above a cracked throne; dust motes drift in shafts of broken stained-glass light.",
+        "characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The captive princess is found chained in the vault.",
+        "visual_description": "A young woman in a torn green gown sits straight-backed against a stone pillar, iron cuffs around her wrists, eyes fierce and unbroken.",
+        "characters": [
+          "Princess Liora",
+          "Captain Aren",
+          "Brindle the Scout"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Brindle picks the locks while alarms begin to ring.",
+        "visual_description": "Close-up of nimble fingers working a curved pick in an iron cuff; in the background, a brass bell shudders in a high arched window.",
+        "characters": [
+          "Brindle the Scout",
+          "Princess Liora",
+          "Captain Aren"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The patrol returns and the chase begins.",
+        "visual_description": "Black-armored soldiers pour through an archway with torches and crossbows; the party sprints down a corridor lined with shattered mirrors.",
+        "characters": [
+          "Captain Aren",
+          "Princess Liora",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Sable conjures a wall of mist to slow pursuit.",
+        "visual_description": "Thick silver fog billows up from Sable's outstretched palms, swallowing the corridor behind them; shadowy figures grope helplessly inside.",
+        "characters": [
+          "Sable the Spellbinder",
+          "Captain Aren",
+          "Princess Liora"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They race onto the last bridge above a foaming gorge.",
+        "visual_description": "A narrow stone bridge arcs over a deep river chasm; the party runs across as ropes snap and stones crumble behind their heels.",
+        "characters": [
+          "Captain Aren",
+          "Princess Liora",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "On the far side, they look back at the ruined city.",
+        "visual_description": "The rescuers stand on a forested ridge at sunset, the broken city behind them shrouded in violet smoke; Princess Liora pulls a hood up, eyes set on the road ahead.",
+        "characters": [
+          "Princess Liora",
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Brindle the Scout",
+          "Sable the Spellbinder"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 5,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 5,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2777777777777778,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Brindle the Scout",
+          "Sable the Spellbinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Captain Aren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Spellbinder",
+          "Captain Aren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Old Hask the Beggar",
+          "Captain Aren"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Goodwife Ellin",
+          "Tomkin the Orphan"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Tomkin the Orphan",
+          "Mira the Mapwright",
+          "Captain Aren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Spellbinder",
+          "Brindle the Scout",
+          "Warden Pomly"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Spellbinder",
+          "Captain Aren",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Sable the Spellbinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Liora",
+          "Captain Aren",
+          "Brindle the Scout"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Princess Liora",
+          "Captain Aren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Princess Liora",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Spellbinder",
+          "Captain Aren",
+          "Princess Liora"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aren",
+          "Princess Liora",
+          "Brindle the Scout",
+          "Sable the Spellbinder",
+          "Mira the Mapwright"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Liora",
+          "Captain Aren",
+          "Mira the Mapwright",
+          "Brindle the Scout",
+          "Sable the Spellbinder"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      }
+    ]
+  },
+  "run_index": 18
+}

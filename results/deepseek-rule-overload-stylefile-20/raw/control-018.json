@@ -1,0 +1,544 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "c3c0ce61-7ad4-4297-9efb-648c92c83d15",
+      "object": "chat.completion",
+      "created": 1779005048,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "9c0a6da7-e2df-49ec-8641-287b356294f6",
+      "object": "chat.completion",
+      "created": 1779005049,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone scout arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone archways draped in faded royal banners, dust swirling in the afternoon light.\",\n      \"characters\": [\"scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The scout reports to the rescue party in a hollowed temple.\",\n      \"visual_description\": \"Broken stained-glass window casting colored shards onto a makeshift camp with worried faces.\",\n      \"characters\": [\"scout\", \"rescue_leader\", \"sorceress\", \"guard\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party enters the main square, past frightened townspeople.\",\n      \"visual_description\": \"Cobblestones littered with debris, families huddled in doorways, eyes darting toward armored patrols.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"An armored patrol demands papers at a checkpoint.\",\n      \"visual_description\": \"Soldiers in rusted plate armor holding pikes before a barricade of overturned carts.\",\n      \"characters\": [\"guard\", \"armored_patrol_leader\", \"armored_patrol_soldier\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"The sorceress distracts the patrol with a phantom wisp.\",\n      \"visual_description\": \"Glowing blue light zigzagging between rooftops, guards turning and shouting.\",\n      \"characters\": [\"sorceress\", \"armored_patrol_leader\", \"armored_patrol_soldier\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party slips into a cursed tower’s shadowy entrance.\",\n      \"visual_description\": \"Twisted iron door half-open, strange runes pulsing faintly on the stone frame.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside, illusions of treasure and feasts tempt the guard.\",\n      \"visual_description\": \"Golden goblets and piled coins shimmering in torchlight, a ghostly banquet table.\",\n      \"characters\": [\"guard\", \"rescue_leader\", \"sorceress\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The sorceress breaks the illusion with a counterspell.\",\n      \"visual_description\": \"Rippling air like heat haze, the feast dissolving into bare stone walls.\",\n      \"characters\": [\"sorceress\", \"guard\", \"rescue_leader\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a captive locked in a magical cage at the tower's heart.\",\n      \"visual_description\": \"Bars of violet energy in a circular chamber, a haggard figure kneeling inside.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The sorceress deciphers the runes holding the cage shut.\",\n      \"visual_description\": \"Fingers tracing glowing symbols on the floor, sweat beading on her brow.\",\n      \"characters\": [\"sorceress\", \"captive_prince\", \"rescue_leader\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Rumors of a dragon send panic through the tower's lower floors.\",\n      \"visual_description\": \"Distant roar echoing, dust shaking from ceiling cracks, guards fleeing past.\",\n      \"characters\": [\"guard\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rescue party emerges onto a battlement to see the dragon circling.\",\n      \"visual_description\": \"Great red shape against smoky sky, wings blotting out the sun, tail scraping spires.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They race down a winding stairway as the dragon breathes fire above.\",\n      \"visual_description\": \"Narrow spiral steps lit by orange glow, heat wave washing over them.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A magic door blocks their path, speaking in riddles.\",\n      \"visual_description\": \"Carved face in oak, eyes of amber, mouth moving slowly.\",\n      \"characters\": [\"sorceress\", \"magic_door_face\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The captive prince answers the riddle, and the door swings open.\",\n      \"visual_description\": \"Door's eyes brighten, hinges creak, stone corridor beyond revealed.\",\n      \"characters\": [\"captive_prince\", \"magic_door_face\", \"sorceress\", \"rescue_leader\", \"guard\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee across a narrow bridge spanning a deep chasm.\",\n      \"visual_description\": \"Rope and plank bridge swaying, dragon silhouette looming behind, mist below.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The guard cuts the bridge ropes to slow the dragon.\",\n      \"visual_description\": \"Sword severing thick hemp, bridge lurching, dragon roaring in frustration.\",\n      \"characters\": [\"guard\", \"dragon\", \"rescue_leader\", \"sorceress\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The survivors reach the far side and watch the city fall behind.\",\n      \"visual_description\": \"Silhouettes against dawn sky, ruined spires in distance, first light on their faces.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1409,
+        "total_tokens": 1913,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone scout arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone archways draped in faded royal banners, dust swirling in the afternoon light.\",\n      \"characters\": [\"scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The scout reports to the rescue party in a hollowed temple.\",\n      \"visual_description\": \"Broken stained-glass window casting colored shards onto a makeshift camp with worried faces.\",\n      \"characters\": [\"scout\", \"rescue_leader\", \"sorceress\", \"guard\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party enters the main square, past frightened townspeople.\",\n      \"visual_description\": \"Cobblestones littered with debris, families huddled in doorways, eyes darting toward armored patrols.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"An armored patrol demands papers at a checkpoint.\",\n      \"visual_description\": \"Soldiers in rusted plate armor holding pikes before a barricade of overturned carts.\",\n      \"characters\": [\"guard\", \"armored_patrol_leader\", \"armored_patrol_soldier\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"The sorceress distracts the patrol with a phantom wisp.\",\n      \"visual_description\": \"Glowing blue light zigzagging between rooftops, guards turning and shouting.\",\n      \"characters\": [\"sorceress\", \"armored_patrol_leader\", \"armored_patrol_soldier\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party slips into a cursed tower’s shadowy entrance.\",\n      \"visual_description\": \"Twisted iron door half-open, strange runes pulsing faintly on the stone frame.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside, illusions of treasure and feasts tempt the guard.\",\n      \"visual_description\": \"Golden goblets and piled coins shimmering in torchlight, a ghostly banquet table.\",\n      \"characters\": [\"guard\", \"rescue_leader\", \"sorceress\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The sorceress breaks the illusion with a counterspell.\",\n      \"visual_description\": \"Rippling air like heat haze, the feast dissolving into bare stone walls.\",\n      \"characters\": [\"sorceress\", \"guard\", \"rescue_leader\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a captive locked in a magical cage at the tower's heart.\",\n      \"visual_description\": \"Bars of violet energy in a circular chamber, a haggard figure kneeling inside.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The sorceress deciphers the runes holding the cage shut.\",\n      \"visual_description\": \"Fingers tracing glowing symbols on the floor, sweat beading on her brow.\",\n      \"characters\": [\"sorceress\", \"captive_prince\", \"rescue_leader\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Rumors of a dragon send panic through the tower's lower floors.\",\n      \"visual_description\": \"Distant roar echoing, dust shaking from ceiling cracks, guards fleeing past.\",\n      \"characters\": [\"guard\", \"townspeople\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rescue party emerges onto a battlement to see the dragon circling.\",\n      \"visual_description\": \"Great red shape against smoky sky, wings blotting out the sun, tail scraping spires.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They race down a winding stairway as the dragon breathes fire above.\",\n      \"visual_description\": \"Narrow spiral steps lit by orange glow, heat wave washing over them.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A magic door blocks their path, speaking in riddles.\",\n      \"visual_description\": \"Carved face in oak, eyes of amber, mouth moving slowly.\",\n      \"characters\": [\"sorceress\", \"magic_door_face\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The captive prince answers the riddle, and the door swings open.\",\n      \"visual_description\": \"Door's eyes brighten, hinges creak, stone corridor beyond revealed.\",\n      \"characters\": [\"captive_prince\", \"magic_door_face\", \"sorceress\", \"rescue_leader\", \"guard\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee across a narrow bridge spanning a deep chasm.\",\n      \"visual_description\": \"Rope and plank bridge swaying, dragon silhouette looming behind, mist below.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The guard cuts the bridge ropes to slow the dragon.\",\n      \"visual_description\": \"Sword severing thick hemp, bridge lurching, dragon roaring in frustration.\",\n      \"characters\": [\"guard\", \"dragon\", \"rescue_leader\", \"sorceress\", \"captive_prince\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The survivors reach the far side and watch the city fall behind.\",\n      \"visual_description\": \"Silhouettes against dawn sky, ruined spires in distance, first light on their faces.\",\n      \"characters\": [\"rescue_leader\", \"sorceress\", \"guard\", \"captive_prince\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A lone scout arrives at the ruined city gates.",
+        "visual_description": "Crumbling stone archways draped in faded royal banners, dust swirling in the afternoon light.",
+        "characters": [
+          "scout"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The scout reports to the rescue party in a hollowed temple.",
+        "visual_description": "Broken stained-glass window casting colored shards onto a makeshift camp with worried faces.",
+        "characters": [
+          "scout",
+          "rescue_leader",
+          "sorceress",
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The party enters the main square, past frightened townspeople.",
+        "visual_description": "Cobblestones littered with debris, families huddled in doorways, eyes darting toward armored patrols.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "townspeople"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "An armored patrol demands papers at a checkpoint.",
+        "visual_description": "Soldiers in rusted plate armor holding pikes before a barricade of overturned carts.",
+        "characters": [
+          "guard",
+          "armored_patrol_leader",
+          "armored_patrol_soldier"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "The sorceress distracts the patrol with a phantom wisp.",
+        "visual_description": "Glowing blue light zigzagging between rooftops, guards turning and shouting.",
+        "characters": [
+          "sorceress",
+          "armored_patrol_leader",
+          "armored_patrol_soldier"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The party slips into a cursed tower’s shadowy entrance.",
+        "visual_description": "Twisted iron door half-open, strange runes pulsing faintly on the stone frame.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Inside, illusions of treasure and feasts tempt the guard.",
+        "visual_description": "Golden goblets and piled coins shimmering in torchlight, a ghostly banquet table.",
+        "characters": [
+          "guard",
+          "rescue_leader",
+          "sorceress"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The sorceress breaks the illusion with a counterspell.",
+        "visual_description": "Rippling air like heat haze, the feast dissolving into bare stone walls.",
+        "characters": [
+          "sorceress",
+          "guard",
+          "rescue_leader"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They find a captive locked in a magical cage at the tower's heart.",
+        "visual_description": "Bars of violet energy in a circular chamber, a haggard figure kneeling inside.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The sorceress deciphers the runes holding the cage shut.",
+        "visual_description": "Fingers tracing glowing symbols on the floor, sweat beading on her brow.",
+        "characters": [
+          "sorceress",
+          "captive_prince",
+          "rescue_leader"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Rumors of a dragon send panic through the tower's lower floors.",
+        "visual_description": "Distant roar echoing, dust shaking from ceiling cracks, guards fleeing past.",
+        "characters": [
+          "guard",
+          "townspeople"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The rescue party emerges onto a battlement to see the dragon circling.",
+        "visual_description": "Great red shape against smoky sky, wings blotting out the sun, tail scraping spires.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They race down a winding stairway as the dragon breathes fire above.",
+        "visual_description": "Narrow spiral steps lit by orange glow, heat wave washing over them.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "A magic door blocks their path, speaking in riddles.",
+        "visual_description": "Carved face in oak, eyes of amber, mouth moving slowly.",
+        "characters": [
+          "sorceress",
+          "magic_door_face",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The captive prince answers the riddle, and the door swings open.",
+        "visual_description": "Door's eyes brighten, hinges creak, stone corridor beyond revealed.",
+        "characters": [
+          "captive_prince",
+          "magic_door_face",
+          "sorceress",
+          "rescue_leader",
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They flee across a narrow bridge spanning a deep chasm.",
+        "visual_description": "Rope and plank bridge swaying, dragon silhouette looming behind, mist below.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The guard cuts the bridge ropes to slow the dragon.",
+        "visual_description": "Sword severing thick hemp, bridge lurching, dragon roaring in frustration.",
+        "characters": [
+          "guard",
+          "dragon",
+          "rescue_leader",
+          "sorceress",
+          "captive_prince"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The survivors reach the far side and watch the city fall behind.",
+        "visual_description": "Silhouettes against dawn sky, ruined spires in distance, first light on their faces.",
+        "characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 9,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 9,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.5,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "rescue_leader",
+          "sorceress",
+          "guard"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "townspeople"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "guard",
+          "armored_patrol_leader",
+          "armored_patrol_soldier"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "sorceress",
+          "armored_patrol_leader",
+          "armored_patrol_soldier"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "guard",
+          "rescue_leader",
+          "sorceress"
+        ],
+        "forbidden_words": [
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "sorceress",
+          "guard",
+          "rescue_leader"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "sorceress",
+          "captive_prince",
+          "rescue_leader"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "guard",
+          "townspeople"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "sorceress",
+          "magic_door_face",
+          "captive_prince"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "captive_prince",
+          "magic_door_face",
+          "sorceress",
+          "rescue_leader",
+          "guard"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "guard",
+          "dragon",
+          "rescue_leader",
+          "sorceress",
+          "captive_prince"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "rescue_leader",
+          "sorceress",
+          "guard",
+          "captive_prince"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 18
+}

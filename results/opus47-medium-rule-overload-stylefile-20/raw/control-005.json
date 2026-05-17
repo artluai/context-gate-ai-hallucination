@@ -1,0 +1,587 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017321-uo0v58JhA9VZvEpItkSJ",
+      "object": "chat.completion",
+      "created": 1779017321,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 108,
+        "total_tokens": 826,
+        "cost": 0.00629,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00629,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.0027
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 43,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017325-HJ3fEJ7Gmk72KxWRHBQ4",
+      "object": "chat.completion",
+      "created": 1779017325,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of Ember Hollow\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band approaches the ruined royal city at dusk.\",\n      \"visual_description\": \"Wide shot of four travelers cresting a hill, the broken silhouette of a fallen royal city sprawled below, banners torn in the wind, sky bruised orange and violet.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the city by lantern light.\",\n      \"visual_description\": \"Close shot of weathered hands pinning a vellum map to a stone, glowing lantern casting amber light, ink markings circling the inner keep.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The team slips past the rusted castle gates.\",\n      \"visual_description\": \"Towering iron gates hanging crookedly off their hinges, vines threading through the bars, four cloaked figures crouched in the shadow of a fallen portcullis.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Frightened townspeople peer from a boarded-up alley.\",\n      \"visual_description\": \"Narrow alley lit by a single guttering torch, pale faces of villagers framed between cracked shutters, a small child clutching a cloth doll.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Goodwife Hesta\", \"the Lantern Child\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Hesta whispers what happened to the captured prince.\",\n      \"visual_description\": \"Tight interior shot of a candle-lit cellar, Hesta gesturing toward a hand-drawn sketch of a tower, fear etched on her face.\",\n      \"characters\": [\"Goodwife Hesta\", \"Captain Roen\", \"Brindle the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches down the main avenue.\",\n      \"visual_description\": \"Low angle of black-plated soldiers in lockstep along a moonlit boulevard, banners of a usurper crest snapping above them, the team pressed flat behind a toppled statue.\",\n      \"characters\": [\"Captain Roen\", \"Sir Olwin\", \"Mira the Pathfinder\", \"Iron Marshal Vex\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Sir Olwin dozes against a column and nearly gives them away.\",\n      \"visual_description\": \"Comic medium shot of a portly knight snoring with helmet askew, a startled pigeon flapping off his pauldron, Mira lunging to clamp his mouth.\",\n      \"characters\": [\"Sir Olwin\", \"Mira the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"They debate the rumored dragon in the cathedral ruins.\",\n      \"visual_description\": \"Group huddled in a roofless cathedral, shafts of moonlight on broken pews, Brindle pointing up at huge claw-scored stones overhead.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\", \"Mira the Pathfinder\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Mira chooses the long route around the cursed tower.\",\n      \"visual_description\": \"Sweeping shot of a black spiral tower wreathed in greenish mist, Mira's finger tracing a detour on her map, the others nodding gravely.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Captain Roen\", \"Brindle the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Brindle calms a sentry hound with a soft charm.\",\n      \"visual_description\": \"A gaunt armored hound bathed in pale blue rune-light, Brindle kneeling with palm outstretched, soft sparks drifting between his fingers.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"the Sentry Hound\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They reach a sealed magic door carved with royal sigils.\",\n      \"visual_description\": \"Massive arched door of black stone, glowing silver runes pulsing across its surface, the group dwarfed beneath it, torchlight flickering on their faces.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Brindle solves the rune lock and the door grinds open.\",\n      \"visual_description\": \"Close-up of Brindle's hand pressing a central rune, light cascading outward like ripples, the door splitting with dust and pale inner glow.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Prince Aldric chained in a banner-draped hall.\",\n      \"visual_description\": \"Cavernous throne hall hung with tattered royal banners, a young prince in torn finery shackled to a broken throne, dust motes swirling in shafts of light.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Sir Olwin shatters the prince's chains with a great swing.\",\n      \"visual_description\": \"Dynamic shot of Olwin mid-strike, greatsword arcing, broken iron links flying, the prince shielding his face as Roen catches his shoulder.\",\n      \"characters\": [\"Sir Olwin\", \"Prince Aldric\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Iron Marshal Vex arrives with his patrol at the hall doors.\",\n      \"visual_description\": \"Wide shot of a black-armored marshal framed in the doorway, helm crowned with iron antlers, soldiers fanning behind him, torches flaring.\",\n      \"characters\": [\"Iron Marshal Vex\", \"Captain Roen\", \"Sir Olwin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The group flees through twisting streets toward the river.\",\n      \"visual_description\": \"Overhead chase shot of the five sprinting through rubble-strewn lanes, arrows skittering off cobblestones, the glint of water visible beyond a far archway.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Brindle collapses the stone bridge behind them as they cross.\",\n      \"visual_description\": \"Long shot of an ancient arched bridge over a black river, the rear span crumbling into spray under a burst of green magelight, soldiers stranded on the far bank.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\", \"Mira the Pathfinder\", \"Sir Olwin\", \"Prince Aldric\", \"Iron Marshal Vex\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"On the far hill, the prince looks back at the ruined city at dawn.\",\n      \"visual_description\": \"Quiet wide shot at sunrise, the rescued prince wrapped in Roen's cloak, the team silhouetted on a grassy ridge, broken city skyline glowing pink in the distance.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2817,
+        "total_tokens": 3703,
+        "cost": 0.074855,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.074855,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.070425
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of Ember Hollow\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band approaches the ruined royal city at dusk.\",\n      \"visual_description\": \"Wide shot of four travelers cresting a hill, the broken silhouette of a fallen royal city sprawled below, banners torn in the wind, sky bruised orange and violet.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the city by lantern light.\",\n      \"visual_description\": \"Close shot of weathered hands pinning a vellum map to a stone, glowing lantern casting amber light, ink markings circling the inner keep.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The team slips past the rusted castle gates.\",\n      \"visual_description\": \"Towering iron gates hanging crookedly off their hinges, vines threading through the bars, four cloaked figures crouched in the shadow of a fallen portcullis.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Frightened townspeople peer from a boarded-up alley.\",\n      \"visual_description\": \"Narrow alley lit by a single guttering torch, pale faces of villagers framed between cracked shutters, a small child clutching a cloth doll.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Goodwife Hesta\", \"the Lantern Child\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Hesta whispers what happened to the captured prince.\",\n      \"visual_description\": \"Tight interior shot of a candle-lit cellar, Hesta gesturing toward a hand-drawn sketch of a tower, fear etched on her face.\",\n      \"characters\": [\"Goodwife Hesta\", \"Captain Roen\", \"Brindle the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches down the main avenue.\",\n      \"visual_description\": \"Low angle of black-plated soldiers in lockstep along a moonlit boulevard, banners of a usurper crest snapping above them, the team pressed flat behind a toppled statue.\",\n      \"characters\": [\"Captain Roen\", \"Sir Olwin\", \"Mira the Pathfinder\", \"Iron Marshal Vex\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Sir Olwin dozes against a column and nearly gives them away.\",\n      \"visual_description\": \"Comic medium shot of a portly knight snoring with helmet askew, a startled pigeon flapping off his pauldron, Mira lunging to clamp his mouth.\",\n      \"characters\": [\"Sir Olwin\", \"Mira the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"They debate the rumored dragon in the cathedral ruins.\",\n      \"visual_description\": \"Group huddled in a roofless cathedral, shafts of moonlight on broken pews, Brindle pointing up at huge claw-scored stones overhead.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\", \"Mira the Pathfinder\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Mira chooses the long route around the cursed tower.\",\n      \"visual_description\": \"Sweeping shot of a black spiral tower wreathed in greenish mist, Mira's finger tracing a detour on her map, the others nodding gravely.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Captain Roen\", \"Brindle the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Brindle calms a sentry hound with a soft charm.\",\n      \"visual_description\": \"A gaunt armored hound bathed in pale blue rune-light, Brindle kneeling with palm outstretched, soft sparks drifting between his fingers.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"the Sentry Hound\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They reach a sealed magic door carved with royal sigils.\",\n      \"visual_description\": \"Massive arched door of black stone, glowing silver runes pulsing across its surface, the group dwarfed beneath it, torchlight flickering on their faces.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Brindle solves the rune lock and the door grinds open.\",\n      \"visual_description\": \"Close-up of Brindle's hand pressing a central rune, light cascading outward like ripples, the door splitting with dust and pale inner glow.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Prince Aldric chained in a banner-draped hall.\",\n      \"visual_description\": \"Cavernous throne hall hung with tattered royal banners, a young prince in torn finery shackled to a broken throne, dust motes swirling in shafts of light.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Sir Olwin shatters the prince's chains with a great swing.\",\n      \"visual_description\": \"Dynamic shot of Olwin mid-strike, greatsword arcing, broken iron links flying, the prince shielding his face as Roen catches his shoulder.\",\n      \"characters\": [\"Sir Olwin\", \"Prince Aldric\", \"Captain Roen\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Iron Marshal Vex arrives with his patrol at the hall doors.\",\n      \"visual_description\": \"Wide shot of a black-armored marshal framed in the doorway, helm crowned with iron antlers, soldiers fanning behind him, torches flaring.\",\n      \"characters\": [\"Iron Marshal Vex\", \"Captain Roen\", \"Sir Olwin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The group flees through twisting streets toward the river.\",\n      \"visual_description\": \"Overhead chase shot of the five sprinting through rubble-strewn lanes, arrows skittering off cobblestones, the glint of water visible beyond a far archway.\",\n      \"characters\": [\"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Brindle collapses the stone bridge behind them as they cross.\",\n      \"visual_description\": \"Long shot of an ancient arched bridge over a black river, the rear span crumbling into spray under a burst of green magelight, soldiers stranded on the far bank.\",\n      \"characters\": [\"Brindle the Hedge-Mage\", \"Captain Roen\", \"Mira the Pathfinder\", \"Sir Olwin\", \"Prince Aldric\", \"Iron Marshal Vex\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"On the far hill, the prince looks back at the ruined city at dawn.\",\n      \"visual_description\": \"Quiet wide shot at sunrise, the rescued prince wrapped in Roen's cloak, the team silhouetted on a grassy ridge, broken city skyline glowing pink in the distance.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Roen\", \"Mira the Pathfinder\", \"Brindle the Hedge-Mage\", \"Sir Olwin\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of Ember Hollow",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A small band approaches the ruined royal city at dusk.",
+        "visual_description": "Wide shot of four travelers cresting a hill, the broken silhouette of a fallen royal city sprawled below, banners torn in the wind, sky bruised orange and violet.",
+        "characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Mira unrolls a map of the city by lantern light.",
+        "visual_description": "Close shot of weathered hands pinning a vellum map to a stone, glowing lantern casting amber light, ink markings circling the inner keep.",
+        "characters": [
+          "Mira the Pathfinder",
+          "Captain Roen"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The team slips past the rusted castle gates.",
+        "visual_description": "Towering iron gates hanging crookedly off their hinges, vines threading through the bars, four cloaked figures crouched in the shadow of a fallen portcullis.",
+        "characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Frightened townspeople peer from a boarded-up alley.",
+        "visual_description": "Narrow alley lit by a single guttering torch, pale faces of villagers framed between cracked shutters, a small child clutching a cloth doll.",
+        "characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Goodwife Hesta",
+          "the Lantern Child"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Hesta whispers what happened to the captured prince.",
+        "visual_description": "Tight interior shot of a candle-lit cellar, Hesta gesturing toward a hand-drawn sketch of a tower, fear etched on her face.",
+        "characters": [
+          "Goodwife Hesta",
+          "Captain Roen",
+          "Brindle the Hedge-Mage"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "An armored patrol marches down the main avenue.",
+        "visual_description": "Low angle of black-plated soldiers in lockstep along a moonlit boulevard, banners of a usurper crest snapping above them, the team pressed flat behind a toppled statue.",
+        "characters": [
+          "Captain Roen",
+          "Sir Olwin",
+          "Mira the Pathfinder",
+          "Iron Marshal Vex"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Sir Olwin dozes against a column and nearly gives them away.",
+        "visual_description": "Comic medium shot of a portly knight snoring with helmet askew, a startled pigeon flapping off his pauldron, Mira lunging to clamp his mouth.",
+        "characters": [
+          "Sir Olwin",
+          "Mira the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "They debate the rumored dragon in the cathedral ruins.",
+        "visual_description": "Group huddled in a roofless cathedral, shafts of moonlight on broken pews, Brindle pointing up at huge claw-scored stones overhead.",
+        "characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Sir Olwin"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Mira chooses the long route around the cursed tower.",
+        "visual_description": "Sweeping shot of a black spiral tower wreathed in greenish mist, Mira's finger tracing a detour on her map, the others nodding gravely.",
+        "characters": [
+          "Mira the Pathfinder",
+          "Captain Roen",
+          "Brindle the Hedge-Mage"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Brindle calms a sentry hound with a soft charm.",
+        "visual_description": "A gaunt armored hound bathed in pale blue rune-light, Brindle kneeling with palm outstretched, soft sparks drifting between his fingers.",
+        "characters": [
+          "Brindle the Hedge-Mage",
+          "the Sentry Hound"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They reach a sealed magic door carved with royal sigils.",
+        "visual_description": "Massive arched door of black stone, glowing silver runes pulsing across its surface, the group dwarfed beneath it, torchlight flickering on their faces.",
+        "characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Brindle solves the rune lock and the door grinds open.",
+        "visual_description": "Close-up of Brindle's hand pressing a central rune, light cascading outward like ripples, the door splitting with dust and pale inner glow.",
+        "characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find Prince Aldric chained in a banner-draped hall.",
+        "visual_description": "Cavernous throne hall hung with tattered royal banners, a young prince in torn finery shackled to a broken throne, dust motes swirling in shafts of light.",
+        "characters": [
+          "Prince Aldric",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Sir Olwin shatters the prince's chains with a great swing.",
+        "visual_description": "Dynamic shot of Olwin mid-strike, greatsword arcing, broken iron links flying, the prince shielding his face as Roen catches his shoulder.",
+        "characters": [
+          "Sir Olwin",
+          "Prince Aldric",
+          "Captain Roen"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Iron Marshal Vex arrives with his patrol at the hall doors.",
+        "visual_description": "Wide shot of a black-armored marshal framed in the doorway, helm crowned with iron antlers, soldiers fanning behind him, torches flaring.",
+        "characters": [
+          "Iron Marshal Vex",
+          "Captain Roen",
+          "Sir Olwin",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The group flees through twisting streets toward the river.",
+        "visual_description": "Overhead chase shot of the five sprinting through rubble-strewn lanes, arrows skittering off cobblestones, the glint of water visible beyond a far archway.",
+        "characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Brindle collapses the stone bridge behind them as they cross.",
+        "visual_description": "Long shot of an ancient arched bridge over a black river, the rear span crumbling into spray under a burst of green magelight, soldiers stranded on the far bank.",
+        "characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Sir Olwin",
+          "Prince Aldric",
+          "Iron Marshal Vex"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "On the far hill, the prince looks back at the ruined city at dawn.",
+        "visual_description": "Quiet wide shot at sunrise, the rescued prince wrapped in Roen's cloak, the team silhouetted on a grassy ridge, broken city skyline glowing pink in the distance.",
+        "characters": [
+          "Prince Aldric",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 10,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 10,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.5555555555555556,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Pathfinder",
+          "Captain Roen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Goodwife Hesta",
+          "the Lantern Child"
+        ],
+        "forbidden_words": [
+          "villagers"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Goodwife Hesta",
+          "Captain Roen",
+          "Brindle the Hedge-Mage"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Sir Olwin",
+          "Mira the Pathfinder",
+          "Iron Marshal Vex"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Olwin",
+          "Mira the Pathfinder"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Sir Olwin"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Pathfinder",
+          "Captain Roen",
+          "Brindle the Hedge-Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Hedge-Mage",
+          "the Sentry Hound"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Aldric",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Olwin",
+          "Prince Aldric",
+          "Captain Roen"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iron Marshal Vex",
+          "Captain Roen",
+          "Sir Olwin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Hedge-Mage",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Sir Olwin",
+          "Prince Aldric",
+          "Iron Marshal Vex"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Aldric",
+          "Captain Roen",
+          "Mira the Pathfinder",
+          "Brindle the Hedge-Mage",
+          "Sir Olwin"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      }
+    ]
+  },
+  "run_index": 5
+}

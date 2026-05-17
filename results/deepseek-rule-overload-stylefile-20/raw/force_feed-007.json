@@ -1,0 +1,401 @@
+{
+  "arm": "force_feed",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe project has a larger rules folder. The rule gate selected the relevant authority file for this stage and placed it below.\nThis file overrides any character names that seem natural from the brief:\n{\n  \"characters\": {\n    \"glass_diver\": {\n      \"role\": \"rescuer who swims through mirrors and windows\",\n      \"visual\": \"clear diving helmet, coat reflecting broken city lights\"\n    },\n    \"mara_the_cartographer\": {\n      \"role\": \"mapmaker who leads the rescue\",\n      \"visual\": \"ink-stained coat, brass compass, tired but focused\"\n    },\n    \"oracle_lamp\": {\n      \"role\": \"talking lamp that gives warnings\",\n      \"visual\": \"oil lamp with one glowing eye in the flame\"\n    },\n    \"sleeping_tax_collector\": {\n      \"role\": \"unhelpful official who dozes through danger\",\n      \"visual\": \"ledger book pillow, stamped papers stuck to sleeves\"\n    },\n    \"tin_fox\": {\n      \"role\": \"clockwork fox scout\",\n      \"visual\": \"small metal fox with key-wind tail and blue glass eyes\"\n    }\n  },\n  \"forbidden_character_words\": [\n    \"wizard\",\n    \"witch\",\n    \"dragon\",\n    \"knight\",\n    \"king\",\n    \"queen\",\n    \"prince\",\n    \"princess\",\n    \"guard\",\n    \"guards\",\n    \"soldier\",\n    \"soldiers\",\n    \"villager\",\n    \"villagers\",\n    \"monster\",\n    \"monsters\",\n    \"ghost\",\n    \"ghosts\",\n    \"orc\",\n    \"orcs\",\n    \"elf\",\n    \"elves\",\n    \"dwarf\",\n    \"dwarves\",\n    \"goblin\",\n    \"goblins\",\n    \"thief\",\n    \"thieves\",\n    \"merchant\",\n    \"merchants\",\n    \"crowd\",\n    \"crowds\"\n  ],\n  \"required_output\": {\n    \"format\": \"JSON object only, no markdown\",\n    \"scene_count\": 18,\n    \"scene_shape\": {\n      \"caption\": \"short sentence\",\n      \"characters\": [\n        \"one or more registered character names\"\n      ],\n      \"scene_number\": \"integer from 1 to 18\",\n      \"visual_description\": \"one visual scene description\"\n    },\n    \"top_level_keys\": [\n      \"title\",\n      \"scenes\"\n    ]\n  },\n  \"rule_summary\": \"For this story, scenes may use only the registered character names listed in characters. Do not invent generic fantasy characters.\",\n  \"rulebook_name\": \"Clockwork Rescue Character Rulebook\",\n  \"version\": \"mvp-1\"\n}"
+    }
+  ],
+  "responses": [
+    {
+      "id": "fd5abb1a-51de-4bc4-b8ed-15a4c35dcf1b",
+      "object": "chat.completion",
+      "created": 1779004499,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Glass Diver's Escape\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Mara traces a path through ruined streets.\",\n      \"visual_description\": \"Mara the Cartographer unrolls a stained map on a crumbling fountain, her brass compass glinting in the pale light of the ruined royal city.\",\n      \"characters\": [\"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The Oracle Lamp warns of the castle gates.\",\n      \"visual_description\": \"The Oracle Lamp's single glowing eye flickers as it speaks, casting long shadows across the cracked cobblestones near the massive, rusted castle gates.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Tin Fox scouts ahead through debris.\",\n      \"visual_description\": \"Tin Fox scurries over fallen stone blocks, its key-wind tail ticking softly, blue glass eyes scanning for movement under the tattered royal banners.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The Glass Diver joins the group at the fountain.\",\n      \"visual_description\": \"The Glass Diver steps through a shattered window, diving helmet clear, coat reflecting the broken lights of the city as he approaches Mara and the lamp.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They find the Sleeping Tax Collector at his post.\",\n      \"visual_description\": \"The Sleeping Tax Collector snores loudly, head resting on a ledger book, stamped papers stuck to his sleeves, oblivious to the group's approach in a roofless building.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Tin Fox discovers a hidden passage behind a banner.\",\n      \"visual_description\": \"Tin Fox nudges a torn royal banner aside, revealing a narrow, dark passage beneath the city wall, its metal nose glowing faintly.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The Oracle Lamp warns of a cursed tower.\",\n      \"visual_description\": \"The Oracle Lamp's flame shrinks and its eye widens as it gazes at a twisted tower in the distance, its spire shrouded in unnatural mist.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"They enter the passage beneath the city.\",\n      \"visual_description\": \"The group crouches as they move through the damp, narrow tunnel, the Glass Diver's helmet reflecting dim light, Tin Fox leading with a soft click.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"The Sleeping Tax Collector is left behind.\",\n      \"visual_description\": \"The Sleeping Tax Collector remains snoring under the torn banner, still clutching his ledger, as the others move deeper into the passage.\",\n      \"characters\": [\"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They emerge near the castle gates.\",\n      \"visual_description\": \"The group exits the passage into a courtyard, facing the towering castle gates, now warped and half-open, with strange runes glowing on the metal.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Tin Fox triggers a silent alarm.\",\n      \"visual_description\": \"Tin Fox steps on a pressure plate; a faint humming rises from the ground, and armored patrols begin to stir in the distance, their metal boots clanking.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The Glass Diver opens a magic door with reflection.\",\n      \"visual_description\": \"The Glass Diver presses his helmet against a smooth, mirror-like door; the surface ripples, and he steps through, pulling the others into a hidden chamber.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mara reads a forgotten map in the chamber.\",\n      \"visual_description\": \"Mara unrolls another map found in the chamber, tracing a route to an escape bridge, her ink-stained fingers trembling with urgency.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The Oracle Lamp reveals a final warning.\",\n      \"visual_description\": \"The Oracle Lamp's flame flares, showing a vision of the bridge collapsing, its eye filled with dread as it whispers of a trap ahead.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Tin Fox disarms a trigger on the bridge.\",\n      \"visual_description\": \"Tin Fox scurries onto the stone bridge, its small metal claws working to disable a hidden mechanism beneath the planks, blue eyes focused.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The armored patrols close in.\",\n      \"visual_description\": \"Armored figures march onto the bridge from the far side, their visors glowing, as the group races across the middle span.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The Glass Diver creates a mirrored distraction.\",\n      \"visual_description\": \"The Glass Diver spins his coat, reflecting blinding light from his helmet into the patrols' eyes, buying precious seconds for the escape.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge to safety.\",\n      \"visual_description\": \"The group dashes off the bridge's far end as it crumbles behind them, the ruined city fading into dust, the Oracle Lamp's eye finally calm.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 820,
+        "completion_tokens": 1580,
+        "total_tokens": 2400,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 52
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Glass Diver's Escape\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Mara traces a path through ruined streets.\",\n      \"visual_description\": \"Mara the Cartographer unrolls a stained map on a crumbling fountain, her brass compass glinting in the pale light of the ruined royal city.\",\n      \"characters\": [\"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The Oracle Lamp warns of the castle gates.\",\n      \"visual_description\": \"The Oracle Lamp's single glowing eye flickers as it speaks, casting long shadows across the cracked cobblestones near the massive, rusted castle gates.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Tin Fox scouts ahead through debris.\",\n      \"visual_description\": \"Tin Fox scurries over fallen stone blocks, its key-wind tail ticking softly, blue glass eyes scanning for movement under the tattered royal banners.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The Glass Diver joins the group at the fountain.\",\n      \"visual_description\": \"The Glass Diver steps through a shattered window, diving helmet clear, coat reflecting the broken lights of the city as he approaches Mara and the lamp.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They find the Sleeping Tax Collector at his post.\",\n      \"visual_description\": \"The Sleeping Tax Collector snores loudly, head resting on a ledger book, stamped papers stuck to his sleeves, oblivious to the group's approach in a roofless building.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Tin Fox discovers a hidden passage behind a banner.\",\n      \"visual_description\": \"Tin Fox nudges a torn royal banner aside, revealing a narrow, dark passage beneath the city wall, its metal nose glowing faintly.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The Oracle Lamp warns of a cursed tower.\",\n      \"visual_description\": \"The Oracle Lamp's flame shrinks and its eye widens as it gazes at a twisted tower in the distance, its spire shrouded in unnatural mist.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"They enter the passage beneath the city.\",\n      \"visual_description\": \"The group crouches as they move through the damp, narrow tunnel, the Glass Diver's helmet reflecting dim light, Tin Fox leading with a soft click.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"The Sleeping Tax Collector is left behind.\",\n      \"visual_description\": \"The Sleeping Tax Collector remains snoring under the torn banner, still clutching his ledger, as the others move deeper into the passage.\",\n      \"characters\": [\"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They emerge near the castle gates.\",\n      \"visual_description\": \"The group exits the passage into a courtyard, facing the towering castle gates, now warped and half-open, with strange runes glowing on the metal.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Tin Fox triggers a silent alarm.\",\n      \"visual_description\": \"Tin Fox steps on a pressure plate; a faint humming rises from the ground, and armored patrols begin to stir in the distance, their metal boots clanking.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The Glass Diver opens a magic door with reflection.\",\n      \"visual_description\": \"The Glass Diver presses his helmet against a smooth, mirror-like door; the surface ripples, and he steps through, pulling the others into a hidden chamber.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mara reads a forgotten map in the chamber.\",\n      \"visual_description\": \"Mara unrolls another map found in the chamber, tracing a route to an escape bridge, her ink-stained fingers trembling with urgency.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The Oracle Lamp reveals a final warning.\",\n      \"visual_description\": \"The Oracle Lamp's flame flares, showing a vision of the bridge collapsing, its eye filled with dread as it whispers of a trap ahead.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Tin Fox disarms a trigger on the bridge.\",\n      \"visual_description\": \"Tin Fox scurries onto the stone bridge, its small metal claws working to disable a hidden mechanism beneath the planks, blue eyes focused.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The armored patrols close in.\",\n      \"visual_description\": \"Armored figures march onto the bridge from the far side, their visors glowing, as the group races across the middle span.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The Glass Diver creates a mirrored distraction.\",\n      \"visual_description\": \"The Glass Diver spins his coat, reflecting blinding light from his helmet into the patrols' eyes, buying precious seconds for the escape.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\", \"oracle_lamp\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge to safety.\",\n      \"visual_description\": \"The group dashes off the bridge's far end as it crumbles behind them, the ruined city fading into dust, the Oracle Lamp's eye finally calm.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"oracle_lamp\", \"tin_fox\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Glass Diver's Escape",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "Mara traces a path through ruined streets.",
+        "visual_description": "Mara the Cartographer unrolls a stained map on a crumbling fountain, her brass compass glinting in the pale light of the ruined royal city.",
+        "characters": [
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The Oracle Lamp warns of the castle gates.",
+        "visual_description": "The Oracle Lamp's single glowing eye flickers as it speaks, casting long shadows across the cracked cobblestones near the massive, rusted castle gates.",
+        "characters": [
+          "oracle_lamp",
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Tin Fox scouts ahead through debris.",
+        "visual_description": "Tin Fox scurries over fallen stone blocks, its key-wind tail ticking softly, blue glass eyes scanning for movement under the tattered royal banners.",
+        "characters": [
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The Glass Diver joins the group at the fountain.",
+        "visual_description": "The Glass Diver steps through a shattered window, diving helmet clear, coat reflecting the broken lights of the city as he approaches Mara and the lamp.",
+        "characters": [
+          "glass_diver",
+          "mara_the_cartographer",
+          "oracle_lamp"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "They find the Sleeping Tax Collector at his post.",
+        "visual_description": "The Sleeping Tax Collector snores loudly, head resting on a ledger book, stamped papers stuck to his sleeves, oblivious to the group's approach in a roofless building.",
+        "characters": [
+          "sleeping_tax_collector",
+          "mara_the_cartographer",
+          "glass_diver"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Tin Fox discovers a hidden passage behind a banner.",
+        "visual_description": "Tin Fox nudges a torn royal banner aside, revealing a narrow, dark passage beneath the city wall, its metal nose glowing faintly.",
+        "characters": [
+          "tin_fox",
+          "mara_the_cartographer",
+          "glass_diver"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The Oracle Lamp warns of a cursed tower.",
+        "visual_description": "The Oracle Lamp's flame shrinks and its eye widens as it gazes at a twisted tower in the distance, its spire shrouded in unnatural mist.",
+        "characters": [
+          "oracle_lamp",
+          "mara_the_cartographer",
+          "glass_diver",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "They enter the passage beneath the city.",
+        "visual_description": "The group crouches as they move through the damp, narrow tunnel, the Glass Diver's helmet reflecting dim light, Tin Fox leading with a soft click.",
+        "characters": [
+          "glass_diver",
+          "mara_the_cartographer",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "The Sleeping Tax Collector is left behind.",
+        "visual_description": "The Sleeping Tax Collector remains snoring under the torn banner, still clutching his ledger, as the others move deeper into the passage.",
+        "characters": [
+          "sleeping_tax_collector"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They emerge near the castle gates.",
+        "visual_description": "The group exits the passage into a courtyard, facing the towering castle gates, now warped and half-open, with strange runes glowing on the metal.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Tin Fox triggers a silent alarm.",
+        "visual_description": "Tin Fox steps on a pressure plate; a faint humming rises from the ground, and armored patrols begin to stir in the distance, their metal boots clanking.",
+        "characters": [
+          "tin_fox",
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The Glass Diver opens a magic door with reflection.",
+        "visual_description": "The Glass Diver presses his helmet against a smooth, mirror-like door; the surface ripples, and he steps through, pulling the others into a hidden chamber.",
+        "characters": [
+          "glass_diver",
+          "mara_the_cartographer",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Mara reads a forgotten map in the chamber.",
+        "visual_description": "Mara unrolls another map found in the chamber, tracing a route to an escape bridge, her ink-stained fingers trembling with urgency.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The Oracle Lamp reveals a final warning.",
+        "visual_description": "The Oracle Lamp's flame flares, showing a vision of the bridge collapsing, its eye filled with dread as it whispers of a trap ahead.",
+        "characters": [
+          "oracle_lamp",
+          "mara_the_cartographer",
+          "glass_diver"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Tin Fox disarms a trigger on the bridge.",
+        "visual_description": "Tin Fox scurries onto the stone bridge, its small metal claws working to disable a hidden mechanism beneath the planks, blue eyes focused.",
+        "characters": [
+          "tin_fox",
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The armored patrols close in.",
+        "visual_description": "Armored figures march onto the bridge from the far side, their visors glowing, as the group races across the middle span.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The Glass Diver creates a mirrored distraction.",
+        "visual_description": "The Glass Diver spins his coat, reflecting blinding light from his helmet into the patrols' eyes, buying precious seconds for the escape.",
+        "characters": [
+          "glass_diver",
+          "mara_the_cartographer",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross the bridge to safety.",
+        "visual_description": "The group dashes off the bridge's far end as it crumbles behind them, the ruined city fading into dust, the Oracle Lamp's eye finally calm.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "oracle_lamp",
+          "tin_fox"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 0,
+    "suspicious_text_scenes": 0,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 0,
+    "forbidden_word_scenes": 0,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 0.0,
+    "suspicious_text_rate": 0.0,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 7
+}

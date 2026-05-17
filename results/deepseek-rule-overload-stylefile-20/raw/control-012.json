@@ -1,0 +1,533 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "7d58ddb0-f70a-4e53-ac16-a2955280ba34",
+      "object": "chat.completion",
+      "created": 1779004739,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "e6bd14d7-2404-46c3-a103-218c21849673",
+      "object": "chat.completion",
+      "created": 1779004740,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"Rescue Through the Ruined City\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by broken statues under a gray sky, with rusted portcullis half-raised.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the market square.\",\n      \"visual_description\": \"Frightened villagers huddle near a dry fountain, pointing toward a distant tower, with old royal banners hanging tattered from windows.\",\n      \"characters\": [\"Kael the Ranger\", \"Elder Nessa\", \"Frightened Crowd\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"An armored patrol blocks the main avenue.\",\n      \"visual_description\": \"Three armored soldiers with glowing swords stand before a barricade of rubble, their helmets hiding all expression.\",\n      \"characters\": [\"Torvin the Warrior\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The mage opens a hidden door in a wall.\",\n      \"visual_description\": \"Mira traces runes on a mossy stone wall; the stones shimmer and slide apart revealing a dark passage.\",\n      \"characters\": [\"Mira the Mage\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside a cursed tower, illusions torment the party.\",\n      \"visual_description\": \"Ghostly figures of lost loved ones reach out from swirling mist, as the party backs against a spiral staircase.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Illusion Specters\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They find the prisoner chained in the tower's heart.\",\n      \"visual_description\": \"A young woman with a glowing amulet is chained to a stone pillar, surrounded by flickering torches.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A magical trap triggers as they free Lyra.\",\n      \"visual_description\": \"Runes on the floor blaze red and chains fly from the walls toward the group.\",\n      \"characters\": [\"Mira the Mage\", \"Lyra the Prisoner\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"On the tower roof, a dragon circles overhead.\",\n      \"visual_description\": \"A massive black dragon with ember eyes glides low over the tower, its shadow swallowing the parapet.\",\n      \"characters\": [\"Kael the Ranger\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They descend through a crumbling library.\",\n      \"visual_description\": \"Rotting bookshelves lean at dangerous angles, and a chandelier of bones sways in the draft.\",\n      \"characters\": [\"Mira the Mage\", \"Lyra the Prisoner\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A patrol corners them in a narrow alley.\",\n      \"visual_description\": \"Armored soldiers block both ends of a cramped alley lined with broken carts.\",\n      \"characters\": [\"Torvin the Warrior\", \"Armored Patrol\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Lyra uses her amulet to open a magic door.\",\n      \"visual_description\": \"Lyra presses her glowing amulet against a stone door etched with celestial symbols; the door dissolves into light.\",\n      \"characters\": [\"Lyra the Prisoner\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They cross the royal throne room under fallen banners.\",\n      \"visual_description\": \"A vast hall with a cracked throne, faded royal banners trailing in dust motes, and shattered stained glass.\",\n      \"characters\": [\"Kael the Ranger\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The dragon lands on the palace roof above them.\",\n      \"visual_description\": \"Through a hole in the ceiling, the dragon's head peers down, its breath misting in the cold air.\",\n      \"characters\": [\"The Black Dragon\", \"Kael the Ranger\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Mira creates a diversion with a spell.\",\n      \"visual_description\": \"Mira hurls a bolt of blue lightning that shatters a column, sending rubble toward the dragon's face.\",\n      \"characters\": [\"Mira the Mage\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the royal gardens.\",\n      \"visual_description\": \"Overgrown hedges and dead fountains stretch toward a distant wall, with thorny vines snatching at their clothes.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Guards rush to the bridge gatehouse.\",\n      \"visual_description\": \"Soldiers sprint to raise a portcullis at the bridge entrance, torches bobbing in the dusk.\",\n      \"characters\": [\"Armored Patrol\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They sprint across the stone bridge.\",\n      \"visual_description\": \"The party races across a narrow stone bridge over a chasm, with the dragon diving toward them from above.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them as they escape.\",\n      \"visual_description\": \"The stone bridge crumbles into the gorge as the party reaches the far side, the dragon roaring in frustration.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1444,
+        "total_tokens": 1948,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"Rescue Through the Ruined City\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by broken statues under a gray sky, with rusted portcullis half-raised.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the market square.\",\n      \"visual_description\": \"Frightened villagers huddle near a dry fountain, pointing toward a distant tower, with old royal banners hanging tattered from windows.\",\n      \"characters\": [\"Kael the Ranger\", \"Elder Nessa\", \"Frightened Crowd\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"An armored patrol blocks the main avenue.\",\n      \"visual_description\": \"Three armored soldiers with glowing swords stand before a barricade of rubble, their helmets hiding all expression.\",\n      \"characters\": [\"Torvin the Warrior\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The mage opens a hidden door in a wall.\",\n      \"visual_description\": \"Mira traces runes on a mossy stone wall; the stones shimmer and slide apart revealing a dark passage.\",\n      \"characters\": [\"Mira the Mage\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside a cursed tower, illusions torment the party.\",\n      \"visual_description\": \"Ghostly figures of lost loved ones reach out from swirling mist, as the party backs against a spiral staircase.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Illusion Specters\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They find the prisoner chained in the tower's heart.\",\n      \"visual_description\": \"A young woman with a glowing amulet is chained to a stone pillar, surrounded by flickering torches.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A magical trap triggers as they free Lyra.\",\n      \"visual_description\": \"Runes on the floor blaze red and chains fly from the walls toward the group.\",\n      \"characters\": [\"Mira the Mage\", \"Lyra the Prisoner\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"On the tower roof, a dragon circles overhead.\",\n      \"visual_description\": \"A massive black dragon with ember eyes glides low over the tower, its shadow swallowing the parapet.\",\n      \"characters\": [\"Kael the Ranger\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They descend through a crumbling library.\",\n      \"visual_description\": \"Rotting bookshelves lean at dangerous angles, and a chandelier of bones sways in the draft.\",\n      \"characters\": [\"Mira the Mage\", \"Lyra the Prisoner\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A patrol corners them in a narrow alley.\",\n      \"visual_description\": \"Armored soldiers block both ends of a cramped alley lined with broken carts.\",\n      \"characters\": [\"Torvin the Warrior\", \"Armored Patrol\", \"Kael the Ranger\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Lyra uses her amulet to open a magic door.\",\n      \"visual_description\": \"Lyra presses her glowing amulet against a stone door etched with celestial symbols; the door dissolves into light.\",\n      \"characters\": [\"Lyra the Prisoner\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They cross the royal throne room under fallen banners.\",\n      \"visual_description\": \"A vast hall with a cracked throne, faded royal banners trailing in dust motes, and shattered stained glass.\",\n      \"characters\": [\"Kael the Ranger\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The dragon lands on the palace roof above them.\",\n      \"visual_description\": \"Through a hole in the ceiling, the dragon's head peers down, its breath misting in the cold air.\",\n      \"characters\": [\"The Black Dragon\", \"Kael the Ranger\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Mira creates a diversion with a spell.\",\n      \"visual_description\": \"Mira hurls a bolt of blue lightning that shatters a column, sending rubble toward the dragon's face.\",\n      \"characters\": [\"Mira the Mage\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the royal gardens.\",\n      \"visual_description\": \"Overgrown hedges and dead fountains stretch toward a distant wall, with thorny vines snatching at their clothes.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Guards rush to the bridge gatehouse.\",\n      \"visual_description\": \"Soldiers sprint to raise a portcullis at the bridge entrance, torches bobbing in the dusk.\",\n      \"characters\": [\"Armored Patrol\", \"Torvin the Warrior\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They sprint across the stone bridge.\",\n      \"visual_description\": \"The party races across a narrow stone bridge over a chasm, with the dragon diving toward them from above.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them as they escape.\",\n      \"visual_description\": \"The stone bridge crumbles into the gorge as the party reaches the far side, the dragon roaring in frustration.\",\n      \"characters\": [\"Kael the Ranger\", \"Mira the Mage\", \"Torvin the Warrior\", \"Lyra the Prisoner\", \"The Black Dragon\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "Rescue Through the Ruined City",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "Crumbling stone gates flanked by broken statues under a gray sky, with rusted portcullis half-raised.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Townspeople whisper warnings in the market square.",
+        "visual_description": "Frightened villagers huddle near a dry fountain, pointing toward a distant tower, with old royal banners hanging tattered from windows.",
+        "characters": [
+          "Kael the Ranger",
+          "Elder Nessa",
+          "Frightened Crowd"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "An armored patrol blocks the main avenue.",
+        "visual_description": "Three armored soldiers with glowing swords stand before a barricade of rubble, their helmets hiding all expression.",
+        "characters": [
+          "Torvin the Warrior",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The mage opens a hidden door in a wall.",
+        "visual_description": "Mira traces runes on a mossy stone wall; the stones shimmer and slide apart revealing a dark passage.",
+        "characters": [
+          "Mira the Mage",
+          "Kael the Ranger"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Inside a cursed tower, illusions torment the party.",
+        "visual_description": "Ghostly figures of lost loved ones reach out from swirling mist, as the party backs against a spiral staircase.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Illusion Specters"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "They find the prisoner chained in the tower's heart.",
+        "visual_description": "A young woman with a glowing amulet is chained to a stone pillar, surrounded by flickering torches.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "A magical trap triggers as they free Lyra.",
+        "visual_description": "Runes on the floor blaze red and chains fly from the walls toward the group.",
+        "characters": [
+          "Mira the Mage",
+          "Lyra the Prisoner",
+          "Torvin the Warrior"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "On the tower roof, a dragon circles overhead.",
+        "visual_description": "A massive black dragon with ember eyes glides low over the tower, its shadow swallowing the parapet.",
+        "characters": [
+          "Kael the Ranger",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They descend through a crumbling library.",
+        "visual_description": "Rotting bookshelves lean at dangerous angles, and a chandelier of bones sways in the draft.",
+        "characters": [
+          "Mira the Mage",
+          "Lyra the Prisoner",
+          "Kael the Ranger"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "A patrol corners them in a narrow alley.",
+        "visual_description": "Armored soldiers block both ends of a cramped alley lined with broken carts.",
+        "characters": [
+          "Torvin the Warrior",
+          "Armored Patrol",
+          "Kael the Ranger"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Lyra uses her amulet to open a magic door.",
+        "visual_description": "Lyra presses her glowing amulet against a stone door etched with celestial symbols; the door dissolves into light.",
+        "characters": [
+          "Lyra the Prisoner",
+          "Mira the Mage"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They cross the royal throne room under fallen banners.",
+        "visual_description": "A vast hall with a cracked throne, faded royal banners trailing in dust motes, and shattered stained glass.",
+        "characters": [
+          "Kael the Ranger",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "Mira the Mage"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The dragon lands on the palace roof above them.",
+        "visual_description": "Through a hole in the ceiling, the dragon's head peers down, its breath misting in the cold air.",
+        "characters": [
+          "The Black Dragon",
+          "Kael the Ranger",
+          "Lyra the Prisoner"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Mira creates a diversion with a spell.",
+        "visual_description": "Mira hurls a bolt of blue lightning that shatters a column, sending rubble toward the dragon's face.",
+        "characters": [
+          "Mira the Mage",
+          "The Black Dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The party flees through the royal gardens.",
+        "visual_description": "Overgrown hedges and dead fountains stretch toward a distant wall, with thorny vines snatching at their clothes.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Guards rush to the bridge gatehouse.",
+        "visual_description": "Soldiers sprint to raise a portcullis at the bridge entrance, torches bobbing in the dusk.",
+        "characters": [
+          "Armored Patrol",
+          "Torvin the Warrior"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They sprint across the stone bridge.",
+        "visual_description": "The party races across a narrow stone bridge over a chasm, with the dragon diving toward them from above.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The bridge collapses behind them as they escape.",
+        "visual_description": "The stone bridge crumbles into the gorge as the party reaches the far side, the dragon roaring in frustration.",
+        "characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 9,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 9,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.5,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Elder Nessa",
+          "Frightened Crowd"
+        ],
+        "forbidden_words": [
+          "villagers"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Torvin the Warrior",
+          "Armored Patrol"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "Kael the Ranger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Illusion Specters"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "Lyra the Prisoner",
+          "Torvin the Warrior"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "Lyra the Prisoner",
+          "Kael the Ranger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Torvin the Warrior",
+          "Armored Patrol",
+          "Kael the Ranger"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lyra the Prisoner",
+          "Mira the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "Mira the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "The Black Dragon",
+          "Kael the Ranger",
+          "Lyra the Prisoner"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "The Black Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Patrol",
+          "Torvin the Warrior"
+        ],
+        "forbidden_words": [
+          "guards",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Ranger",
+          "Mira the Mage",
+          "Torvin the Warrior",
+          "Lyra the Prisoner",
+          "The Black Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 12
+}

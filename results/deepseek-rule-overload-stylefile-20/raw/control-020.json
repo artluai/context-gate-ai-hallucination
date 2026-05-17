@@ -1,0 +1,548 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "8293d50e-571a-4e36-89a1-5833bbcc0e84",
+      "object": "chat.completion",
+      "created": 1779005146,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "0d80fdb4-7fa9-452a-8ffa-8ef8d966e638",
+      "object": "chat.completion",
+      "created": 1779005147,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Cage: Rescue in Ruin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by faded royal banners, the iron portcullis half-cocked, and a single lantern swinging in the mist.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings.\",\n      \"visual_description\": \"Cowering huddled figures in threadbare cloaks, eyes wide, pointing toward a distant spire while clutching children close.\",\n      \"characters\": [\"Townspeople\", \"Kael\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the plaza.\",\n      \"visual_description\": \"A column of faceless soldiers in tarnished plate armor, boots striking cobblestones in unison, halberds gleaming under grey light.\",\n      \"characters\": [\"Armored Patrol\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party takes shelter in an old tavern.\",\n      \"visual_description\": \"Dusty barrels, shattered stained glass, and a bar littered with broken tankards, moonlight spilling through a collapsed roof.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon reach their ears.\",\n      \"visual_description\": \"An old woman whispering by a dying fire, her hand on a rusted sword, her shadow flickering like wings on the wall.\",\n      \"characters\": [\"Townspeople\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party approaches the cursed tower.\",\n      \"visual_description\": \"A twisted black spire rising from the city center, its surface crawling with thorny vines and glowing runes pulsing slowly.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A magic door bars the tower entrance.\",\n      \"visual_description\": \"The door ripples like oil, shifting patterns of silver and black, a silent eye opening and closing at its center.\",\n      \"characters\": [\"Mira\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira deciphers the door's riddle.\",\n      \"visual_description\": \"Mira tracing her fingers over the runes, her lips moving silently, the door's surface calming to reveal a keyhole.\",\n      \"characters\": [\"Mira\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Inside the tower, illusions tempt them.\",\n      \"visual_description\": \"A grand hall filled with floating golden coins and shimmering phantoms of lost loved ones, each figure beckoning softly.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Illusion of a child\", \"Illusion of a king\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The princess is found in a crystal cage.\",\n      \"visual_description\": \"Elara suspended in a glowing crystal prism, chains of light binding her wrists, her dress tattered but defiant.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A guardian activates—a stone golem.\",\n      \"visual_description\": \"The crystal cracks as a massive golem rises from the floor, its body made of broken statues and crumbling masonry.\",\n      \"characters\": [\"Stone Golem\", \"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Torvin holds the golem back.\",\n      \"visual_description\": \"Torvin bracing his shield against the golem's fist, sparks flying, his boots skidding on the stone floor.\",\n      \"characters\": [\"Torvin\", \"Stone Golem\", \"Kael\", \"Mira\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira shatters the crystal prison.\",\n      \"visual_description\": \"Mira pressing her palms against the crystal, a web of light spreading from her hands, the prism exploding into glittering dust.\",\n      \"characters\": [\"Mira\", \"Elara\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The tower begins to collapse.\",\n      \"visual_description\": \"Rocks falling from the ceiling, the golem crumbling to rubble, the floor tilting as the tower groans and splits.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the city streets.\",\n      \"visual_description\": \"Running figures dodging falling debris and shattered banners, patrols shouting in the distance, flames licking from windows.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They reach the escape bridge.\",\n      \"visual_description\": \"A long stone bridge spanning a churning river, its far end wreathed in mist, the city burning behind them.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A dragon descends to block the bridge.\",\n      \"visual_description\": \"A massive crimson dragon lands on the bridge, its wings folding, smoke curling from its nostrils as it roars silently.\",\n      \"characters\": [\"Dragon\", \"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party escapes across the bridge as dawn breaks.\",\n      \"visual_description\": \"The dragon rising into the sky as the party crosses, the sun cresting the hills, the ruined city silhouetted against gold.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\", \"Dragon\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1428,
+        "total_tokens": 1932,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Cage: Rescue in Ruin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by faded royal banners, the iron portcullis half-cocked, and a single lantern swinging in the mist.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings.\",\n      \"visual_description\": \"Cowering huddled figures in threadbare cloaks, eyes wide, pointing toward a distant spire while clutching children close.\",\n      \"characters\": [\"Townspeople\", \"Kael\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the plaza.\",\n      \"visual_description\": \"A column of faceless soldiers in tarnished plate armor, boots striking cobblestones in unison, halberds gleaming under grey light.\",\n      \"characters\": [\"Armored Patrol\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party takes shelter in an old tavern.\",\n      \"visual_description\": \"Dusty barrels, shattered stained glass, and a bar littered with broken tankards, moonlight spilling through a collapsed roof.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon reach their ears.\",\n      \"visual_description\": \"An old woman whispering by a dying fire, her hand on a rusted sword, her shadow flickering like wings on the wall.\",\n      \"characters\": [\"Townspeople\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party approaches the cursed tower.\",\n      \"visual_description\": \"A twisted black spire rising from the city center, its surface crawling with thorny vines and glowing runes pulsing slowly.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A magic door bars the tower entrance.\",\n      \"visual_description\": \"The door ripples like oil, shifting patterns of silver and black, a silent eye opening and closing at its center.\",\n      \"characters\": [\"Mira\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira deciphers the door's riddle.\",\n      \"visual_description\": \"Mira tracing her fingers over the runes, her lips moving silently, the door's surface calming to reveal a keyhole.\",\n      \"characters\": [\"Mira\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Inside the tower, illusions tempt them.\",\n      \"visual_description\": \"A grand hall filled with floating golden coins and shimmering phantoms of lost loved ones, each figure beckoning softly.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Illusion of a child\", \"Illusion of a king\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The princess is found in a crystal cage.\",\n      \"visual_description\": \"Elara suspended in a glowing crystal prism, chains of light binding her wrists, her dress tattered but defiant.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A guardian activates—a stone golem.\",\n      \"visual_description\": \"The crystal cracks as a massive golem rises from the floor, its body made of broken statues and crumbling masonry.\",\n      \"characters\": [\"Stone Golem\", \"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Torvin holds the golem back.\",\n      \"visual_description\": \"Torvin bracing his shield against the golem's fist, sparks flying, his boots skidding on the stone floor.\",\n      \"characters\": [\"Torvin\", \"Stone Golem\", \"Kael\", \"Mira\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira shatters the crystal prison.\",\n      \"visual_description\": \"Mira pressing her palms against the crystal, a web of light spreading from her hands, the prism exploding into glittering dust.\",\n      \"characters\": [\"Mira\", \"Elara\", \"Kael\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The tower begins to collapse.\",\n      \"visual_description\": \"Rocks falling from the ceiling, the golem crumbling to rubble, the floor tilting as the tower groans and splits.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the city streets.\",\n      \"visual_description\": \"Running figures dodging falling debris and shattered banners, patrols shouting in the distance, flames licking from windows.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They reach the escape bridge.\",\n      \"visual_description\": \"A long stone bridge spanning a churning river, its far end wreathed in mist, the city burning behind them.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A dragon descends to block the bridge.\",\n      \"visual_description\": \"A massive crimson dragon lands on the bridge, its wings folding, smoke curling from its nostrils as it roars silently.\",\n      \"characters\": [\"Dragon\", \"Kael\", \"Mira\", \"Torvin\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party escapes across the bridge as dawn breaks.\",\n      \"visual_description\": \"The dragon rising into the sky as the party crosses, the sun cresting the hills, the ruined city silhouetted against gold.\",\n      \"characters\": [\"Kael\", \"Mira\", \"Torvin\", \"Elara\", \"Dragon\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Cage: Rescue in Ruin",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "Crumbling stone gates flanked by faded royal banners, the iron portcullis half-cocked, and a single lantern swinging in the mist.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople whisper warnings.",
+        "visual_description": "Cowering huddled figures in threadbare cloaks, eyes wide, pointing toward a distant spire while clutching children close.",
+        "characters": [
+          "Townspeople",
+          "Kael"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrols march through the plaza.",
+        "visual_description": "A column of faceless soldiers in tarnished plate armor, boots striking cobblestones in unison, halberds gleaming under grey light.",
+        "characters": [
+          "Armored Patrol",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party takes shelter in an old tavern.",
+        "visual_description": "Dusty barrels, shattered stained glass, and a bar littered with broken tankards, moonlight spilling through a collapsed roof.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon reach their ears.",
+        "visual_description": "An old woman whispering by a dying fire, her hand on a rusted sword, her shadow flickering like wings on the wall.",
+        "characters": [
+          "Townspeople",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The party approaches the cursed tower.",
+        "visual_description": "A twisted black spire rising from the city center, its surface crawling with thorny vines and glowing runes pulsing slowly.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "A magic door bars the tower entrance.",
+        "visual_description": "The door ripples like oil, shifting patterns of silver and black, a silent eye opening and closing at its center.",
+        "characters": [
+          "Mira",
+          "Kael",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Mira deciphers the door's riddle.",
+        "visual_description": "Mira tracing her fingers over the runes, her lips moving silently, the door's surface calming to reveal a keyhole.",
+        "characters": [
+          "Mira",
+          "Kael",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Inside the tower, illusions tempt them.",
+        "visual_description": "A grand hall filled with floating golden coins and shimmering phantoms of lost loved ones, each figure beckoning softly.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Illusion of a child",
+          "Illusion of a king"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The princess is found in a crystal cage.",
+        "visual_description": "Elara suspended in a glowing crystal prism, chains of light binding her wrists, her dress tattered but defiant.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A guardian activates—a stone golem.",
+        "visual_description": "The crystal cracks as a massive golem rises from the floor, its body made of broken statues and crumbling masonry.",
+        "characters": [
+          "Stone Golem",
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Torvin holds the golem back.",
+        "visual_description": "Torvin bracing his shield against the golem's fist, sparks flying, his boots skidding on the stone floor.",
+        "characters": [
+          "Torvin",
+          "Stone Golem",
+          "Kael",
+          "Mira",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Mira shatters the crystal prison.",
+        "visual_description": "Mira pressing her palms against the crystal, a web of light spreading from her hands, the prism exploding into glittering dust.",
+        "characters": [
+          "Mira",
+          "Elara",
+          "Kael",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The tower begins to collapse.",
+        "visual_description": "Rocks falling from the ceiling, the golem crumbling to rubble, the floor tilting as the tower groans and splits.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The party flees through the city streets.",
+        "visual_description": "Running figures dodging falling debris and shattered banners, patrols shouting in the distance, flames licking from windows.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They reach the escape bridge.",
+        "visual_description": "A long stone bridge spanning a churning river, its far end wreathed in mist, the city burning behind them.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "A dragon descends to block the bridge.",
+        "visual_description": "A massive crimson dragon lands on the bridge, its wings folding, smoke curling from its nostrils as it roars silently.",
+        "characters": [
+          "Dragon",
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party escapes across the bridge as dawn breaks.",
+        "visual_description": "The dragon rising into the sky as the party crosses, the sun cresting the hills, the ruined city silhouetted against gold.",
+        "characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara",
+          "Dragon"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 5,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 5,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2777777777777778,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople",
+          "Kael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Patrol",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira",
+          "Kael",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira",
+          "Kael",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Illusion of a child",
+          "Illusion of a king"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Stone Golem",
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Torvin",
+          "Stone Golem",
+          "Kael",
+          "Mira",
+          "Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira",
+          "Elara",
+          "Kael",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara",
+          "Armored Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Dragon",
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Mira",
+          "Torvin",
+          "Elara",
+          "Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 20
+}

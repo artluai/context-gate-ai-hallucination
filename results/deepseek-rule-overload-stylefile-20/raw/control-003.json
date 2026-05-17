@@ -1,0 +1,546 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "c07f3a5f-d3fb-48c2-a133-21f616cd0a31",
+      "object": "chat.completion",
+      "created": 1779004293,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "239164b9-69e6-49d9-96bb-87859a8177fd",
+      "object": "chat.completion",
+      "created": 1779004294,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined royal city.\",\n      \"visual_description\": \"A crumbling stone gatehouse with broken royal banners flapping in the wind, the city's spires visible beyond a misty valley.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings at the outer market.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point toward the city walls, their faces pale with fear as shadows move behind broken windows.\",\n      \"characters\": [\"Townspeople\", \"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols block the main gate.\",\n      \"visual_description\": \"Soldiers in rusted plate armor bearing tarnished royal crests stand rigidly before iron portcullis bars, spears lowered.\",\n      \"characters\": [\"Patrol Guard\", \"Patrol Guard\", \"Patrol Guard\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party discovers a secret passage beneath a collapsed tower.\",\n      \"visual_description\": \"A narrow stone stairwell descending into darkness, cobwebs stretching across a half-open iron grate.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside the cursed tower, illusions of treasure appear.\",\n      \"visual_description\": \"Golden coins and jeweled crowns float in midair, shimmering with a sickly green glow around a spiral staircase.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Kael resists a phantom of his lost love.\",\n      \"visual_description\": \"A translucent figure in white reaches out from a mirror, Kael turning away with a pained expression.\",\n      \"characters\": [\"Kael\", \"Phantom\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Mira disarms a trap on a magic door.\",\n      \"visual_description\": \"Runes pulsing red along a stone doorframe, Mira's fingers tracing a counter-rune as sparks fly from a hidden mechanism.\",\n      \"characters\": [\"Mira\", \"Elara\", \"Kael\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The door opens to a grand hall with old royal banners.\",\n      \"visual_description\": \"Tattered crimson and gold banners hanging from a vaulted ceiling, dust motes dancing in shafts of pale light from broken windows.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A dragon's roar echoes from the upper floors.\",\n      \"visual_description\": \"A massive shadow passes across the high windows, scales glinting briefly before the sound of heavy wings fades.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party finds the captive in an iron cage.\",\n      \"visual_description\": \"A figure in chains slumps inside a barred cage suspended from the ceiling, torchlight flickering on cold metal.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Patrol guards ambush them in the throne room.\",\n      \"visual_description\": \"Guards burst from behind pillars, swords drawn, banners casting long shadows across a cracked marble throne.\",\n      \"characters\": [\"Patrol Guard\", \"Patrol Guard\", \"Patrol Guard\", \"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Elara holds off the guards with a barrier spell.\",\n      \"visual_description\": \"A shimmering dome of blue light surrounds the party while guards hammer against it with gauntleted fists.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\", \"Patrol Guard\", \"Patrol Guard\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They flee through a crumbling corridor.\",\n      \"visual_description\": \"Stone blocks raining from the ceiling as the party runs past shattered statues and falling tapestries.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A magic door seals behind them, blocking pursuit.\",\n      \"visual_description\": \"A stone door engraved with swirling runes glows blue and slides shut with a grinding boom, dust puffing from the seams.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They emerge onto a high bridge overlooking the city.\",\n      \"visual_description\": \"A narrow stone bridge arching over a fog-filled chasm, the ruined city sprawling behind them under a blood-red sky.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The bridge begins to collapse behind them.\",\n      \"visual_description\": \"Stone blocks falling into the mist one by one, cracks racing along the bridge surface as the party runs.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A final leap to safety on the far cliff.\",\n      \"visual_description\": \"Kael shoves the captive across a widening gap, then jumps himself as the last section of bridge crumbles away.\",\n      \"characters\": [\"Kael\", \"Elara\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party watches the city burn in the distance.\",\n      \"visual_description\": \"Silhouettes of the four figures on a rocky outcrop, the ruined city ablaze with dragon fire behind them, dawn breaking on the horizon.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1418,
+        "total_tokens": 1922,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined royal city.\",\n      \"visual_description\": \"A crumbling stone gatehouse with broken royal banners flapping in the wind, the city's spires visible beyond a misty valley.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings at the outer market.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point toward the city walls, their faces pale with fear as shadows move behind broken windows.\",\n      \"characters\": [\"Townspeople\", \"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols block the main gate.\",\n      \"visual_description\": \"Soldiers in rusted plate armor bearing tarnished royal crests stand rigidly before iron portcullis bars, spears lowered.\",\n      \"characters\": [\"Patrol Guard\", \"Patrol Guard\", \"Patrol Guard\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party discovers a secret passage beneath a collapsed tower.\",\n      \"visual_description\": \"A narrow stone stairwell descending into darkness, cobwebs stretching across a half-open iron grate.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside the cursed tower, illusions of treasure appear.\",\n      \"visual_description\": \"Golden coins and jeweled crowns float in midair, shimmering with a sickly green glow around a spiral staircase.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Kael resists a phantom of his lost love.\",\n      \"visual_description\": \"A translucent figure in white reaches out from a mirror, Kael turning away with a pained expression.\",\n      \"characters\": [\"Kael\", \"Phantom\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Mira disarms a trap on a magic door.\",\n      \"visual_description\": \"Runes pulsing red along a stone doorframe, Mira's fingers tracing a counter-rune as sparks fly from a hidden mechanism.\",\n      \"characters\": [\"Mira\", \"Elara\", \"Kael\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The door opens to a grand hall with old royal banners.\",\n      \"visual_description\": \"Tattered crimson and gold banners hanging from a vaulted ceiling, dust motes dancing in shafts of pale light from broken windows.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A dragon's roar echoes from the upper floors.\",\n      \"visual_description\": \"A massive shadow passes across the high windows, scales glinting briefly before the sound of heavy wings fades.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party finds the captive in an iron cage.\",\n      \"visual_description\": \"A figure in chains slumps inside a barred cage suspended from the ceiling, torchlight flickering on cold metal.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Patrol guards ambush them in the throne room.\",\n      \"visual_description\": \"Guards burst from behind pillars, swords drawn, banners casting long shadows across a cracked marble throne.\",\n      \"characters\": [\"Patrol Guard\", \"Patrol Guard\", \"Patrol Guard\", \"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Elara holds off the guards with a barrier spell.\",\n      \"visual_description\": \"A shimmering dome of blue light surrounds the party while guards hammer against it with gauntleted fists.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\", \"Patrol Guard\", \"Patrol Guard\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They flee through a crumbling corridor.\",\n      \"visual_description\": \"Stone blocks raining from the ceiling as the party runs past shattered statues and falling tapestries.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A magic door seals behind them, blocking pursuit.\",\n      \"visual_description\": \"A stone door engraved with swirling runes glows blue and slides shut with a grinding boom, dust puffing from the seams.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They emerge onto a high bridge overlooking the city.\",\n      \"visual_description\": \"A narrow stone bridge arching over a fog-filled chasm, the ruined city sprawling behind them under a blood-red sky.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The bridge begins to collapse behind them.\",\n      \"visual_description\": \"Stone blocks falling into the mist one by one, cracks racing along the bridge surface as the party runs.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A final leap to safety on the far cliff.\",\n      \"visual_description\": \"Kael shoves the captive across a widening gap, then jumps himself as the last section of bridge crumbles away.\",\n      \"characters\": [\"Kael\", \"Elara\", \"Mira\", \"Captive\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party watches the city burn in the distance.\",\n      \"visual_description\": \"Silhouettes of the four figures on a rocky outcrop, the ruined city ablaze with dragon fire behind them, dawn breaking on the horizon.\",\n      \"characters\": [\"Elara\", \"Kael\", \"Mira\", \"Captive\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party approaches the ruined royal city.",
+        "visual_description": "A crumbling stone gatehouse with broken royal banners flapping in the wind, the city's spires visible beyond a misty valley.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople whisper warnings at the outer market.",
+        "visual_description": "Huddled figures in tattered cloaks point toward the city walls, their faces pale with fear as shadows move behind broken windows.",
+        "characters": [
+          "Townspeople",
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrols block the main gate.",
+        "visual_description": "Soldiers in rusted plate armor bearing tarnished royal crests stand rigidly before iron portcullis bars, spears lowered.",
+        "characters": [
+          "Patrol Guard",
+          "Patrol Guard",
+          "Patrol Guard"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party discovers a secret passage beneath a collapsed tower.",
+        "visual_description": "A narrow stone stairwell descending into darkness, cobwebs stretching across a half-open iron grate.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Inside the cursed tower, illusions of treasure appear.",
+        "visual_description": "Golden coins and jeweled crowns float in midair, shimmering with a sickly green glow around a spiral staircase.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Kael resists a phantom of his lost love.",
+        "visual_description": "A translucent figure in white reaches out from a mirror, Kael turning away with a pained expression.",
+        "characters": [
+          "Kael",
+          "Phantom"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Mira disarms a trap on a magic door.",
+        "visual_description": "Runes pulsing red along a stone doorframe, Mira's fingers tracing a counter-rune as sparks fly from a hidden mechanism.",
+        "characters": [
+          "Mira",
+          "Elara",
+          "Kael"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The door opens to a grand hall with old royal banners.",
+        "visual_description": "Tattered crimson and gold banners hanging from a vaulted ceiling, dust motes dancing in shafts of pale light from broken windows.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "A dragon's roar echoes from the upper floors.",
+        "visual_description": "A massive shadow passes across the high windows, scales glinting briefly before the sound of heavy wings fades.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The party finds the captive in an iron cage.",
+        "visual_description": "A figure in chains slumps inside a barred cage suspended from the ceiling, torchlight flickering on cold metal.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Patrol guards ambush them in the throne room.",
+        "visual_description": "Guards burst from behind pillars, swords drawn, banners casting long shadows across a cracked marble throne.",
+        "characters": [
+          "Patrol Guard",
+          "Patrol Guard",
+          "Patrol Guard",
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Elara holds off the guards with a barrier spell.",
+        "visual_description": "A shimmering dome of blue light surrounds the party while guards hammer against it with gauntleted fists.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive",
+          "Patrol Guard",
+          "Patrol Guard"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They flee through a crumbling corridor.",
+        "visual_description": "Stone blocks raining from the ceiling as the party runs past shattered statues and falling tapestries.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "A magic door seals behind them, blocking pursuit.",
+        "visual_description": "A stone door engraved with swirling runes glows blue and slides shut with a grinding boom, dust puffing from the seams.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "They emerge onto a high bridge overlooking the city.",
+        "visual_description": "A narrow stone bridge arching over a fog-filled chasm, the ruined city sprawling behind them under a blood-red sky.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The bridge begins to collapse behind them.",
+        "visual_description": "Stone blocks falling into the mist one by one, cracks racing along the bridge surface as the party runs.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "A final leap to safety on the far cliff.",
+        "visual_description": "Kael shoves the captive across a widening gap, then jumps himself as the last section of bridge crumbles away.",
+        "characters": [
+          "Kael",
+          "Elara",
+          "Mira",
+          "Captive"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party watches the city burn in the distance.",
+        "visual_description": "Silhouettes of the four figures on a rocky outcrop, the ruined city ablaze with dragon fire behind them, dawn breaking on the horizon.",
+        "characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 5,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 5,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2777777777777778,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople",
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Patrol Guard",
+          "Patrol Guard",
+          "Patrol Guard"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Phantom"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira",
+          "Elara",
+          "Kael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Patrol Guard",
+          "Patrol Guard",
+          "Patrol Guard",
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive",
+          "Patrol Guard",
+          "Patrol Guard"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Elara",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Kael",
+          "Mira",
+          "Captive"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 3
+}

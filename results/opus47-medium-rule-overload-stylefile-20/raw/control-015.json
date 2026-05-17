@@ -1,0 +1,552 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018435-mWJuXqergZF70m5XxqXk",
+      "object": "chat.completion",
+      "created": 1779018435,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 130,
+        "total_tokens": 848,
+        "cost": 0.00684,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00684,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.00325
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 60,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018440-cFDRHyIgOIe6fWtmmZ1M",
+      "object": "chat.completion",
+      "created": 1779018440,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A summons reaches the rescue party at dawn.\",\n      \"visual_description\": \"A small camp at the edge of a misty forest, with a rolled parchment held up to the rising sun, distant ruined spires on the horizon.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The party studies a tattered map of the ruined city.\",\n      \"visual_description\": \"Four figures crouched around a faded map on a tree stump, marked with red ink crosses and burned edges.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Wisp the Sparrow-Mage\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron gates split in half, vines crawling over fallen statues, banners of a dead royal house fluttering in tatters.\",\n      \"characters\": [\"Captain Renna\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Frightened townspeople warn of patrols.\",\n      \"visual_description\": \"Hooded villagers huddled in a doorway of a half-collapsed bakery, pointing nervously down a cobbled lane.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Old Maren the Baker\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"An armored patrol marches past their hiding place.\",\n      \"visual_description\": \"Black-armored soldiers with spears tramping along a rubble-strewn avenue, seen through a cracked window from above.\",\n      \"characters\": [\"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon stir in the marketplace ruins.\",\n      \"visual_description\": \"An empty market square with overturned stalls, a single scorched scale glinting on the cobblestones, smoke curling in the distance.\",\n      \"characters\": [\"Captain Renna\", \"Old Maren the Baker\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Wisp casts a seeking spell to find the prisoner.\",\n      \"visual_description\": \"A small sparrow-shaped mage holding a glowing blue feather aloft, threads of light weaving toward a distant tower.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The cursed tower looms over the inner courtyard.\",\n      \"visual_description\": \"A leaning black tower wrapped in spectral chains, violet runes pulsing along its base, crows wheeling overhead.\",\n      \"characters\": [\"Captain Renna\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Tobin scales the outer wall to scout entry.\",\n      \"visual_description\": \"A wiry figure climbing crumbled masonry with a rope coiled at the belt, gargoyles leering from above.\",\n      \"characters\": [\"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They confront a magic door sealed with sigils.\",\n      \"visual_description\": \"A tall stone door covered in shifting silver glyphs, faintly humming, set into the side of the tower.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Brother Oslin\", \"Captain Renna\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Brother Oslin sleepily mumbles the counter-prayer.\",\n      \"visual_description\": \"A round-bellied cleric yawning mid-incantation, his lantern swinging, glyphs on the door dimming one by one.\",\n      \"characters\": [\"Brother Oslin\", \"Captain Renna\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside, they pass torn royal banners and dust.\",\n      \"visual_description\": \"A long ruined hallway with sun-faded crimson banners hanging in shreds, a broken throne visible at the far end.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Princess Aleya chained in the tower cell.\",\n      \"visual_description\": \"A small barred chamber with a young woman in a torn gown chained to a stone ring, moonlight slanting through a slit window.\",\n      \"characters\": [\"Princess Aleya\", \"Captain Renna\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Wisp shatters the enchanted chains.\",\n      \"visual_description\": \"Bright blue sparks bursting from severed iron links, the sparrow-mage hovering with wings spread wide.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Princess Aleya\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"An armored patrol blocks the stairway down.\",\n      \"visual_description\": \"A narrow spiral stair filled with helmed soldiers, torches reflecting off their visors, weapons raised.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Tobin the Scout\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon roars overhead, scattering the soldiers.\",\n      \"visual_description\": \"A great red dragon plunging from the night sky above the courtyard, soldiers diving for cover as flame licks the stones.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party flees toward the river bridge.\",\n      \"visual_description\": \"Five running figures silhouetted against firelight, racing down a sloping street toward an arched stone bridge over dark water.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge as dawn breaks behind them.\",\n      \"visual_description\": \"The group walking across a long stone bridge with the burning city receding behind, pale gold sunrise on the far shore.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2353,
+        "total_tokens": 3239,
+        "cost": 0.063255,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.063255,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.058825
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A summons reaches the rescue party at dawn.\",\n      \"visual_description\": \"A small camp at the edge of a misty forest, with a rolled parchment held up to the rising sun, distant ruined spires on the horizon.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The party studies a tattered map of the ruined city.\",\n      \"visual_description\": \"Four figures crouched around a faded map on a tree stump, marked with red ink crosses and burned edges.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Wisp the Sparrow-Mage\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron gates split in half, vines crawling over fallen statues, banners of a dead royal house fluttering in tatters.\",\n      \"characters\": [\"Captain Renna\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Frightened townspeople warn of patrols.\",\n      \"visual_description\": \"Hooded villagers huddled in a doorway of a half-collapsed bakery, pointing nervously down a cobbled lane.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Old Maren the Baker\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"An armored patrol marches past their hiding place.\",\n      \"visual_description\": \"Black-armored soldiers with spears tramping along a rubble-strewn avenue, seen through a cracked window from above.\",\n      \"characters\": [\"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon stir in the marketplace ruins.\",\n      \"visual_description\": \"An empty market square with overturned stalls, a single scorched scale glinting on the cobblestones, smoke curling in the distance.\",\n      \"characters\": [\"Captain Renna\", \"Old Maren the Baker\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Wisp casts a seeking spell to find the prisoner.\",\n      \"visual_description\": \"A small sparrow-shaped mage holding a glowing blue feather aloft, threads of light weaving toward a distant tower.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The cursed tower looms over the inner courtyard.\",\n      \"visual_description\": \"A leaning black tower wrapped in spectral chains, violet runes pulsing along its base, crows wheeling overhead.\",\n      \"characters\": [\"Captain Renna\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Tobin scales the outer wall to scout entry.\",\n      \"visual_description\": \"A wiry figure climbing crumbled masonry with a rope coiled at the belt, gargoyles leering from above.\",\n      \"characters\": [\"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They confront a magic door sealed with sigils.\",\n      \"visual_description\": \"A tall stone door covered in shifting silver glyphs, faintly humming, set into the side of the tower.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Brother Oslin\", \"Captain Renna\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Brother Oslin sleepily mumbles the counter-prayer.\",\n      \"visual_description\": \"A round-bellied cleric yawning mid-incantation, his lantern swinging, glyphs on the door dimming one by one.\",\n      \"characters\": [\"Brother Oslin\", \"Captain Renna\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside, they pass torn royal banners and dust.\",\n      \"visual_description\": \"A long ruined hallway with sun-faded crimson banners hanging in shreds, a broken throne visible at the far end.\",\n      \"characters\": [\"Captain Renna\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Princess Aleya chained in the tower cell.\",\n      \"visual_description\": \"A small barred chamber with a young woman in a torn gown chained to a stone ring, moonlight slanting through a slit window.\",\n      \"characters\": [\"Princess Aleya\", \"Captain Renna\", \"Tobin the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Wisp shatters the enchanted chains.\",\n      \"visual_description\": \"Bright blue sparks bursting from severed iron links, the sparrow-mage hovering with wings spread wide.\",\n      \"characters\": [\"Wisp the Sparrow-Mage\", \"Princess Aleya\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"An armored patrol blocks the stairway down.\",\n      \"visual_description\": \"A narrow spiral stair filled with helmed soldiers, torches reflecting off their visors, weapons raised.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Tobin the Scout\", \"Brother Oslin\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon roars overhead, scattering the soldiers.\",\n      \"visual_description\": \"A great red dragon plunging from the night sky above the courtyard, soldiers diving for cover as flame licks the stones.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party flees toward the river bridge.\",\n      \"visual_description\": \"Five running figures silhouetted against firelight, racing down a sloping street toward an arched stone bridge over dark water.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross the bridge as dawn breaks behind them.\",\n      \"visual_description\": \"The group walking across a long stone bridge with the burning city receding behind, pale gold sunrise on the far shore.\",\n      \"characters\": [\"Captain Renna\", \"Princess Aleya\", \"Brother Oslin\", \"Tobin the Scout\", \"Wisp the Sparrow-Mage\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Lost Heir",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A summons reaches the rescue party at dawn.",
+        "visual_description": "A small camp at the edge of a misty forest, with a rolled parchment held up to the rising sun, distant ruined spires on the horizon.",
+        "characters": [
+          "Captain Renna",
+          "Brother Oslin"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The party studies a tattered map of the ruined city.",
+        "visual_description": "Four figures crouched around a faded map on a tree stump, marked with red ink crosses and burned edges.",
+        "characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Wisp the Sparrow-Mage",
+          "Tobin the Scout"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They approach the broken castle gates.",
+        "visual_description": "Massive iron gates split in half, vines crawling over fallen statues, banners of a dead royal house fluttering in tatters.",
+        "characters": [
+          "Captain Renna",
+          "Tobin the Scout"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Frightened townspeople warn of patrols.",
+        "visual_description": "Hooded villagers huddled in a doorway of a half-collapsed bakery, pointing nervously down a cobbled lane.",
+        "characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Old Maren the Baker"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "An armored patrol marches past their hiding place.",
+        "visual_description": "Black-armored soldiers with spears tramping along a rubble-strewn avenue, seen through a cracked window from above.",
+        "characters": [
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Rumors of a dragon stir in the marketplace ruins.",
+        "visual_description": "An empty market square with overturned stalls, a single scorched scale glinting on the cobblestones, smoke curling in the distance.",
+        "characters": [
+          "Captain Renna",
+          "Old Maren the Baker"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Wisp casts a seeking spell to find the prisoner.",
+        "visual_description": "A small sparrow-shaped mage holding a glowing blue feather aloft, threads of light weaving toward a distant tower.",
+        "characters": [
+          "Wisp the Sparrow-Mage",
+          "Brother Oslin"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The cursed tower looms over the inner courtyard.",
+        "visual_description": "A leaning black tower wrapped in spectral chains, violet runes pulsing along its base, crows wheeling overhead.",
+        "characters": [
+          "Captain Renna",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Tobin scales the outer wall to scout entry.",
+        "visual_description": "A wiry figure climbing crumbled masonry with a rope coiled at the belt, gargoyles leering from above.",
+        "characters": [
+          "Tobin the Scout"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They confront a magic door sealed with sigils.",
+        "visual_description": "A tall stone door covered in shifting silver glyphs, faintly humming, set into the side of the tower.",
+        "characters": [
+          "Wisp the Sparrow-Mage",
+          "Brother Oslin",
+          "Captain Renna"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Brother Oslin sleepily mumbles the counter-prayer.",
+        "visual_description": "A round-bellied cleric yawning mid-incantation, his lantern swinging, glyphs on the door dimming one by one.",
+        "characters": [
+          "Brother Oslin",
+          "Captain Renna"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Inside, they pass torn royal banners and dust.",
+        "visual_description": "A long ruined hallway with sun-faded crimson banners hanging in shreds, a broken throne visible at the far end.",
+        "characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find Princess Aleya chained in the tower cell.",
+        "visual_description": "A small barred chamber with a young woman in a torn gown chained to a stone ring, moonlight slanting through a slit window.",
+        "characters": [
+          "Princess Aleya",
+          "Captain Renna",
+          "Tobin the Scout"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Wisp shatters the enchanted chains.",
+        "visual_description": "Bright blue sparks bursting from severed iron links, the sparrow-mage hovering with wings spread wide.",
+        "characters": [
+          "Wisp the Sparrow-Mage",
+          "Princess Aleya"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "An armored patrol blocks the stairway down.",
+        "visual_description": "A narrow spiral stair filled with helmed soldiers, torches reflecting off their visors, weapons raised.",
+        "characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Tobin the Scout",
+          "Brother Oslin"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "A dragon roars overhead, scattering the soldiers.",
+        "visual_description": "A great red dragon plunging from the night sky above the courtyard, soldiers diving for cover as flame licks the stones.",
+        "characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Wisp the Sparrow-Mage"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The party flees toward the river bridge.",
+        "visual_description": "Five running figures silhouetted against firelight, racing down a sloping street toward an arched stone bridge over dark water.",
+        "characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross the bridge as dawn breaks behind them.",
+        "visual_description": "The group walking across a long stone bridge with the burning city receding behind, pale gold sunrise on the far shore.",
+        "characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Brother Oslin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Wisp the Sparrow-Mage",
+          "Tobin the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Tobin the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Old Maren the Baker"
+        ],
+        "forbidden_words": [
+          "villagers"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Old Maren the Baker"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Sparrow-Mage",
+          "Brother Oslin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Tobin the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Sparrow-Mage",
+          "Brother Oslin",
+          "Captain Renna"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brother Oslin",
+          "Captain Renna"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Aleya",
+          "Captain Renna",
+          "Tobin the Scout"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Sparrow-Mage",
+          "Princess Aleya"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Tobin the Scout",
+          "Brother Oslin"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Renna",
+          "Princess Aleya",
+          "Brother Oslin",
+          "Tobin the Scout",
+          "Wisp the Sparrow-Mage"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 15
+}

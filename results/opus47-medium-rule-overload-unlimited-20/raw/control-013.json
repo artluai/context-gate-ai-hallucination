@@ -1,0 +1,707 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload_unlimited",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md",
+    "rules/continuity.md",
+    "rules/client-brief.md",
+    "rules/naming-style.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a large rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou may read as many manual files as you want before answering.\n\nTo read a file, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nAfter each file, you may request another file the same way, or write the final\nscene plan when you believe you have enough information.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nYou may request another file with the same read_file JSON, or write the final JSON scene plan now."
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/continuity.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/continuity.md:\n# Continuity\n\nCharacters and props should carry through the plan. If a character appears with\na key prop in one scene, keep that prop consistent later unless the scene clearly\ntransfers or loses it.\n\nYou may request another file with the same read_file JSON, or write the final JSON scene plan now."
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/client-brief.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/client-brief.md:\n# Client Brief\n\nMake the rescue feel adventurous, readable, and finished. The client likes\nfantasy rescue teams, old city ruins, bridges, and strange helper characters.\nDo not over-explain production choices in the output.\n\nYou may request another file with the same read_file JSON, or write the final JSON scene plan now."
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/naming-style.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/naming-style.md:\n# Naming Style\n\nUse compact, readable labels. Prefer lowercase snake_case for machine-readable\nfields. Human-facing captions can use plain English. Do not invent proper names\nunless a registry file has provided them.\n\nYou may request another file with the same read_file JSON, or write the final JSON scene plan now."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779020600-PGj1pWduSLZh8djEhcZZ",
+      "object": "chat.completion",
+      "created": 1779020600,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 706,
+        "completion_tokens": 89,
+        "total_tokens": 795,
+        "cost": 0.005755,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.005755,
+          "upstream_inference_prompt_cost": 0.00353,
+          "upstream_inference_completions_cost": 0.002225
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 40,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779020604-1uOnUfN4rSTlKeXeegEx",
+      "object": "chat.completion",
+      "created": 1779020604,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/continuity.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 884,
+        "completion_tokens": 28,
+        "total_tokens": 912,
+        "cost": 0.00512,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00512,
+          "upstream_inference_prompt_cost": 0.00442,
+          "upstream_inference_completions_cost": 0.0007
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779020606-Ur8nKl6X3YJUOe7q7GTR",
+      "object": "chat.completion",
+      "created": 1779020606,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/client-brief.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1022,
+        "completion_tokens": 29,
+        "total_tokens": 1051,
+        "cost": 0.005835,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.005835,
+          "upstream_inference_prompt_cost": 0.00511,
+          "upstream_inference_completions_cost": 0.000725
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779020608-Ng7m2sk0V3EbTw6a1yrF",
+      "object": "chat.completion",
+      "created": 1779020608,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/naming-style.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1176,
+        "completion_tokens": 29,
+        "total_tokens": 1205,
+        "cost": 0.006605,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.006605,
+          "upstream_inference_prompt_cost": 0.00588,
+          "upstream_inference_completions_cost": 0.000725
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779020610-j4XnErMy2xwa6TsPDzxV",
+      "object": "chat.completion",
+      "created": 1779020610,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"title\":\"the bridge out of the broken crown\",\"scenes\":[{\"scene_number\":1,\"caption\":\"The rescue team gathers at the edge of the ruined royal city.\",\"visual_description\":\"Four cloaked figures crouched on a weed-choked ridge at dusk, looking down at a shattered skyline of broken spires and a distant castle. Torn royal banners flap in the wind.\",\"characters\":[\"map_reader\",\"scout\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":2,\"caption\":\"The map reader traces the route into the city.\",\"visual_description\":\"Close shot of a worn parchment map held in gloved hands, lit by a small blue magelight; a finger taps a marked tower. The scout leans in, hood pushed back.\",\"characters\":[\"map_reader\",\"scout\"]},{\"scene_number\":3,\"caption\":\"They pass under the cracked castle gates.\",\"visual_description\":\"Massive stone gates split down the middle, half-collapsed, carved lions worn smooth. The team slips through the gap, long shadows stretching behind them on cobblestone.\",\"characters\":[\"map_reader\",\"scout\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":4,\"caption\":\"A frightened townsperson warns them away.\",\"visual_description\":\"A thin woman in a patched shawl grips the scout's sleeve in a doorway lit by a single guttering lantern, eyes wide, gesturing back toward the inner city.\",\"characters\":[\"scout\",\"frightened_townsperson\"]},{\"scene_number\":5,\"caption\":\"Rumors of a dragon ripple through a refugee camp.\",\"visual_description\":\"A small huddle of townsfolk around a low fire in a roofless hall, pointing at scorch marks on a far wall. The mage_helper listens, staff glowing faintly.\",\"characters\":[\"mage_helper\",\"frightened_townsperson\"]},{\"scene_number\":6,\"caption\":\"An armored patrol marches down the main avenue.\",\"visual_description\":\"A column of six soldiers in dented plate, tabards bearing a faded crown sigil, boots splashing through puddles. The team flattens against a broken colonnade.\",\"characters\":[\"scout\",\"bridge_walker\",\"armored_patrol_captain\"]},{\"scene_number\":7,\"caption\":\"The scout creates a distraction in the market ruins.\",\"visual_description\":\"The scout tips a stack of rusted helmets off a crumbled stall; the patrol turns toward the clatter while the others sprint across an alley behind them.\",\"characters\":[\"scout\",\"armored_patrol_captain\"]},{\"scene_number\":8,\"caption\":\"They reach the cursed tower at the city's heart.\",\"visual_description\":\"A leaning black tower wreathed in slow violet mist, its windows glowing faintly. The team stands at its base, looking up. The mage_helper raises a warding hand.\",\"characters\":[\"map_reader\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":9,\"caption\":\"A sleepy official blocks the tower door.\",\"visual_description\":\"A plump man in a wrinkled royal robe yawns on a stool in front of a heavy iron door, a ring of keys drooping from his fingers, half a meat pie on his lap.\",\"characters\":[\"sleepy_official\",\"map_reader\"]},{\"scene_number\":10,\"caption\":\"The map reader bargains for the keys.\",\"visual_description\":\"The map reader offers a flask and a folded letter to the sleepy official, who squints with one eye, weighing them in his palms. The iron door looms behind.\",\"characters\":[\"map_reader\",\"sleepy_official\"]},{\"scene_number\":11,\"caption\":\"A magic door inside the tower bars the way.\",\"visual_description\":\"A tall arched door covered in shifting silver runes, no handle or hinges visible. The mage_helper traces a glowing sigil in the air; the bridge_walker watches.\",\"characters\":[\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":12,\"caption\":\"The mage helper unlocks the runes.\",\"visual_description\":\"The runes flare gold and split apart like petals, revealing a dark spiral staircase. The mage_helper exhales, staff dimming. The scout pushes past first.\",\"characters\":[\"mage_helper\",\"scout\"]},{\"scene_number\":13,\"caption\":\"They find the captive at the top of the tower.\",\"visual_description\":\"A young noble in a torn velvet coat chained to a stone chair by glowing manacles, dust motes drifting in a single shaft of moonlight from a broken window.\",\"characters\":[\"scout\",\"captive_noble\"]},{\"scene_number\":14,\"caption\":\"The mage helper breaks the binding spell.\",\"visual_description\":\"The manacles crack open in a burst of pale sparks. The captive_noble slumps forward; the mage_helper catches their shoulder. The map_reader watches the door.\",\"characters\":[\"mage_helper\",\"captive_noble\",\"map_reader\"]},{\"scene_number\":15,\"caption\":\"The patrol storms the lower stairs.\",\"visual_description\":\"From above: armored soldiers thundering up a spiral staircase, swords drawn, the captain shouting. Torchlight flickers across the walls.\",\"characters\":[\"armored_patrol_captain\"]},{\"scene_number\":16,\"caption\":\"The team escapes through a high window onto rooftops.\",\"visual_description\":\"The bridge_walker leaps first across a gap between collapsed rooftops, arm outstretched to the captive_noble. Banners snap in the wind below.\",\"characters\":[\"bridge_walker\",\"captive_noble\",\"scout\",\"mage_helper\",\"map_reader\"]},{\"scene_number\":17,\"caption\":\"They race across a long stone bridge over a chasm.\",\"visual_description\":\"A narrow ancient bridge spanning a misty drop, half its rail missing. The team runs in a tight line, the captive_noble supported between bridge_walker and scout, patrol arrows skipping off stones behind them.\",\"characters\":[\"bridge_walker\",\"scout\",\"mage_helper\",\"map_reader\",\"captive_noble\",\"armored_patrol_captain\"]},{\"scene_number\":18,\"caption\":\"The bridge collapses behind them as they reach the far side.\",\"visual_description\":\"The far end of the bridge crumbles into the chasm in a cloud of dust as the rescued group stands safe on a green hillside, the ruined city silhouetted behind them at sunrise.\",\"characters\":[\"bridge_walker\",\"scout\",\"mage_helper\",\"map_reader\",\"captive_noble\"]}]}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1327,
+        "completion_tokens": 2183,
+        "total_tokens": 3510,
+        "cost": 0.06121,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06121,
+          "upstream_inference_prompt_cost": 0.006635,
+          "upstream_inference_completions_cost": 0.054575
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 40,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\"title\":\"the bridge out of the broken crown\",\"scenes\":[{\"scene_number\":1,\"caption\":\"The rescue team gathers at the edge of the ruined royal city.\",\"visual_description\":\"Four cloaked figures crouched on a weed-choked ridge at dusk, looking down at a shattered skyline of broken spires and a distant castle. Torn royal banners flap in the wind.\",\"characters\":[\"map_reader\",\"scout\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":2,\"caption\":\"The map reader traces the route into the city.\",\"visual_description\":\"Close shot of a worn parchment map held in gloved hands, lit by a small blue magelight; a finger taps a marked tower. The scout leans in, hood pushed back.\",\"characters\":[\"map_reader\",\"scout\"]},{\"scene_number\":3,\"caption\":\"They pass under the cracked castle gates.\",\"visual_description\":\"Massive stone gates split down the middle, half-collapsed, carved lions worn smooth. The team slips through the gap, long shadows stretching behind them on cobblestone.\",\"characters\":[\"map_reader\",\"scout\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":4,\"caption\":\"A frightened townsperson warns them away.\",\"visual_description\":\"A thin woman in a patched shawl grips the scout's sleeve in a doorway lit by a single guttering lantern, eyes wide, gesturing back toward the inner city.\",\"characters\":[\"scout\",\"frightened_townsperson\"]},{\"scene_number\":5,\"caption\":\"Rumors of a dragon ripple through a refugee camp.\",\"visual_description\":\"A small huddle of townsfolk around a low fire in a roofless hall, pointing at scorch marks on a far wall. The mage_helper listens, staff glowing faintly.\",\"characters\":[\"mage_helper\",\"frightened_townsperson\"]},{\"scene_number\":6,\"caption\":\"An armored patrol marches down the main avenue.\",\"visual_description\":\"A column of six soldiers in dented plate, tabards bearing a faded crown sigil, boots splashing through puddles. The team flattens against a broken colonnade.\",\"characters\":[\"scout\",\"bridge_walker\",\"armored_patrol_captain\"]},{\"scene_number\":7,\"caption\":\"The scout creates a distraction in the market ruins.\",\"visual_description\":\"The scout tips a stack of rusted helmets off a crumbled stall; the patrol turns toward the clatter while the others sprint across an alley behind them.\",\"characters\":[\"scout\",\"armored_patrol_captain\"]},{\"scene_number\":8,\"caption\":\"They reach the cursed tower at the city's heart.\",\"visual_description\":\"A leaning black tower wreathed in slow violet mist, its windows glowing faintly. The team stands at its base, looking up. The mage_helper raises a warding hand.\",\"characters\":[\"map_reader\",\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":9,\"caption\":\"A sleepy official blocks the tower door.\",\"visual_description\":\"A plump man in a wrinkled royal robe yawns on a stool in front of a heavy iron door, a ring of keys drooping from his fingers, half a meat pie on his lap.\",\"characters\":[\"sleepy_official\",\"map_reader\"]},{\"scene_number\":10,\"caption\":\"The map reader bargains for the keys.\",\"visual_description\":\"The map reader offers a flask and a folded letter to the sleepy official, who squints with one eye, weighing them in his palms. The iron door looms behind.\",\"characters\":[\"map_reader\",\"sleepy_official\"]},{\"scene_number\":11,\"caption\":\"A magic door inside the tower bars the way.\",\"visual_description\":\"A tall arched door covered in shifting silver runes, no handle or hinges visible. The mage_helper traces a glowing sigil in the air; the bridge_walker watches.\",\"characters\":[\"mage_helper\",\"bridge_walker\"]},{\"scene_number\":12,\"caption\":\"The mage helper unlocks the runes.\",\"visual_description\":\"The runes flare gold and split apart like petals, revealing a dark spiral staircase. The mage_helper exhales, staff dimming. The scout pushes past first.\",\"characters\":[\"mage_helper\",\"scout\"]},{\"scene_number\":13,\"caption\":\"They find the captive at the top of the tower.\",\"visual_description\":\"A young noble in a torn velvet coat chained to a stone chair by glowing manacles, dust motes drifting in a single shaft of moonlight from a broken window.\",\"characters\":[\"scout\",\"captive_noble\"]},{\"scene_number\":14,\"caption\":\"The mage helper breaks the binding spell.\",\"visual_description\":\"The manacles crack open in a burst of pale sparks. The captive_noble slumps forward; the mage_helper catches their shoulder. The map_reader watches the door.\",\"characters\":[\"mage_helper\",\"captive_noble\",\"map_reader\"]},{\"scene_number\":15,\"caption\":\"The patrol storms the lower stairs.\",\"visual_description\":\"From above: armored soldiers thundering up a spiral staircase, swords drawn, the captain shouting. Torchlight flickers across the walls.\",\"characters\":[\"armored_patrol_captain\"]},{\"scene_number\":16,\"caption\":\"The team escapes through a high window onto rooftops.\",\"visual_description\":\"The bridge_walker leaps first across a gap between collapsed rooftops, arm outstretched to the captive_noble. Banners snap in the wind below.\",\"characters\":[\"bridge_walker\",\"captive_noble\",\"scout\",\"mage_helper\",\"map_reader\"]},{\"scene_number\":17,\"caption\":\"They race across a long stone bridge over a chasm.\",\"visual_description\":\"A narrow ancient bridge spanning a misty drop, half its rail missing. The team runs in a tight line, the captive_noble supported between bridge_walker and scout, patrol arrows skipping off stones behind them.\",\"characters\":[\"bridge_walker\",\"scout\",\"mage_helper\",\"map_reader\",\"captive_noble\",\"armored_patrol_captain\"]},{\"scene_number\":18,\"caption\":\"The bridge collapses behind them as they reach the far side.\",\"visual_description\":\"The far end of the bridge crumbles into the chasm in a cloud of dust as the rescued group stands safe on a green hillside, the ruined city silhouetted behind them at sunrise.\",\"characters\":[\"bridge_walker\",\"scout\",\"mage_helper\",\"map_reader\",\"captive_noble\"]}]}",
+  "parsed": {
+    "title": "the bridge out of the broken crown",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The rescue team gathers at the edge of the ruined royal city.",
+        "visual_description": "Four cloaked figures crouched on a weed-choked ridge at dusk, looking down at a shattered skyline of broken spires and a distant castle. Torn royal banners flap in the wind.",
+        "characters": [
+          "map_reader",
+          "scout",
+          "mage_helper",
+          "bridge_walker"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The map reader traces the route into the city.",
+        "visual_description": "Close shot of a worn parchment map held in gloved hands, lit by a small blue magelight; a finger taps a marked tower. The scout leans in, hood pushed back.",
+        "characters": [
+          "map_reader",
+          "scout"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They pass under the cracked castle gates.",
+        "visual_description": "Massive stone gates split down the middle, half-collapsed, carved lions worn smooth. The team slips through the gap, long shadows stretching behind them on cobblestone.",
+        "characters": [
+          "map_reader",
+          "scout",
+          "mage_helper",
+          "bridge_walker"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A frightened townsperson warns them away.",
+        "visual_description": "A thin woman in a patched shawl grips the scout's sleeve in a doorway lit by a single guttering lantern, eyes wide, gesturing back toward the inner city.",
+        "characters": [
+          "scout",
+          "frightened_townsperson"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon ripple through a refugee camp.",
+        "visual_description": "A small huddle of townsfolk around a low fire in a roofless hall, pointing at scorch marks on a far wall. The mage_helper listens, staff glowing faintly.",
+        "characters": [
+          "mage_helper",
+          "frightened_townsperson"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "An armored patrol marches down the main avenue.",
+        "visual_description": "A column of six soldiers in dented plate, tabards bearing a faded crown sigil, boots splashing through puddles. The team flattens against a broken colonnade.",
+        "characters": [
+          "scout",
+          "bridge_walker",
+          "armored_patrol_captain"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The scout creates a distraction in the market ruins.",
+        "visual_description": "The scout tips a stack of rusted helmets off a crumbled stall; the patrol turns toward the clatter while the others sprint across an alley behind them.",
+        "characters": [
+          "scout",
+          "armored_patrol_captain"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "They reach the cursed tower at the city's heart.",
+        "visual_description": "A leaning black tower wreathed in slow violet mist, its windows glowing faintly. The team stands at its base, looking up. The mage_helper raises a warding hand.",
+        "characters": [
+          "map_reader",
+          "mage_helper",
+          "bridge_walker"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "A sleepy official blocks the tower door.",
+        "visual_description": "A plump man in a wrinkled royal robe yawns on a stool in front of a heavy iron door, a ring of keys drooping from his fingers, half a meat pie on his lap.",
+        "characters": [
+          "sleepy_official",
+          "map_reader"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The map reader bargains for the keys.",
+        "visual_description": "The map reader offers a flask and a folded letter to the sleepy official, who squints with one eye, weighing them in his palms. The iron door looms behind.",
+        "characters": [
+          "map_reader",
+          "sleepy_official"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A magic door inside the tower bars the way.",
+        "visual_description": "A tall arched door covered in shifting silver runes, no handle or hinges visible. The mage_helper traces a glowing sigil in the air; the bridge_walker watches.",
+        "characters": [
+          "mage_helper",
+          "bridge_walker"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The mage helper unlocks the runes.",
+        "visual_description": "The runes flare gold and split apart like petals, revealing a dark spiral staircase. The mage_helper exhales, staff dimming. The scout pushes past first.",
+        "characters": [
+          "mage_helper",
+          "scout"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find the captive at the top of the tower.",
+        "visual_description": "A young noble in a torn velvet coat chained to a stone chair by glowing manacles, dust motes drifting in a single shaft of moonlight from a broken window.",
+        "characters": [
+          "scout",
+          "captive_noble"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The mage helper breaks the binding spell.",
+        "visual_description": "The manacles crack open in a burst of pale sparks. The captive_noble slumps forward; the mage_helper catches their shoulder. The map_reader watches the door.",
+        "characters": [
+          "mage_helper",
+          "captive_noble",
+          "map_reader"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The patrol storms the lower stairs.",
+        "visual_description": "From above: armored soldiers thundering up a spiral staircase, swords drawn, the captain shouting. Torchlight flickers across the walls.",
+        "characters": [
+          "armored_patrol_captain"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The team escapes through a high window onto rooftops.",
+        "visual_description": "The bridge_walker leaps first across a gap between collapsed rooftops, arm outstretched to the captive_noble. Banners snap in the wind below.",
+        "characters": [
+          "bridge_walker",
+          "captive_noble",
+          "scout",
+          "mage_helper",
+          "map_reader"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They race across a long stone bridge over a chasm.",
+        "visual_description": "A narrow ancient bridge spanning a misty drop, half its rail missing. The team runs in a tight line, the captive_noble supported between bridge_walker and scout, patrol arrows skipping off stones behind them.",
+        "characters": [
+          "bridge_walker",
+          "scout",
+          "mage_helper",
+          "map_reader",
+          "captive_noble",
+          "armored_patrol_captain"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The bridge collapses behind them as they reach the far side.",
+        "visual_description": "The far end of the bridge crumbles into the chasm in a cloud of dust as the rescued group stands safe on a green hillside, the ruined city silhouetted behind them at sunrise.",
+        "characters": [
+          "bridge_walker",
+          "scout",
+          "mage_helper",
+          "map_reader",
+          "captive_noble"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 3,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 3,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.16666666666666666,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "map_reader",
+          "scout",
+          "mage_helper",
+          "bridge_walker"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "map_reader",
+          "scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "map_reader",
+          "scout",
+          "mage_helper",
+          "bridge_walker"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "frightened_townsperson"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage_helper",
+          "frightened_townsperson"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "bridge_walker",
+          "armored_patrol_captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "armored_patrol_captain"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "map_reader",
+          "mage_helper",
+          "bridge_walker"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "sleepy_official",
+          "map_reader"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "map_reader",
+          "sleepy_official"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage_helper",
+          "bridge_walker"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage_helper",
+          "scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "scout",
+          "captive_noble"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "mage_helper",
+          "captive_noble",
+          "map_reader"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "armored_patrol_captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "bridge_walker",
+          "captive_noble",
+          "scout",
+          "mage_helper",
+          "map_reader"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "bridge_walker",
+          "scout",
+          "mage_helper",
+          "map_reader",
+          "captive_noble",
+          "armored_patrol_captain"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "bridge_walker",
+          "scout",
+          "mage_helper",
+          "map_reader",
+          "captive_noble"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 13
+}

@@ -1,0 +1,528 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "ea439cb9-f71e-423d-8943-72d6777e9f5a",
+      "object": "chat.completion",
+      "created": 1779004894,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "0129f755-1025-4636-8a37-c8aba6968c89",
+      "object": "chat.completion",
+      "created": 1779004895,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Massive iron gates twisted open, ivy-choked stone archways, broken royal crests overhead, dust swirling in the evening light.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings in the outer square.\",\n      \"visual_description\": \"Huddled figures in ragged cloaks, pointing toward the inner city, a child hiding behind a cracked fountain, shadows stretching from collapsed buildings.\",\n      \"characters\": [\"Elen the Healer\", \"Town Elder\", \"Young Mother\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol marches past a crumbling temple.\",\n      \"visual_description\": \"Sunlight glinting off dented plate armor, a captain with a torn banner, soldiers scanning rooftops, dust motes in the air.\",\n      \"characters\": [\"Kael the Scout\", \"Patrol Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kael scouts a side alley to avoid the patrol.\",\n      \"visual_description\": \"Narrow passage choked with rubble, faded murals on chipped walls, a stray cat darting into shadow, Kael pressing against the stone.\",\n      \"characters\": [\"Kael the Scout\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Maren detects a magic door hidden behind a tapestry.\",\n      \"visual_description\": \"Threadbare tapestry of a dragon hunt, faint blue runes pulsing beneath it, Maren's hand glowing as she traces the spell, dust motes dancing.\",\n      \"characters\": [\"Maren the Mage\", \"Elen the Healer\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party opens the magic door and enters a cursed tower.\",\n      \"visual_description\": \"Iron door grinding open, spiral stairs ascending into darkness, a cold wind carrying whispers, cobwebs shimmering.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside the tower, illusions of treasure tempt them.\",\n      \"visual_description\": \"Piles of gold coins that flicker into bones, a jeweled crown hovering above an altar, ghostly hands reaching from the floor.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Kael resists a vision of his lost home.\",\n      \"visual_description\": \"Shimmering image of a warm hearth and a smiling family, Kael's face streaked with tears, Maren pulling him back by the arm.\",\n      \"characters\": [\"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"scene_number\": 9,\n      \"caption\": \"They find the captive in a top-floor cage.\",\n      \"visual_description\": \"Cage of black iron suspended from chains, a figure in rags gripping the bars, weak light from a narrow window casting bars across her face.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Elen picks the lock while Maren wards the door.\",\n      \"visual_description\": \"Elen's steady hands working a thin pick into the rusted lock, Maren with palms pressed against the door, blue light sealing the entrance.\",\n      \"characters\": [\"Elen the Healer\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The cage door swings open and Princess Lira steps out.\",\n      \"visual_description\": \"Rusty hinges groaning, Lira stumbling forward into Elen's arms, her torn dress and bruised wrists visible in the dim light.\",\n      \"characters\": [\"Elen the Healer\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Alarms sound as a patrol discovers the broken door.\",\n      \"visual_description\": \"Horn blasts echoing through the tower, shouting from below, armored boots pounding on stone stairs, dust shaking from the ceiling.\",\n      \"characters\": [\"Maren the Mage\", \"Patrol Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The party flees down a secret spiral staircase.\",\n      \"visual_description\": \"Narrow stone steps twisting downward, a single torch flickering, cobwebs brushing their faces, distant shouts behind them.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They emerge into a courtyard with old royal banners.\",\n      \"visual_description\": \"Faded gold-and-crimson banners hanging limp from broken poles, a cracked statue of a king, moonlight pooling on flagstones.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's shadow passes overhead, but it does not attack.\",\n      \"visual_description\": \"Giant wings blocking the moon, scales glinting darkly, a low rumble that shakes the ground, then the beast flies onward toward the towers.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race toward the bridge as the city crumbles.\",\n      \"visual_description\": \"Collapsing archways behind them, dust clouds billowing, the stone bridge ahead spanning a dark chasm, lanterns lit along its rails.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party crosses the bridge as patrols close in.\",\n      \"visual_description\": \"Arrows clattering against stone, a burning cart blocking the patrol's path, the party running low over the bridge's worn planks.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side and watch the city burn.\",\n      \"visual_description\": \"The ruined skyline silhouetted against flames, smoke rising into the night, the party catching their breath on a grassy hill, Princess Lira looking back with tears in her eyes.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1605,
+        "total_tokens": 2109,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Massive iron gates twisted open, ivy-choked stone archways, broken royal crests overhead, dust swirling in the evening light.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings in the outer square.\",\n      \"visual_description\": \"Huddled figures in ragged cloaks, pointing toward the inner city, a child hiding behind a cracked fountain, shadows stretching from collapsed buildings.\",\n      \"characters\": [\"Elen the Healer\", \"Town Elder\", \"Young Mother\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol marches past a crumbling temple.\",\n      \"visual_description\": \"Sunlight glinting off dented plate armor, a captain with a torn banner, soldiers scanning rooftops, dust motes in the air.\",\n      \"characters\": [\"Kael the Scout\", \"Patrol Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kael scouts a side alley to avoid the patrol.\",\n      \"visual_description\": \"Narrow passage choked with rubble, faded murals on chipped walls, a stray cat darting into shadow, Kael pressing against the stone.\",\n      \"characters\": [\"Kael the Scout\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Maren detects a magic door hidden behind a tapestry.\",\n      \"visual_description\": \"Threadbare tapestry of a dragon hunt, faint blue runes pulsing beneath it, Maren's hand glowing as she traces the spell, dust motes dancing.\",\n      \"characters\": [\"Maren the Mage\", \"Elen the Healer\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party opens the magic door and enters a cursed tower.\",\n      \"visual_description\": \"Iron door grinding open, spiral stairs ascending into darkness, a cold wind carrying whispers, cobwebs shimmering.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside the tower, illusions of treasure tempt them.\",\n      \"visual_description\": \"Piles of gold coins that flicker into bones, a jeweled crown hovering above an altar, ghostly hands reaching from the floor.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Kael resists a vision of his lost home.\",\n      \"visual_description\": \"Shimmering image of a warm hearth and a smiling family, Kael's face streaked with tears, Maren pulling him back by the arm.\",\n      \"characters\": [\"Kael the Scout\", \"Maren the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"scene_number\": 9,\n      \"caption\": \"They find the captive in a top-floor cage.\",\n      \"visual_description\": \"Cage of black iron suspended from chains, a figure in rags gripping the bars, weak light from a narrow window casting bars across her face.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Elen picks the lock while Maren wards the door.\",\n      \"visual_description\": \"Elen's steady hands working a thin pick into the rusted lock, Maren with palms pressed against the door, blue light sealing the entrance.\",\n      \"characters\": [\"Elen the Healer\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The cage door swings open and Princess Lira steps out.\",\n      \"visual_description\": \"Rusty hinges groaning, Lira stumbling forward into Elen's arms, her torn dress and bruised wrists visible in the dim light.\",\n      \"characters\": [\"Elen the Healer\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Alarms sound as a patrol discovers the broken door.\",\n      \"visual_description\": \"Horn blasts echoing through the tower, shouting from below, armored boots pounding on stone stairs, dust shaking from the ceiling.\",\n      \"characters\": [\"Maren the Mage\", \"Patrol Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The party flees down a secret spiral staircase.\",\n      \"visual_description\": \"Narrow stone steps twisting downward, a single torch flickering, cobwebs brushing their faces, distant shouts behind them.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They emerge into a courtyard with old royal banners.\",\n      \"visual_description\": \"Faded gold-and-crimson banners hanging limp from broken poles, a cracked statue of a king, moonlight pooling on flagstones.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's shadow passes overhead, but it does not attack.\",\n      \"visual_description\": \"Giant wings blocking the moon, scales glinting darkly, a low rumble that shakes the ground, then the beast flies onward toward the towers.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race toward the bridge as the city crumbles.\",\n      \"visual_description\": \"Collapsing archways behind them, dust clouds billowing, the stone bridge ahead spanning a dark chasm, lanterns lit along its rails.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party crosses the bridge as patrols close in.\",\n      \"visual_description\": \"Arrows clattering against stone, a burning cart blocking the patrol's path, the party running low over the bridge's worn planks.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side and watch the city burn.\",\n      \"visual_description\": \"The ruined skyline silhouetted against flames, smoke rising into the night, the party catching their breath on a grassy hill, Princess Lira looking back with tears in her eyes.\",\n      \"characters\": [\"Elen the Healer\", \"Kael the Scout\", \"Maren the Mage\", \"Princess Lira\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "Massive iron gates twisted open, ivy-choked stone archways, broken royal crests overhead, dust swirling in the evening light.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople whisper warnings in the outer square.",
+        "visual_description": "Huddled figures in ragged cloaks, pointing toward the inner city, a child hiding behind a cracked fountain, shadows stretching from collapsed buildings.",
+        "characters": [
+          "Elen the Healer",
+          "Town Elder",
+          "Young Mother"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrol marches past a crumbling temple.",
+        "visual_description": "Sunlight glinting off dented plate armor, a captain with a torn banner, soldiers scanning rooftops, dust motes in the air.",
+        "characters": [
+          "Kael the Scout",
+          "Patrol Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Kael scouts a side alley to avoid the patrol.",
+        "visual_description": "Narrow passage choked with rubble, faded murals on chipped walls, a stray cat darting into shadow, Kael pressing against the stone.",
+        "characters": [
+          "Kael the Scout"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Maren detects a magic door hidden behind a tapestry.",
+        "visual_description": "Threadbare tapestry of a dragon hunt, faint blue runes pulsing beneath it, Maren's hand glowing as she traces the spell, dust motes dancing.",
+        "characters": [
+          "Maren the Mage",
+          "Elen the Healer"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The party opens the magic door and enters a cursed tower.",
+        "visual_description": "Iron door grinding open, spiral stairs ascending into darkness, a cold wind carrying whispers, cobwebs shimmering.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Inside the tower, illusions of treasure tempt them.",
+        "visual_description": "Piles of gold coins that flicker into bones, a jeweled crown hovering above an altar, ghostly hands reaching from the floor.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Kael resists a vision of his lost home.",
+        "visual_description": "Shimmering image of a warm hearth and a smiling family, Kael's face streaked with tears, Maren pulling him back by the arm.",
+        "characters": [
+          "Kael the Scout",
+          "Maren the Mage"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They find the captive in a top-floor cage.",
+        "visual_description": "Cage of black iron suspended from chains, a figure in rags gripping the bars, weak light from a narrow window casting bars across her face.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Elen picks the lock while Maren wards the door.",
+        "visual_description": "Elen's steady hands working a thin pick into the rusted lock, Maren with palms pressed against the door, blue light sealing the entrance.",
+        "characters": [
+          "Elen the Healer",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The cage door swings open and Princess Lira steps out.",
+        "visual_description": "Rusty hinges groaning, Lira stumbling forward into Elen's arms, her torn dress and bruised wrists visible in the dim light.",
+        "characters": [
+          "Elen the Healer",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Alarms sound as a patrol discovers the broken door.",
+        "visual_description": "Horn blasts echoing through the tower, shouting from below, armored boots pounding on stone stairs, dust shaking from the ceiling.",
+        "characters": [
+          "Maren the Mage",
+          "Patrol Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The party flees down a secret spiral staircase.",
+        "visual_description": "Narrow stone steps twisting downward, a single torch flickering, cobwebs brushing their faces, distant shouts behind them.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "They emerge into a courtyard with old royal banners.",
+        "visual_description": "Faded gold-and-crimson banners hanging limp from broken poles, a cracked statue of a king, moonlight pooling on flagstones.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A dragon's shadow passes overhead, but it does not attack.",
+        "visual_description": "Giant wings blocking the moon, scales glinting darkly, a low rumble that shakes the ground, then the beast flies onward toward the towers.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They race toward the bridge as the city crumbles.",
+        "visual_description": "Collapsing archways behind them, dust clouds billowing, the stone bridge ahead spanning a dark chasm, lanterns lit along its rails.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The party crosses the bridge as patrols close in.",
+        "visual_description": "Arrows clattering against stone, a burning cart blocking the patrol's path, the party running low over the bridge's worn planks.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They reach the far side and watch the city burn.",
+        "visual_description": "The ruined skyline silhouetted against flames, smoke rising into the night, the party catching their breath on a grassy hill, Princess Lira looking back with tears in her eyes.",
+        "characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Town Elder",
+          "Young Mother"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Scout",
+          "Patrol Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Mage",
+          "Elen the Healer"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael the Scout",
+          "Maren the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Princess Lira"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Mage",
+          "Patrol Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": [
+          "king"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elen the Healer",
+          "Kael the Scout",
+          "Maren the Mage",
+          "Princess Lira"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      }
+    ]
+  },
+  "run_index": 15
+}

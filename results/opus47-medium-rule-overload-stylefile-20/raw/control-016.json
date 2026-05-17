@@ -1,0 +1,541 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018547-EeP3wwxuzv249R1I6uLF",
+      "object": "chat.completion",
+      "created": 1779018547,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 165,
+        "total_tokens": 883,
+        "cost": 0.007715,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.007715,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.004125
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 66,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018554-ASDhe7OdQzC3GCZzXDTr",
+      "object": "chat.completion",
+      "created": 1779018554,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Lantern Prince\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A distant view of the broken capital at dusk.\",\n      \"visual_description\": \"Wide shot of a ruined royal city silhouetted against a violet sky, collapsed spires and tattered banners catching the last light.\",\n      \"characters\": [\"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party meets at the old waystone.\",\n      \"visual_description\": \"Four figures gather around a moss-covered stone marker at the edge of a pine wood, unrolling a hand-drawn map by lantern light.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Mira studies the map of the fallen city.\",\n      \"visual_description\": \"Close-up of weathered hands tracing inked streets on parchment, candle flame flickering across symbols of towers and gates.\",\n      \"characters\": [\"Mira the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates hang crooked off their hinges, the royal crest split down the middle, weeds growing through the cobblestones.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A frightened townswoman warns them away.\",\n      \"visual_description\": \"A woman in a soot-streaked shawl clutches a child's hand in a doorway, eyes wide, gesturing back toward the dark streets.\",\n      \"characters\": [\"Captain Aelra\", \"Goodwife Hesta\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Armored patrols march down the main avenue.\",\n      \"visual_description\": \"A column of black-plated soldiers moves in lockstep past shuttered shops, torchlight glinting off helms shaped like snarling wolves.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Iron Patrol Sergeant\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party hides in a collapsed bakery.\",\n      \"visual_description\": \"Four figures press against a flour-dusted wall behind a broken oven, shadows of marching boots passing across a shattered window.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Tomwin dozes off at the worst moment.\",\n      \"visual_description\": \"An elderly man in court robes snores softly against a sack of grain while the others glare, a half-eaten apple in his lap.\",\n      \"characters\": [\"Old Tomwin\", \"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a dragon drift through the alleys.\",\n      \"visual_description\": \"Two ragged street children whisper under a torn royal banner, pointing at distant scorch marks streaking a tower wall.\",\n      \"characters\": [\"Brennic the Hedge-Mage\", \"Pip the Urchin\", \"Wren the Urchin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They reach the foot of the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wreathed in pale green mist, runes glowing faintly along cracked stones, crows circling overhead.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Brennic deciphers the wards on the door.\",\n      \"visual_description\": \"A robed mage presses both palms against an iron-bound door covered in shifting silver glyphs, his breath fogging in the cold air.\",\n      \"characters\": [\"Brennic the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The magic door swings open in silence.\",\n      \"visual_description\": \"The heavy door eases inward revealing a spiral staircase lit by floating blue motes, dust drifting in the threshold.\",\n      \"characters\": [\"Brennic the Hedge-Mage\", \"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They climb past tattered royal banners.\",\n      \"visual_description\": \"A narrow stairwell hung with faded crimson banners bearing a golden stag, the cloth shredded and stirring in an unfelt wind.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They find the prince locked in a glass cell.\",\n      \"visual_description\": \"A pale young man in a torn velvet doublet sits inside a tall crystalline cylinder, palms pressed to the glass, a small lantern at his feet.\",\n      \"characters\": [\"Prince Calen\", \"Captain Aelra\", \"Brennic the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"An alarm horn sounds across the city.\",\n      \"visual_description\": \"View from a tower window: red signal fires bloom on distant rooftops while armored figures pour into the streets below.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Prince Calen\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee down a back stair into the sewers.\",\n      \"visual_description\": \"Five figures splash through ankle-deep water in a vaulted brick tunnel, Brennic's staff glowing pale blue, rats scattering ahead.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\", \"Prince Calen\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Tomwin holds the gatehouse winch alone.\",\n      \"visual_description\": \"The old courtier braces against a massive wooden crank in a stone gatehouse, sweat on his brow, an arrow embedded in the beam beside him.\",\n      \"characters\": [\"Old Tomwin\", \"Iron Patrol Sergeant\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party escapes across the river bridge at dawn.\",\n      \"visual_description\": \"A long stone bridge over a mist-filled gorge, four figures running toward the sunrise as the city burns red behind them.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Prince Calen\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2409,
+        "total_tokens": 3295,
+        "cost": 0.064655,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.064655,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.060225
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Lantern Prince\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A distant view of the broken capital at dusk.\",\n      \"visual_description\": \"Wide shot of a ruined royal city silhouetted against a violet sky, collapsed spires and tattered banners catching the last light.\",\n      \"characters\": [\"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party meets at the old waystone.\",\n      \"visual_description\": \"Four figures gather around a moss-covered stone marker at the edge of a pine wood, unrolling a hand-drawn map by lantern light.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Mira studies the map of the fallen city.\",\n      \"visual_description\": \"Close-up of weathered hands tracing inked streets on parchment, candle flame flickering across symbols of towers and gates.\",\n      \"characters\": [\"Mira the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates hang crooked off their hinges, the royal crest split down the middle, weeds growing through the cobblestones.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A frightened townswoman warns them away.\",\n      \"visual_description\": \"A woman in a soot-streaked shawl clutches a child's hand in a doorway, eyes wide, gesturing back toward the dark streets.\",\n      \"characters\": [\"Captain Aelra\", \"Goodwife Hesta\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Armored patrols march down the main avenue.\",\n      \"visual_description\": \"A column of black-plated soldiers moves in lockstep past shuttered shops, torchlight glinting off helms shaped like snarling wolves.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Iron Patrol Sergeant\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party hides in a collapsed bakery.\",\n      \"visual_description\": \"Four figures press against a flour-dusted wall behind a broken oven, shadows of marching boots passing across a shattered window.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Tomwin dozes off at the worst moment.\",\n      \"visual_description\": \"An elderly man in court robes snores softly against a sack of grain while the others glare, a half-eaten apple in his lap.\",\n      \"characters\": [\"Old Tomwin\", \"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a dragon drift through the alleys.\",\n      \"visual_description\": \"Two ragged street children whisper under a torn royal banner, pointing at distant scorch marks streaking a tower wall.\",\n      \"characters\": [\"Brennic the Hedge-Mage\", \"Pip the Urchin\", \"Wren the Urchin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They reach the foot of the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wreathed in pale green mist, runes glowing faintly along cracked stones, crows circling overhead.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Brennic deciphers the wards on the door.\",\n      \"visual_description\": \"A robed mage presses both palms against an iron-bound door covered in shifting silver glyphs, his breath fogging in the cold air.\",\n      \"characters\": [\"Brennic the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The magic door swings open in silence.\",\n      \"visual_description\": \"The heavy door eases inward revealing a spiral staircase lit by floating blue motes, dust drifting in the threshold.\",\n      \"characters\": [\"Brennic the Hedge-Mage\", \"Captain Aelra\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They climb past tattered royal banners.\",\n      \"visual_description\": \"A narrow stairwell hung with faded crimson banners bearing a golden stag, the cloth shredded and stirring in an unfelt wind.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They find the prince locked in a glass cell.\",\n      \"visual_description\": \"A pale young man in a torn velvet doublet sits inside a tall crystalline cylinder, palms pressed to the glass, a small lantern at his feet.\",\n      \"characters\": [\"Prince Calen\", \"Captain Aelra\", \"Brennic the Hedge-Mage\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"An alarm horn sounds across the city.\",\n      \"visual_description\": \"View from a tower window: red signal fires bloom on distant rooftops while armored figures pour into the streets below.\",\n      \"characters\": [\"Mira the Pathfinder\", \"Prince Calen\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee down a back stair into the sewers.\",\n      \"visual_description\": \"Five figures splash through ankle-deep water in a vaulted brick tunnel, Brennic's staff glowing pale blue, rats scattering ahead.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Old Tomwin\", \"Prince Calen\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Tomwin holds the gatehouse winch alone.\",\n      \"visual_description\": \"The old courtier braces against a massive wooden crank in a stone gatehouse, sweat on his brow, an arrow embedded in the beam beside him.\",\n      \"characters\": [\"Old Tomwin\", \"Iron Patrol Sergeant\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party escapes across the river bridge at dawn.\",\n      \"visual_description\": \"A long stone bridge over a mist-filled gorge, four figures running toward the sunrise as the city burns red behind them.\",\n      \"characters\": [\"Captain Aelra\", \"Mira the Pathfinder\", \"Brennic the Hedge-Mage\", \"Prince Calen\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Lantern Prince",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A distant view of the broken capital at dusk.",
+        "visual_description": "Wide shot of a ruined royal city silhouetted against a violet sky, collapsed spires and tattered banners catching the last light.",
+        "characters": [
+          "Captain Aelra"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The rescue party meets at the old waystone.",
+        "visual_description": "Four figures gather around a moss-covered stone marker at the edge of a pine wood, unrolling a hand-drawn map by lantern light.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Mira studies the map of the fallen city.",
+        "visual_description": "Close-up of weathered hands tracing inked streets on parchment, candle flame flickering across symbols of towers and gates.",
+        "characters": [
+          "Mira the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "They approach the broken castle gates.",
+        "visual_description": "Massive iron-banded gates hang crooked off their hinges, the royal crest split down the middle, weeds growing through the cobblestones.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "A frightened townswoman warns them away.",
+        "visual_description": "A woman in a soot-streaked shawl clutches a child's hand in a doorway, eyes wide, gesturing back toward the dark streets.",
+        "characters": [
+          "Captain Aelra",
+          "Goodwife Hesta"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Armored patrols march down the main avenue.",
+        "visual_description": "A column of black-plated soldiers moves in lockstep past shuttered shops, torchlight glinting off helms shaped like snarling wolves.",
+        "characters": [
+          "Mira the Pathfinder",
+          "Iron Patrol Sergeant"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The party hides in a collapsed bakery.",
+        "visual_description": "Four figures press against a flour-dusted wall behind a broken oven, shadows of marching boots passing across a shattered window.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Old Tomwin dozes off at the worst moment.",
+        "visual_description": "An elderly man in court robes snores softly against a sack of grain while the others glare, a half-eaten apple in his lap.",
+        "characters": [
+          "Old Tomwin",
+          "Captain Aelra"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Rumors of a dragon drift through the alleys.",
+        "visual_description": "Two ragged street children whisper under a torn royal banner, pointing at distant scorch marks streaking a tower wall.",
+        "characters": [
+          "Brennic the Hedge-Mage",
+          "Pip the Urchin",
+          "Wren the Urchin"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They reach the foot of the cursed tower.",
+        "visual_description": "A leaning black tower wreathed in pale green mist, runes glowing faintly along cracked stones, crows circling overhead.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Brennic deciphers the wards on the door.",
+        "visual_description": "A robed mage presses both palms against an iron-bound door covered in shifting silver glyphs, his breath fogging in the cold air.",
+        "characters": [
+          "Brennic the Hedge-Mage"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The magic door swings open in silence.",
+        "visual_description": "The heavy door eases inward revealing a spiral staircase lit by floating blue motes, dust drifting in the threshold.",
+        "characters": [
+          "Brennic the Hedge-Mage",
+          "Captain Aelra"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They climb past tattered royal banners.",
+        "visual_description": "A narrow stairwell hung with faded crimson banners bearing a golden stag, the cloth shredded and stirring in an unfelt wind.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "They find the prince locked in a glass cell.",
+        "visual_description": "A pale young man in a torn velvet doublet sits inside a tall crystalline cylinder, palms pressed to the glass, a small lantern at his feet.",
+        "characters": [
+          "Prince Calen",
+          "Captain Aelra",
+          "Brennic the Hedge-Mage"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "An alarm horn sounds across the city.",
+        "visual_description": "View from a tower window: red signal fires bloom on distant rooftops while armored figures pour into the streets below.",
+        "characters": [
+          "Mira the Pathfinder",
+          "Prince Calen"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They flee down a back stair into the sewers.",
+        "visual_description": "Five figures splash through ankle-deep water in a vaulted brick tunnel, Brennic's staff glowing pale blue, rats scattering ahead.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin",
+          "Prince Calen"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Tomwin holds the gatehouse winch alone.",
+        "visual_description": "The old courtier braces against a massive wooden crank in a stone gatehouse, sweat on his brow, an arrow embedded in the beam beside him.",
+        "characters": [
+          "Old Tomwin",
+          "Iron Patrol Sergeant"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party escapes across the river bridge at dawn.",
+        "visual_description": "A long stone bridge over a mist-filled gorge, four figures running toward the sunrise as the city burns red behind them.",
+        "characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Prince Calen"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 3,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 3,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.16666666666666666,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Pathfinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Goodwife Hesta"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Pathfinder",
+          "Iron Patrol Sergeant"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Tomwin",
+          "Captain Aelra"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brennic the Hedge-Mage",
+          "Pip the Urchin",
+          "Wren the Urchin"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brennic the Hedge-Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brennic the Hedge-Mage",
+          "Captain Aelra"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Calen",
+          "Captain Aelra",
+          "Brennic the Hedge-Mage"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Pathfinder",
+          "Prince Calen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Old Tomwin",
+          "Prince Calen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Tomwin",
+          "Iron Patrol Sergeant"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelra",
+          "Mira the Pathfinder",
+          "Brennic the Hedge-Mage",
+          "Prince Calen"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 16
+}

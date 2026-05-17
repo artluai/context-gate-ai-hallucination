@@ -1,0 +1,403 @@
+{
+  "arm": "force_feed",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe project has a larger rules folder. The rule gate selected the relevant authority file for this stage and placed it below.\nThis file overrides any character names that seem natural from the brief:\n{\n  \"characters\": {\n    \"glass_diver\": {\n      \"role\": \"rescuer who swims through mirrors and windows\",\n      \"visual\": \"clear diving helmet, coat reflecting broken city lights\"\n    },\n    \"mara_the_cartographer\": {\n      \"role\": \"mapmaker who leads the rescue\",\n      \"visual\": \"ink-stained coat, brass compass, tired but focused\"\n    },\n    \"oracle_lamp\": {\n      \"role\": \"talking lamp that gives warnings\",\n      \"visual\": \"oil lamp with one glowing eye in the flame\"\n    },\n    \"sleeping_tax_collector\": {\n      \"role\": \"unhelpful official who dozes through danger\",\n      \"visual\": \"ledger book pillow, stamped papers stuck to sleeves\"\n    },\n    \"tin_fox\": {\n      \"role\": \"clockwork fox scout\",\n      \"visual\": \"small metal fox with key-wind tail and blue glass eyes\"\n    }\n  },\n  \"forbidden_character_words\": [\n    \"wizard\",\n    \"witch\",\n    \"dragon\",\n    \"knight\",\n    \"king\",\n    \"queen\",\n    \"prince\",\n    \"princess\",\n    \"guard\",\n    \"guards\",\n    \"soldier\",\n    \"soldiers\",\n    \"villager\",\n    \"villagers\",\n    \"monster\",\n    \"monsters\",\n    \"ghost\",\n    \"ghosts\",\n    \"orc\",\n    \"orcs\",\n    \"elf\",\n    \"elves\",\n    \"dwarf\",\n    \"dwarves\",\n    \"goblin\",\n    \"goblins\",\n    \"thief\",\n    \"thieves\",\n    \"merchant\",\n    \"merchants\",\n    \"crowd\",\n    \"crowds\"\n  ],\n  \"required_output\": {\n    \"format\": \"JSON object only, no markdown\",\n    \"scene_count\": 18,\n    \"scene_shape\": {\n      \"caption\": \"short sentence\",\n      \"characters\": [\n        \"one or more registered character names\"\n      ],\n      \"scene_number\": \"integer from 1 to 18\",\n      \"visual_description\": \"one visual scene description\"\n    },\n    \"top_level_keys\": [\n      \"title\",\n      \"scenes\"\n    ]\n  },\n  \"rule_summary\": \"For this story, scenes may use only the registered character names listed in characters. Do not invent generic fantasy characters.\",\n  \"rulebook_name\": \"Clockwork Rescue Character Rulebook\",\n  \"version\": \"mvp-1\"\n}"
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017251-UxoQi1NJbcUmxEtQbQyA",
+      "object": "chat.completion",
+      "created": 1779017251,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Mirror Rescue of the Broken City\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Mara plots a course into the ruined city.\",\n      \"visual_description\": \"A windswept ridge at dusk overlooking a shattered royal skyline; an ink-stained coat flaps as a brass compass spins over a hand-drawn map.\",\n      \"characters\": [\"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The oracle lamp warns of the road ahead.\",\n      \"visual_description\": \"A small camp under a leaning road sign; the lamp's single flame-eye blazes, casting long warning shadows across Mara's map.\",\n      \"characters\": [\"mara_the_cartographer\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The tin fox sniffs the broken gate.\",\n      \"visual_description\": \"A clockwork fox with blue glass eyes peers through the bent bars of an enormous castle gate, key-wind tail ticking softly.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Glass Diver arrives through a cracked window.\",\n      \"visual_description\": \"A figure in a clear diving helmet steps out of a broken pane as if from water, coat shimmering with reflected city lights.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They find the sleeping tax collector blocking the way.\",\n      \"visual_description\": \"A plump official snores at a toll booth, ledger book under his cheek, stamped papers fluttering from his sleeves in the wind.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The lamp whispers a route past the cursed tower.\",\n      \"visual_description\": \"A spiraling black tower looms; the oracle lamp glows green near a cracked alley, beckoning the team away from the obvious path.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tin Fox scouts an armored patrol.\",\n      \"visual_description\": \"From behind a fallen royal banner, the clockwork fox watches metal-booted shapes march down a rubble-strewn boulevard.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Glass Diver slips through a shop window.\",\n      \"visual_description\": \"The diver dives headfirst into a tall pane of glass, body rippling like water as the helmet glints with reflected torchlight.\",\n      \"characters\": [\"glass_diver\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Mara decodes a torn royal banner.\",\n      \"visual_description\": \"Beneath a half-burned banner, Mara traces faded heraldry with inky fingers while the tin fox shines lamplight on the cloth.\",\n      \"characters\": [\"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The oracle lamp names the magic door.\",\n      \"visual_description\": \"A great brass door etched with runes pulses faintly; the lamp's eye reflects in every glyph as Mara raises her compass.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Glass Diver pulls the captive from a mirror.\",\n      \"visual_description\": \"Inside a candle-lit chamber, the diver hauls the sleeping tax collector from a tall standing mirror, water-light dripping off both of them.\",\n      \"characters\": [\"glass_diver\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The tax collector refuses to wake up.\",\n      \"visual_description\": \"Slumped against a column, the official snores while stamped forms drift around him; Mara tugs his sleeve in exasperation.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Tin Fox sets off a distant alarm bell.\",\n      \"visual_description\": \"The clockwork fox yanks a frayed rope on a rooftop, sending a cracked bell swinging above the smoldering rooftops as a diversion.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The lamp warns of a collapsing arch.\",\n      \"visual_description\": \"Stones grind overhead in a colonnade; the lamp's flame-eye flares red as the diver shields the snoring official with a reflective coat.\",\n      \"characters\": [\"oracle_lamp\", \"glass_diver\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Mara redraws the map on the run.\",\n      \"visual_description\": \"Sprinting through a flooded plaza, Mara sketches frantically on damp parchment while the tin fox bounds ahead through puddled reflections.\",\n      \"characters\": [\"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Glass Diver opens a window across the river.\",\n      \"visual_description\": \"At the foot of a ruined keep, the diver presses both palms to a glowing pane that ripples like a vertical pond, revealing a far bridge.\",\n      \"characters\": [\"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The team races onto the long bridge.\",\n      \"visual_description\": \"A narrow stone bridge stretches over a chasm of mist; Mara, the tin fox, and the diver carry the sleeping official as the lamp lights the way.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"tin_fox\", \"oracle_lamp\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They look back at the broken city, free.\",\n      \"visual_description\": \"On the far cliff at dawn, the rescuers stand silhouetted against pale sky; the tax collector finally blinks awake as the lamp's eye dims to a gentle glow.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"tin_fox\", \"oracle_lamp\", \"sleeping_tax_collector\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1232,
+        "completion_tokens": 2295,
+        "total_tokens": 3527,
+        "cost": 0.063535,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.063535,
+          "upstream_inference_prompt_cost": 0.00616,
+          "upstream_inference_completions_cost": 0.057375
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Mirror Rescue of the Broken City\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Mara plots a course into the ruined city.\",\n      \"visual_description\": \"A windswept ridge at dusk overlooking a shattered royal skyline; an ink-stained coat flaps as a brass compass spins over a hand-drawn map.\",\n      \"characters\": [\"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The oracle lamp warns of the road ahead.\",\n      \"visual_description\": \"A small camp under a leaning road sign; the lamp's single flame-eye blazes, casting long warning shadows across Mara's map.\",\n      \"characters\": [\"mara_the_cartographer\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The tin fox sniffs the broken gate.\",\n      \"visual_description\": \"A clockwork fox with blue glass eyes peers through the bent bars of an enormous castle gate, key-wind tail ticking softly.\",\n      \"characters\": [\"tin_fox\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Glass Diver arrives through a cracked window.\",\n      \"visual_description\": \"A figure in a clear diving helmet steps out of a broken pane as if from water, coat shimmering with reflected city lights.\",\n      \"characters\": [\"glass_diver\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They find the sleeping tax collector blocking the way.\",\n      \"visual_description\": \"A plump official snores at a toll booth, ledger book under his cheek, stamped papers fluttering from his sleeves in the wind.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The lamp whispers a route past the cursed tower.\",\n      \"visual_description\": \"A spiraling black tower looms; the oracle lamp glows green near a cracked alley, beckoning the team away from the obvious path.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\", \"glass_diver\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Tin Fox scouts an armored patrol.\",\n      \"visual_description\": \"From behind a fallen royal banner, the clockwork fox watches metal-booted shapes march down a rubble-strewn boulevard.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Glass Diver slips through a shop window.\",\n      \"visual_description\": \"The diver dives headfirst into a tall pane of glass, body rippling like water as the helmet glints with reflected torchlight.\",\n      \"characters\": [\"glass_diver\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Mara decodes a torn royal banner.\",\n      \"visual_description\": \"Beneath a half-burned banner, Mara traces faded heraldry with inky fingers while the tin fox shines lamplight on the cloth.\",\n      \"characters\": [\"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The oracle lamp names the magic door.\",\n      \"visual_description\": \"A great brass door etched with runes pulses faintly; the lamp's eye reflects in every glyph as Mara raises her compass.\",\n      \"characters\": [\"oracle_lamp\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Glass Diver pulls the captive from a mirror.\",\n      \"visual_description\": \"Inside a candle-lit chamber, the diver hauls the sleeping tax collector from a tall standing mirror, water-light dripping off both of them.\",\n      \"characters\": [\"glass_diver\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The tax collector refuses to wake up.\",\n      \"visual_description\": \"Slumped against a column, the official snores while stamped forms drift around him; Mara tugs his sleeve in exasperation.\",\n      \"characters\": [\"sleeping_tax_collector\", \"mara_the_cartographer\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Tin Fox sets off a distant alarm bell.\",\n      \"visual_description\": \"The clockwork fox yanks a frayed rope on a rooftop, sending a cracked bell swinging above the smoldering rooftops as a diversion.\",\n      \"characters\": [\"tin_fox\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The lamp warns of a collapsing arch.\",\n      \"visual_description\": \"Stones grind overhead in a colonnade; the lamp's flame-eye flares red as the diver shields the snoring official with a reflective coat.\",\n      \"characters\": [\"oracle_lamp\", \"glass_diver\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Mara redraws the map on the run.\",\n      \"visual_description\": \"Sprinting through a flooded plaza, Mara sketches frantically on damp parchment while the tin fox bounds ahead through puddled reflections.\",\n      \"characters\": [\"mara_the_cartographer\", \"tin_fox\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Glass Diver opens a window across the river.\",\n      \"visual_description\": \"At the foot of a ruined keep, the diver presses both palms to a glowing pane that ripples like a vertical pond, revealing a far bridge.\",\n      \"characters\": [\"glass_diver\", \"oracle_lamp\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The team races onto the long bridge.\",\n      \"visual_description\": \"A narrow stone bridge stretches over a chasm of mist; Mara, the tin fox, and the diver carry the sleeping official as the lamp lights the way.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"tin_fox\", \"oracle_lamp\", \"sleeping_tax_collector\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They look back at the broken city, free.\",\n      \"visual_description\": \"On the far cliff at dawn, the rescuers stand silhouetted against pale sky; the tax collector finally blinks awake as the lamp's eye dims to a gentle glow.\",\n      \"characters\": [\"mara_the_cartographer\", \"glass_diver\", \"tin_fox\", \"oracle_lamp\", \"sleeping_tax_collector\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Mirror Rescue of the Broken City",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "Mara plots a course into the ruined city.",
+        "visual_description": "A windswept ridge at dusk overlooking a shattered royal skyline; an ink-stained coat flaps as a brass compass spins over a hand-drawn map.",
+        "characters": [
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The oracle lamp warns of the road ahead.",
+        "visual_description": "A small camp under a leaning road sign; the lamp's single flame-eye blazes, casting long warning shadows across Mara's map.",
+        "characters": [
+          "mara_the_cartographer",
+          "oracle_lamp"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The tin fox sniffs the broken gate.",
+        "visual_description": "A clockwork fox with blue glass eyes peers through the bent bars of an enormous castle gate, key-wind tail ticking softly.",
+        "characters": [
+          "tin_fox",
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Glass Diver arrives through a cracked window.",
+        "visual_description": "A figure in a clear diving helmet steps out of a broken pane as if from water, coat shimmering with reflected city lights.",
+        "characters": [
+          "glass_diver",
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "They find the sleeping tax collector blocking the way.",
+        "visual_description": "A plump official snores at a toll booth, ledger book under his cheek, stamped papers fluttering from his sleeves in the wind.",
+        "characters": [
+          "sleeping_tax_collector",
+          "mara_the_cartographer",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The lamp whispers a route past the cursed tower.",
+        "visual_description": "A spiraling black tower looms; the oracle lamp glows green near a cracked alley, beckoning the team away from the obvious path.",
+        "characters": [
+          "oracle_lamp",
+          "mara_the_cartographer",
+          "glass_diver"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Tin Fox scouts an armored patrol.",
+        "visual_description": "From behind a fallen royal banner, the clockwork fox watches metal-booted shapes march down a rubble-strewn boulevard.",
+        "characters": [
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Glass Diver slips through a shop window.",
+        "visual_description": "The diver dives headfirst into a tall pane of glass, body rippling like water as the helmet glints with reflected torchlight.",
+        "characters": [
+          "glass_diver"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Mara decodes a torn royal banner.",
+        "visual_description": "Beneath a half-burned banner, Mara traces faded heraldry with inky fingers while the tin fox shines lamplight on the cloth.",
+        "characters": [
+          "mara_the_cartographer",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The oracle lamp names the magic door.",
+        "visual_description": "A great brass door etched with runes pulses faintly; the lamp's eye reflects in every glyph as Mara raises her compass.",
+        "characters": [
+          "oracle_lamp",
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Glass Diver pulls the captive from a mirror.",
+        "visual_description": "Inside a candle-lit chamber, the diver hauls the sleeping tax collector from a tall standing mirror, water-light dripping off both of them.",
+        "characters": [
+          "glass_diver",
+          "sleeping_tax_collector"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The tax collector refuses to wake up.",
+        "visual_description": "Slumped against a column, the official snores while stamped forms drift around him; Mara tugs his sleeve in exasperation.",
+        "characters": [
+          "sleeping_tax_collector",
+          "mara_the_cartographer"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Tin Fox sets off a distant alarm bell.",
+        "visual_description": "The clockwork fox yanks a frayed rope on a rooftop, sending a cracked bell swinging above the smoldering rooftops as a diversion.",
+        "characters": [
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The lamp warns of a collapsing arch.",
+        "visual_description": "Stones grind overhead in a colonnade; the lamp's flame-eye flares red as the diver shields the snoring official with a reflective coat.",
+        "characters": [
+          "oracle_lamp",
+          "glass_diver",
+          "sleeping_tax_collector"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Mara redraws the map on the run.",
+        "visual_description": "Sprinting through a flooded plaza, Mara sketches frantically on damp parchment while the tin fox bounds ahead through puddled reflections.",
+        "characters": [
+          "mara_the_cartographer",
+          "tin_fox"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Glass Diver opens a window across the river.",
+        "visual_description": "At the foot of a ruined keep, the diver presses both palms to a glowing pane that ripples like a vertical pond, revealing a far bridge.",
+        "characters": [
+          "glass_diver",
+          "oracle_lamp"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The team races onto the long bridge.",
+        "visual_description": "A narrow stone bridge stretches over a chasm of mist; Mara, the tin fox, and the diver carry the sleeping official as the lamp lights the way.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "tin_fox",
+          "oracle_lamp",
+          "sleeping_tax_collector"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They look back at the broken city, free.",
+        "visual_description": "On the far cliff at dawn, the rescuers stand silhouetted against pale sky; the tax collector finally blinks awake as the lamp's eye dims to a gentle glow.",
+        "characters": [
+          "mara_the_cartographer",
+          "glass_diver",
+          "tin_fox",
+          "oracle_lamp",
+          "sleeping_tax_collector"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 0,
+    "suspicious_text_scenes": 0,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 0,
+    "forbidden_word_scenes": 0,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 0.0,
+    "suspicious_text_rate": 0.0,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": false,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 4
+}

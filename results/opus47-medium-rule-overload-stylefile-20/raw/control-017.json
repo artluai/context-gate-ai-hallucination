@@ -1,0 +1,575 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018657-j4dmfKCEq3MIAT8YX5Xd",
+      "object": "chat.completion",
+      "created": 1779018657,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 132,
+        "total_tokens": 850,
+        "cost": 0.00689,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00689,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.0033
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 64,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018662-3dYKS79fjTU6OQThEwPI",
+      "object": "chat.completion",
+      "created": 1779018662,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Hollow Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four cloaked figures stand on a ridge at dusk overlooking a shattered skyline of broken towers and tilted spires, banners fluttering in the distance.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Maren unrolls a map of the fallen capital.\",\n      \"visual_description\": \"Close-up on a weathered parchment map weighted down with stones, Maren pointing toward a marked tower while the others lean in by lantern light.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates hang askew off their hinges, ivy crawling across the stonework, the party silhouetted at the threshold.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townsperson warns them away.\",\n      \"visual_description\": \"An old woman in a shawl clutches a basket against a cracked wall, gesturing fearfully toward the inner city while Maren listens.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Goodwife Halla\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Cole scouts ahead through a collapsed market.\",\n      \"visual_description\": \"Cole crouches low among overturned stalls and shattered pottery, peering around a splintered awning, dust drifting in slanted light.\",\n      \"characters\": [\"Cole the Scout\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches past in the rubble.\",\n      \"visual_description\": \"Three black-plated soldiers with halberds tramp down a narrow street, banners stitched with a broken crown, while Cole presses flat against a doorway.\",\n      \"characters\": [\"Cole the Scout\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party regroups under a tattered royal banner.\",\n      \"visual_description\": \"A faded crimson banner with a golden crown hangs from a half-collapsed archway; the four companions confer beneath it in hushed urgency.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Rumors of a dragon stop them cold.\",\n      \"visual_description\": \"A wild-eyed hermit in patched robes points to deep claw gouges along a stone wall, ash smeared into the cracks; the party stares uneasily.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Ash-Eyed Hermit\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Brogan dozes against a fountain while plans are made.\",\n      \"visual_description\": \"A round, bearded man in rumpled official robes snores against a cracked marble fountain, scroll slipping from his hand, as Maren rolls her eyes.\",\n      \"characters\": [\"Brogan the Steward\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They reach the foot of the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wreathed in pale green mist, faintly glowing runes pulsing along its base, the party craning their heads upward.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Vesna deciphers the magic door's sigils.\",\n      \"visual_description\": \"Vesna traces glowing blue runes on a massive obsidian door, her staff sparking with answering light, the others guarding her back.\",\n      \"characters\": [\"Vesna the Spellwright\", \"Maren the Pathfinder\", \"Cole the Scout\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The door swings open onto a spiral stair.\",\n      \"visual_description\": \"A yawning archway reveals a winding stone staircase lit by floating motes of light, dust curling around the party's boots as they step inside.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive prince in a sigil-bound cell.\",\n      \"visual_description\": \"A young man in tattered finery sits chained inside a circle of burning red runes at the tower's top, dawn light leaking through arrow slits.\",\n      \"characters\": [\"Prince Idris\", \"Vesna the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Vesna breaks the binding circle.\",\n      \"visual_description\": \"Vesna slams her staff down, scattering the rune-circle into harmless sparks; the prince stumbles free as Maren catches his arm.\",\n      \"characters\": [\"Vesna the Spellwright\", \"Prince Idris\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarm horns sound across the ruined city.\",\n      \"visual_description\": \"From a tower window, the group sees torches igniting in every street and armored patrols converging, horns flashing in the early light.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee through twisted alleys toward the river.\",\n      \"visual_description\": \"The party sprints through narrow rubble-strewn lanes, cloaks streaming, arrows striking sparks off the cobbles behind them.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Cole leaps the broken span of the great bridge.\",\n      \"visual_description\": \"A vast stone bridge yawns with a missing center section over a churning river; Cole vaults the gap with a rope, the others poised to follow.\",\n      \"characters\": [\"Cole the Scout\", \"Maren the Pathfinder\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The rescued prince looks back at the burning skyline.\",\n      \"visual_description\": \"On the far riverbank at sunrise, the five companions stand together as Prince Idris turns to watch smoke rise from the ruined capital behind them.\",\n      \"characters\": [\"Prince Idris\", \"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2610,
+        "total_tokens": 3496,
+        "cost": 0.06968,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06968,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.06525
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Hollow Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four cloaked figures stand on a ridge at dusk overlooking a shattered skyline of broken towers and tilted spires, banners fluttering in the distance.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Maren unrolls a map of the fallen capital.\",\n      \"visual_description\": \"Close-up on a weathered parchment map weighted down with stones, Maren pointing toward a marked tower while the others lean in by lantern light.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates hang askew off their hinges, ivy crawling across the stonework, the party silhouetted at the threshold.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townsperson warns them away.\",\n      \"visual_description\": \"An old woman in a shawl clutches a basket against a cracked wall, gesturing fearfully toward the inner city while Maren listens.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Goodwife Halla\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Cole scouts ahead through a collapsed market.\",\n      \"visual_description\": \"Cole crouches low among overturned stalls and shattered pottery, peering around a splintered awning, dust drifting in slanted light.\",\n      \"characters\": [\"Cole the Scout\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches past in the rubble.\",\n      \"visual_description\": \"Three black-plated soldiers with halberds tramp down a narrow street, banners stitched with a broken crown, while Cole presses flat against a doorway.\",\n      \"characters\": [\"Cole the Scout\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party regroups under a tattered royal banner.\",\n      \"visual_description\": \"A faded crimson banner with a golden crown hangs from a half-collapsed archway; the four companions confer beneath it in hushed urgency.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Rumors of a dragon stop them cold.\",\n      \"visual_description\": \"A wild-eyed hermit in patched robes points to deep claw gouges along a stone wall, ash smeared into the cracks; the party stares uneasily.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Ash-Eyed Hermit\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Brogan dozes against a fountain while plans are made.\",\n      \"visual_description\": \"A round, bearded man in rumpled official robes snores against a cracked marble fountain, scroll slipping from his hand, as Maren rolls her eyes.\",\n      \"characters\": [\"Brogan the Steward\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They reach the foot of the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wreathed in pale green mist, faintly glowing runes pulsing along its base, the party craning their heads upward.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Vesna deciphers the magic door's sigils.\",\n      \"visual_description\": \"Vesna traces glowing blue runes on a massive obsidian door, her staff sparking with answering light, the others guarding her back.\",\n      \"characters\": [\"Vesna the Spellwright\", \"Maren the Pathfinder\", \"Cole the Scout\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The door swings open onto a spiral stair.\",\n      \"visual_description\": \"A yawning archway reveals a winding stone staircase lit by floating motes of light, dust curling around the party's boots as they step inside.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive prince in a sigil-bound cell.\",\n      \"visual_description\": \"A young man in tattered finery sits chained inside a circle of burning red runes at the tower's top, dawn light leaking through arrow slits.\",\n      \"characters\": [\"Prince Idris\", \"Vesna the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Vesna breaks the binding circle.\",\n      \"visual_description\": \"Vesna slams her staff down, scattering the rune-circle into harmless sparks; the prince stumbles free as Maren catches his arm.\",\n      \"characters\": [\"Vesna the Spellwright\", \"Prince Idris\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarm horns sound across the ruined city.\",\n      \"visual_description\": \"From a tower window, the group sees torches igniting in every street and armored patrols converging, horns flashing in the early light.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee through twisted alleys toward the river.\",\n      \"visual_description\": \"The party sprints through narrow rubble-strewn lanes, cloaks streaming, arrows striking sparks off the cobbles behind them.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\", \"Iron Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Cole leaps the broken span of the great bridge.\",\n      \"visual_description\": \"A vast stone bridge yawns with a missing center section over a churning river; Cole vaults the gap with a rope, the others poised to follow.\",\n      \"characters\": [\"Cole the Scout\", \"Maren the Pathfinder\", \"Vesna the Spellwright\", \"Brogan the Steward\", \"Prince Idris\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The rescued prince looks back at the burning skyline.\",\n      \"visual_description\": \"On the far riverbank at sunrise, the five companions stand together as Prince Idris turns to watch smoke rise from the ruined capital behind them.\",\n      \"characters\": [\"Prince Idris\", \"Maren the Pathfinder\", \"Cole the Scout\", \"Vesna the Spellwright\", \"Brogan the Steward\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Hollow Crown",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A small band gathers at the edge of the ruined city.",
+        "visual_description": "Four cloaked figures stand on a ridge at dusk overlooking a shattered skyline of broken towers and tilted spires, banners fluttering in the distance.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Maren unrolls a map of the fallen capital.",
+        "visual_description": "Close-up on a weathered parchment map weighted down with stones, Maren pointing toward a marked tower while the others lean in by lantern light.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They approach the broken castle gates.",
+        "visual_description": "Massive iron-banded gates hang askew off their hinges, ivy crawling across the stonework, the party silhouetted at the threshold.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A frightened townsperson warns them away.",
+        "visual_description": "An old woman in a shawl clutches a basket against a cracked wall, gesturing fearfully toward the inner city while Maren listens.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Goodwife Halla"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Cole scouts ahead through a collapsed market.",
+        "visual_description": "Cole crouches low among overturned stalls and shattered pottery, peering around a splintered awning, dust drifting in slanted light.",
+        "characters": [
+          "Cole the Scout"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "An armored patrol marches past in the rubble.",
+        "visual_description": "Three black-plated soldiers with halberds tramp down a narrow street, banners stitched with a broken crown, while Cole presses flat against a doorway.",
+        "characters": [
+          "Cole the Scout",
+          "Iron Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The party regroups under a tattered royal banner.",
+        "visual_description": "A faded crimson banner with a golden crown hangs from a half-collapsed archway; the four companions confer beneath it in hushed urgency.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Rumors of a dragon stop them cold.",
+        "visual_description": "A wild-eyed hermit in patched robes points to deep claw gouges along a stone wall, ash smeared into the cracks; the party stares uneasily.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Ash-Eyed Hermit"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Brogan dozes against a fountain while plans are made.",
+        "visual_description": "A round, bearded man in rumpled official robes snores against a cracked marble fountain, scroll slipping from his hand, as Maren rolls her eyes.",
+        "characters": [
+          "Brogan the Steward",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They reach the foot of the cursed tower.",
+        "visual_description": "A leaning black tower wreathed in pale green mist, faintly glowing runes pulsing along its base, the party craning their heads upward.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Vesna deciphers the magic door's sigils.",
+        "visual_description": "Vesna traces glowing blue runes on a massive obsidian door, her staff sparking with answering light, the others guarding her back.",
+        "characters": [
+          "Vesna the Spellwright",
+          "Maren the Pathfinder",
+          "Cole the Scout"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The door swings open onto a spiral stair.",
+        "visual_description": "A yawning archway reveals a winding stone staircase lit by floating motes of light, dust curling around the party's boots as they step inside.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find the captive prince in a sigil-bound cell.",
+        "visual_description": "A young man in tattered finery sits chained inside a circle of burning red runes at the tower's top, dawn light leaking through arrow slits.",
+        "characters": [
+          "Prince Idris",
+          "Vesna the Spellwright",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Vesna breaks the binding circle.",
+        "visual_description": "Vesna slams her staff down, scattering the rune-circle into harmless sparks; the prince stumbles free as Maren catches his arm.",
+        "characters": [
+          "Vesna the Spellwright",
+          "Prince Idris",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Alarm horns sound across the ruined city.",
+        "visual_description": "From a tower window, the group sees torches igniting in every street and armored patrols converging, horns flashing in the early light.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They flee through twisted alleys toward the river.",
+        "visual_description": "The party sprints through narrow rubble-strewn lanes, cloaks streaming, arrows striking sparks off the cobbles behind them.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris",
+          "Iron Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Cole leaps the broken span of the great bridge.",
+        "visual_description": "A vast stone bridge yawns with a missing center section over a churning river; Cole vaults the gap with a rope, the others poised to follow.",
+        "characters": [
+          "Cole the Scout",
+          "Maren the Pathfinder",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The rescued prince looks back at the burning skyline.",
+        "visual_description": "On the far riverbank at sunrise, the five companions stand together as Prince Idris turns to watch smoke rise from the ruined capital behind them.",
+        "characters": [
+          "Prince Idris",
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 5,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 5,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2777777777777778,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Goodwife Halla"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Cole the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Cole the Scout",
+          "Iron Patrol Captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Ash-Eyed Hermit"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brogan the Steward",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesna the Spellwright",
+          "Maren the Pathfinder",
+          "Cole the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Idris",
+          "Vesna the Spellwright",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesna the Spellwright",
+          "Prince Idris",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris",
+          "Iron Patrol Captain"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Cole the Scout",
+          "Maren the Pathfinder",
+          "Vesna the Spellwright",
+          "Brogan the Steward",
+          "Prince Idris"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Idris",
+          "Maren the Pathfinder",
+          "Cole the Scout",
+          "Vesna the Spellwright",
+          "Brogan the Steward"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      }
+    ]
+  },
+  "run_index": 17
+}

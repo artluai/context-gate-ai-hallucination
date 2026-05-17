@@ -1,0 +1,569 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017210-aAadYY8yktdB7GOpX63H",
+      "object": "chat.completion",
+      "created": 1779017210,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 168,
+        "total_tokens": 886,
+        "cost": 0.00779,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00779,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.0042
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 57,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017217-jmTPrRTkBLcdC263XzVq",
+      "object": "chat.completion",
+      "created": 1779017217,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of Prince Aldwin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Dawn over the ruined royal city.\",\n      \"visual_description\": \"Wide establishing shot of a broken skyline, crumbling spires, and tattered banners flapping above empty streets at sunrise.\",\n      \"characters\": [\"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers at the outer ridge.\",\n      \"visual_description\": \"Four figures crouched on a rocky overlook, studying the city below, packs and weapons laid out on the stone.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Brin unfolds the stolen map.\",\n      \"visual_description\": \"Close-up of a worn parchment map weighted by stones, marked with red ink showing tower routes and the dungeon where the captive is held.\",\n      \"characters\": [\"Brin the Scout\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"They slip past the rusted castle gates.\",\n      \"visual_description\": \"Massive iron gates hanging askew, vines crawling through bars, the team sneaking single-file through a narrow gap.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A cursed tower looms, but they ignore it.\",\n      \"visual_description\": \"Blackened spiral tower pulsing with faint purple light; the party walks past in the foreground, eyes forward, refusing to look up.\",\n      \"characters\": [\"Captain Maren\", \"Vesna the Mage\", \"Brin the Scout\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople whisper of a dragon.\",\n      \"visual_description\": \"A huddle of ragged citizens in a doorway, gesturing toward the sky, while Maren kneels to listen, hand raised in calm.\",\n      \"characters\": [\"Captain Maren\", \"Mira the Baker\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Old Tobin dozes against a fallen statue.\",\n      \"visual_description\": \"Comic beat: Tobin snoring under a toppled stone king, his hat tipped over his eyes, while Brin pokes him with a stick.\",\n      \"characters\": [\"Old Tobin\", \"Brin the Scout\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol marches through the square.\",\n      \"visual_description\": \"Column of black-plated soldiers crossing a rubble-strewn plaza; the party hides behind an overturned cart, breath held.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Iron Sergeant Korv\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Vesna silences a creaking banner with a whisper.\",\n      \"visual_description\": \"Tattered royal banner above the team; Vesna's fingers trace a glowing rune, freezing the cloth mid-flap as the patrol passes below.\",\n      \"characters\": [\"Vesna the Mage\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They find the sealed magic door to the dungeon.\",\n      \"visual_description\": \"An ornate stone door covered in glowing blue sigils set into a moss-covered wall; Vesna studies it while the others guard the corridor.\",\n      \"characters\": [\"Vesna the Mage\", \"Captain Maren\", \"Brin the Scout\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Vesna unravels the binding spell.\",\n      \"visual_description\": \"Close-up of glowing sigils unwinding into floating sparks, reflected in Vesna's wide eyes, her staff tip pressed to the central rune.\",\n      \"characters\": [\"Vesna the Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside the dungeon, they find Prince Aldwin.\",\n      \"visual_description\": \"A thin young man in torn finery chained to a damp stone wall, blinking at the torchlight as Maren rushes forward with a key.\",\n      \"characters\": [\"Captain Maren\", \"Prince Aldwin\", \"Brin the Scout\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The prince can barely walk; Tobin carries him.\",\n      \"visual_description\": \"Old Tobin, suddenly wide awake, hoisting the prince on his broad back, surprising the others with his strength.\",\n      \"characters\": [\"Old Tobin\", \"Prince Aldwin\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Iron Sergeant Korv blocks the corridor.\",\n      \"visual_description\": \"A towering armored figure with a glaive at the end of a torchlit hallway, helm reflecting flame, the party skidding to a halt.\",\n      \"characters\": [\"Iron Sergeant Korv\", \"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Maren duels the sergeant while the others flee.\",\n      \"visual_description\": \"Sparks fly as Maren's sword locks against Korv's glaive; in the background, the rest of the team sprints toward a stairway of light.\",\n      \"characters\": [\"Captain Maren\", \"Iron Sergeant Korv\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon's shadow sweeps over the rooftops.\",\n      \"visual_description\": \"Huge winged silhouette darkening the broken streets; the fleeing team ducks under an archway as scaled wingtips brush the spires.\",\n      \"characters\": [\"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They reach the half-collapsed bridge at the city's edge.\",\n      \"visual_description\": \"A long stone bridge with gaps over a churning river; Maren catches up bloodied but alive as the party steps onto the first cracked span.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Across the bridge, into the morning light.\",\n      \"visual_description\": \"Silhouettes of the five crossing toward green hills, the ruined city receding behind them under a brightening sky.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2430,
+        "total_tokens": 3316,
+        "cost": 0.06518,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06518,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.06075
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of Prince Aldwin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"Dawn over the ruined royal city.\",\n      \"visual_description\": \"Wide establishing shot of a broken skyline, crumbling spires, and tattered banners flapping above empty streets at sunrise.\",\n      \"characters\": [\"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers at the outer ridge.\",\n      \"visual_description\": \"Four figures crouched on a rocky overlook, studying the city below, packs and weapons laid out on the stone.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Brin unfolds the stolen map.\",\n      \"visual_description\": \"Close-up of a worn parchment map weighted by stones, marked with red ink showing tower routes and the dungeon where the captive is held.\",\n      \"characters\": [\"Brin the Scout\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"They slip past the rusted castle gates.\",\n      \"visual_description\": \"Massive iron gates hanging askew, vines crawling through bars, the team sneaking single-file through a narrow gap.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A cursed tower looms, but they ignore it.\",\n      \"visual_description\": \"Blackened spiral tower pulsing with faint purple light; the party walks past in the foreground, eyes forward, refusing to look up.\",\n      \"characters\": [\"Captain Maren\", \"Vesna the Mage\", \"Brin the Scout\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople whisper of a dragon.\",\n      \"visual_description\": \"A huddle of ragged citizens in a doorway, gesturing toward the sky, while Maren kneels to listen, hand raised in calm.\",\n      \"characters\": [\"Captain Maren\", \"Mira the Baker\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Old Tobin dozes against a fallen statue.\",\n      \"visual_description\": \"Comic beat: Tobin snoring under a toppled stone king, his hat tipped over his eyes, while Brin pokes him with a stick.\",\n      \"characters\": [\"Old Tobin\", \"Brin the Scout\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol marches through the square.\",\n      \"visual_description\": \"Column of black-plated soldiers crossing a rubble-strewn plaza; the party hides behind an overturned cart, breath held.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Iron Sergeant Korv\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Vesna silences a creaking banner with a whisper.\",\n      \"visual_description\": \"Tattered royal banner above the team; Vesna's fingers trace a glowing rune, freezing the cloth mid-flap as the patrol passes below.\",\n      \"characters\": [\"Vesna the Mage\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"They find the sealed magic door to the dungeon.\",\n      \"visual_description\": \"An ornate stone door covered in glowing blue sigils set into a moss-covered wall; Vesna studies it while the others guard the corridor.\",\n      \"characters\": [\"Vesna the Mage\", \"Captain Maren\", \"Brin the Scout\", \"Old Tobin\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Vesna unravels the binding spell.\",\n      \"visual_description\": \"Close-up of glowing sigils unwinding into floating sparks, reflected in Vesna's wide eyes, her staff tip pressed to the central rune.\",\n      \"characters\": [\"Vesna the Mage\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside the dungeon, they find Prince Aldwin.\",\n      \"visual_description\": \"A thin young man in torn finery chained to a damp stone wall, blinking at the torchlight as Maren rushes forward with a key.\",\n      \"characters\": [\"Captain Maren\", \"Prince Aldwin\", \"Brin the Scout\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The prince can barely walk; Tobin carries him.\",\n      \"visual_description\": \"Old Tobin, suddenly wide awake, hoisting the prince on his broad back, surprising the others with his strength.\",\n      \"characters\": [\"Old Tobin\", \"Prince Aldwin\", \"Captain Maren\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Iron Sergeant Korv blocks the corridor.\",\n      \"visual_description\": \"A towering armored figure with a glaive at the end of a torchlit hallway, helm reflecting flame, the party skidding to a halt.\",\n      \"characters\": [\"Iron Sergeant Korv\", \"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Maren duels the sergeant while the others flee.\",\n      \"visual_description\": \"Sparks fly as Maren's sword locks against Korv's glaive; in the background, the rest of the team sprints toward a stairway of light.\",\n      \"characters\": [\"Captain Maren\", \"Iron Sergeant Korv\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A dragon's shadow sweeps over the rooftops.\",\n      \"visual_description\": \"Huge winged silhouette darkening the broken streets; the fleeing team ducks under an archway as scaled wingtips brush the spires.\",\n      \"characters\": [\"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They reach the half-collapsed bridge at the city's edge.\",\n      \"visual_description\": \"A long stone bridge with gaps over a churning river; Maren catches up bloodied but alive as the party steps onto the first cracked span.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Across the bridge, into the morning light.\",\n      \"visual_description\": \"Silhouettes of the five crossing toward green hills, the ruined city receding behind them under a brightening sky.\",\n      \"characters\": [\"Captain Maren\", \"Brin the Scout\", \"Vesna the Mage\", \"Old Tobin\", \"Prince Aldwin\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of Prince Aldwin",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "Dawn over the ruined royal city.",
+        "visual_description": "Wide establishing shot of a broken skyline, crumbling spires, and tattered banners flapping above empty streets at sunrise.",
+        "characters": [
+          "Captain Maren"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The rescue party gathers at the outer ridge.",
+        "visual_description": "Four figures crouched on a rocky overlook, studying the city below, packs and weapons laid out on the stone.",
+        "characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Brin unfolds the stolen map.",
+        "visual_description": "Close-up of a worn parchment map weighted by stones, marked with red ink showing tower routes and the dungeon where the captive is held.",
+        "characters": [
+          "Brin the Scout",
+          "Captain Maren"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "They slip past the rusted castle gates.",
+        "visual_description": "Massive iron gates hanging askew, vines crawling through bars, the team sneaking single-file through a narrow gap.",
+        "characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "A cursed tower looms, but they ignore it.",
+        "visual_description": "Blackened spiral tower pulsing with faint purple light; the party walks past in the foreground, eyes forward, refusing to look up.",
+        "characters": [
+          "Captain Maren",
+          "Vesna the Mage",
+          "Brin the Scout",
+          "Old Tobin"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Frightened townspeople whisper of a dragon.",
+        "visual_description": "A huddle of ragged citizens in a doorway, gesturing toward the sky, while Maren kneels to listen, hand raised in calm.",
+        "characters": [
+          "Captain Maren",
+          "Mira the Baker",
+          "Old Tobin"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Old Tobin dozes against a fallen statue.",
+        "visual_description": "Comic beat: Tobin snoring under a toppled stone king, his hat tipped over his eyes, while Brin pokes him with a stick.",
+        "characters": [
+          "Old Tobin",
+          "Brin the Scout"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "An armored patrol marches through the square.",
+        "visual_description": "Column of black-plated soldiers crossing a rubble-strewn plaza; the party hides behind an overturned cart, breath held.",
+        "characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Iron Sergeant Korv"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Vesna silences a creaking banner with a whisper.",
+        "visual_description": "Tattered royal banner above the team; Vesna's fingers trace a glowing rune, freezing the cloth mid-flap as the patrol passes below.",
+        "characters": [
+          "Vesna the Mage",
+          "Captain Maren"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "They find the sealed magic door to the dungeon.",
+        "visual_description": "An ornate stone door covered in glowing blue sigils set into a moss-covered wall; Vesna studies it while the others guard the corridor.",
+        "characters": [
+          "Vesna the Mage",
+          "Captain Maren",
+          "Brin the Scout",
+          "Old Tobin"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Vesna unravels the binding spell.",
+        "visual_description": "Close-up of glowing sigils unwinding into floating sparks, reflected in Vesna's wide eyes, her staff tip pressed to the central rune.",
+        "characters": [
+          "Vesna the Mage"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Inside the dungeon, they find Prince Aldwin.",
+        "visual_description": "A thin young man in torn finery chained to a damp stone wall, blinking at the torchlight as Maren rushes forward with a key.",
+        "characters": [
+          "Captain Maren",
+          "Prince Aldwin",
+          "Brin the Scout"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The prince can barely walk; Tobin carries him.",
+        "visual_description": "Old Tobin, suddenly wide awake, hoisting the prince on his broad back, surprising the others with his strength.",
+        "characters": [
+          "Old Tobin",
+          "Prince Aldwin",
+          "Captain Maren"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Iron Sergeant Korv blocks the corridor.",
+        "visual_description": "A towering armored figure with a glaive at the end of a torchlit hallway, helm reflecting flame, the party skidding to a halt.",
+        "characters": [
+          "Iron Sergeant Korv",
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Maren duels the sergeant while the others flee.",
+        "visual_description": "Sparks fly as Maren's sword locks against Korv's glaive; in the background, the rest of the team sprints toward a stairway of light.",
+        "characters": [
+          "Captain Maren",
+          "Iron Sergeant Korv"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "A dragon's shadow sweeps over the rooftops.",
+        "visual_description": "Huge winged silhouette darkening the broken streets; the fleeing team ducks under an archway as scaled wingtips brush the spires.",
+        "characters": [
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They reach the half-collapsed bridge at the city's edge.",
+        "visual_description": "A long stone bridge with gaps over a churning river; Maren catches up bloodied but alive as the party steps onto the first cracked span.",
+        "characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Across the bridge, into the morning light.",
+        "visual_description": "Silhouettes of the five crossing toward green hills, the ruined city receding behind them under a brightening sky.",
+        "characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 7,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 7,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3888888888888889,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brin the Scout",
+          "Captain Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Vesna the Mage",
+          "Brin the Scout",
+          "Old Tobin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Mira the Baker",
+          "Old Tobin"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Tobin",
+          "Brin the Scout"
+        ],
+        "forbidden_words": [
+          "king"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Iron Sergeant Korv"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesna the Mage",
+          "Captain Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesna the Mage",
+          "Captain Maren",
+          "Brin the Scout",
+          "Old Tobin"
+        ],
+        "forbidden_words": [
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesna the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Prince Aldwin",
+          "Brin the Scout"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Tobin",
+          "Prince Aldwin",
+          "Captain Maren"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iron Sergeant Korv",
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Iron Sergeant Korv"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Maren",
+          "Brin the Scout",
+          "Vesna the Mage",
+          "Old Tobin",
+          "Prince Aldwin"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 4
+}

@@ -1,0 +1,536 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "e879cee8-03f6-487a-933b-ca3a18a33312",
+      "object": "chat.completion",
+      "created": 1779004247,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "7b89ef7d-f90b-4a7b-906c-e294dddd03c8",
+      "object": "chat.completion",
+      "created": 1779004248,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Gauntlet\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"A massive iron gate hangs crooked on broken hinges; the city wall is cracked and overgrown with thorny vines.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople flee past an old royal banner.\",\n      \"visual_description\": \"Tattered gold-and-crimson banner droops from a collapsed archway; frightened citizens run clutching bundles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Fleeing Townsfolk\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol questions the party's intent.\",\n      \"visual_description\": \"Three helmeted soldiers in rusted plate armor block the street, halberds crossed.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A cursed tower looms at the square's center.\",\n      \"visual_description\": \"A spiraling black tower with glowing runes pulses above the cobblestone plaza.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon stir in a crowded tavern.\",\n      \"visual_description\": \"Smoky tavern interior; a hooded figure whispers to the party while patrons huddle nervously.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Whispering Informant\", \"Tavern Patrons\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party enters a magic door that shifts location.\",\n      \"visual_description\": \"A stone doorway framed with shifting silver sigils; beyond it a corridor that appears to bend sideways.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside the cursed tower: first temptation.\",\n      \"visual_description\": \"A floating golden crown bathes the room in warm light; the floor is mosaic of pleading faces.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira resists the crown's illusion of power.\",\n      \"visual_description\": \"Mira turns her back on the crown, hand on her sword; the crown's glow flickers angrily.\",\n      \"characters\": [\"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Torvin breaks a cursed mirror showing lost family.\",\n      \"visual_description\": \"A tall silver mirror shows Torvin's dead wife smiling; he shatters it with his axe.\",\n      \"characters\": [\"Torvin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Kaelen ignores a spectral vision of glory.\",\n      \"visual_description\": \"A ghostly king offers Kaelen a scepter; Kaelen steps past without looking back.\",\n      \"characters\": [\"Kaelen\", \"Spectral King\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The party reunites on the tower's upper floor.\",\n      \"visual_description\": \"A circular room with three open doors; each door frames one of the party members entering from different directions.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the captive in a crystal prison.\",\n      \"visual_description\": \"A young woman suspended inside a hexagonal crystal, eyes closed, hands pressed against the inner facet.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The tower awakens: stone golems rise.\",\n      \"visual_description\": \"Four massive golems of black stone and rune-etched iron rise from the floor tiles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Stone Golems\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Battle in the tower's central hall.\",\n      \"visual_description\": \"Sparks fly as Mira's blade meets golem fist; Torvin swings his axe; Kaelen fires an arrow into a rune.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Stone Golems\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party frees the princess and flees downward.\",\n      \"visual_description\": \"Crystal shatters; the princess falls into Torvin's arms; behind them the floor crumbles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Chased through the city streets to the bridge.\",\n      \"visual_description\": \"The party sprints across rubble-strewn lanes, golems and patrols closing behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\", \"Stone Golems\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Last stand on the damaged bridge.\",\n      \"visual_description\": \"A stone bridge missing half its arch; fire spouts from beneath; the party turns to face the pursuing horde.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\", \"Stone Golems\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses and the party escapes.\",\n      \"visual_description\": \"The bridge falls into the chasm; the party clutches the far edge, silhouetted against a dawn sky.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1377,
+        "total_tokens": 1881,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Gauntlet\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"A massive iron gate hangs crooked on broken hinges; the city wall is cracked and overgrown with thorny vines.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople flee past an old royal banner.\",\n      \"visual_description\": \"Tattered gold-and-crimson banner droops from a collapsed archway; frightened citizens run clutching bundles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Fleeing Townsfolk\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrol questions the party's intent.\",\n      \"visual_description\": \"Three helmeted soldiers in rusted plate armor block the street, halberds crossed.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A cursed tower looms at the square's center.\",\n      \"visual_description\": \"A spiraling black tower with glowing runes pulses above the cobblestone plaza.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon stir in a crowded tavern.\",\n      \"visual_description\": \"Smoky tavern interior; a hooded figure whispers to the party while patrons huddle nervously.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Whispering Informant\", \"Tavern Patrons\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The party enters a magic door that shifts location.\",\n      \"visual_description\": \"A stone doorway framed with shifting silver sigils; beyond it a corridor that appears to bend sideways.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Inside the cursed tower: first temptation.\",\n      \"visual_description\": \"A floating golden crown bathes the room in warm light; the floor is mosaic of pleading faces.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira resists the crown's illusion of power.\",\n      \"visual_description\": \"Mira turns her back on the crown, hand on her sword; the crown's glow flickers angrily.\",\n      \"characters\": [\"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Torvin breaks a cursed mirror showing lost family.\",\n      \"visual_description\": \"A tall silver mirror shows Torvin's dead wife smiling; he shatters it with his axe.\",\n      \"characters\": [\"Torvin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Kaelen ignores a spectral vision of glory.\",\n      \"visual_description\": \"A ghostly king offers Kaelen a scepter; Kaelen steps past without looking back.\",\n      \"characters\": [\"Kaelen\", \"Spectral King\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The party reunites on the tower's upper floor.\",\n      \"visual_description\": \"A circular room with three open doors; each door frames one of the party members entering from different directions.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the captive in a crystal prison.\",\n      \"visual_description\": \"A young woman suspended inside a hexagonal crystal, eyes closed, hands pressed against the inner facet.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The tower awakens: stone golems rise.\",\n      \"visual_description\": \"Four massive golems of black stone and rune-etched iron rise from the floor tiles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Stone Golems\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Battle in the tower's central hall.\",\n      \"visual_description\": \"Sparks fly as Mira's blade meets golem fist; Torvin swings his axe; Kaelen fires an arrow into a rune.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Stone Golems\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party frees the princess and flees downward.\",\n      \"visual_description\": \"Crystal shatters; the princess falls into Torvin's arms; behind them the floor crumbles.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Chased through the city streets to the bridge.\",\n      \"visual_description\": \"The party sprints across rubble-strewn lanes, golems and patrols closing behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\", \"Stone Golems\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Last stand on the damaged bridge.\",\n      \"visual_description\": \"A stone bridge missing half its arch; fire spouts from beneath; the party turns to face the pursuing horde.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\", \"Stone Golems\", \"City Patrol\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses and the party escapes.\",\n      \"visual_description\": \"The bridge falls into the chasm; the party clutches the far edge, silhouetted against a dawn sky.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Torvin\", \"Captive Princess\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Gauntlet",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "A massive iron gate hangs crooked on broken hinges; the city wall is cracked and overgrown with thorny vines.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Townspeople flee past an old royal banner.",
+        "visual_description": "Tattered gold-and-crimson banner droops from a collapsed archway; frightened citizens run clutching bundles.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Fleeing Townsfolk"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrol questions the party's intent.",
+        "visual_description": "Three helmeted soldiers in rusted plate armor block the street, halberds crossed.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "City Patrol"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A cursed tower looms at the square's center.",
+        "visual_description": "A spiraling black tower with glowing runes pulses above the cobblestone plaza.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon stir in a crowded tavern.",
+        "visual_description": "Smoky tavern interior; a hooded figure whispers to the party while patrons huddle nervously.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Whispering Informant",
+          "Tavern Patrons"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The party enters a magic door that shifts location.",
+        "visual_description": "A stone doorway framed with shifting silver sigils; beyond it a corridor that appears to bend sideways.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Inside the cursed tower: first temptation.",
+        "visual_description": "A floating golden crown bathes the room in warm light; the floor is mosaic of pleading faces.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Mira resists the crown's illusion of power.",
+        "visual_description": "Mira turns her back on the crown, hand on her sword; the crown's glow flickers angrily.",
+        "characters": [
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Torvin breaks a cursed mirror showing lost family.",
+        "visual_description": "A tall silver mirror shows Torvin's dead wife smiling; he shatters it with his axe.",
+        "characters": [
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Kaelen ignores a spectral vision of glory.",
+        "visual_description": "A ghostly king offers Kaelen a scepter; Kaelen steps past without looking back.",
+        "characters": [
+          "Kaelen",
+          "Spectral King"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The party reunites on the tower's upper floor.",
+        "visual_description": "A circular room with three open doors; each door frames one of the party members entering from different directions.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They find the captive in a crystal prison.",
+        "visual_description": "A young woman suspended inside a hexagonal crystal, eyes closed, hands pressed against the inner facet.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The tower awakens: stone golems rise.",
+        "visual_description": "Four massive golems of black stone and rune-etched iron rise from the floor tiles.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Stone Golems"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Battle in the tower's central hall.",
+        "visual_description": "Sparks fly as Mira's blade meets golem fist; Torvin swings his axe; Kaelen fires an arrow into a rune.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Stone Golems"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The party frees the princess and flees downward.",
+        "visual_description": "Crystal shatters; the princess falls into Torvin's arms; behind them the floor crumbles.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Chased through the city streets to the bridge.",
+        "visual_description": "The party sprints across rubble-strewn lanes, golems and patrols closing behind them.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess",
+          "Stone Golems",
+          "City Patrol"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Last stand on the damaged bridge.",
+        "visual_description": "A stone bridge missing half its arch; fire spouts from beneath; the party turns to face the pursuing horde.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess",
+          "Stone Golems",
+          "City Patrol"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The bridge collapses and the party escapes.",
+        "visual_description": "The bridge falls into the chasm; the party clutches the far edge, silhouetted against a dawn sky.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 4,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 4,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2222222222222222,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Fleeing Townsfolk"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "City Patrol"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Whispering Informant",
+          "Tavern Patrons"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Spectral King"
+        ],
+        "forbidden_words": [
+          "king"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Stone Golems"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Stone Golems"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess",
+          "Stone Golems",
+          "City Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess",
+          "Stone Golems",
+          "City Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Torvin",
+          "Captive Princess"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 2
+}

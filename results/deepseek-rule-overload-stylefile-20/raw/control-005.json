@@ -1,0 +1,622 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "971a1587-1b74-4346-8c22-9a7156af39a8",
+      "object": "chat.completion",
+      "created": 1779004389,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "ccae6955-2648-4197-833e-d264dbedd0b4",
+      "object": "chat.completion",
+      "created": 1779004390,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Massive iron gates hang crooked, rusted hinges groaning as a five-person party approaches through swirling dust under a blood-orange sky.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the market square.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point toward a distant tower, their faces pale and eyes wide with fear.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Town Elder\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party finds old royal banners torn and faded.\",\n      \"visual_description\": \"A long hallway lined with fraying banners bearing a lion crest, sunlight slicing through a collapsed ceiling.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Armored patrols march through the courtyard.\",\n      \"visual_description\": \"Six helmeted soldiers in black plate mail stomp in unison, their red capes billowing as they pass a cracked fountain.\",\n      \"characters\": [\"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon echo in a tavern.\",\n      \"visual_description\": \"A smoky tavern interior, a scarred barkeep leans forward, whispering as the party listens at a splintered table.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Barkeep\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The cursed tower looms ahead.\",\n      \"visual_description\": \"A spiraling black tower covered in glowing violet runes, surrounded by a ring of dead trees under a crescent moon.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Magic doors block the tower entrance.\",\n      \"visual_description\": \"Three massive stone doors engraved with shifting symbols, each pulsing with a different color of magical light.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira deciphers the door runes.\",\n      \"visual_description\": \"Mira kneels, tracing a glowing rune with her finger as the others stand guard, torches flickering.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"The party enters a treasure-laden hall.\",\n      \"visual_description\": \"Golden coins and jeweled goblets spill from overturned chests, light reflecting off a massive ruby on a pedestal.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Dorn resists a tempting illusion.\",\n      \"visual_description\": \"Dorn stares at a shimmering vision of his lost family, sweat beading on his brow as Elara grabs his arm.\",\n      \"characters\": [\"Dorn\", \"Elara\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian challenges them.\",\n      \"visual_description\": \"A translucent knight in ancient armor rises from the floor, blue fire burning in its eye slits.\",\n      \"characters\": [\"Spectral Knight\", \"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Finn uses a trick to bypass the guardian.\",\n      \"visual_description\": \"Finn throws a vial that explodes into smoke, the spectral knight slashing through mist as the party slips past.\",\n      \"characters\": [\"Finn\", \"Spectral Knight\", \"Elara\", \"Dorn\", \"Mira\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They reach the prison chamber.\",\n      \"visual_description\": \"A circular cell with iron bars, a lone figure chained to the center, dim light from a single torch.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Elara picks the lock on the prisoner's chains.\",\n      \"visual_description\": \"Close-up of Elara's steady hands working a thin pick into the lock mechanism, chains clinking.\",\n      \"characters\": [\"Elara\", \"Prisoner\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarms sound as they flee the tower.\",\n      \"visual_description\": \"Red light pulses from the tower top, horn blasts echo, and the party runs down a spiral staircase with the freed prisoner.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Patrols converge on the courtyard.\",\n      \"visual_description\": \"Soldiers pour from archways, forming a shield wall as the party skids to a halt, trapped.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge escape begins under fire.\",\n      \"visual_description\": \"A narrow stone bridge over a chasm, crossbow bolts whizzing past as the party runs, the prisoner stumbling.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party crosses the bridge to safety.\",\n      \"visual_description\": \"The bridge crumbles behind them as they reach the far side, dust clearing to reveal the ruined city in the distance.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1528,
+        "total_tokens": 2032,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined city gates.\",\n      \"visual_description\": \"Massive iron gates hang crooked, rusted hinges groaning as a five-person party approaches through swirling dust under a blood-orange sky.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings in the market square.\",\n      \"visual_description\": \"Huddled figures in tattered cloaks point toward a distant tower, their faces pale and eyes wide with fear.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Town Elder\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party finds old royal banners torn and faded.\",\n      \"visual_description\": \"A long hallway lined with fraying banners bearing a lion crest, sunlight slicing through a collapsed ceiling.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Armored patrols march through the courtyard.\",\n      \"visual_description\": \"Six helmeted soldiers in black plate mail stomp in unison, their red capes billowing as they pass a cracked fountain.\",\n      \"characters\": [\"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon echo in a tavern.\",\n      \"visual_description\": \"A smoky tavern interior, a scarred barkeep leans forward, whispering as the party listens at a splintered table.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Barkeep\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The cursed tower looms ahead.\",\n      \"visual_description\": \"A spiraling black tower covered in glowing violet runes, surrounded by a ring of dead trees under a crescent moon.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Magic doors block the tower entrance.\",\n      \"visual_description\": \"Three massive stone doors engraved with shifting symbols, each pulsing with a different color of magical light.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Mira deciphers the door runes.\",\n      \"visual_description\": \"Mira kneels, tracing a glowing rune with her finger as the others stand guard, torches flickering.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"The party enters a treasure-laden hall.\",\n      \"visual_description\": \"Golden coins and jeweled goblets spill from overturned chests, light reflecting off a massive ruby on a pedestal.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Dorn resists a tempting illusion.\",\n      \"visual_description\": \"Dorn stares at a shimmering vision of his lost family, sweat beading on his brow as Elara grabs his arm.\",\n      \"characters\": [\"Dorn\", \"Elara\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian challenges them.\",\n      \"visual_description\": \"A translucent knight in ancient armor rises from the floor, blue fire burning in its eye slits.\",\n      \"characters\": [\"Spectral Knight\", \"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Finn uses a trick to bypass the guardian.\",\n      \"visual_description\": \"Finn throws a vial that explodes into smoke, the spectral knight slashing through mist as the party slips past.\",\n      \"characters\": [\"Finn\", \"Spectral Knight\", \"Elara\", \"Dorn\", \"Mira\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They reach the prison chamber.\",\n      \"visual_description\": \"A circular cell with iron bars, a lone figure chained to the center, dim light from a single torch.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Elara picks the lock on the prisoner's chains.\",\n      \"visual_description\": \"Close-up of Elara's steady hands working a thin pick into the lock mechanism, chains clinking.\",\n      \"characters\": [\"Elara\", \"Prisoner\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarms sound as they flee the tower.\",\n      \"visual_description\": \"Red light pulses from the tower top, horn blasts echo, and the party runs down a spiral staircase with the freed prisoner.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Patrols converge on the courtyard.\",\n      \"visual_description\": \"Soldiers pour from archways, forming a shield wall as the party skids to a halt, trapped.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\", \"Patrol Soldier\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge escape begins under fire.\",\n      \"visual_description\": \"A narrow stone bridge over a chasm, crossbow bolts whizzing past as the party runs, the prisoner stumbling.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party crosses the bridge to safety.\",\n      \"visual_description\": \"The bridge crumbles behind them as they reach the far side, dust clearing to reveal the ruined city in the distance.\",\n      \"characters\": [\"Elara\", \"Dorn\", \"Mira\", \"Finn\", \"Guardian\", \"Prisoner\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined city gates.",
+        "visual_description": "Massive iron gates hang crooked, rusted hinges groaning as a five-person party approaches through swirling dust under a blood-orange sky.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Townspeople whisper warnings in the market square.",
+        "visual_description": "Huddled figures in tattered cloaks point toward a distant tower, their faces pale and eyes wide with fear.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Town Elder"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The party finds old royal banners torn and faded.",
+        "visual_description": "A long hallway lined with fraying banners bearing a lion crest, sunlight slicing through a collapsed ceiling.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Armored patrols march through the courtyard.",
+        "visual_description": "Six helmeted soldiers in black plate mail stomp in unison, their red capes billowing as they pass a cracked fountain.",
+        "characters": [
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon echo in a tavern.",
+        "visual_description": "A smoky tavern interior, a scarred barkeep leans forward, whispering as the party listens at a splintered table.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Barkeep"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The cursed tower looms ahead.",
+        "visual_description": "A spiraling black tower covered in glowing violet runes, surrounded by a ring of dead trees under a crescent moon.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Magic doors block the tower entrance.",
+        "visual_description": "Three massive stone doors engraved with shifting symbols, each pulsing with a different color of magical light.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Mira deciphers the door runes.",
+        "visual_description": "Mira kneels, tracing a glowing rune with her finger as the others stand guard, torches flickering.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "The party enters a treasure-laden hall.",
+        "visual_description": "Golden coins and jeweled goblets spill from overturned chests, light reflecting off a massive ruby on a pedestal.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Dorn resists a tempting illusion.",
+        "visual_description": "Dorn stares at a shimmering vision of his lost family, sweat beading on his brow as Elara grabs his arm.",
+        "characters": [
+          "Dorn",
+          "Elara",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A spectral guardian challenges them.",
+        "visual_description": "A translucent knight in ancient armor rises from the floor, blue fire burning in its eye slits.",
+        "characters": [
+          "Spectral Knight",
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Finn uses a trick to bypass the guardian.",
+        "visual_description": "Finn throws a vial that explodes into smoke, the spectral knight slashing through mist as the party slips past.",
+        "characters": [
+          "Finn",
+          "Spectral Knight",
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They reach the prison chamber.",
+        "visual_description": "A circular cell with iron bars, a lone figure chained to the center, dim light from a single torch.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Elara picks the lock on the prisoner's chains.",
+        "visual_description": "Close-up of Elara's steady hands working a thin pick into the lock mechanism, chains clinking.",
+        "characters": [
+          "Elara",
+          "Prisoner",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Alarms sound as they flee the tower.",
+        "visual_description": "Red light pulses from the tower top, horn blasts echo, and the party runs down a spiral staircase with the freed prisoner.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Patrols converge on the courtyard.",
+        "visual_description": "Soldiers pour from archways, forming a shield wall as the party skids to a halt, trapped.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The bridge escape begins under fire.",
+        "visual_description": "A narrow stone bridge over a chasm, crossbow bolts whizzing past as the party runs, the prisoner stumbling.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party crosses the bridge to safety.",
+        "visual_description": "The bridge crumbles behind them as they reach the far side, dust clearing to reveal the ruined city in the distance.",
+        "characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Town Elder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Barkeep"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": [
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Dorn",
+          "Elara",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Spectral Knight",
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Finn",
+          "Spectral Knight",
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Guardian"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Prisoner",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier",
+          "Patrol Soldier"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Dorn",
+          "Mira",
+          "Finn",
+          "Guardian",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 5
+}

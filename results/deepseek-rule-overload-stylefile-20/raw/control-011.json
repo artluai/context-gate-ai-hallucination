@@ -1,0 +1,574 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "I need to check a file that might define registered character names or casting rules. Let me read the casting examples.  \n{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "04010288-2d9c-4f4e-a3bf-11a45cd42fb0",
+      "object": "chat.completion",
+      "created": 1779004686,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "I need to check a file that might define registered character names or casting rules. Let me read the casting examples.  \n{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 42,
+        "total_tokens": 443,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "7cec7a27-5950-4a05-9f8a-52354b1682e5",
+      "object": "chat.completion",
+      "created": 1779004688,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Cage Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The rescue party gathers at the forest's edge.\",\n      \"visual_description\": \"A misty dawn, five figures silhouetted against the ruined skyline of a once-great city. Broken towers and faded royal banners hang limp.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"They slip past frightened townspeople fleeing the city.\",\n      \"visual_description\": \"A cobblestone road clogged with refugees clutching bundles. A child cries. Elara pulls her hood lower.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Frightened Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A stone archway sealed by a glowing magic door.\",\n      \"visual_description\": \"A towering arch etched with runes, pulsing with amber light. Mara presses her palm to it; the runes flare.\",\n      \"characters\": [\"Mara\", \"Elara\", \"Finn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kael picks the lock of a cursed tower gate.\",\n      \"visual_description\": \"A rusted iron door covered in warning plaques. Kael works a thin tool into the keyhole while shadows writhe in the tower window above.\",\n      \"characters\": [\"Kael\", \"Elara\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside the tower, they find a map room with a shifting layout.\",\n      \"visual_description\": \"Circular stone room with a central pedestal holding a floating, rotating map. The walls display different districts of the ruined city.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches through the courtyard below.\",\n      \"visual_description\": \"Through a narrow window, a squad of six armored soldiers in royal blue tabards clanks across cracked paving stones, spears glinting.\",\n      \"characters\": [\"Armored Patrol\", \"Elara\", \"Finn\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They cross a rope bridge between two ruined towers.\",\n      \"visual_description\": \"A fraying rope bridge sways over a chasm filled with rubble. Finn goes first, testing each plank. Mist curls below.\",\n      \"characters\": [\"Finn\", \"Elara\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Bram distracts a patrol with a false alarm in a market square.\",\n      \"visual_description\": \"An empty market with toppled stalls. Bram knocks over a stack of barrels, creating a clatter. The patrol turns and runs toward the noise.\",\n      \"characters\": [\"Bram\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a hidden passage behind a royal banner.\",\n      \"visual_description\": \"A tattered banner bearing the old crest is pushed aside, revealing a narrow, dark stairway spiraling downward.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A rumor of dragons tempts them to explore a collapsed hall.\",\n      \"visual_description\": \"A vast hall with a collapsed roof, sunlight streaming in. Scorch marks blacken the marble floor. A massive claw print is etched into the stone.\",\n      \"characters\": [\"Mara\", \"Kael\", \"Bram\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They unlock a magic door with a riddle carved in the frame.\",\n      \"visual_description\": \"A door of black obsidian, a riddle carved in silver letters. Mara reads aloud, and the door dissolves into shimmering dust.\",\n      \"characters\": [\"Mara\", \"Elara\", \"Finn\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rescue target is found in a sunken throne room.\",\n      \"visual_description\": \"A decrepit throne room half-flooded with green water. On the dais, chained to the throne, sits a pale figure—the prisoner.\",\n      \"characters\": [\"Prisoner\", \"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Kael picks the locks on the prisoner's chains.\",\n      \"visual_description\": \"Close-up of metal manacles around wrists and ankles. Kael's fingers work quickly, sweat on his brow. Chains clink as they fall.\",\n      \"characters\": [\"Kael\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The alarm sounds—patrols converge on the throne room.\",\n      \"visual_description\": \"A horn blast echoes through stone corridors. Torchlight flickers from multiple entrances as armored boots pound closer.\",\n      \"characters\": [\"Armored Patrol\", \"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They fight through a narrow corridor to reach the escape route.\",\n      \"visual_description\": \"A tight stone corridor, armor scraping against walls. Elara's blade clashes with a patrol sword. Sparks fly in the gloom.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The final escape across a crumbling bridge over a dry moat.\",\n      \"visual_description\": \"A narrow stone bridge, half-collapsed, spanning a deep dry moat of jagged rocks. The party runs across, stones crumbling behind their heels.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge collapses behind them as they reach the far side.\",\n      \"visual_description\": \"With a roar, the center of the bridge gives way, tumbling into the moat. Dust billows. The party stands panting on the grassy bank.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They vanish into the forest as the ruined city fades behind them.\",\n      \"visual_description\": \"Dusk settles, the party disappears under a canopy of ancient trees. The ruined city's towers are small and distant, smoke rising from its walls.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 530,
+        "completion_tokens": 1591,
+        "total_tokens": 2121,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 146
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Cage Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The rescue party gathers at the forest's edge.\",\n      \"visual_description\": \"A misty dawn, five figures silhouetted against the ruined skyline of a once-great city. Broken towers and faded royal banners hang limp.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"They slip past frightened townspeople fleeing the city.\",\n      \"visual_description\": \"A cobblestone road clogged with refugees clutching bundles. A child cries. Elara pulls her hood lower.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Frightened Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A stone archway sealed by a glowing magic door.\",\n      \"visual_description\": \"A towering arch etched with runes, pulsing with amber light. Mara presses her palm to it; the runes flare.\",\n      \"characters\": [\"Mara\", \"Elara\", \"Finn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kael picks the lock of a cursed tower gate.\",\n      \"visual_description\": \"A rusted iron door covered in warning plaques. Kael works a thin tool into the keyhole while shadows writhe in the tower window above.\",\n      \"characters\": [\"Kael\", \"Elara\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside the tower, they find a map room with a shifting layout.\",\n      \"visual_description\": \"Circular stone room with a central pedestal holding a floating, rotating map. The walls display different districts of the ruined city.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches through the courtyard below.\",\n      \"visual_description\": \"Through a narrow window, a squad of six armored soldiers in royal blue tabards clanks across cracked paving stones, spears glinting.\",\n      \"characters\": [\"Armored Patrol\", \"Elara\", \"Finn\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They cross a rope bridge between two ruined towers.\",\n      \"visual_description\": \"A fraying rope bridge sways over a chasm filled with rubble. Finn goes first, testing each plank. Mist curls below.\",\n      \"characters\": [\"Finn\", \"Elara\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Bram distracts a patrol with a false alarm in a market square.\",\n      \"visual_description\": \"An empty market with toppled stalls. Bram knocks over a stack of barrels, creating a clatter. The patrol turns and runs toward the noise.\",\n      \"characters\": [\"Bram\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a hidden passage behind a royal banner.\",\n      \"visual_description\": \"A tattered banner bearing the old crest is pushed aside, revealing a narrow, dark stairway spiraling downward.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A rumor of dragons tempts them to explore a collapsed hall.\",\n      \"visual_description\": \"A vast hall with a collapsed roof, sunlight streaming in. Scorch marks blacken the marble floor. A massive claw print is etched into the stone.\",\n      \"characters\": [\"Mara\", \"Kael\", \"Bram\", \"Elara\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They unlock a magic door with a riddle carved in the frame.\",\n      \"visual_description\": \"A door of black obsidian, a riddle carved in silver letters. Mara reads aloud, and the door dissolves into shimmering dust.\",\n      \"characters\": [\"Mara\", \"Elara\", \"Finn\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The rescue target is found in a sunken throne room.\",\n      \"visual_description\": \"A decrepit throne room half-flooded with green water. On the dais, chained to the throne, sits a pale figure—the prisoner.\",\n      \"characters\": [\"Prisoner\", \"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Kael picks the locks on the prisoner's chains.\",\n      \"visual_description\": \"Close-up of metal manacles around wrists and ankles. Kael's fingers work quickly, sweat on his brow. Chains clink as they fall.\",\n      \"characters\": [\"Kael\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The alarm sounds—patrols converge on the throne room.\",\n      \"visual_description\": \"A horn blast echoes through stone corridors. Torchlight flickers from multiple entrances as armored boots pound closer.\",\n      \"characters\": [\"Armored Patrol\", \"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They fight through a narrow corridor to reach the escape route.\",\n      \"visual_description\": \"A tight stone corridor, armor scraping against walls. Elara's blade clashes with a patrol sword. Sparks fly in the gloom.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The final escape across a crumbling bridge over a dry moat.\",\n      \"visual_description\": \"A narrow stone bridge, half-collapsed, spanning a deep dry moat of jagged rocks. The party runs across, stones crumbling behind their heels.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge collapses behind them as they reach the far side.\",\n      \"visual_description\": \"With a roar, the center of the bridge gives way, tumbling into the moat. Dust billows. The party stands panting on the grassy bank.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They vanish into the forest as the ruined city fades behind them.\",\n      \"visual_description\": \"Dusk settles, the party disappears under a canopy of ancient trees. The ruined city's towers are small and distant, smoke rising from its walls.\",\n      \"characters\": [\"Elara\", \"Finn\", \"Mara\", \"Kael\", \"Bram\", \"Prisoner\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Cage Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The rescue party gathers at the forest's edge.",
+        "visual_description": "A misty dawn, five figures silhouetted against the ruined skyline of a once-great city. Broken towers and faded royal banners hang limp.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "They slip past frightened townspeople fleeing the city.",
+        "visual_description": "A cobblestone road clogged with refugees clutching bundles. A child cries. Elara pulls her hood lower.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Frightened Townspeople"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "A stone archway sealed by a glowing magic door.",
+        "visual_description": "A towering arch etched with runes, pulsing with amber light. Mara presses her palm to it; the runes flare.",
+        "characters": [
+          "Mara",
+          "Elara",
+          "Finn"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Kael picks the lock of a cursed tower gate.",
+        "visual_description": "A rusted iron door covered in warning plaques. Kael works a thin tool into the keyhole while shadows writhe in the tower window above.",
+        "characters": [
+          "Kael",
+          "Elara",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Inside the tower, they find a map room with a shifting layout.",
+        "visual_description": "Circular stone room with a central pedestal holding a floating, rotating map. The walls display different districts of the ruined city.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "An armored patrol marches through the courtyard below.",
+        "visual_description": "Through a narrow window, a squad of six armored soldiers in royal blue tabards clanks across cracked paving stones, spears glinting.",
+        "characters": [
+          "Armored Patrol",
+          "Elara",
+          "Finn"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "They cross a rope bridge between two ruined towers.",
+        "visual_description": "A fraying rope bridge sways over a chasm filled with rubble. Finn goes first, testing each plank. Mist curls below.",
+        "characters": [
+          "Finn",
+          "Elara",
+          "Mara",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Bram distracts a patrol with a false alarm in a market square.",
+        "visual_description": "An empty market with toppled stalls. Bram knocks over a stack of barrels, creating a clatter. The patrol turns and runs toward the noise.",
+        "characters": [
+          "Bram",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They find a hidden passage behind a royal banner.",
+        "visual_description": "A tattered banner bearing the old crest is pushed aside, revealing a narrow, dark stairway spiraling downward.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "A rumor of dragons tempts them to explore a collapsed hall.",
+        "visual_description": "A vast hall with a collapsed roof, sunlight streaming in. Scorch marks blacken the marble floor. A massive claw print is etched into the stone.",
+        "characters": [
+          "Mara",
+          "Kael",
+          "Bram",
+          "Elara"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They unlock a magic door with a riddle carved in the frame.",
+        "visual_description": "A door of black obsidian, a riddle carved in silver letters. Mara reads aloud, and the door dissolves into shimmering dust.",
+        "characters": [
+          "Mara",
+          "Elara",
+          "Finn",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The rescue target is found in a sunken throne room.",
+        "visual_description": "A decrepit throne room half-flooded with green water. On the dais, chained to the throne, sits a pale figure—the prisoner.",
+        "characters": [
+          "Prisoner",
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Kael picks the locks on the prisoner's chains.",
+        "visual_description": "Close-up of metal manacles around wrists and ankles. Kael's fingers work quickly, sweat on his brow. Chains clink as they fall.",
+        "characters": [
+          "Kael",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The alarm sounds—patrols converge on the throne room.",
+        "visual_description": "A horn blast echoes through stone corridors. Torchlight flickers from multiple entrances as armored boots pound closer.",
+        "characters": [
+          "Armored Patrol",
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "They fight through a narrow corridor to reach the escape route.",
+        "visual_description": "A tight stone corridor, armor scraping against walls. Elara's blade clashes with a patrol sword. Sparks fly in the gloom.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The final escape across a crumbling bridge over a dry moat.",
+        "visual_description": "A narrow stone bridge, half-collapsed, spanning a deep dry moat of jagged rocks. The party runs across, stones crumbling behind their heels.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The bridge collapses behind them as they reach the far side.",
+        "visual_description": "With a roar, the center of the bridge gives way, tumbling into the moat. Dust billows. The party stands panting on the grassy bank.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They vanish into the forest as the ruined city fades behind them.",
+        "visual_description": "Dusk settles, the party disappears under a canopy of ancient trees. The ruined city's towers are small and distant, smoke rising from its walls.",
+        "characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 1,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 1,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.05555555555555555,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Frightened Townspeople"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mara",
+          "Elara",
+          "Finn"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Elara",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Patrol",
+          "Elara",
+          "Finn"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Finn",
+          "Elara",
+          "Mara",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Bram",
+          "Armored Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mara",
+          "Kael",
+          "Bram",
+          "Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mara",
+          "Elara",
+          "Finn",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prisoner",
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Patrol",
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner",
+          "Armored Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Finn",
+          "Mara",
+          "Kael",
+          "Bram",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 11
+}

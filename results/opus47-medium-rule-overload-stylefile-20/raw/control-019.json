@@ -1,0 +1,566 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018895-cywp5uiPzEqGxTugr5Ji",
+      "object": "chat.completion",
+      "created": 1779018895,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 157,
+        "total_tokens": 875,
+        "cost": 0.007515,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.007515,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.003925
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 82,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018900-3UNv4tkU9YWPoW4SZokv",
+      "object": "chat.completion",
+      "created": 1779018900,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue at Ashen Hold\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The rescue party studies a map of the fallen city.\",\n      \"visual_description\": \"Four travelers crouched under a windblown oak at dusk, a worn parchment map spread across a flat stone, the ruined skyline of a royal city visible on the horizon.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Brindle scouts the broken castle gates.\",\n      \"visual_description\": \"A hooded scout pressed against a shattered portcullis, twin iron gates hanging off their hinges, moonlight cutting through cracks in the stonework.\",\n      \"characters\": [\"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party slips into the outer courtyard.\",\n      \"visual_description\": \"Four figures creeping past toppled statues and weed-choked flagstones, faded royal banners drooping from a broken archway above them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townswoman warns of patrols.\",\n      \"visual_description\": \"A thin woman in a soot-stained shawl pulling Sir Halden into a doorway, lantern light catching the fear on her face, a cracked fountain behind them.\",\n      \"characters\": [\"Sir Halden\", \"Goodwife Talla\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march down the avenue.\",\n      \"visual_description\": \"A column of black-plated soldiers with spears, their boots kicking up ash on a long ruined boulevard lined with broken columns, the party hidden behind a collapsed cart.\",\n      \"characters\": [\"Brindle the Scout\", \"Sir Halden\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Ovic distracts the patrol with a flickering illusion.\",\n      \"visual_description\": \"A spellwright in patchwork robes flicking glowing sparks down a side alley, a shimmering phantom deer bounding away while the patrol turns to chase.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors of a dragon stir in the smoke.\",\n      \"visual_description\": \"The party staring up at a distant plume of red smoke curling above a jagged tower, embers drifting like snow over the rooftops.\",\n      \"characters\": [\"Maren the Cartographer\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Maren refuses to detour for the dragon's hoard.\",\n      \"visual_description\": \"The cartographer firmly rolling up the map and pointing toward a distant spire, Brindle smirking with arms folded, ruined chapel walls behind them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They pass beneath the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wrapped in greenish runes, the party tiptoeing along its shadow, faint whispering faces pressed against the stones.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A sleepy gate-warden blocks the inner ward.\",\n      \"visual_description\": \"A plump official in a too-large tabard yawning on a stool before a studded oak door, keys dangling from his belt, half-eaten pie beside him.\",\n      \"characters\": [\"Warden Pibble\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Ovic charms the warden into snoring sleep.\",\n      \"visual_description\": \"The spellwright humming with glowing fingertips over the warden's head, the warden slumping happily against the door, keys slipping into Brindle's waiting hand.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Brindle the Scout\", \"Warden Pibble\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They face a sealed magic door.\",\n      \"visual_description\": \"A tall silver door etched with concentric runes, faint blue light pulsing from its seams, the four party members studying its glyphs by torchlight.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Ovic unravels the door's sigil.\",\n      \"visual_description\": \"Glowing runes peeling away like petals under the spellwright's tracing fingers, blue light washing over the party's awed faces.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They find Princess Ilsa chained in the throne room.\",\n      \"visual_description\": \"A young woman in a torn green gown shackled to the foot of a cracked stone throne, dust motes drifting in shafts of pale light through broken stained glass.\",\n      \"characters\": [\"Princess Ilsa\", \"Sir Halden\", \"Ovic the Spellwright\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Halden cuts her chains as patrols close in.\",\n      \"visual_description\": \"A knight swinging a glowing blade down on iron shackles, sparks flying, shadows of armored soldiers lengthening across the throne room floor.\",\n      \"characters\": [\"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A running chase through the burning market.\",\n      \"visual_description\": \"The party sprinting past overturned stalls and flapping royal banners, Captain Vorr's soldiers in pursuit, sparks raining from a collapsing rooftop.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Brindle leaps the gap of the crumbling bridge.\",\n      \"visual_description\": \"The scout vaulting across a missing span of an old stone bridge over a foggy chasm, a rope uncoiling behind her, the rest of the party watching tensely from the near side.\",\n      \"characters\": [\"Brindle the Scout\", \"Princess Ilsa\", \"Sir Halden\", \"Ovic the Spellwright\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They escape across the bridge as dawn breaks.\",\n      \"visual_description\": \"The party walking single-file across a swaying rope-and-plank span, the ruined city silhouetted against a pink-gold sunrise behind them, Captain Vorr glaring helplessly from the far gate.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2603,
+        "total_tokens": 3489,
+        "cost": 0.069505,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.069505,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.065075
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue at Ashen Hold\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The rescue party studies a map of the fallen city.\",\n      \"visual_description\": \"Four travelers crouched under a windblown oak at dusk, a worn parchment map spread across a flat stone, the ruined skyline of a royal city visible on the horizon.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Brindle scouts the broken castle gates.\",\n      \"visual_description\": \"A hooded scout pressed against a shattered portcullis, twin iron gates hanging off their hinges, moonlight cutting through cracks in the stonework.\",\n      \"characters\": [\"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The party slips into the outer courtyard.\",\n      \"visual_description\": \"Four figures creeping past toppled statues and weed-choked flagstones, faded royal banners drooping from a broken archway above them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townswoman warns of patrols.\",\n      \"visual_description\": \"A thin woman in a soot-stained shawl pulling Sir Halden into a doorway, lantern light catching the fear on her face, a cracked fountain behind them.\",\n      \"characters\": [\"Sir Halden\", \"Goodwife Talla\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march down the avenue.\",\n      \"visual_description\": \"A column of black-plated soldiers with spears, their boots kicking up ash on a long ruined boulevard lined with broken columns, the party hidden behind a collapsed cart.\",\n      \"characters\": [\"Brindle the Scout\", \"Sir Halden\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Ovic distracts the patrol with a flickering illusion.\",\n      \"visual_description\": \"A spellwright in patchwork robes flicking glowing sparks down a side alley, a shimmering phantom deer bounding away while the patrol turns to chase.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors of a dragon stir in the smoke.\",\n      \"visual_description\": \"The party staring up at a distant plume of red smoke curling above a jagged tower, embers drifting like snow over the rooftops.\",\n      \"characters\": [\"Maren the Cartographer\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Maren refuses to detour for the dragon's hoard.\",\n      \"visual_description\": \"The cartographer firmly rolling up the map and pointing toward a distant spire, Brindle smirking with arms folded, ruined chapel walls behind them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They pass beneath the cursed tower.\",\n      \"visual_description\": \"A leaning black tower wrapped in greenish runes, the party tiptoeing along its shadow, faint whispering faces pressed against the stones.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A sleepy gate-warden blocks the inner ward.\",\n      \"visual_description\": \"A plump official in a too-large tabard yawning on a stool before a studded oak door, keys dangling from his belt, half-eaten pie beside him.\",\n      \"characters\": [\"Warden Pibble\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Ovic charms the warden into snoring sleep.\",\n      \"visual_description\": \"The spellwright humming with glowing fingertips over the warden's head, the warden slumping happily against the door, keys slipping into Brindle's waiting hand.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Brindle the Scout\", \"Warden Pibble\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They face a sealed magic door.\",\n      \"visual_description\": \"A tall silver door etched with concentric runes, faint blue light pulsing from its seams, the four party members studying its glyphs by torchlight.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Ovic unravels the door's sigil.\",\n      \"visual_description\": \"Glowing runes peeling away like petals under the spellwright's tracing fingers, blue light washing over the party's awed faces.\",\n      \"characters\": [\"Ovic the Spellwright\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They find Princess Ilsa chained in the throne room.\",\n      \"visual_description\": \"A young woman in a torn green gown shackled to the foot of a cracked stone throne, dust motes drifting in shafts of pale light through broken stained glass.\",\n      \"characters\": [\"Princess Ilsa\", \"Sir Halden\", \"Ovic the Spellwright\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Halden cuts her chains as patrols close in.\",\n      \"visual_description\": \"A knight swinging a glowing blade down on iron shackles, sparks flying, shadows of armored soldiers lengthening across the throne room floor.\",\n      \"characters\": [\"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A running chase through the burning market.\",\n      \"visual_description\": \"The party sprinting past overturned stalls and flapping royal banners, Captain Vorr's soldiers in pursuit, sparks raining from a collapsing rooftop.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Brindle leaps the gap of the crumbling bridge.\",\n      \"visual_description\": \"The scout vaulting across a missing span of an old stone bridge over a foggy chasm, a rope uncoiling behind her, the rest of the party watching tensely from the near side.\",\n      \"characters\": [\"Brindle the Scout\", \"Princess Ilsa\", \"Sir Halden\", \"Ovic the Spellwright\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They escape across the bridge as dawn breaks.\",\n      \"visual_description\": \"The party walking single-file across a swaying rope-and-plank span, the ruined city silhouetted against a pink-gold sunrise behind them, Captain Vorr glaring helplessly from the far gate.\",\n      \"characters\": [\"Maren the Cartographer\", \"Brindle the Scout\", \"Ovic the Spellwright\", \"Sir Halden\", \"Princess Ilsa\", \"Captain Vorr\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue at Ashen Hold",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The rescue party studies a map of the fallen city.",
+        "visual_description": "Four travelers crouched under a windblown oak at dusk, a worn parchment map spread across a flat stone, the ruined skyline of a royal city visible on the horizon.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Brindle scouts the broken castle gates.",
+        "visual_description": "A hooded scout pressed against a shattered portcullis, twin iron gates hanging off their hinges, moonlight cutting through cracks in the stonework.",
+        "characters": [
+          "Brindle the Scout"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The party slips into the outer courtyard.",
+        "visual_description": "Four figures creeping past toppled statues and weed-choked flagstones, faded royal banners drooping from a broken archway above them.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A frightened townswoman warns of patrols.",
+        "visual_description": "A thin woman in a soot-stained shawl pulling Sir Halden into a doorway, lantern light catching the fear on her face, a cracked fountain behind them.",
+        "characters": [
+          "Sir Halden",
+          "Goodwife Talla"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Armored patrols march down the avenue.",
+        "visual_description": "A column of black-plated soldiers with spears, their boots kicking up ash on a long ruined boulevard lined with broken columns, the party hidden behind a collapsed cart.",
+        "characters": [
+          "Brindle the Scout",
+          "Sir Halden",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Ovic distracts the patrol with a flickering illusion.",
+        "visual_description": "A spellwright in patchwork robes flicking glowing sparks down a side alley, a shimmering phantom deer bounding away while the patrol turns to chase.",
+        "characters": [
+          "Ovic the Spellwright",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Rumors of a dragon stir in the smoke.",
+        "visual_description": "The party staring up at a distant plume of red smoke curling above a jagged tower, embers drifting like snow over the rooftops.",
+        "characters": [
+          "Maren the Cartographer",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Maren refuses to detour for the dragon's hoard.",
+        "visual_description": "The cartographer firmly rolling up the map and pointing toward a distant spire, Brindle smirking with arms folded, ruined chapel walls behind them.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They pass beneath the cursed tower.",
+        "visual_description": "A leaning black tower wrapped in greenish runes, the party tiptoeing along its shadow, faint whispering faces pressed against the stones.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "A sleepy gate-warden blocks the inner ward.",
+        "visual_description": "A plump official in a too-large tabard yawning on a stool before a studded oak door, keys dangling from his belt, half-eaten pie beside him.",
+        "characters": [
+          "Warden Pibble",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Ovic charms the warden into snoring sleep.",
+        "visual_description": "The spellwright humming with glowing fingertips over the warden's head, the warden slumping happily against the door, keys slipping into Brindle's waiting hand.",
+        "characters": [
+          "Ovic the Spellwright",
+          "Brindle the Scout",
+          "Warden Pibble"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They face a sealed magic door.",
+        "visual_description": "A tall silver door etched with concentric runes, faint blue light pulsing from its seams, the four party members studying its glyphs by torchlight.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Ovic unravels the door's sigil.",
+        "visual_description": "Glowing runes peeling away like petals under the spellwright's tracing fingers, blue light washing over the party's awed faces.",
+        "characters": [
+          "Ovic the Spellwright",
+          "Maren the Cartographer"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "They find Princess Ilsa chained in the throne room.",
+        "visual_description": "A young woman in a torn green gown shackled to the foot of a cracked stone throne, dust motes drifting in shafts of pale light through broken stained glass.",
+        "characters": [
+          "Princess Ilsa",
+          "Sir Halden",
+          "Ovic the Spellwright"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Sir Halden cuts her chains as patrols close in.",
+        "visual_description": "A knight swinging a glowing blade down on iron shackles, sparks flying, shadows of armored soldiers lengthening across the throne room floor.",
+        "characters": [
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "A running chase through the burning market.",
+        "visual_description": "The party sprinting past overturned stalls and flapping royal banners, Captain Vorr's soldiers in pursuit, sparks raining from a collapsing rooftop.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Brindle leaps the gap of the crumbling bridge.",
+        "visual_description": "The scout vaulting across a missing span of an old stone bridge over a foggy chasm, a rope uncoiling behind her, the rest of the party watching tensely from the near side.",
+        "characters": [
+          "Brindle the Scout",
+          "Princess Ilsa",
+          "Sir Halden",
+          "Ovic the Spellwright",
+          "Maren the Cartographer"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They escape across the bridge as dawn breaks.",
+        "visual_description": "The party walking single-file across a swaying rope-and-plank span, the ruined city silhouetted against a pink-gold sunrise behind them, Captain Vorr glaring helplessly from the far gate.",
+        "characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Halden",
+          "Goodwife Talla"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Sir Halden",
+          "Captain Vorr"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Ovic the Spellwright",
+          "Captain Vorr"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Warden Pibble",
+          "Sir Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Ovic the Spellwright",
+          "Brindle the Scout",
+          "Warden Pibble"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Ovic the Spellwright",
+          "Maren the Cartographer"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Ilsa",
+          "Sir Halden",
+          "Ovic the Spellwright"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ],
+        "forbidden_words": [
+          "knight",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Scout",
+          "Princess Ilsa",
+          "Sir Halden",
+          "Ovic the Spellwright",
+          "Maren the Cartographer"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Brindle the Scout",
+          "Ovic the Spellwright",
+          "Sir Halden",
+          "Princess Ilsa",
+          "Captain Vorr"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 19
+}

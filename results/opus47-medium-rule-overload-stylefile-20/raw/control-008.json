@@ -1,0 +1,570 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017664-pqUOoK081b9VdH9RpggE",
+      "object": "chat.completion",
+      "created": 1779017664,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 181,
+        "total_tokens": 899,
+        "cost": 0.008115,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.008115,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.004525
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 56,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017671-TJY6guvdTwu1mTW4h9fS",
+      "object": "chat.completion",
+      "created": 1779017671,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A worn map points the way into the ruined city.\",\n      \"visual_description\": \"Dawn on a windy ridge above a shattered skyline of broken spires; a cloaked map reader holds an old parchment while a scout crouches beside her, peering through a spyglass.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue team gathers at the old shrine.\",\n      \"visual_description\": \"A crumbling stone shrine overgrown with ivy; four travelers stand in a half-circle around a flickering blue flame, packs at their feet.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the cracked castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates split down the middle, the royal crest defaced; the team peers through the gap into a fog-choked courtyard.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townswoman warns them away.\",\n      \"visual_description\": \"A thin woman in a patched shawl clutches a basket of turnips at a side alley, eyes wide as she whispers to the cloaked map reader under a leaning lamppost.\",\n      \"characters\": [\"Maren the Cartographer\", \"Hesla the Townswoman\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march through the plaza.\",\n      \"visual_description\": \"A column of black-armored soldiers crosses a rubble-strewn plaza beneath tattered royal banners; the team hides behind a toppled statue of a king.\",\n      \"characters\": [\"Jex the Scout\", \"Sir Bromwell\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon echo through the marketplace.\",\n      \"visual_description\": \"A boarded-up market with overturned stalls; an old beggar gestures wildly toward distant smoke as Jex listens, one hand on his dagger.\",\n      \"characters\": [\"Jex the Scout\", \"Old Ralic the Beggar\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The cursed tower looms over the team.\",\n      \"visual_description\": \"A black spiral tower wreathed in greenish mist; Wisp the Mage holds up a glowing staff while the others shield their eyes from a sickly glare.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Wisp deciphers the warding runes.\",\n      \"visual_description\": \"Close-up of a stone archway carved with luminous runes; Wisp traces a sigil in the air with two glowing fingers, her hood thrown back.\",\n      \"characters\": [\"Wisp the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A sleepy royal clerk is found in the gatehouse.\",\n      \"visual_description\": \"A pudgy man in a stained official tabard snores at a tilted desk piled with scrolls; Sir Bromwell pokes him with the flat of his sword as Maren rifles a ledger.\",\n      \"characters\": [\"Maren the Cartographer\", \"Sir Bromwell\", \"Clerk Pim\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The clerk reveals where the heir is held.\",\n      \"visual_description\": \"Pim, now wide-eyed and clutching a candle, points trembling at a marked floor plan unrolled across the desk; the team leans in over his shoulders.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Clerk Pim\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A magic door blocks the inner keep.\",\n      \"visual_description\": \"A tall door of polished obsidian set with seven shifting silver glyphs; the corridor floor is patterned with faintly pulsing veins of light.\",\n      \"characters\": [\"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Wisp unlocks the door with a whispered word.\",\n      \"visual_description\": \"The obsidian door splits open in a fan of pale light; Wisp lowers her staff, breath steaming, as Sir Bromwell shoulders past with sword drawn.\",\n      \"characters\": [\"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive heir chained in the throne room.\",\n      \"visual_description\": \"A vaulted throne room with shattered stained glass; a young heir in tattered finery sits chained to the base of a cracked throne, looking up with relief.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Captain Vorr confronts the rescuers.\",\n      \"visual_description\": \"A black-armored captain blocks the throne room arch, helm under one arm, a long curved blade leveled; soldiers form up behind him in the smoky hall.\",\n      \"characters\": [\"Sir Bromwell\", \"Wisp the Mage\", \"Prince Aldric\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Bromwell holds the line so the others can flee.\",\n      \"visual_description\": \"Sparks fly as Bromwell parries Vorr's blade in a narrow corridor while Maren pulls the prince by the wrist toward a side stairwell.\",\n      \"characters\": [\"Sir Bromwell\", \"Captain Vorr\", \"Maren the Cartographer\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race through burning streets toward the river.\",\n      \"visual_description\": \"Tattered royal banners flap above a street of burning timbers; the team sprints past frightened townsfolk, Wisp casting a shimmering shield behind them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Prince Aldric\", \"Hesla the Townswoman\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The old stone bridge cracks beneath their feet.\",\n      \"visual_description\": \"A narrow arched bridge over a black river; stones split and fall as Jex hauls the prince forward, Wisp gesturing to hold the span together with golden threads of magic.\",\n      \"characters\": [\"Jex the Scout\", \"Wisp the Mage\", \"Prince Aldric\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far shore, they look back at the ruined city.\",\n      \"visual_description\": \"On a misty bank at dawn, the four rescuers and the prince stand in silhouette against the burning skyline, Bromwell limping up last with his blade lowered.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Prince Aldric\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2638,
+        "total_tokens": 3524,
+        "cost": 0.07038,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.07038,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.06595
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Lost Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A worn map points the way into the ruined city.\",\n      \"visual_description\": \"Dawn on a windy ridge above a shattered skyline of broken spires; a cloaked map reader holds an old parchment while a scout crouches beside her, peering through a spyglass.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue team gathers at the old shrine.\",\n      \"visual_description\": \"A crumbling stone shrine overgrown with ivy; four travelers stand in a half-circle around a flickering blue flame, packs at their feet.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the cracked castle gates.\",\n      \"visual_description\": \"Massive iron-banded gates split down the middle, the royal crest defaced; the team peers through the gap into a fog-choked courtyard.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townswoman warns them away.\",\n      \"visual_description\": \"A thin woman in a patched shawl clutches a basket of turnips at a side alley, eyes wide as she whispers to the cloaked map reader under a leaning lamppost.\",\n      \"characters\": [\"Maren the Cartographer\", \"Hesla the Townswoman\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march through the plaza.\",\n      \"visual_description\": \"A column of black-armored soldiers crosses a rubble-strewn plaza beneath tattered royal banners; the team hides behind a toppled statue of a king.\",\n      \"characters\": [\"Jex the Scout\", \"Sir Bromwell\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon echo through the marketplace.\",\n      \"visual_description\": \"A boarded-up market with overturned stalls; an old beggar gestures wildly toward distant smoke as Jex listens, one hand on his dagger.\",\n      \"characters\": [\"Jex the Scout\", \"Old Ralic the Beggar\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The cursed tower looms over the team.\",\n      \"visual_description\": \"A black spiral tower wreathed in greenish mist; Wisp the Mage holds up a glowing staff while the others shield their eyes from a sickly glare.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Wisp deciphers the warding runes.\",\n      \"visual_description\": \"Close-up of a stone archway carved with luminous runes; Wisp traces a sigil in the air with two glowing fingers, her hood thrown back.\",\n      \"characters\": [\"Wisp the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A sleepy royal clerk is found in the gatehouse.\",\n      \"visual_description\": \"A pudgy man in a stained official tabard snores at a tilted desk piled with scrolls; Sir Bromwell pokes him with the flat of his sword as Maren rifles a ledger.\",\n      \"characters\": [\"Maren the Cartographer\", \"Sir Bromwell\", \"Clerk Pim\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The clerk reveals where the heir is held.\",\n      \"visual_description\": \"Pim, now wide-eyed and clutching a candle, points trembling at a marked floor plan unrolled across the desk; the team leans in over his shoulders.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Clerk Pim\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A magic door blocks the inner keep.\",\n      \"visual_description\": \"A tall door of polished obsidian set with seven shifting silver glyphs; the corridor floor is patterned with faintly pulsing veins of light.\",\n      \"characters\": [\"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Wisp unlocks the door with a whispered word.\",\n      \"visual_description\": \"The obsidian door splits open in a fan of pale light; Wisp lowers her staff, breath steaming, as Sir Bromwell shoulders past with sword drawn.\",\n      \"characters\": [\"Wisp the Mage\", \"Sir Bromwell\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find the captive heir chained in the throne room.\",\n      \"visual_description\": \"A vaulted throne room with shattered stained glass; a young heir in tattered finery sits chained to the base of a cracked throne, looking up with relief.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Captain Vorr confronts the rescuers.\",\n      \"visual_description\": \"A black-armored captain blocks the throne room arch, helm under one arm, a long curved blade leveled; soldiers form up behind him in the smoky hall.\",\n      \"characters\": [\"Sir Bromwell\", \"Wisp the Mage\", \"Prince Aldric\", \"Captain Vorr\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Bromwell holds the line so the others can flee.\",\n      \"visual_description\": \"Sparks fly as Bromwell parries Vorr's blade in a narrow corridor while Maren pulls the prince by the wrist toward a side stairwell.\",\n      \"characters\": [\"Sir Bromwell\", \"Captain Vorr\", \"Maren the Cartographer\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race through burning streets toward the river.\",\n      \"visual_description\": \"Tattered royal banners flap above a street of burning timbers; the team sprints past frightened townsfolk, Wisp casting a shimmering shield behind them.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Prince Aldric\", \"Hesla the Townswoman\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The old stone bridge cracks beneath their feet.\",\n      \"visual_description\": \"A narrow arched bridge over a black river; stones split and fall as Jex hauls the prince forward, Wisp gesturing to hold the span together with golden threads of magic.\",\n      \"characters\": [\"Jex the Scout\", \"Wisp the Mage\", \"Prince Aldric\", \"Maren the Cartographer\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far shore, they look back at the ruined city.\",\n      \"visual_description\": \"On a misty bank at dawn, the four rescuers and the prince stand in silhouette against the burning skyline, Bromwell limping up last with his blade lowered.\",\n      \"characters\": [\"Maren the Cartographer\", \"Jex the Scout\", \"Wisp the Mage\", \"Sir Bromwell\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Lost Heir",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A worn map points the way into the ruined city.",
+        "visual_description": "Dawn on a windy ridge above a shattered skyline of broken spires; a cloaked map reader holds an old parchment while a scout crouches beside her, peering through a spyglass.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The rescue team gathers at the old shrine.",
+        "visual_description": "A crumbling stone shrine overgrown with ivy; four travelers stand in a half-circle around a flickering blue flame, packs at their feet.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They approach the cracked castle gates.",
+        "visual_description": "Massive iron-banded gates split down the middle, the royal crest defaced; the team peers through the gap into a fog-choked courtyard.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A frightened townswoman warns them away.",
+        "visual_description": "A thin woman in a patched shawl clutches a basket of turnips at a side alley, eyes wide as she whispers to the cloaked map reader under a leaning lamppost.",
+        "characters": [
+          "Maren the Cartographer",
+          "Hesla the Townswoman"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Armored patrols march through the plaza.",
+        "visual_description": "A column of black-armored soldiers crosses a rubble-strewn plaza beneath tattered royal banners; the team hides behind a toppled statue of a king.",
+        "characters": [
+          "Jex the Scout",
+          "Sir Bromwell",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Rumors of a dragon echo through the marketplace.",
+        "visual_description": "A boarded-up market with overturned stalls; an old beggar gestures wildly toward distant smoke as Jex listens, one hand on his dagger.",
+        "characters": [
+          "Jex the Scout",
+          "Old Ralic the Beggar"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The cursed tower looms over the team.",
+        "visual_description": "A black spiral tower wreathed in greenish mist; Wisp the Mage holds up a glowing staff while the others shield their eyes from a sickly glare.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Wisp deciphers the warding runes.",
+        "visual_description": "Close-up of a stone archway carved with luminous runes; Wisp traces a sigil in the air with two glowing fingers, her hood thrown back.",
+        "characters": [
+          "Wisp the Mage"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "A sleepy royal clerk is found in the gatehouse.",
+        "visual_description": "A pudgy man in a stained official tabard snores at a tilted desk piled with scrolls; Sir Bromwell pokes him with the flat of his sword as Maren rifles a ledger.",
+        "characters": [
+          "Maren the Cartographer",
+          "Sir Bromwell",
+          "Clerk Pim"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The clerk reveals where the heir is held.",
+        "visual_description": "Pim, now wide-eyed and clutching a candle, points trembling at a marked floor plan unrolled across the desk; the team leans in over his shoulders.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Clerk Pim"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A magic door blocks the inner keep.",
+        "visual_description": "A tall door of polished obsidian set with seven shifting silver glyphs; the corridor floor is patterned with faintly pulsing veins of light.",
+        "characters": [
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Wisp unlocks the door with a whispered word.",
+        "visual_description": "The obsidian door splits open in a fan of pale light; Wisp lowers her staff, breath steaming, as Sir Bromwell shoulders past with sword drawn.",
+        "characters": [
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find the captive heir chained in the throne room.",
+        "visual_description": "A vaulted throne room with shattered stained glass; a young heir in tattered finery sits chained to the base of a cracked throne, looking up with relief.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Captain Vorr confronts the rescuers.",
+        "visual_description": "A black-armored captain blocks the throne room arch, helm under one arm, a long curved blade leveled; soldiers form up behind him in the smoky hall.",
+        "characters": [
+          "Sir Bromwell",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Captain Vorr"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Sir Bromwell holds the line so the others can flee.",
+        "visual_description": "Sparks fly as Bromwell parries Vorr's blade in a narrow corridor while Maren pulls the prince by the wrist toward a side stairwell.",
+        "characters": [
+          "Sir Bromwell",
+          "Captain Vorr",
+          "Maren the Cartographer",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They race through burning streets toward the river.",
+        "visual_description": "Tattered royal banners flap above a street of burning timbers; the team sprints past frightened townsfolk, Wisp casting a shimmering shield behind them.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Hesla the Townswoman"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The old stone bridge cracks beneath their feet.",
+        "visual_description": "A narrow arched bridge over a black river; stones split and fall as Jex hauls the prince forward, Wisp gesturing to hold the span together with golden threads of magic.",
+        "characters": [
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Maren the Cartographer"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Safe on the far shore, they look back at the ruined city.",
+        "visual_description": "On a misty bank at dawn, the four rescuers and the prince stand in silhouette against the burning skyline, Bromwell limping up last with his blade lowered.",
+        "characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Hesla the Townswoman"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Jex the Scout",
+          "Sir Bromwell",
+          "Captain Vorr"
+        ],
+        "forbidden_words": [
+          "king",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Jex the Scout",
+          "Old Ralic the Beggar"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Sir Bromwell",
+          "Clerk Pim"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Clerk Pim"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Mage",
+          "Sir Bromwell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Bromwell",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Captain Vorr"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Bromwell",
+          "Captain Vorr",
+          "Maren the Cartographer",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Hesla the Townswoman"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Prince Aldric",
+          "Maren the Cartographer"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Cartographer",
+          "Jex the Scout",
+          "Wisp the Mage",
+          "Sir Bromwell",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      }
+    ]
+  },
+  "run_index": 8
+}

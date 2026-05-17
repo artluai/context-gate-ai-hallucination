@@ -1,0 +1,569 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017777-RhTyCO2YVtyyI5knJlym",
+      "object": "chat.completion",
+      "created": 1779017777,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 155,
+        "total_tokens": 873,
+        "cost": 0.007465,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.007465,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.003875
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 54,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017783-tBJcml9P1UydlQpm3Of1",
+      "object": "chat.completion",
+      "created": 1779017783,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Ruined Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A torn map points the way into the dead city.\",\n      \"visual_description\": \"Dawn light over a ridge; a cloaked figure unrolls a brittle map showing a ruined royal city in the valley below, banners faded on broken towers.\",\n      \"characters\": [\"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The team gathers at the edge of the ruins.\",\n      \"visual_description\": \"Five travelers crouched in tall grass at the city outskirts, packs and weapons ready, a crumbling outer wall behind them.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Sir Doral\", \"Vesh the Quiet\", \"Old Bramley\", \"Lios the Spellwright\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The castle gates loom, too obvious to trust.\",\n      \"visual_description\": \"Massive iron-bound gates standing half-open, scorch marks on the stone, suspiciously unbarred; the team studies them from a doorway across the plaza.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Old Bramley argues for a nap and a side road.\",\n      \"visual_description\": \"A round, gray-bearded official in rumpled robes yawning and gesturing at a narrow alley, while the others look exasperated.\",\n      \"characters\": [\"Old Bramley\", \"Maren the Pathfinder\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Vesh slips ahead to scout the patrol routes.\",\n      \"visual_description\": \"A lithe scout in dark leathers climbing along a broken parapet, watching torch-lit armored patrols march in the street below.\",\n      \"characters\": [\"Vesh the Quiet\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A cursed tower whispers promises of treasure.\",\n      \"visual_description\": \"A leaning black tower wreathed in violet mist; faint ghostly hands beckon from its windows as the group passes warily on the cobbles.\",\n      \"characters\": [\"Lios the Spellwright\", \"Maren the Pathfinder\", \"Sir Doral\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Frightened townspeople beg for help they cannot give.\",\n      \"visual_description\": \"A ragged family huddled in a doorway, candle-lit, reaching out as the rescuers pause; broken pottery and a fallen royal banner on the street.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Old Bramley\", \"Townsfolk Mother\", \"Townsfolk Child\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Bramley shares his last bread with the child.\",\n      \"visual_description\": \"The sleepy official kneeling, pressing a heel of bread into a small child's hands, his eyes unusually awake and kind.\",\n      \"characters\": [\"Old Bramley\", \"Townsfolk Child\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumor of a dragon nesting in the keep.\",\n      \"visual_description\": \"A scorched square with enormous claw marks on the flagstones and a shed scale the size of a shield; the team examines it under low red clouds.\",\n      \"characters\": [\"Sir Doral\", \"Lios the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Armored patrol marches through the plaza.\",\n      \"visual_description\": \"A column of helmed soldiers in tarnished royal livery passing a fountain; the rescuers press flat against a colonnade in shadow.\",\n      \"characters\": [\"Vesh the Quiet\", \"Sir Doral\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Lios reads the sealed magic door.\",\n      \"visual_description\": \"An arched door inlaid with glowing silver runes in a mossy courtyard; the spellwright traces sigils in the air, light reflecting on his spectacles.\",\n      \"characters\": [\"Lios the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The door opens onto the throne hall.\",\n      \"visual_description\": \"A vast ruined hall with shattered stained glass, dust motes in slanting light, a cracked throne, and faded royal banners hanging in tatters.\",\n      \"characters\": [\"Lios the Spellwright\", \"Sir Doral\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Princess Aelinor chained beneath the throne.\",\n      \"visual_description\": \"A young woman in torn finery shackled at the base of the dais, lifting her head as lantern light finds her; relief and fear in her eyes.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The dragon stirs above the rafters.\",\n      \"visual_description\": \"A great scaled coil shifting in the broken roof beams; one molten eye opens, glowing on the dust below.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Lios the Spellwright\", \"The Ruin Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Doral holds the doorway while the others flee.\",\n      \"visual_description\": \"The knight braced in a narrow archway, shield raised against a gout of orange flame curling around the stone, silhouette against fire.\",\n      \"characters\": [\"Sir Doral\", \"The Ruin Dragon\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Vesh leads them along the rooftops to the river.\",\n      \"visual_description\": \"Figures leaping from a collapsing tile roof to a lower wall, the dark river glinting ahead between buildings, smoke rising behind.\",\n      \"characters\": [\"Vesh the Quiet\", \"Princess Aelinor\", \"Maren the Pathfinder\", \"Lios the Spellwright\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Old Bramley spans the broken bridge with a yawning spell.\",\n      \"visual_description\": \"The sleepy official, suddenly luminous, breathes a shimmering arc of pale light across a shattered stone bridge over a black river; the others run across.\",\n      \"characters\": [\"Old Bramley\", \"Princess Aelinor\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Lios the Spellwright\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Beyond the bridge, they look back at the burning city.\",\n      \"visual_description\": \"The group on a green hillside at sunrise, the ruined city smoking in the valley; the princess wrapped in Doral's cloak, Bramley already dozing on his pack.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Lios the Spellwright\", \"Old Bramley\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2550,
+        "total_tokens": 3436,
+        "cost": 0.06818,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06818,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.06375
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Ruined Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A torn map points the way into the dead city.\",\n      \"visual_description\": \"Dawn light over a ridge; a cloaked figure unrolls a brittle map showing a ruined royal city in the valley below, banners faded on broken towers.\",\n      \"characters\": [\"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The team gathers at the edge of the ruins.\",\n      \"visual_description\": \"Five travelers crouched in tall grass at the city outskirts, packs and weapons ready, a crumbling outer wall behind them.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Sir Doral\", \"Vesh the Quiet\", \"Old Bramley\", \"Lios the Spellwright\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The castle gates loom, too obvious to trust.\",\n      \"visual_description\": \"Massive iron-bound gates standing half-open, scorch marks on the stone, suspiciously unbarred; the team studies them from a doorway across the plaza.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Old Bramley argues for a nap and a side road.\",\n      \"visual_description\": \"A round, gray-bearded official in rumpled robes yawning and gesturing at a narrow alley, while the others look exasperated.\",\n      \"characters\": [\"Old Bramley\", \"Maren the Pathfinder\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Vesh slips ahead to scout the patrol routes.\",\n      \"visual_description\": \"A lithe scout in dark leathers climbing along a broken parapet, watching torch-lit armored patrols march in the street below.\",\n      \"characters\": [\"Vesh the Quiet\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A cursed tower whispers promises of treasure.\",\n      \"visual_description\": \"A leaning black tower wreathed in violet mist; faint ghostly hands beckon from its windows as the group passes warily on the cobbles.\",\n      \"characters\": [\"Lios the Spellwright\", \"Maren the Pathfinder\", \"Sir Doral\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Frightened townspeople beg for help they cannot give.\",\n      \"visual_description\": \"A ragged family huddled in a doorway, candle-lit, reaching out as the rescuers pause; broken pottery and a fallen royal banner on the street.\",\n      \"characters\": [\"Maren the Pathfinder\", \"Old Bramley\", \"Townsfolk Mother\", \"Townsfolk Child\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Bramley shares his last bread with the child.\",\n      \"visual_description\": \"The sleepy official kneeling, pressing a heel of bread into a small child's hands, his eyes unusually awake and kind.\",\n      \"characters\": [\"Old Bramley\", \"Townsfolk Child\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumor of a dragon nesting in the keep.\",\n      \"visual_description\": \"A scorched square with enormous claw marks on the flagstones and a shed scale the size of a shield; the team examines it under low red clouds.\",\n      \"characters\": [\"Sir Doral\", \"Lios the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Armored patrol marches through the plaza.\",\n      \"visual_description\": \"A column of helmed soldiers in tarnished royal livery passing a fountain; the rescuers press flat against a colonnade in shadow.\",\n      \"characters\": [\"Vesh the Quiet\", \"Sir Doral\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Lios reads the sealed magic door.\",\n      \"visual_description\": \"An arched door inlaid with glowing silver runes in a mossy courtyard; the spellwright traces sigils in the air, light reflecting on his spectacles.\",\n      \"characters\": [\"Lios the Spellwright\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The door opens onto the throne hall.\",\n      \"visual_description\": \"A vast ruined hall with shattered stained glass, dust motes in slanting light, a cracked throne, and faded royal banners hanging in tatters.\",\n      \"characters\": [\"Lios the Spellwright\", \"Sir Doral\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They find Princess Aelinor chained beneath the throne.\",\n      \"visual_description\": \"A young woman in torn finery shackled at the base of the dais, lifting her head as lantern light finds her; relief and fear in her eyes.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Maren the Pathfinder\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The dragon stirs above the rafters.\",\n      \"visual_description\": \"A great scaled coil shifting in the broken roof beams; one molten eye opens, glowing on the dust below.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Lios the Spellwright\", \"The Ruin Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Sir Doral holds the doorway while the others flee.\",\n      \"visual_description\": \"The knight braced in a narrow archway, shield raised against a gout of orange flame curling around the stone, silhouette against fire.\",\n      \"characters\": [\"Sir Doral\", \"The Ruin Dragon\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Vesh leads them along the rooftops to the river.\",\n      \"visual_description\": \"Figures leaping from a collapsing tile roof to a lower wall, the dark river glinting ahead between buildings, smoke rising behind.\",\n      \"characters\": [\"Vesh the Quiet\", \"Princess Aelinor\", \"Maren the Pathfinder\", \"Lios the Spellwright\", \"Old Bramley\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Old Bramley spans the broken bridge with a yawning spell.\",\n      \"visual_description\": \"The sleepy official, suddenly luminous, breathes a shimmering arc of pale light across a shattered stone bridge over a black river; the others run across.\",\n      \"characters\": [\"Old Bramley\", \"Princess Aelinor\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Lios the Spellwright\", \"Sir Doral\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Beyond the bridge, they look back at the burning city.\",\n      \"visual_description\": \"The group on a green hillside at sunrise, the ruined city smoking in the valley; the princess wrapped in Doral's cloak, Bramley already dozing on his pack.\",\n      \"characters\": [\"Princess Aelinor\", \"Sir Doral\", \"Maren the Pathfinder\", \"Vesh the Quiet\", \"Lios the Spellwright\", \"Old Bramley\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Ruined Crown",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A torn map points the way into the dead city.",
+        "visual_description": "Dawn light over a ridge; a cloaked figure unrolls a brittle map showing a ruined royal city in the valley below, banners faded on broken towers.",
+        "characters": [
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The team gathers at the edge of the ruins.",
+        "visual_description": "Five travelers crouched in tall grass at the city outskirts, packs and weapons ready, a crumbling outer wall behind them.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Sir Doral",
+          "Vesh the Quiet",
+          "Old Bramley",
+          "Lios the Spellwright"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The castle gates loom, too obvious to trust.",
+        "visual_description": "Massive iron-bound gates standing half-open, scorch marks on the stone, suspiciously unbarred; the team studies them from a doorway across the plaza.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Sir Doral"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Old Bramley argues for a nap and a side road.",
+        "visual_description": "A round, gray-bearded official in rumpled robes yawning and gesturing at a narrow alley, while the others look exasperated.",
+        "characters": [
+          "Old Bramley",
+          "Maren the Pathfinder",
+          "Sir Doral"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Vesh slips ahead to scout the patrol routes.",
+        "visual_description": "A lithe scout in dark leathers climbing along a broken parapet, watching torch-lit armored patrols march in the street below.",
+        "characters": [
+          "Vesh the Quiet"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "A cursed tower whispers promises of treasure.",
+        "visual_description": "A leaning black tower wreathed in violet mist; faint ghostly hands beckon from its windows as the group passes warily on the cobbles.",
+        "characters": [
+          "Lios the Spellwright",
+          "Maren the Pathfinder",
+          "Sir Doral",
+          "Old Bramley"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Frightened townspeople beg for help they cannot give.",
+        "visual_description": "A ragged family huddled in a doorway, candle-lit, reaching out as the rescuers pause; broken pottery and a fallen royal banner on the street.",
+        "characters": [
+          "Maren the Pathfinder",
+          "Old Bramley",
+          "Townsfolk Mother",
+          "Townsfolk Child"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Old Bramley shares his last bread with the child.",
+        "visual_description": "The sleepy official kneeling, pressing a heel of bread into a small child's hands, his eyes unusually awake and kind.",
+        "characters": [
+          "Old Bramley",
+          "Townsfolk Child"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Rumor of a dragon nesting in the keep.",
+        "visual_description": "A scorched square with enormous claw marks on the flagstones and a shed scale the size of a shield; the team examines it under low red clouds.",
+        "characters": [
+          "Sir Doral",
+          "Lios the Spellwright",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Armored patrol marches through the plaza.",
+        "visual_description": "A column of helmed soldiers in tarnished royal livery passing a fountain; the rescuers press flat against a colonnade in shadow.",
+        "characters": [
+          "Vesh the Quiet",
+          "Sir Doral",
+          "Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Lios reads the sealed magic door.",
+        "visual_description": "An arched door inlaid with glowing silver runes in a mossy courtyard; the spellwright traces sigils in the air, light reflecting on his spectacles.",
+        "characters": [
+          "Lios the Spellwright",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The door opens onto the throne hall.",
+        "visual_description": "A vast ruined hall with shattered stained glass, dust motes in slanting light, a cracked throne, and faded royal banners hanging in tatters.",
+        "characters": [
+          "Lios the Spellwright",
+          "Sir Doral",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Old Bramley"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They find Princess Aelinor chained beneath the throne.",
+        "visual_description": "A young woman in torn finery shackled at the base of the dais, lifting her head as lantern light finds her; relief and fear in her eyes.",
+        "characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Maren the Pathfinder"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The dragon stirs above the rafters.",
+        "visual_description": "A great scaled coil shifting in the broken roof beams; one molten eye opens, glowing on the dust below.",
+        "characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Lios the Spellwright",
+          "The Ruin Dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Sir Doral holds the doorway while the others flee.",
+        "visual_description": "The knight braced in a narrow archway, shield raised against a gout of orange flame curling around the stone, silhouette against fire.",
+        "characters": [
+          "Sir Doral",
+          "The Ruin Dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Vesh leads them along the rooftops to the river.",
+        "visual_description": "Figures leaping from a collapsing tile roof to a lower wall, the dark river glinting ahead between buildings, smoke rising behind.",
+        "characters": [
+          "Vesh the Quiet",
+          "Princess Aelinor",
+          "Maren the Pathfinder",
+          "Lios the Spellwright",
+          "Old Bramley"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Old Bramley spans the broken bridge with a yawning spell.",
+        "visual_description": "The sleepy official, suddenly luminous, breathes a shimmering arc of pale light across a shattered stone bridge over a black river; the others run across.",
+        "characters": [
+          "Old Bramley",
+          "Princess Aelinor",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Lios the Spellwright",
+          "Sir Doral"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Beyond the bridge, they look back at the burning city.",
+        "visual_description": "The group on a green hillside at sunrise, the ruined city smoking in the valley; the princess wrapped in Doral's cloak, Bramley already dozing on his pack.",
+        "characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Lios the Spellwright",
+          "Old Bramley"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Sir Doral",
+          "Vesh the Quiet",
+          "Old Bramley",
+          "Lios the Spellwright"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Sir Doral"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Bramley",
+          "Maren the Pathfinder",
+          "Sir Doral"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesh the Quiet"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lios the Spellwright",
+          "Maren the Pathfinder",
+          "Sir Doral",
+          "Old Bramley"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren the Pathfinder",
+          "Old Bramley",
+          "Townsfolk Mother",
+          "Townsfolk Child"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Bramley",
+          "Townsfolk Child"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Doral",
+          "Lios the Spellwright",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesh the Quiet",
+          "Sir Doral",
+          "Patrol Captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lios the Spellwright",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lios the Spellwright",
+          "Sir Doral",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Old Bramley"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Maren the Pathfinder"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Lios the Spellwright",
+          "The Ruin Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sir Doral",
+          "The Ruin Dragon"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vesh the Quiet",
+          "Princess Aelinor",
+          "Maren the Pathfinder",
+          "Lios the Spellwright",
+          "Old Bramley"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Bramley",
+          "Princess Aelinor",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Lios the Spellwright",
+          "Sir Doral"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Aelinor",
+          "Sir Doral",
+          "Maren the Pathfinder",
+          "Vesh the Quiet",
+          "Lios the Spellwright",
+          "Old Bramley"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      }
+    ]
+  },
+  "run_index": 9
+}

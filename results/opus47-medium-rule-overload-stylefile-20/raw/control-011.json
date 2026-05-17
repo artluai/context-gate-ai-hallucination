@@ -1,0 +1,561 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779018000-u248f188lG50eQpwyY7Z",
+      "object": "chat.completion",
+      "created": 1779018000,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 118,
+        "total_tokens": 836,
+        "cost": 0.00654,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00654,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.00295
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 45,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779018006-L68uQX3fImTetOca7uBG",
+      "object": "chat.completion",
+      "created": 1779018006,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Ember Crown Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A distress letter arrives at the scouts' camp.\",\n      \"visual_description\": \"A windswept hill camp at dawn, a hawk delivering a sealed scroll to a cloaked ranger beside a flickering campfire, ruined city spires visible on the horizon.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers and studies an old map.\",\n      \"visual_description\": \"Four figures crouched around a parchment map weighed down with stones, lantern light catching their faces, the ruined city sketched in faded ink.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates at dusk.\",\n      \"visual_description\": \"Two enormous iron-bound gates split down the middle, vines crawling across heraldic carvings, the party silhouetted against a violet twilight sky.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townsperson warns them of patrols.\",\n      \"visual_description\": \"A trembling woman in a patched shawl pulling Iselle into a doorway, broken cobblestones underfoot, smoke curling from a distant rooftop.\",\n      \"characters\": [\"Captain Iselle\", \"Hesta the Baker\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march past their hiding place.\",\n      \"visual_description\": \"A column of black-plated soldiers with crimson sashes tramping through a narrow alley, the party pressed flat behind a collapsed market stall.\",\n      \"characters\": [\"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Tattered royal banners reveal whose city this once was.\",\n      \"visual_description\": \"A wide plaza with torn gold-and-blue banners hanging from broken poles, a cracked statue of a king missing its crown, dust motes in slanted light.\",\n      \"characters\": [\"Oswin the Steward\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Oswin recognizes the captured noble from a banner crest.\",\n      \"visual_description\": \"Oswin holding up a torn banner with a phoenix sigil, eyes wide with recognition, his lantern casting long shadows on the rubble around him.\",\n      \"characters\": [\"Oswin the Steward\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Brann scouts ahead toward the cursed tower.\",\n      \"visual_description\": \"Brann perched on a crumbling rooftop, spyglass aimed at a tall blackened tower wreathed in greenish mist, ravens circling its peak.\",\n      \"characters\": [\"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a sleeping dragon reach them through whispers.\",\n      \"visual_description\": \"A cluster of huddled refugees by a broken fountain pointing fearfully toward a far mountain, scales glinting in the carved stone of the fountain itself.\",\n      \"characters\": [\"Hesta the Baker\", \"Captain Iselle\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira deciphers the runes on a sealed magic door.\",\n      \"visual_description\": \"An arched door of pale stone carved with glowing blue runes, Mira's fingertips trailing light across the symbols, the others watching in tense silence.\",\n      \"characters\": [\"Mira the Mage\", \"Captain Iselle\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The door opens onto a spiraling stair into the tower.\",\n      \"visual_description\": \"A dark stairwell winding upward into shadow, faint motes of green light drifting like fireflies, the party stepping cautiously inside.\",\n      \"characters\": [\"Captain Iselle\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find Princess Elen chained in a high chamber.\",\n      \"visual_description\": \"A round tower room with a tall arched window, a young woman in a torn gown chained to a stone pillar, moonlight pooling around her bare feet.\",\n      \"characters\": [\"Princess Elen\", \"Captain Iselle\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira breaks the binding spell with a flash of silver light.\",\n      \"visual_description\": \"Chains shattering into glowing fragments mid-air, Mira's staff blazing with cold light, Princess Elen shielding her eyes as Iselle catches her.\",\n      \"characters\": [\"Mira the Mage\", \"Princess Elen\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm horns sound across the ruined city.\",\n      \"visual_description\": \"View from the tower window: torches flaring to life along distant walls, dark shapes of patrols converging, Brann pointing urgently down a side stair.\",\n      \"characters\": [\"Brann the Ranger\", \"Captain Iselle\", \"Princess Elen\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Oswin stumbles into a trap and is nearly caught.\",\n      \"visual_description\": \"Oswin tangled in a falling net of dark cord in a narrow corridor, Brann leaping in with a curved knife to cut him free, sparks from a wall sconce.\",\n      \"characters\": [\"Oswin the Steward\", \"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee through the burning lower courtyards.\",\n      \"visual_description\": \"The party sprinting past collapsed colonnades, embers raining down, a fallen banner smoldering underfoot, Iselle pulling Elen by the hand.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape begins across the cracked stone bridge.\",\n      \"visual_description\": \"A long, narrow bridge over a fog-filled chasm, stones crumbling behind them as they run, torches of pursuers visible at the bridge's far end of the city.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far side, they look back at the fallen city.\",\n      \"visual_description\": \"Five figures standing on a grassy ridge at sunrise, the ruined city smoking in the valley behind them, Princess Elen wrapped in Iselle's cloak.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2643,
+        "total_tokens": 3529,
+        "cost": 0.070505,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.070505,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.066075
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 43,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Ember Crown Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A distress letter arrives at the scouts' camp.\",\n      \"visual_description\": \"A windswept hill camp at dawn, a hawk delivering a sealed scroll to a cloaked ranger beside a flickering campfire, ruined city spires visible on the horizon.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers and studies an old map.\",\n      \"visual_description\": \"Four figures crouched around a parchment map weighed down with stones, lantern light catching their faces, the ruined city sketched in faded ink.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the broken castle gates at dusk.\",\n      \"visual_description\": \"Two enormous iron-bound gates split down the middle, vines crawling across heraldic carvings, the party silhouetted against a violet twilight sky.\",\n      \"characters\": [\"Captain Iselle\", \"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"A frightened townsperson warns them of patrols.\",\n      \"visual_description\": \"A trembling woman in a patched shawl pulling Iselle into a doorway, broken cobblestones underfoot, smoke curling from a distant rooftop.\",\n      \"characters\": [\"Captain Iselle\", \"Hesta the Baker\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Armored patrols march past their hiding place.\",\n      \"visual_description\": \"A column of black-plated soldiers with crimson sashes tramping through a narrow alley, the party pressed flat behind a collapsed market stall.\",\n      \"characters\": [\"Brann the Ranger\", \"Mira the Mage\", \"Oswin the Steward\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Tattered royal banners reveal whose city this once was.\",\n      \"visual_description\": \"A wide plaza with torn gold-and-blue banners hanging from broken poles, a cracked statue of a king missing its crown, dust motes in slanted light.\",\n      \"characters\": [\"Oswin the Steward\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Oswin recognizes the captured noble from a banner crest.\",\n      \"visual_description\": \"Oswin holding up a torn banner with a phoenix sigil, eyes wide with recognition, his lantern casting long shadows on the rubble around him.\",\n      \"characters\": [\"Oswin the Steward\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Brann scouts ahead toward the cursed tower.\",\n      \"visual_description\": \"Brann perched on a crumbling rooftop, spyglass aimed at a tall blackened tower wreathed in greenish mist, ravens circling its peak.\",\n      \"characters\": [\"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Rumors of a sleeping dragon reach them through whispers.\",\n      \"visual_description\": \"A cluster of huddled refugees by a broken fountain pointing fearfully toward a far mountain, scales glinting in the carved stone of the fountain itself.\",\n      \"characters\": [\"Hesta the Baker\", \"Captain Iselle\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira deciphers the runes on a sealed magic door.\",\n      \"visual_description\": \"An arched door of pale stone carved with glowing blue runes, Mira's fingertips trailing light across the symbols, the others watching in tense silence.\",\n      \"characters\": [\"Mira the Mage\", \"Captain Iselle\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The door opens onto a spiraling stair into the tower.\",\n      \"visual_description\": \"A dark stairwell winding upward into shadow, faint motes of green light drifting like fireflies, the party stepping cautiously inside.\",\n      \"characters\": [\"Captain Iselle\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find Princess Elen chained in a high chamber.\",\n      \"visual_description\": \"A round tower room with a tall arched window, a young woman in a torn gown chained to a stone pillar, moonlight pooling around her bare feet.\",\n      \"characters\": [\"Princess Elen\", \"Captain Iselle\", \"Mira the Mage\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira breaks the binding spell with a flash of silver light.\",\n      \"visual_description\": \"Chains shattering into glowing fragments mid-air, Mira's staff blazing with cold light, Princess Elen shielding her eyes as Iselle catches her.\",\n      \"characters\": [\"Mira the Mage\", \"Princess Elen\", \"Captain Iselle\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm horns sound across the ruined city.\",\n      \"visual_description\": \"View from the tower window: torches flaring to life along distant walls, dark shapes of patrols converging, Brann pointing urgently down a side stair.\",\n      \"characters\": [\"Brann the Ranger\", \"Captain Iselle\", \"Princess Elen\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Oswin stumbles into a trap and is nearly caught.\",\n      \"visual_description\": \"Oswin tangled in a falling net of dark cord in a narrow corridor, Brann leaping in with a curved knife to cut him free, sparks from a wall sconce.\",\n      \"characters\": [\"Oswin the Steward\", \"Brann the Ranger\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee through the burning lower courtyards.\",\n      \"visual_description\": \"The party sprinting past collapsed colonnades, embers raining down, a fallen banner smoldering underfoot, Iselle pulling Elen by the hand.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape begins across the cracked stone bridge.\",\n      \"visual_description\": \"A long, narrow bridge over a fog-filled chasm, stones crumbling behind them as they run, torches of pursuers visible at the bridge's far end of the city.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far side, they look back at the fallen city.\",\n      \"visual_description\": \"Five figures standing on a grassy ridge at sunrise, the ruined city smoking in the valley behind them, Princess Elen wrapped in Iselle's cloak.\",\n      \"characters\": [\"Captain Iselle\", \"Princess Elen\", \"Mira the Mage\", \"Brann the Ranger\", \"Oswin the Steward\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Ember Crown Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A distress letter arrives at the scouts' camp.",
+        "visual_description": "A windswept hill camp at dawn, a hawk delivering a sealed scroll to a cloaked ranger beside a flickering campfire, ruined city spires visible on the horizon.",
+        "characters": [
+          "Captain Iselle",
+          "Brann the Ranger"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The rescue party gathers and studies an old map.",
+        "visual_description": "Four figures crouched around a parchment map weighed down with stones, lantern light catching their faces, the ruined city sketched in faded ink.",
+        "characters": [
+          "Captain Iselle",
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They approach the broken castle gates at dusk.",
+        "visual_description": "Two enormous iron-bound gates split down the middle, vines crawling across heraldic carvings, the party silhouetted against a violet twilight sky.",
+        "characters": [
+          "Captain Iselle",
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "A frightened townsperson warns them of patrols.",
+        "visual_description": "A trembling woman in a patched shawl pulling Iselle into a doorway, broken cobblestones underfoot, smoke curling from a distant rooftop.",
+        "characters": [
+          "Captain Iselle",
+          "Hesta the Baker"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Armored patrols march past their hiding place.",
+        "visual_description": "A column of black-plated soldiers with crimson sashes tramping through a narrow alley, the party pressed flat behind a collapsed market stall.",
+        "characters": [
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward",
+          "Captain Iselle"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Tattered royal banners reveal whose city this once was.",
+        "visual_description": "A wide plaza with torn gold-and-blue banners hanging from broken poles, a cracked statue of a king missing its crown, dust motes in slanted light.",
+        "characters": [
+          "Oswin the Steward",
+          "Captain Iselle"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Oswin recognizes the captured noble from a banner crest.",
+        "visual_description": "Oswin holding up a torn banner with a phoenix sigil, eyes wide with recognition, his lantern casting long shadows on the rubble around him.",
+        "characters": [
+          "Oswin the Steward",
+          "Mira the Mage"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Brann scouts ahead toward the cursed tower.",
+        "visual_description": "Brann perched on a crumbling rooftop, spyglass aimed at a tall blackened tower wreathed in greenish mist, ravens circling its peak.",
+        "characters": [
+          "Brann the Ranger"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Rumors of a sleeping dragon reach them through whispers.",
+        "visual_description": "A cluster of huddled refugees by a broken fountain pointing fearfully toward a far mountain, scales glinting in the carved stone of the fountain itself.",
+        "characters": [
+          "Hesta the Baker",
+          "Captain Iselle",
+          "Mira the Mage"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Mira deciphers the runes on a sealed magic door.",
+        "visual_description": "An arched door of pale stone carved with glowing blue runes, Mira's fingertips trailing light across the symbols, the others watching in tense silence.",
+        "characters": [
+          "Mira the Mage",
+          "Captain Iselle",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The door opens onto a spiraling stair into the tower.",
+        "visual_description": "A dark stairwell winding upward into shadow, faint motes of green light drifting like fireflies, the party stepping cautiously inside.",
+        "characters": [
+          "Captain Iselle",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They find Princess Elen chained in a high chamber.",
+        "visual_description": "A round tower room with a tall arched window, a young woman in a torn gown chained to a stone pillar, moonlight pooling around her bare feet.",
+        "characters": [
+          "Princess Elen",
+          "Captain Iselle",
+          "Mira the Mage"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Mira breaks the binding spell with a flash of silver light.",
+        "visual_description": "Chains shattering into glowing fragments mid-air, Mira's staff blazing with cold light, Princess Elen shielding her eyes as Iselle catches her.",
+        "characters": [
+          "Mira the Mage",
+          "Princess Elen",
+          "Captain Iselle"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Alarm horns sound across the ruined city.",
+        "visual_description": "View from the tower window: torches flaring to life along distant walls, dark shapes of patrols converging, Brann pointing urgently down a side stair.",
+        "characters": [
+          "Brann the Ranger",
+          "Captain Iselle",
+          "Princess Elen"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Oswin stumbles into a trap and is nearly caught.",
+        "visual_description": "Oswin tangled in a falling net of dark cord in a narrow corridor, Brann leaping in with a curved knife to cut him free, sparks from a wall sconce.",
+        "characters": [
+          "Oswin the Steward",
+          "Brann the Ranger"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They flee through the burning lower courtyards.",
+        "visual_description": "The party sprinting past collapsed colonnades, embers raining down, a fallen banner smoldering underfoot, Iselle pulling Elen by the hand.",
+        "characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The final escape begins across the cracked stone bridge.",
+        "visual_description": "A long, narrow bridge over a fog-filled chasm, stones crumbling behind them as they run, torches of pursuers visible at the bridge's far end of the city.",
+        "characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Safe on the far side, they look back at the fallen city.",
+        "visual_description": "Five figures standing on a grassy ridge at sunrise, the ruined city smoking in the valley behind them, Princess Elen wrapped in Iselle's cloak.",
+        "characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Brann the Ranger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Hesta the Baker"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brann the Ranger",
+          "Mira the Mage",
+          "Oswin the Steward",
+          "Captain Iselle"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Oswin the Steward",
+          "Captain Iselle"
+        ],
+        "forbidden_words": [
+          "king"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Oswin the Steward",
+          "Mira the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brann the Ranger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Hesta the Baker",
+          "Captain Iselle",
+          "Mira the Mage"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "Captain Iselle",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Princess Elen",
+          "Captain Iselle",
+          "Mira the Mage"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mage",
+          "Princess Elen",
+          "Captain Iselle"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brann the Ranger",
+          "Captain Iselle",
+          "Princess Elen"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Oswin the Steward",
+          "Brann the Ranger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Iselle",
+          "Princess Elen",
+          "Mira the Mage",
+          "Brann the Ranger",
+          "Oswin the Steward"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      }
+    ]
+  },
+  "run_index": 11
+}

@@ -1,0 +1,546 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload_unlimited",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a large rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou may read as many manual files as you want before answering.\n\nTo read a file, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nAfter each file, you may request another file the same way, or write the final\nscene plan when you believe you have enough information.\n"
+    }
+  ],
+  "responses": [
+    {
+      "id": "f70ef94a-e4fc-4115-89ae-1a686bc12256",
+      "object": "chat.completion",
+      "created": 1779014719,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Here is the 18-scene illustrated story plan for a fantasy rescue mission, in strict JSON format.\n\n```json\n{\n  \"title\": \"The Broken Crown Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone messenger arrives at the ruined city gates.\",\n      \"visual_description\": \"Dawn light filters through crumbling stone archways; torn royal banners flap above the entrance; a hooded figure approaches on horseback.\",\n      \"characters\": [\"Messenger\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper in the shadow of a collapsed tower.\",\n      \"visual_description\": \"Crowd huddles near a market square with broken stalls; children cling to parents; a crier shouts warnings about the cursed tower.\",\n      \"characters\": [\"Townspeople\", \"Town Crier\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A patrol of armored guards blocks the main road.\",\n      \"visual_description\": \"Sun glints off dented breastplates; the guards stand in formation before a barricade of rubble and spikes; one officer raises a hand to halt.\",\n      \"characters\": [\"Guard Captain\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The rescue team gathers in a hidden alcove to plan.\",\n      \"visual_description\": \"Low torchlight on stone walls; a map unrolled on a crate; four figures lean in, speaking in hushed tones.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They pass through a magic door that reads riddles.\",\n      \"visual_description\": \"Doorway carved with glowing runes; a spectral face forms in the wood; the adventurers hesitate as the riddle appears in the air.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Magic Door\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Inside a cursed tower, the team finds false treasures.\",\n      \"visual_description\": \"Piles of gold and jewels on velvet altars; enchanted light gleams from a floating crown; the air shimmers with illusion magic.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A dragon's shadow passes over the upper courtyard.\",\n      \"visual_description\": \"Massive winged shape darkens the broken flagstones; wind whips loose banners; characters press against walls looking up.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The team discovers a hidden passage behind a false wall.\",\n      \"visual_description\": \"Stone panel slides open to reveal a narrow stairwell; dust motes dance in a shaft of light; a skeletal key hangs on a hook.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They free the first prisoner from a rusted cage.\",\n      \"visual_description\": \"Iron cage suspended from the ceiling; the prisoner reaches through bars; Elara picks the lock while Finn watches the corridor.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A trap triggers in the armory—crossbows fire from walls.\",\n      \"visual_description\": \"Bolts fly across a dusty armory; shields and swords clatter; Rook dives behind a rack while Mira deflects a bolt with her staff.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The guard captain confronts them at the second gate.\",\n      \"visual_description\": \"Captain stands with drawn sword; armored patrol fills the archway behind; torches flare in the narrow passage.\",\n      \"characters\": [\"Guard Captain\", \"Armored Patrol\", \"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They release a second prisoner from a magic circle.\",\n      \"visual_description\": \"Glowing runes on the floor bind a kneeling figure; Elara recites a counter-spell as the runes flicker and fade.\",\n      \"characters\": [\"Elara\", \"Rook\", \"Finn\", \"Mira\", \"Second Prisoner\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"A rumor turns real: a young dragon blocks the treasury door.\",\n      \"visual_description\": \"Small but fierce dragon coils before a jeweled door; smoke curls from its nostrils; the team draws weapons cautiously.\",\n      \"characters\": [\"Dragon\", \"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They trick the dragon using a mirrored shield.\",\n      \"visual_description\": \"Finn holds up a polished shield; the dragon sees its own reflection and rears back; the team slips past into the treasury.\",\n      \"characters\": [\"Finn\", \"Dragon\", \"Rook\", \"Elara\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The final prisoner is found in a throne room illusion.\",\n      \"visual_description\": \"Throne made of bones sits on a dais; an illusory king laughs; the real prisoner is chained beneath the throne.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Final Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The alarm rises as they flee the palace.\",\n      \"visual_description\": \"Bells toll; guards pour from side streets; the team runs with the prisoners across a courtyard full of fallen columns.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape: crossing the crumbling bridge.\",\n      \"visual_description\": \"Narrow stone bridge over a ravine; missing sections and loose stones; characters leap across while the bridge begins to collapse behind them.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The survivors watch the city burn from the hilltop.\",\n      \"visual_description\": \"Distant flames lick the ruined skyline; the rescued prisoners embrace; the team stands together, exhausted but victorious, as dawn breaks.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\"]\n    }\n  ]\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 460,
+        "completion_tokens": 1570,
+        "total_tokens": 2030,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 76
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "Here is the 18-scene illustrated story plan for a fantasy rescue mission, in strict JSON format.\n\n```json\n{\n  \"title\": \"The Broken Crown Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A lone messenger arrives at the ruined city gates.\",\n      \"visual_description\": \"Dawn light filters through crumbling stone archways; torn royal banners flap above the entrance; a hooded figure approaches on horseback.\",\n      \"characters\": [\"Messenger\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper in the shadow of a collapsed tower.\",\n      \"visual_description\": \"Crowd huddles near a market square with broken stalls; children cling to parents; a crier shouts warnings about the cursed tower.\",\n      \"characters\": [\"Townspeople\", \"Town Crier\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A patrol of armored guards blocks the main road.\",\n      \"visual_description\": \"Sun glints off dented breastplates; the guards stand in formation before a barricade of rubble and spikes; one officer raises a hand to halt.\",\n      \"characters\": [\"Guard Captain\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The rescue team gathers in a hidden alcove to plan.\",\n      \"visual_description\": \"Low torchlight on stone walls; a map unrolled on a crate; four figures lean in, speaking in hushed tones.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They pass through a magic door that reads riddles.\",\n      \"visual_description\": \"Doorway carved with glowing runes; a spectral face forms in the wood; the adventurers hesitate as the riddle appears in the air.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Magic Door\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Inside a cursed tower, the team finds false treasures.\",\n      \"visual_description\": \"Piles of gold and jewels on velvet altars; enchanted light gleams from a floating crown; the air shimmers with illusion magic.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"A dragon's shadow passes over the upper courtyard.\",\n      \"visual_description\": \"Massive winged shape darkens the broken flagstones; wind whips loose banners; characters press against walls looking up.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The team discovers a hidden passage behind a false wall.\",\n      \"visual_description\": \"Stone panel slides open to reveal a narrow stairwell; dust motes dance in a shaft of light; a skeletal key hangs on a hook.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They free the first prisoner from a rusted cage.\",\n      \"visual_description\": \"Iron cage suspended from the ceiling; the prisoner reaches through bars; Elara picks the lock while Finn watches the corridor.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"A trap triggers in the armory—crossbows fire from walls.\",\n      \"visual_description\": \"Bolts fly across a dusty armory; shields and swords clatter; Rook dives behind a rack while Mira deflects a bolt with her staff.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The guard captain confronts them at the second gate.\",\n      \"visual_description\": \"Captain stands with drawn sword; armored patrol fills the archway behind; torches flare in the narrow passage.\",\n      \"characters\": [\"Guard Captain\", \"Armored Patrol\", \"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They release a second prisoner from a magic circle.\",\n      \"visual_description\": \"Glowing runes on the floor bind a kneeling figure; Elara recites a counter-spell as the runes flicker and fade.\",\n      \"characters\": [\"Elara\", \"Rook\", \"Finn\", \"Mira\", \"Second Prisoner\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"A rumor turns real: a young dragon blocks the treasury door.\",\n      \"visual_description\": \"Small but fierce dragon coils before a jeweled door; smoke curls from its nostrils; the team draws weapons cautiously.\",\n      \"characters\": [\"Dragon\", \"Rook\", \"Elara\", \"Finn\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They trick the dragon using a mirrored shield.\",\n      \"visual_description\": \"Finn holds up a polished shield; the dragon sees its own reflection and rears back; the team slips past into the treasury.\",\n      \"characters\": [\"Finn\", \"Dragon\", \"Rook\", \"Elara\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The final prisoner is found in a throne room illusion.\",\n      \"visual_description\": \"Throne made of bones sits on a dais; an illusory king laughs; the real prisoner is chained beneath the throne.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Final Prisoner\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The alarm rises as they flee the palace.\",\n      \"visual_description\": \"Bells toll; guards pour from side streets; the team runs with the prisoners across a courtyard full of fallen columns.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\", \"Armored Patrol\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The final escape: crossing the crumbling bridge.\",\n      \"visual_description\": \"Narrow stone bridge over a ravine; missing sections and loose stones; characters leap across while the bridge begins to collapse behind them.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The survivors watch the city burn from the hilltop.\",\n      \"visual_description\": \"Distant flames lick the ruined skyline; the rescued prisoners embrace; the team stands together, exhausted but victorious, as dawn breaks.\",\n      \"characters\": [\"Rook\", \"Elara\", \"Finn\", \"Mira\", \"Prisoner\", \"Second Prisoner\", \"Final Prisoner\"]\n    }\n  ]\n}\n```",
+  "parsed": {
+    "title": "The Broken Crown Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A lone messenger arrives at the ruined city gates.",
+        "visual_description": "Dawn light filters through crumbling stone archways; torn royal banners flap above the entrance; a hooded figure approaches on horseback.",
+        "characters": [
+          "Messenger"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople whisper in the shadow of a collapsed tower.",
+        "visual_description": "Crowd huddles near a market square with broken stalls; children cling to parents; a crier shouts warnings about the cursed tower.",
+        "characters": [
+          "Townspeople",
+          "Town Crier"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "A patrol of armored guards blocks the main road.",
+        "visual_description": "Sun glints off dented breastplates; the guards stand in formation before a barricade of rubble and spikes; one officer raises a hand to halt.",
+        "characters": [
+          "Guard Captain",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The rescue team gathers in a hidden alcove to plan.",
+        "visual_description": "Low torchlight on stone walls; a map unrolled on a crate; four figures lean in, speaking in hushed tones.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "They pass through a magic door that reads riddles.",
+        "visual_description": "Doorway carved with glowing runes; a spectral face forms in the wood; the adventurers hesitate as the riddle appears in the air.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Magic Door"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Inside a cursed tower, the team finds false treasures.",
+        "visual_description": "Piles of gold and jewels on velvet altars; enchanted light gleams from a floating crown; the air shimmers with illusion magic.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "A dragon's shadow passes over the upper courtyard.",
+        "visual_description": "Massive winged shape darkens the broken flagstones; wind whips loose banners; characters press against walls looking up.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The team discovers a hidden passage behind a false wall.",
+        "visual_description": "Stone panel slides open to reveal a narrow stairwell; dust motes dance in a shaft of light; a skeletal key hangs on a hook.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They free the first prisoner from a rusted cage.",
+        "visual_description": "Iron cage suspended from the ceiling; the prisoner reaches through bars; Elara picks the lock while Finn watches the corridor.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "A trap triggers in the armory—crossbows fire from walls.",
+        "visual_description": "Bolts fly across a dusty armory; shields and swords clatter; Rook dives behind a rack while Mira deflects a bolt with her staff.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The guard captain confronts them at the second gate.",
+        "visual_description": "Captain stands with drawn sword; armored patrol fills the archway behind; torches flare in the narrow passage.",
+        "characters": [
+          "Guard Captain",
+          "Armored Patrol",
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They release a second prisoner from a magic circle.",
+        "visual_description": "Glowing runes on the floor bind a kneeling figure; Elara recites a counter-spell as the runes flicker and fade.",
+        "characters": [
+          "Elara",
+          "Rook",
+          "Finn",
+          "Mira",
+          "Second Prisoner"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "A rumor turns real: a young dragon blocks the treasury door.",
+        "visual_description": "Small but fierce dragon coils before a jeweled door; smoke curls from its nostrils; the team draws weapons cautiously.",
+        "characters": [
+          "Dragon",
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "They trick the dragon using a mirrored shield.",
+        "visual_description": "Finn holds up a polished shield; the dragon sees its own reflection and rears back; the team slips past into the treasury.",
+        "characters": [
+          "Finn",
+          "Dragon",
+          "Rook",
+          "Elara",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The final prisoner is found in a throne room illusion.",
+        "visual_description": "Throne made of bones sits on a dais; an illusory king laughs; the real prisoner is chained beneath the throne.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Final Prisoner"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The alarm rises as they flee the palace.",
+        "visual_description": "Bells toll; guards pour from side streets; the team runs with the prisoners across a courtyard full of fallen columns.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner",
+          "Armored Patrol"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The final escape: crossing the crumbling bridge.",
+        "visual_description": "Narrow stone bridge over a ravine; missing sections and loose stones; characters leap across while the bridge begins to collapse behind them.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The survivors watch the city burn from the hilltop.",
+        "visual_description": "Distant flames lick the ruined skyline; the rescued prisoners embrace; the team stands together, exhausted but victorious, as dawn breaks.",
+        "characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 8,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 8,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.4444444444444444,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Messenger"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople",
+          "Town Crier"
+        ],
+        "forbidden_words": [
+          "crowd"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Guard Captain",
+          "Armored Patrol"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Magic Door"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Guard Captain",
+          "Armored Patrol",
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": [
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Elara",
+          "Rook",
+          "Finn",
+          "Mira",
+          "Second Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Dragon",
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Finn",
+          "Dragon",
+          "Rook",
+          "Elara",
+          "Mira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Final Prisoner"
+        ],
+        "forbidden_words": [
+          "king"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner",
+          "Armored Patrol"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Rook",
+          "Elara",
+          "Finn",
+          "Mira",
+          "Prisoner",
+          "Second Prisoner",
+          "Final Prisoner"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 18
+}

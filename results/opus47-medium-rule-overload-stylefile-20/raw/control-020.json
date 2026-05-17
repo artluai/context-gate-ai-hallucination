@@ -1,0 +1,571 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779019011-NjfcvJLFtnNwL0xTBnap",
+      "object": "chat.completion",
+      "created": 1779019011,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 141,
+        "total_tokens": 859,
+        "cost": 0.007115,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.007115,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.003525
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 61,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779019016-AjtkS074JF5hbEP0nxif",
+      "object": "chat.completion",
+      "created": 1779019016,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Ruined Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crouch on a windswept ridge at dusk, gazing down at a shattered skyline of broken spires and smoke. Tattered royal banners flap in the foreground.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Maren unrolls a map of the fallen capital.\",\n      \"visual_description\": \"Close-up of a weathered parchment map weighed down by stones, lit by a single lantern. Maren's gloved finger traces a route past a tower marked with a red X.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Iska scouts ahead through a collapsed gate.\",\n      \"visual_description\": \"A lithe scout slips between the iron teeth of a half-fallen portcullis, moonlight cutting across cracked flagstones and shattered statues of kings.\",\n      \"characters\": [\"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The team meets a trembling townsperson hiding in a cellar.\",\n      \"visual_description\": \"A soot-streaked woman clutches a child in a candlelit cellar of broken crockery, whispering to the kneeling rescuers. Shadows of patrolling boots pass the grate above.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\", \"Old Pell\", \"Goodwife Henna\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon stir argument among the group.\",\n      \"visual_description\": \"Inside the cellar, Old Pell gestures wildly toward a charred scale on the table while Maren frowns. Firelight throws huge shadows on the stone walls.\",\n      \"characters\": [\"Maren Vale\", \"Old Pell\", \"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They slip past an armored patrol in the market ruins.\",\n      \"visual_description\": \"The team presses flat against a toppled fountain as black-plated soldiers with torches march through a moonlit plaza of broken stalls.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Bryn deciphers sigils on a sealed magic door.\",\n      \"visual_description\": \"A tall arched door covered in glowing blue runes pulses softly. Bryn's hands hover over the symbols, her satchel of scrolls spilling at her feet.\",\n      \"characters\": [\"Bryn Holloway\", \"Maren Vale\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The door opens onto a hall of broken thrones.\",\n      \"visual_description\": \"A vast vaulted throne room with toppled chairs and shattered chandeliers, dust motes drifting in shafts of pale light through a collapsed ceiling.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Iska spots the cursed tower from a balcony.\",\n      \"visual_description\": \"A high stone balcony overlooks a black tower wrapped in violet lightning. Iska crouches at the rail, her cloak whipping in the storm wind.\",\n      \"characters\": [\"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Old Pell dozes through a critical briefing.\",\n      \"visual_description\": \"A round, robed official snores against a pillar, hat askew, while the others lean over a chalk-drawn floor plan, exasperated.\",\n      \"characters\": [\"Old Pell\", \"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They climb the cursed tower's spiral stair.\",\n      \"visual_description\": \"A narrow spiral of worn stone steps lit by floating green witchlights. The rescuers ascend in single file, weapons drawn, shadows twisting unnaturally on the walls.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find Prince Aldric chained in the tower's heart.\",\n      \"visual_description\": \"A pale young man in tattered finery is shackled to a glowing altar in a circular chamber. Iron chains hum with red magic; the rescuers stop short in horror.\",\n      \"characters\": [\"Prince Aldric\", \"Maren Vale\", \"Bryn Holloway\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Bryn breaks the binding spell.\",\n      \"visual_description\": \"Bryn's hands blaze with white light as runes shatter outward from the altar. The prince gasps as chains crumble into red dust.\",\n      \"characters\": [\"Bryn Holloway\", \"Prince Aldric\", \"Maren Vale\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm bells ring across the ruined city.\",\n      \"visual_description\": \"From a tower window, the group sees torches flooding the streets below and a great cracked bell swinging in a distant belfry, mouths open in alarm.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Prince Aldric\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's shadow sweeps over the rooftops.\",\n      \"visual_description\": \"An enormous winged silhouette passes across the moon, briefly darkening the alley where the rescuers flatten themselves against a wall, faces pale with fear.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Old Pell surprises everyone by opening a hidden way.\",\n      \"visual_description\": \"The sleepy official taps a brick and a section of wall grinds aside, revealing a torch-lit stair down. He grins, suddenly sharp-eyed; the others stare.\",\n      \"characters\": [\"Old Pell\", \"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race across the crumbling river bridge.\",\n      \"visual_description\": \"A long stone bridge over a black river breaks apart behind running figures. Stones tumble into the water as patrol arrows streak through the night air.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far bank, they look back at the ruined crown.\",\n      \"visual_description\": \"Five silhouettes stand on a misty hillside at dawn, the broken city smoldering across the river. A torn royal banner is planted in the grass beside them.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2655,
+        "total_tokens": 3541,
+        "cost": 0.070805,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.070805,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.066375
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 53,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Ruined Crown\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crouch on a windswept ridge at dusk, gazing down at a shattered skyline of broken spires and smoke. Tattered royal banners flap in the foreground.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Maren unrolls a map of the fallen capital.\",\n      \"visual_description\": \"Close-up of a weathered parchment map weighed down by stones, lit by a single lantern. Maren's gloved finger traces a route past a tower marked with a red X.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Iska scouts ahead through a collapsed gate.\",\n      \"visual_description\": \"A lithe scout slips between the iron teeth of a half-fallen portcullis, moonlight cutting across cracked flagstones and shattered statues of kings.\",\n      \"characters\": [\"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The team meets a trembling townsperson hiding in a cellar.\",\n      \"visual_description\": \"A soot-streaked woman clutches a child in a candlelit cellar of broken crockery, whispering to the kneeling rescuers. Shadows of patrolling boots pass the grate above.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\", \"Old Pell\", \"Goodwife Henna\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon stir argument among the group.\",\n      \"visual_description\": \"Inside the cellar, Old Pell gestures wildly toward a charred scale on the table while Maren frowns. Firelight throws huge shadows on the stone walls.\",\n      \"characters\": [\"Maren Vale\", \"Old Pell\", \"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They slip past an armored patrol in the market ruins.\",\n      \"visual_description\": \"The team presses flat against a toppled fountain as black-plated soldiers with torches march through a moonlit plaza of broken stalls.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Bryn deciphers sigils on a sealed magic door.\",\n      \"visual_description\": \"A tall arched door covered in glowing blue runes pulses softly. Bryn's hands hover over the symbols, her satchel of scrolls spilling at her feet.\",\n      \"characters\": [\"Bryn Holloway\", \"Maren Vale\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"The door opens onto a hall of broken thrones.\",\n      \"visual_description\": \"A vast vaulted throne room with toppled chairs and shattered chandeliers, dust motes drifting in shafts of pale light through a collapsed ceiling.\",\n      \"characters\": [\"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Iska spots the cursed tower from a balcony.\",\n      \"visual_description\": \"A high stone balcony overlooks a black tower wrapped in violet lightning. Iska crouches at the rail, her cloak whipping in the storm wind.\",\n      \"characters\": [\"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Old Pell dozes through a critical briefing.\",\n      \"visual_description\": \"A round, robed official snores against a pillar, hat askew, while the others lean over a chalk-drawn floor plan, exasperated.\",\n      \"characters\": [\"Old Pell\", \"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They climb the cursed tower's spiral stair.\",\n      \"visual_description\": \"A narrow spiral of worn stone steps lit by floating green witchlights. The rescuers ascend in single file, weapons drawn, shadows twisting unnaturally on the walls.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find Prince Aldric chained in the tower's heart.\",\n      \"visual_description\": \"A pale young man in tattered finery is shackled to a glowing altar in a circular chamber. Iron chains hum with red magic; the rescuers stop short in horror.\",\n      \"characters\": [\"Prince Aldric\", \"Maren Vale\", \"Bryn Holloway\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Bryn breaks the binding spell.\",\n      \"visual_description\": \"Bryn's hands blaze with white light as runes shatter outward from the altar. The prince gasps as chains crumble into red dust.\",\n      \"characters\": [\"Bryn Holloway\", \"Prince Aldric\", \"Maren Vale\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm bells ring across the ruined city.\",\n      \"visual_description\": \"From a tower window, the group sees torches flooding the streets below and a great cracked bell swinging in a distant belfry, mouths open in alarm.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Prince Aldric\", \"Old Pell\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's shadow sweeps over the rooftops.\",\n      \"visual_description\": \"An enormous winged silhouette passes across the moon, briefly darkening the alley where the rescuers flatten themselves against a wall, faces pale with fear.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Old Pell surprises everyone by opening a hidden way.\",\n      \"visual_description\": \"The sleepy official taps a brick and a section of wall grinds aside, revealing a torch-lit stair down. He grins, suddenly sharp-eyed; the others stare.\",\n      \"characters\": [\"Old Pell\", \"Maren Vale\", \"Bryn Holloway\", \"Iska Thorn\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race across the crumbling river bridge.\",\n      \"visual_description\": \"A long stone bridge over a black river breaks apart behind running figures. Stones tumble into the water as patrol arrows streak through the night air.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far bank, they look back at the ruined crown.\",\n      \"visual_description\": \"Five silhouettes stand on a misty hillside at dawn, the broken city smoldering across the river. A torn royal banner is planted in the grass beside them.\",\n      \"characters\": [\"Maren Vale\", \"Iska Thorn\", \"Bryn Holloway\", \"Old Pell\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Ruined Crown",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A small band gathers at the edge of the ruined city.",
+        "visual_description": "Four travelers crouch on a windswept ridge at dusk, gazing down at a shattered skyline of broken spires and smoke. Tattered royal banners flap in the foreground.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Maren unrolls a map of the fallen capital.",
+        "visual_description": "Close-up of a weathered parchment map weighed down by stones, lit by a single lantern. Maren's gloved finger traces a route past a tower marked with a red X.",
+        "characters": [
+          "Maren Vale",
+          "Bryn Holloway"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Iska scouts ahead through a collapsed gate.",
+        "visual_description": "A lithe scout slips between the iron teeth of a half-fallen portcullis, moonlight cutting across cracked flagstones and shattered statues of kings.",
+        "characters": [
+          "Iska Thorn"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The team meets a trembling townsperson hiding in a cellar.",
+        "visual_description": "A soot-streaked woman clutches a child in a candlelit cellar of broken crockery, whispering to the kneeling rescuers. Shadows of patrolling boots pass the grate above.",
+        "characters": [
+          "Maren Vale",
+          "Bryn Holloway",
+          "Old Pell",
+          "Goodwife Henna"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon stir argument among the group.",
+        "visual_description": "Inside the cellar, Old Pell gestures wildly toward a charred scale on the table while Maren frowns. Firelight throws huge shadows on the stone walls.",
+        "characters": [
+          "Maren Vale",
+          "Old Pell",
+          "Iska Thorn"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "They slip past an armored patrol in the market ruins.",
+        "visual_description": "The team presses flat against a toppled fountain as black-plated soldiers with torches march through a moonlit plaza of broken stalls.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Bryn deciphers sigils on a sealed magic door.",
+        "visual_description": "A tall arched door covered in glowing blue runes pulses softly. Bryn's hands hover over the symbols, her satchel of scrolls spilling at her feet.",
+        "characters": [
+          "Bryn Holloway",
+          "Maren Vale"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "The door opens onto a hall of broken thrones.",
+        "visual_description": "A vast vaulted throne room with toppled chairs and shattered chandeliers, dust motes drifting in shafts of pale light through a collapsed ceiling.",
+        "characters": [
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn",
+          "Old Pell"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Iska spots the cursed tower from a balcony.",
+        "visual_description": "A high stone balcony overlooks a black tower wrapped in violet lightning. Iska crouches at the rail, her cloak whipping in the storm wind.",
+        "characters": [
+          "Iska Thorn"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Old Pell dozes through a critical briefing.",
+        "visual_description": "A round, robed official snores against a pillar, hat askew, while the others lean over a chalk-drawn floor plan, exasperated.",
+        "characters": [
+          "Old Pell",
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They climb the cursed tower's spiral stair.",
+        "visual_description": "A narrow spiral of worn stone steps lit by floating green witchlights. The rescuers ascend in single file, weapons drawn, shadows twisting unnaturally on the walls.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They find Prince Aldric chained in the tower's heart.",
+        "visual_description": "A pale young man in tattered finery is shackled to a glowing altar in a circular chamber. Iron chains hum with red magic; the rescuers stop short in horror.",
+        "characters": [
+          "Prince Aldric",
+          "Maren Vale",
+          "Bryn Holloway"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Bryn breaks the binding spell.",
+        "visual_description": "Bryn's hands blaze with white light as runes shatter outward from the altar. The prince gasps as chains crumble into red dust.",
+        "characters": [
+          "Bryn Holloway",
+          "Prince Aldric",
+          "Maren Vale"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Alarm bells ring across the ruined city.",
+        "visual_description": "From a tower window, the group sees torches flooding the streets below and a great cracked bell swinging in a distant belfry, mouths open in alarm.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Prince Aldric",
+          "Old Pell"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A dragon's shadow sweeps over the rooftops.",
+        "visual_description": "An enormous winged silhouette passes across the moon, briefly darkening the alley where the rescuers flatten themselves against a wall, faces pale with fear.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Old Pell surprises everyone by opening a hidden way.",
+        "visual_description": "The sleepy official taps a brick and a section of wall grinds aside, revealing a torch-lit stair down. He grins, suddenly sharp-eyed; the others stare.",
+        "characters": [
+          "Old Pell",
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They race across the crumbling river bridge.",
+        "visual_description": "A long stone bridge over a black river breaks apart behind running figures. Stones tumble into the water as patrol arrows streak through the night air.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Safe on the far bank, they look back at the ruined crown.",
+        "visual_description": "Five silhouettes stand on a misty hillside at dawn, the broken city smoldering across the river. A torn royal banner is planted in the grass beside them.",
+        "characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 5,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 5,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2777777777777778,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Bryn Holloway"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iska Thorn"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Bryn Holloway",
+          "Old Pell",
+          "Goodwife Henna"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Old Pell",
+          "Iska Thorn"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Bryn Holloway",
+          "Maren Vale"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn",
+          "Old Pell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iska Thorn"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Pell",
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Aldric",
+          "Maren Vale",
+          "Bryn Holloway"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Bryn Holloway",
+          "Prince Aldric",
+          "Maren Vale"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Prince Aldric",
+          "Old Pell"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Pell",
+          "Maren Vale",
+          "Bryn Holloway",
+          "Iska Thorn",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren Vale",
+          "Iska Thorn",
+          "Bryn Holloway",
+          "Old Pell",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 20
+}

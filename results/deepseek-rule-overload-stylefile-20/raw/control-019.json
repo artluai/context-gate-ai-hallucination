@@ -1,0 +1,532 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "2ccd130f-5ed9-4a1c-896d-a89c96c926b8",
+      "object": "chat.completion",
+      "created": 1779005094,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "4b1dc94b-549b-48af-9d98-064ad4909a4c",
+      "object": "chat.completion",
+      "created": 1779005095,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined royal city.\",\n      \"visual_description\": \"A massive stone archway, half-collapsed and overgrown with thorny vines, marks the entrance to a fallen city; tattered royal banners hang limp in the still air.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings at the market square.\",\n      \"visual_description\": \"Frightened villagers huddle near a dried-up fountain, their eyes darting toward the palace towers; one woman clutches a child and points fearfully.\",\n      \"characters\": [\"Riona\", \"Elder Maris\", \"Frightened Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the outer ward.\",\n      \"visual_description\": \"Rows of plate-armored soldiers with crimson crests stomp in unison past broken colonnades, their visors lowered, shields bearing a sunburst emblem.\",\n      \"characters\": [\"Kael\", \"Serin\", \"Crimson Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party scouts the forbidden castle gates.\",\n      \"visual_description\": \"Iron gates rusted shut, their bars entwined with glowing blue ivy; beyond them a courtyard littered with rubble and a single white flagpole.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A cursed tower looms over the inner bailey.\",\n      \"visual_description\": \"A spiral tower of black stone, its windows sealed with greenish crystal, a faint hum emanating from its peak; a raven perches on a broken spire.\",\n      \"characters\": [\"Serin\", \"Raven\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon spread through the camp.\",\n      \"visual_description\": \"Flickering campfire light casts long shadows on a tent wall as a hooded storyteller gestures wildly, a crude dragon drawing scratched into the dirt floor.\",\n      \"characters\": [\"Kael\", \"Hooded Storyteller\", \"Camp Followers\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party enters the throne room.\",\n      \"visual_description\": \"Shattered stained glass scatters rainbow light across a cracked marble floor; an empty throne of gilded bone sits on a raised dais, cobwebs veiling the arms.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A magic door blocks the lower vaults.\",\n      \"visual_description\": \"A door of polished obsidian engraved with shifting runes, its surface rippling like water; no handle or lock is visible, only pulsing glyphs.\",\n      \"characters\": [\"Riona\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Kael disarms the rune trap.\",\n      \"visual_description\": \"Kael crouches before the door, a thin blade tracing the rune lines; sparks fly as a ward flares and fades, the stone groaning open.\",\n      \"characters\": [\"Kael\", \"Riona\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The rescue target is found in the dungeon.\",\n      \"visual_description\": \"A dim cell with rusted bars, straw on the floor; a figure in chains lifts their head, face pale but eyes defiant.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Alarms sound as the patrol discovers them.\",\n      \"visual_description\": \"A gong boom echoes through stone corridors; torchlight bounces off armor as soldiers round a corner, swords drawn.\",\n      \"characters\": [\"Crimson Patrol\", \"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Fight through the armory hall.\",\n      \"visual_description\": \"Sparks fly from clashing blades amid racks of rusted weapons; a suit of animated armor lurches forward, halberd swinging.\",\n      \"characters\": [\"Kael\", \"Serin\", \"Animated Armor\", \"Crimson Patrol\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Riona unlocks the sealed treasury door.\",\n      \"visual_description\": \"A silver disc with spinning concentric rings embedded in a stone wall; Riona twists the rings until they align with a click, dust raining down.\",\n      \"characters\": [\"Riona\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The party crosses the cursed tower bridge.\",\n      \"visual_description\": \"A narrow stone bridge high above a mist-filled chasm, its railings carved with weeping faces; the black tower looms at the far end.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A spectral guardian rises from the tower gate.\",\n      \"visual_description\": \"A translucent knight in ancient plate armor, sword wreathed in blue flame, materializes from the stone archway, its eyes empty sockets.\",\n      \"characters\": [\"Spectral Guardian\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The dragon is sighted circling above.\",\n      \"visual_description\": \"A massive winged silhouette passes across the low clouds, scales glinting like embers; a deep roar rattles the broken windows.\",\n      \"characters\": [\"Riona\", \"Prince Aldric\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Final escape across the great bridge.\",\n      \"visual_description\": \"A long stone bridge spanning a river of molten light, its arches crumbling; the party runs as the city crumbles behind them, the dragon diving from above.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party reaches the far side and looks back.\",\n      \"visual_description\": \"Dawn light breaks over the ruined city, the bridge collapsing into the chasm; the five figures stand on a grassy hill, catching their breath.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1500,
+        "total_tokens": 2004,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined royal city.\",\n      \"visual_description\": \"A massive stone archway, half-collapsed and overgrown with thorny vines, marks the entrance to a fallen city; tattered royal banners hang limp in the still air.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Townspeople whisper warnings at the market square.\",\n      \"visual_description\": \"Frightened villagers huddle near a dried-up fountain, their eyes darting toward the palace towers; one woman clutches a child and points fearfully.\",\n      \"characters\": [\"Riona\", \"Elder Maris\", \"Frightened Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the outer ward.\",\n      \"visual_description\": \"Rows of plate-armored soldiers with crimson crests stomp in unison past broken colonnades, their visors lowered, shields bearing a sunburst emblem.\",\n      \"characters\": [\"Kael\", \"Serin\", \"Crimson Patrol\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party scouts the forbidden castle gates.\",\n      \"visual_description\": \"Iron gates rusted shut, their bars entwined with glowing blue ivy; beyond them a courtyard littered with rubble and a single white flagpole.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A cursed tower looms over the inner bailey.\",\n      \"visual_description\": \"A spiral tower of black stone, its windows sealed with greenish crystal, a faint hum emanating from its peak; a raven perches on a broken spire.\",\n      \"characters\": [\"Serin\", \"Raven\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon spread through the camp.\",\n      \"visual_description\": \"Flickering campfire light casts long shadows on a tent wall as a hooded storyteller gestures wildly, a crude dragon drawing scratched into the dirt floor.\",\n      \"characters\": [\"Kael\", \"Hooded Storyteller\", \"Camp Followers\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The party enters the throne room.\",\n      \"visual_description\": \"Shattered stained glass scatters rainbow light across a cracked marble floor; an empty throne of gilded bone sits on a raised dais, cobwebs veiling the arms.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A magic door blocks the lower vaults.\",\n      \"visual_description\": \"A door of polished obsidian engraved with shifting runes, its surface rippling like water; no handle or lock is visible, only pulsing glyphs.\",\n      \"characters\": [\"Riona\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Kael disarms the rune trap.\",\n      \"visual_description\": \"Kael crouches before the door, a thin blade tracing the rune lines; sparks fly as a ward flares and fades, the stone groaning open.\",\n      \"characters\": [\"Kael\", \"Riona\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The rescue target is found in the dungeon.\",\n      \"visual_description\": \"A dim cell with rusted bars, straw on the floor; a figure in chains lifts their head, face pale but eyes defiant.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Alarms sound as the patrol discovers them.\",\n      \"visual_description\": \"A gong boom echoes through stone corridors; torchlight bounces off armor as soldiers round a corner, swords drawn.\",\n      \"characters\": [\"Crimson Patrol\", \"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Fight through the armory hall.\",\n      \"visual_description\": \"Sparks fly from clashing blades amid racks of rusted weapons; a suit of animated armor lurches forward, halberd swinging.\",\n      \"characters\": [\"Kael\", \"Serin\", \"Animated Armor\", \"Crimson Patrol\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Riona unlocks the sealed treasury door.\",\n      \"visual_description\": \"A silver disc with spinning concentric rings embedded in a stone wall; Riona twists the rings until they align with a click, dust raining down.\",\n      \"characters\": [\"Riona\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The party crosses the cursed tower bridge.\",\n      \"visual_description\": \"A narrow stone bridge high above a mist-filled chasm, its railings carved with weeping faces; the black tower looms at the far end.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A spectral guardian rises from the tower gate.\",\n      \"visual_description\": \"A translucent knight in ancient plate armor, sword wreathed in blue flame, materializes from the stone archway, its eyes empty sockets.\",\n      \"characters\": [\"Spectral Guardian\", \"Kael\", \"Serin\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The dragon is sighted circling above.\",\n      \"visual_description\": \"A massive winged silhouette passes across the low clouds, scales glinting like embers; a deep roar rattles the broken windows.\",\n      \"characters\": [\"Riona\", \"Prince Aldric\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Final escape across the great bridge.\",\n      \"visual_description\": \"A long stone bridge spanning a river of molten light, its arches crumbling; the party runs as the city crumbles behind them, the dragon diving from above.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party reaches the far side and looks back.\",\n      \"visual_description\": \"Dawn light breaks over the ruined city, the bridge collapsing into the chasm; the five figures stand on a grassy hill, catching their breath.\",\n      \"characters\": [\"Riona\", \"Kael\", \"Serin\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party approaches the ruined royal city.",
+        "visual_description": "A massive stone archway, half-collapsed and overgrown with thorny vines, marks the entrance to a fallen city; tattered royal banners hang limp in the still air.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Townspeople whisper warnings at the market square.",
+        "visual_description": "Frightened villagers huddle near a dried-up fountain, their eyes darting toward the palace towers; one woman clutches a child and points fearfully.",
+        "characters": [
+          "Riona",
+          "Elder Maris",
+          "Frightened Townspeople"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrols march through the outer ward.",
+        "visual_description": "Rows of plate-armored soldiers with crimson crests stomp in unison past broken colonnades, their visors lowered, shields bearing a sunburst emblem.",
+        "characters": [
+          "Kael",
+          "Serin",
+          "Crimson Patrol"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party scouts the forbidden castle gates.",
+        "visual_description": "Iron gates rusted shut, their bars entwined with glowing blue ivy; beyond them a courtyard littered with rubble and a single white flagpole.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "A cursed tower looms over the inner bailey.",
+        "visual_description": "A spiral tower of black stone, its windows sealed with greenish crystal, a faint hum emanating from its peak; a raven perches on a broken spire.",
+        "characters": [
+          "Serin",
+          "Raven"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Rumors of a dragon spread through the camp.",
+        "visual_description": "Flickering campfire light casts long shadows on a tent wall as a hooded storyteller gestures wildly, a crude dragon drawing scratched into the dirt floor.",
+        "characters": [
+          "Kael",
+          "Hooded Storyteller",
+          "Camp Followers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The party enters the throne room.",
+        "visual_description": "Shattered stained glass scatters rainbow light across a cracked marble floor; an empty throne of gilded bone sits on a raised dais, cobwebs veiling the arms.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "A magic door blocks the lower vaults.",
+        "visual_description": "A door of polished obsidian engraved with shifting runes, its surface rippling like water; no handle or lock is visible, only pulsing glyphs.",
+        "characters": [
+          "Riona",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Kael disarms the rune trap.",
+        "visual_description": "Kael crouches before the door, a thin blade tracing the rune lines; sparks fly as a ward flares and fades, the stone groaning open.",
+        "characters": [
+          "Kael",
+          "Riona",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The rescue target is found in the dungeon.",
+        "visual_description": "A dim cell with rusted bars, straw on the floor; a figure in chains lifts their head, face pale but eyes defiant.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Alarms sound as the patrol discovers them.",
+        "visual_description": "A gong boom echoes through stone corridors; torchlight bounces off armor as soldiers round a corner, swords drawn.",
+        "characters": [
+          "Crimson Patrol",
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Fight through the armory hall.",
+        "visual_description": "Sparks fly from clashing blades amid racks of rusted weapons; a suit of animated armor lurches forward, halberd swinging.",
+        "characters": [
+          "Kael",
+          "Serin",
+          "Animated Armor",
+          "Crimson Patrol"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Riona unlocks the sealed treasury door.",
+        "visual_description": "A silver disc with spinning concentric rings embedded in a stone wall; Riona twists the rings until they align with a click, dust raining down.",
+        "characters": [
+          "Riona",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The party crosses the cursed tower bridge.",
+        "visual_description": "A narrow stone bridge high above a mist-filled chasm, its railings carved with weeping faces; the black tower looms at the far end.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A spectral guardian rises from the tower gate.",
+        "visual_description": "A translucent knight in ancient plate armor, sword wreathed in blue flame, materializes from the stone archway, its eyes empty sockets.",
+        "characters": [
+          "Spectral Guardian",
+          "Kael",
+          "Serin"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The dragon is sighted circling above.",
+        "visual_description": "A massive winged silhouette passes across the low clouds, scales glinting like embers; a deep roar rattles the broken windows.",
+        "characters": [
+          "Riona",
+          "Prince Aldric",
+          "Dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Final escape across the great bridge.",
+        "visual_description": "A long stone bridge spanning a river of molten light, its arches crumbling; the party runs as the city crumbles behind them, the dragon diving from above.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric",
+          "Dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party reaches the far side and looks back.",
+        "visual_description": "Dawn light breaks over the ruined city, the bridge collapsing into the chasm; the five figures stand on a grassy hill, catching their breath.",
+        "characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 7,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 7,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3888888888888889,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Elder Maris",
+          "Frightened Townspeople"
+        ],
+        "forbidden_words": [
+          "villagers"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Serin",
+          "Crimson Patrol"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Serin",
+          "Raven"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Hooded Storyteller",
+          "Camp Followers"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Serin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Riona",
+          "Serin"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Crimson Patrol",
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kael",
+          "Serin",
+          "Animated Armor",
+          "Crimson Patrol"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Spectral Guardian",
+          "Kael",
+          "Serin"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Prince Aldric",
+          "Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric",
+          "Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Riona",
+          "Kael",
+          "Serin",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 19
+}

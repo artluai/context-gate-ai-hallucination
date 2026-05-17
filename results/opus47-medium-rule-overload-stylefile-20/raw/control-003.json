@@ -1,0 +1,553 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017101-zt6Pd2jHulVHsZxOCLUV",
+      "object": "chat.completion",
+      "created": 1779017101,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 240,
+        "total_tokens": 958,
+        "cost": 0.00959,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00959,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.006
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 88,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017110-mztf6iIanCagp1KDJEdS",
+      "object": "chat.completion",
+      "created": 1779017110,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Ember Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A ruined royal city smolders under a bruised sky.\",\n      \"visual_description\": \"Wide establishing shot of a collapsed skyline of broken spires, tattered banners, and smoke drifting over cracked streets.\",\n      \"characters\": [\"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers at the city's outer wall.\",\n      \"visual_description\": \"Four figures crouched behind a shattered statue, unrolling a map; the ruined castle looms in the distance.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The mapmaker traces a safe path through the rubble.\",\n      \"visual_description\": \"Close-up of a weathered parchment map with glowing ink lines, hands pointing toward a marked tower.\",\n      \"characters\": [\"Lady Halden\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The castle gates stand cracked and tempting.\",\n      \"visual_description\": \"Massive iron gates ajar, half-buried in vines, with carved lions split down the middle; a faint golden glow leaks through.\",\n      \"characters\": [\"Pip the Scout\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"An armored patrol marches along the broken avenue.\",\n      \"visual_description\": \"A column of black-plated guards with spears, torchlight glinting on visors, passing a toppled fountain.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople whisper of a captured heir.\",\n      \"visual_description\": \"Huddled civilians in a candlelit cellar, ragged clothes, wide eyes, pointing upward toward a cursed tower.\",\n      \"characters\": [\"Captain Wren\", \"Mira the Baker\", \"Old Tomas\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Old Tomas dozes mid-sentence with crucial information.\",\n      \"visual_description\": \"A round, bearded official slumped in a chair, snoring, a half-eaten loaf in his lap while others lean in eagerly.\",\n      \"characters\": [\"Old Tomas\", \"Mira the Baker\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Rumors of a dragon circling the cursed tower.\",\n      \"visual_description\": \"Silhouette of vast wings crossing a blood-red moon above a leaning black spire, seen from a broken window.\",\n      \"characters\": [\"Pip the Scout\", \"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Tattered royal banners mark the old processional road.\",\n      \"visual_description\": \"Long crimson banners with faded gold sigils, half-burned, fluttering between leaning lamp posts on a cobbled street.\",\n      \"characters\": [\"Captain Wren\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party reaches a magic door sealed with runes.\",\n      \"visual_description\": \"Tall stone door etched with concentric glowing sigils, pulsing blue, set into a moss-covered wall.\",\n      \"characters\": [\"Mage Oris\", \"Captain Wren\", \"Pip the Scout\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Mage Oris coaxes the runes open with trembling hands.\",\n      \"visual_description\": \"Close-up of glowing fingertips touching a sigil, light fanning across the door as cracks of bright energy spread.\",\n      \"characters\": [\"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside, a spiral stair winds up the cursed tower.\",\n      \"visual_description\": \"Vertiginous interior shot looking up a crumbling spiral stair lit by floating candle flames.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Pip scouts ahead and spots the captive heir.\",\n      \"visual_description\": \"A small lithe figure peering through a barred slit; beyond, a young prisoner chained beside a flickering brazier.\",\n      \"characters\": [\"Pip the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The rescuers break the chains binding the heir.\",\n      \"visual_description\": \"Captain Wren swinging a glowing sword down on iron shackles, sparks flying, the prince shielding his eyes.\",\n      \"characters\": [\"Captain Wren\", \"Prince Aldric\", \"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarm horns scream across the ruined city.\",\n      \"visual_description\": \"View from a tower window: torches igniting across rooftops, patrols converging, banners snapping in sudden wind.\",\n      \"characters\": [\"Pip the Scout\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The party flees down through collapsing halls.\",\n      \"visual_description\": \"Action shot of five figures sprinting through a corridor as stone blocks fall behind them, dust billowing.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A narrow stone bridge stretches over a roaring chasm.\",\n      \"visual_description\": \"Crumbling arched bridge spanning a misty gorge, distant dragon silhouette wheeling overhead, dawn light breaking.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to freedom as the bridge crumbles behind them.\",\n      \"visual_description\": \"Final stones falling into the gorge as the five rescuers reach a green hillside lit by sunrise, the ruined city behind.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2286,
+        "total_tokens": 3172,
+        "cost": 0.06158,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06158,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.05715
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Ember Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A ruined royal city smolders under a bruised sky.\",\n      \"visual_description\": \"Wide establishing shot of a collapsed skyline of broken spires, tattered banners, and smoke drifting over cracked streets.\",\n      \"characters\": [\"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The rescue party gathers at the city's outer wall.\",\n      \"visual_description\": \"Four figures crouched behind a shattered statue, unrolling a map; the ruined castle looms in the distance.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"The mapmaker traces a safe path through the rubble.\",\n      \"visual_description\": \"Close-up of a weathered parchment map with glowing ink lines, hands pointing toward a marked tower.\",\n      \"characters\": [\"Lady Halden\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The castle gates stand cracked and tempting.\",\n      \"visual_description\": \"Massive iron gates ajar, half-buried in vines, with carved lions split down the middle; a faint golden glow leaks through.\",\n      \"characters\": [\"Pip the Scout\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"An armored patrol marches along the broken avenue.\",\n      \"visual_description\": \"A column of black-plated guards with spears, torchlight glinting on visors, passing a toppled fountain.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Frightened townspeople whisper of a captured heir.\",\n      \"visual_description\": \"Huddled civilians in a candlelit cellar, ragged clothes, wide eyes, pointing upward toward a cursed tower.\",\n      \"characters\": [\"Captain Wren\", \"Mira the Baker\", \"Old Tomas\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Old Tomas dozes mid-sentence with crucial information.\",\n      \"visual_description\": \"A round, bearded official slumped in a chair, snoring, a half-eaten loaf in his lap while others lean in eagerly.\",\n      \"characters\": [\"Old Tomas\", \"Mira the Baker\", \"Captain Wren\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Rumors of a dragon circling the cursed tower.\",\n      \"visual_description\": \"Silhouette of vast wings crossing a blood-red moon above a leaning black spire, seen from a broken window.\",\n      \"characters\": [\"Pip the Scout\", \"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Tattered royal banners mark the old processional road.\",\n      \"visual_description\": \"Long crimson banners with faded gold sigils, half-burned, fluttering between leaning lamp posts on a cobbled street.\",\n      \"characters\": [\"Captain Wren\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"The party reaches a magic door sealed with runes.\",\n      \"visual_description\": \"Tall stone door etched with concentric glowing sigils, pulsing blue, set into a moss-covered wall.\",\n      \"characters\": [\"Mage Oris\", \"Captain Wren\", \"Pip the Scout\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Mage Oris coaxes the runes open with trembling hands.\",\n      \"visual_description\": \"Close-up of glowing fingertips touching a sigil, light fanning across the door as cracks of bright energy spread.\",\n      \"characters\": [\"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Inside, a spiral stair winds up the cursed tower.\",\n      \"visual_description\": \"Vertiginous interior shot looking up a crumbling spiral stair lit by floating candle flames.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Pip scouts ahead and spots the captive heir.\",\n      \"visual_description\": \"A small lithe figure peering through a barred slit; beyond, a young prisoner chained beside a flickering brazier.\",\n      \"characters\": [\"Pip the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The rescuers break the chains binding the heir.\",\n      \"visual_description\": \"Captain Wren swinging a glowing sword down on iron shackles, sparks flying, the prince shielding his eyes.\",\n      \"characters\": [\"Captain Wren\", \"Prince Aldric\", \"Mage Oris\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Alarm horns scream across the ruined city.\",\n      \"visual_description\": \"View from a tower window: torches igniting across rooftops, patrols converging, banners snapping in sudden wind.\",\n      \"characters\": [\"Pip the Scout\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The party flees down through collapsing halls.\",\n      \"visual_description\": \"Action shot of five figures sprinting through a corridor as stone blocks fall behind them, dust billowing.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"A narrow stone bridge stretches over a roaring chasm.\",\n      \"visual_description\": \"Crumbling arched bridge spanning a misty gorge, distant dragon silhouette wheeling overhead, dawn light breaking.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to freedom as the bridge crumbles behind them.\",\n      \"visual_description\": \"Final stones falling into the gorge as the five rescuers reach a green hillside lit by sunrise, the ruined city behind.\",\n      \"characters\": [\"Captain Wren\", \"Pip the Scout\", \"Mage Oris\", \"Lady Halden\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Ember Heir",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A ruined royal city smolders under a bruised sky.",
+        "visual_description": "Wide establishing shot of a collapsed skyline of broken spires, tattered banners, and smoke drifting over cracked streets.",
+        "characters": [
+          "Captain Wren"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The rescue party gathers at the city's outer wall.",
+        "visual_description": "Four figures crouched behind a shattered statue, unrolling a map; the ruined castle looms in the distance.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "The mapmaker traces a safe path through the rubble.",
+        "visual_description": "Close-up of a weathered parchment map with glowing ink lines, hands pointing toward a marked tower.",
+        "characters": [
+          "Lady Halden",
+          "Captain Wren"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The castle gates stand cracked and tempting.",
+        "visual_description": "Massive iron gates ajar, half-buried in vines, with carved lions split down the middle; a faint golden glow leaks through.",
+        "characters": [
+          "Pip the Scout",
+          "Captain Wren"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "An armored patrol marches along the broken avenue.",
+        "visual_description": "A column of black-plated guards with spears, torchlight glinting on visors, passing a toppled fountain.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Frightened townspeople whisper of a captured heir.",
+        "visual_description": "Huddled civilians in a candlelit cellar, ragged clothes, wide eyes, pointing upward toward a cursed tower.",
+        "characters": [
+          "Captain Wren",
+          "Mira the Baker",
+          "Old Tomas"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Old Tomas dozes mid-sentence with crucial information.",
+        "visual_description": "A round, bearded official slumped in a chair, snoring, a half-eaten loaf in his lap while others lean in eagerly.",
+        "characters": [
+          "Old Tomas",
+          "Mira the Baker",
+          "Captain Wren"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Rumors of a dragon circling the cursed tower.",
+        "visual_description": "Silhouette of vast wings crossing a blood-red moon above a leaning black spire, seen from a broken window.",
+        "characters": [
+          "Pip the Scout",
+          "Mage Oris"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Tattered royal banners mark the old processional road.",
+        "visual_description": "Long crimson banners with faded gold sigils, half-burned, fluttering between leaning lamp posts on a cobbled street.",
+        "characters": [
+          "Captain Wren",
+          "Lady Halden"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "The party reaches a magic door sealed with runes.",
+        "visual_description": "Tall stone door etched with concentric glowing sigils, pulsing blue, set into a moss-covered wall.",
+        "characters": [
+          "Mage Oris",
+          "Captain Wren",
+          "Pip the Scout",
+          "Lady Halden"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Mage Oris coaxes the runes open with trembling hands.",
+        "visual_description": "Close-up of glowing fingertips touching a sigil, light fanning across the door as cracks of bright energy spread.",
+        "characters": [
+          "Mage Oris"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Inside, a spiral stair winds up the cursed tower.",
+        "visual_description": "Vertiginous interior shot looking up a crumbling spiral stair lit by floating candle flames.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Pip scouts ahead and spots the captive heir.",
+        "visual_description": "A small lithe figure peering through a barred slit; beyond, a young prisoner chained beside a flickering brazier.",
+        "characters": [
+          "Pip the Scout",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The rescuers break the chains binding the heir.",
+        "visual_description": "Captain Wren swinging a glowing sword down on iron shackles, sparks flying, the prince shielding his eyes.",
+        "characters": [
+          "Captain Wren",
+          "Prince Aldric",
+          "Mage Oris"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Alarm horns scream across the ruined city.",
+        "visual_description": "View from a tower window: torches igniting across rooftops, patrols converging, banners snapping in sudden wind.",
+        "characters": [
+          "Pip the Scout",
+          "Lady Halden",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The party flees down through collapsing halls.",
+        "visual_description": "Action shot of five figures sprinting through a corridor as stone blocks fall behind them, dust billowing.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "A narrow stone bridge stretches over a roaring chasm.",
+        "visual_description": "Crumbling arched bridge spanning a misty gorge, distant dragon silhouette wheeling overhead, dawn light breaking.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross to freedom as the bridge crumbles behind them.",
+        "visual_description": "Final stones falling into the gorge as the five rescuers reach a green hillside lit by sunrise, the ruined city behind.",
+        "characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 4,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 4,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2222222222222222,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Lady Halden",
+          "Captain Wren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Pip the Scout",
+          "Captain Wren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Mira the Baker",
+          "Old Tomas"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Tomas",
+          "Mira the Baker",
+          "Captain Wren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Pip the Scout",
+          "Mage Oris"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Lady Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mage Oris",
+          "Captain Wren",
+          "Pip the Scout",
+          "Lady Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mage Oris"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Pip the Scout",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Prince Aldric",
+          "Mage Oris"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Pip the Scout",
+          "Lady Halden",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Wren",
+          "Pip the Scout",
+          "Mage Oris",
+          "Lady Halden",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 3
+}

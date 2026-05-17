@@ -1,0 +1,533 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779017548-wuYhgwTdxSQ6iJfJvN4h",
+      "object": "chat.completion",
+      "created": 1779017548,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 121,
+        "total_tokens": 839,
+        "cost": 0.006615,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.006615,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.003025
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 63,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779017553-NLtxgTn3HiaxK6ebhaVd",
+      "object": "chat.completion",
+      "created": 1779017553,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of the Ember Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A ruined skyline greets the rescuers at dawn.\",\n      \"visual_description\": \"Wide shot of a broken royal city silhouetted against orange dawn light, crumbled spires and tattered banners. Three small figures stand on a ridge overlooking the ruins.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The map reveals the heir's prison tower.\",\n      \"visual_description\": \"Close on weathered hands unrolling a glowing parchment map across a mossy stone, magical ink tracing routes through the ruined city.\",\n      \"characters\": [\"Captain Aelric\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A scout slips ahead to read the gates.\",\n      \"visual_description\": \"A cloaked figure crouches in tall weeds beside a colossal iron castle gate, watching armored patrols march past with torches.\",\n      \"characters\": [\"Mira the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party meets a frightened townsperson hiding in a cellar.\",\n      \"visual_description\": \"A trembling old woman in patched shawls clutches a candle in a low brick cellar, the rescuers kneeling around her in warm candlelight.\",\n      \"characters\": [\"Captain Aelric\", \"Brindle the Mage\", \"Old Henna\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon coil through the marketplace ruins.\",\n      \"visual_description\": \"Cracked market square strewn with overturned carts and scorched stalls; a long claw-mark gouge runs across the cobbles. The scout traces it with one finger.\",\n      \"characters\": [\"Mira the Scout\", \"Old Henna\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A sleepy gate official is bribed with honey cakes.\",\n      \"visual_description\": \"A round, yawning official in a too-large helmet sits on a barrel at a side postern, accepting a cloth bundle of pastries with one half-open eye.\",\n      \"characters\": [\"Captain Aelric\", \"Warden Bompo\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The cursed tower looms at the city's heart.\",\n      \"visual_description\": \"A tall blackened tower wrapped in slow-drifting purple mist, its windows glowing faint green. The party stands small at its base.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol crosses the courtyard.\",\n      \"visual_description\": \"Six knights in tarnished plate march in formation across a moonlit courtyard while the rescuers press flat against a fallen column.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A magic door bars the tower's entrance.\",\n      \"visual_description\": \"An arched door of woven silver runes pulses with cold blue light. The mage raises both hands, fingers tracing matching sigils in the air.\",\n      \"characters\": [\"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside, old royal banners hang in ghostly silence.\",\n      \"visual_description\": \"A long stone hall lined with moth-eaten crimson banners bearing a golden stag crest. Dust motes drift through shafts of pale light.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian challenges the intruders.\",\n      \"visual_description\": \"A translucent armored figure forms from rising dust at the top of a spiral staircase, sword of pale fire drawn.\",\n      \"characters\": [\"Captain Aelric\", \"The Pale Sentinel\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The mage unbinds the guardian's oath.\",\n      \"visual_description\": \"Brindle holds up a small bone token; threads of silver light unspool from the spectral knight, who bows his head as he dissolves.\",\n      \"characters\": [\"Brindle the Mage\", \"The Pale Sentinel\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The captive heir is found chained in a circle of runes.\",\n      \"visual_description\": \"A young figure in tattered fine clothes kneels at the center of a glowing rune circle on the tower's top floor, wrists bound in chains of light.\",\n      \"characters\": [\"Prince Cael\", \"Captain Aelric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The scout disarms the rune lock.\",\n      \"visual_description\": \"Mira kneels at the edge of the rune circle, prying a glowing crystal from the floor with a slender dagger; the chains of light begin to fray.\",\n      \"characters\": [\"Mira the Scout\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's roar shakes the tower.\",\n      \"visual_description\": \"View through a shattered tower window: an enormous red dragon banks past broken spires, wings blotting out the moon.\",\n      \"characters\": [\"Captain Aelric\", \"Prince Cael\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee down the tower as patrols close in.\",\n      \"visual_description\": \"The rescuers race down a crumbling spiral staircase, torches and shouting helmets visible far below through gaps in the stonework.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The mage conjures a path across the broken bridge.\",\n      \"visual_description\": \"A vast stone bridge yawns in half over a misty chasm. Brindle's staff blazes white, and slabs of glowing light stitch the gap together.\",\n      \"characters\": [\"Brindle the Mage\", \"Captain Aelric\", \"Mira the Scout\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to freedom as the city burns behind them.\",\n      \"visual_description\": \"Silhouetted figures hurry along the magical bridge at sunrise; behind them the ruined city glows orange under the circling dragon's fire.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\", \"Prince Cael\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2336,
+        "total_tokens": 3222,
+        "cost": 0.06283,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.06283,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.0584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of the Ember Heir\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A ruined skyline greets the rescuers at dawn.\",\n      \"visual_description\": \"Wide shot of a broken royal city silhouetted against orange dawn light, crumbled spires and tattered banners. Three small figures stand on a ridge overlooking the ruins.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"The map reveals the heir's prison tower.\",\n      \"visual_description\": \"Close on weathered hands unrolling a glowing parchment map across a mossy stone, magical ink tracing routes through the ruined city.\",\n      \"characters\": [\"Captain Aelric\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"A scout slips ahead to read the gates.\",\n      \"visual_description\": \"A cloaked figure crouches in tall weeds beside a colossal iron castle gate, watching armored patrols march past with torches.\",\n      \"characters\": [\"Mira the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party meets a frightened townsperson hiding in a cellar.\",\n      \"visual_description\": \"A trembling old woman in patched shawls clutches a candle in a low brick cellar, the rescuers kneeling around her in warm candlelight.\",\n      \"characters\": [\"Captain Aelric\", \"Brindle the Mage\", \"Old Henna\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Rumors of a dragon coil through the marketplace ruins.\",\n      \"visual_description\": \"Cracked market square strewn with overturned carts and scorched stalls; a long claw-mark gouge runs across the cobbles. The scout traces it with one finger.\",\n      \"characters\": [\"Mira the Scout\", \"Old Henna\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"A sleepy gate official is bribed with honey cakes.\",\n      \"visual_description\": \"A round, yawning official in a too-large helmet sits on a barrel at a side postern, accepting a cloth bundle of pastries with one half-open eye.\",\n      \"characters\": [\"Captain Aelric\", \"Warden Bompo\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"The cursed tower looms at the city's heart.\",\n      \"visual_description\": \"A tall blackened tower wrapped in slow-drifting purple mist, its windows glowing faint green. The party stands small at its base.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"An armored patrol crosses the courtyard.\",\n      \"visual_description\": \"Six knights in tarnished plate march in formation across a moonlit courtyard while the rescuers press flat against a fallen column.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"A magic door bars the tower's entrance.\",\n      \"visual_description\": \"An arched door of woven silver runes pulses with cold blue light. The mage raises both hands, fingers tracing matching sigils in the air.\",\n      \"characters\": [\"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside, old royal banners hang in ghostly silence.\",\n      \"visual_description\": \"A long stone hall lined with moth-eaten crimson banners bearing a golden stag crest. Dust motes drift through shafts of pale light.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"A spectral guardian challenges the intruders.\",\n      \"visual_description\": \"A translucent armored figure forms from rising dust at the top of a spiral staircase, sword of pale fire drawn.\",\n      \"characters\": [\"Captain Aelric\", \"The Pale Sentinel\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"The mage unbinds the guardian's oath.\",\n      \"visual_description\": \"Brindle holds up a small bone token; threads of silver light unspool from the spectral knight, who bows his head as he dissolves.\",\n      \"characters\": [\"Brindle the Mage\", \"The Pale Sentinel\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The captive heir is found chained in a circle of runes.\",\n      \"visual_description\": \"A young figure in tattered fine clothes kneels at the center of a glowing rune circle on the tower's top floor, wrists bound in chains of light.\",\n      \"characters\": [\"Prince Cael\", \"Captain Aelric\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The scout disarms the rune lock.\",\n      \"visual_description\": \"Mira kneels at the edge of the rune circle, prying a glowing crystal from the floor with a slender dagger; the chains of light begin to fray.\",\n      \"characters\": [\"Mira the Scout\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A dragon's roar shakes the tower.\",\n      \"visual_description\": \"View through a shattered tower window: an enormous red dragon banks past broken spires, wings blotting out the moon.\",\n      \"characters\": [\"Captain Aelric\", \"Prince Cael\", \"Brindle the Mage\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They flee down the tower as patrols close in.\",\n      \"visual_description\": \"The rescuers race down a crumbling spiral staircase, torches and shouting helmets visible far below through gaps in the stonework.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The mage conjures a path across the broken bridge.\",\n      \"visual_description\": \"A vast stone bridge yawns in half over a misty chasm. Brindle's staff blazes white, and slabs of glowing light stitch the gap together.\",\n      \"characters\": [\"Brindle the Mage\", \"Captain Aelric\", \"Mira the Scout\", \"Prince Cael\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to freedom as the city burns behind them.\",\n      \"visual_description\": \"Silhouetted figures hurry along the magical bridge at sunrise; behind them the ruined city glows orange under the circling dragon's fire.\",\n      \"characters\": [\"Captain Aelric\", \"Mira the Scout\", \"Brindle the Mage\", \"Prince Cael\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of the Ember Heir",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A ruined skyline greets the rescuers at dawn.",
+        "visual_description": "Wide shot of a broken royal city silhouetted against orange dawn light, crumbled spires and tattered banners. Three small figures stand on a ridge overlooking the ruins.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "The map reveals the heir's prison tower.",
+        "visual_description": "Close on weathered hands unrolling a glowing parchment map across a mossy stone, magical ink tracing routes through the ruined city.",
+        "characters": [
+          "Captain Aelric",
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "A scout slips ahead to read the gates.",
+        "visual_description": "A cloaked figure crouches in tall weeds beside a colossal iron castle gate, watching armored patrols march past with torches.",
+        "characters": [
+          "Mira the Scout"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party meets a frightened townsperson hiding in a cellar.",
+        "visual_description": "A trembling old woman in patched shawls clutches a candle in a low brick cellar, the rescuers kneeling around her in warm candlelight.",
+        "characters": [
+          "Captain Aelric",
+          "Brindle the Mage",
+          "Old Henna"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Rumors of a dragon coil through the marketplace ruins.",
+        "visual_description": "Cracked market square strewn with overturned carts and scorched stalls; a long claw-mark gouge runs across the cobbles. The scout traces it with one finger.",
+        "characters": [
+          "Mira the Scout",
+          "Old Henna"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "A sleepy gate official is bribed with honey cakes.",
+        "visual_description": "A round, yawning official in a too-large helmet sits on a barrel at a side postern, accepting a cloth bundle of pastries with one half-open eye.",
+        "characters": [
+          "Captain Aelric",
+          "Warden Bompo"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "The cursed tower looms at the city's heart.",
+        "visual_description": "A tall blackened tower wrapped in slow-drifting purple mist, its windows glowing faint green. The party stands small at its base.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "An armored patrol crosses the courtyard.",
+        "visual_description": "Six knights in tarnished plate march in formation across a moonlit courtyard while the rescuers press flat against a fallen column.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "A magic door bars the tower's entrance.",
+        "visual_description": "An arched door of woven silver runes pulses with cold blue light. The mage raises both hands, fingers tracing matching sigils in the air.",
+        "characters": [
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Inside, old royal banners hang in ghostly silence.",
+        "visual_description": "A long stone hall lined with moth-eaten crimson banners bearing a golden stag crest. Dust motes drift through shafts of pale light.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "A spectral guardian challenges the intruders.",
+        "visual_description": "A translucent armored figure forms from rising dust at the top of a spiral staircase, sword of pale fire drawn.",
+        "characters": [
+          "Captain Aelric",
+          "The Pale Sentinel"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "The mage unbinds the guardian's oath.",
+        "visual_description": "Brindle holds up a small bone token; threads of silver light unspool from the spectral knight, who bows his head as he dissolves.",
+        "characters": [
+          "Brindle the Mage",
+          "The Pale Sentinel"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The captive heir is found chained in a circle of runes.",
+        "visual_description": "A young figure in tattered fine clothes kneels at the center of a glowing rune circle on the tower's top floor, wrists bound in chains of light.",
+        "characters": [
+          "Prince Cael",
+          "Captain Aelric"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The scout disarms the rune lock.",
+        "visual_description": "Mira kneels at the edge of the rune circle, prying a glowing crystal from the floor with a slender dagger; the chains of light begin to fray.",
+        "characters": [
+          "Mira the Scout",
+          "Prince Cael"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A dragon's roar shakes the tower.",
+        "visual_description": "View through a shattered tower window: an enormous red dragon banks past broken spires, wings blotting out the moon.",
+        "characters": [
+          "Captain Aelric",
+          "Prince Cael",
+          "Brindle the Mage"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They flee down the tower as patrols close in.",
+        "visual_description": "The rescuers race down a crumbling spiral staircase, torches and shouting helmets visible far below through gaps in the stonework.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage",
+          "Prince Cael"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The mage conjures a path across the broken bridge.",
+        "visual_description": "A vast stone bridge yawns in half over a misty chasm. Brindle's staff blazes white, and slabs of glowing light stitch the gap together.",
+        "characters": [
+          "Brindle the Mage",
+          "Captain Aelric",
+          "Mira the Scout",
+          "Prince Cael"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross to freedom as the city burns behind them.",
+        "visual_description": "Silhouetted figures hurry along the magical bridge at sunrise; behind them the ruined city glows orange under the circling dragon's fire.",
+        "characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage",
+          "Prince Cael"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 4,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 4,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.2222222222222222,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Brindle the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Brindle the Mage",
+          "Old Henna"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Scout",
+          "Old Henna"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Warden Bompo"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Mage"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "The Pale Sentinel"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Mage",
+          "The Pale Sentinel"
+        ],
+        "forbidden_words": [
+          "knight"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Cael",
+          "Captain Aelric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Scout",
+          "Prince Cael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Prince Cael",
+          "Brindle the Mage"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage",
+          "Prince Cael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brindle the Mage",
+          "Captain Aelric",
+          "Mira the Scout",
+          "Prince Cael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Aelric",
+          "Mira the Scout",
+          "Brindle the Mage",
+          "Prince Cael"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 7
+}

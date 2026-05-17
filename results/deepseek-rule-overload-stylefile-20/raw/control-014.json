@@ -1,0 +1,580 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "230a7402-cfd4-40cc-86af-d60dd60d2f36",
+      "object": "chat.completion",
+      "created": 1779004840,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "c99576af-0904-4bae-8c63-6d7c9d6c4259",
+      "object": "chat.completion",
+      "created": 1779004841,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined city.\",\n      \"visual_description\": \"A group of four figures stands on a hill overlooking a shattered royal city, its towers silhouetted against a blood-red sunset.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople gather at the main gate.\",\n      \"visual_description\": \"A crowd of ragged townspeople huddles near the broken city gates, clutching bundles and staring in fear at the shadows beyond.\",\n      \"characters\": [\"Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"An armored patrol blocks the entrance.\",\n      \"visual_description\": \"Three soldiers in crested helms and dented breastplates stand with spears crossed before the iron portcullis, torchlight flickering on their armor.\",\n      \"characters\": [\"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party bribes or fights past the guards.\",\n      \"visual_description\": \"Eira tosses a coin pouch to the ground while Kael's hand rests on his sword hilt, the guards exchanging tense glances.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside, old royal banners hang torn from the walls.\",\n      \"visual_description\": \"Long crimson banners with faded golden crests droop from cracked stone walls along a debris-littered avenue.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon reach the party from a refugee.\",\n      \"visual_description\": \"A gaunt old woman clutches a child's hand and whispers urgently to Maren, her eyes wide with terror.\",\n      \"characters\": [\"Maren\", \"Refugee Woman\", \"Child\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They discover a cursed tower that twists the mind.\",\n      \"visual_description\": \"A spiral staircase of black stone rises into darkness, with faint runes glowing like eyes along the walls.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A magic door puzzles the group.\",\n      \"visual_description\": \"A massive door of carved obsidian, inlaid with silver constellations that slowly rotate, blocks their path.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Torben solves the door's riddle.\",\n      \"visual_description\": \"Torben presses a sequence of stars on the door with his fingertips, and the stone grinds inward.\",\n      \"characters\": [\"Torben\", \"Eira\", \"Kael\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside, they find the prisoner in a crystal cell.\",\n      \"visual_description\": \"A young woman with silver hair floats asleep inside a hexagonal crystal suspended from chains in a high chamber.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The rescue triggers a magical alarm.\",\n      \"visual_description\": \"Shimmering blue shockwaves erupt from the crystal's pedestal, ringing like a bell through the tower.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Armored patrols converge on the tower.\",\n      \"visual_description\": \"Soldiers in black-and-gold armor pour into the courtyard below, torches bobbing as they form ranks.\",\n      \"characters\": [\"Guard Captain\", \"Soldier 1\", \"Soldier 2\", \"Soldier 3\", \"Soldier 4\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The party fights through the courtyard.\",\n      \"visual_description\": \"Kael deflects a sword strike while Eira fires an arrow past his shoulder, sparks flying from the clashing blades.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A dragon's roar echoes from the castle.\",\n      \"visual_description\": \"A massive winged shadow passes over the moon, and a reptilian bellow shakes loose tiles from the rooftops.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They flee through a crumbling market district.\",\n      \"visual_description\": \"The party sprints between collapsed stalls and toppled statues, with dust and cobwebs filling the air.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The escape bridge is partially destroyed.\",\n      \"visual_description\": \"A stone bridge arches over a deep chasm, its middle section broken into a gap of splintered masonry and dangling ropes.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party crosses under fire from the patrols.\",\n      \"visual_description\": \"Arrows whistle past as Torben carries Lira across a narrow wooden plank, with Kael shielding them with a raised shield.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them as they escape.\",\n      \"visual_description\": \"The party reaches safety as the bridge's remaining supports shatter, sending stone and soldiers tumbling into the abyss below.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1479,
+        "total_tokens": 1983,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party approaches the ruined city.\",\n      \"visual_description\": \"A group of four figures stands on a hill overlooking a shattered royal city, its towers silhouetted against a blood-red sunset.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople gather at the main gate.\",\n      \"visual_description\": \"A crowd of ragged townspeople huddles near the broken city gates, clutching bundles and staring in fear at the shadows beyond.\",\n      \"characters\": [\"Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"An armored patrol blocks the entrance.\",\n      \"visual_description\": \"Three soldiers in crested helms and dented breastplates stand with spears crossed before the iron portcullis, torchlight flickering on their armor.\",\n      \"characters\": [\"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party bribes or fights past the guards.\",\n      \"visual_description\": \"Eira tosses a coin pouch to the ground while Kael's hand rests on his sword hilt, the guards exchanging tense glances.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Inside, old royal banners hang torn from the walls.\",\n      \"visual_description\": \"Long crimson banners with faded golden crests droop from cracked stone walls along a debris-littered avenue.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon reach the party from a refugee.\",\n      \"visual_description\": \"A gaunt old woman clutches a child's hand and whispers urgently to Maren, her eyes wide with terror.\",\n      \"characters\": [\"Maren\", \"Refugee Woman\", \"Child\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They discover a cursed tower that twists the mind.\",\n      \"visual_description\": \"A spiral staircase of black stone rises into darkness, with faint runes glowing like eyes along the walls.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A magic door puzzles the group.\",\n      \"visual_description\": \"A massive door of carved obsidian, inlaid with silver constellations that slowly rotate, blocks their path.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Torben solves the door's riddle.\",\n      \"visual_description\": \"Torben presses a sequence of stars on the door with his fingertips, and the stone grinds inward.\",\n      \"characters\": [\"Torben\", \"Eira\", \"Kael\", \"Maren\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside, they find the prisoner in a crystal cell.\",\n      \"visual_description\": \"A young woman with silver hair floats asleep inside a hexagonal crystal suspended from chains in a high chamber.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The rescue triggers a magical alarm.\",\n      \"visual_description\": \"Shimmering blue shockwaves erupt from the crystal's pedestal, ringing like a bell through the tower.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Armored patrols converge on the tower.\",\n      \"visual_description\": \"Soldiers in black-and-gold armor pour into the courtyard below, torches bobbing as they form ranks.\",\n      \"characters\": [\"Guard Captain\", \"Soldier 1\", \"Soldier 2\", \"Soldier 3\", \"Soldier 4\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"The party fights through the courtyard.\",\n      \"visual_description\": \"Kael deflects a sword strike while Eira fires an arrow past his shoulder, sparks flying from the clashing blades.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"A dragon's roar echoes from the castle.\",\n      \"visual_description\": \"A massive winged shadow passes over the moon, and a reptilian bellow shakes loose tiles from the rooftops.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"They flee through a crumbling market district.\",\n      \"visual_description\": \"The party sprints between collapsed stalls and toppled statues, with dust and cobwebs filling the air.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The escape bridge is partially destroyed.\",\n      \"visual_description\": \"A stone bridge arches over a deep chasm, its middle section broken into a gap of splintered masonry and dangling ropes.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The party crosses under fire from the patrols.\",\n      \"visual_description\": \"Arrows whistle past as Torben carries Lira across a narrow wooden plank, with Kael shielding them with a raised shield.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\", \"Guard Captain\", \"Soldier 1\", \"Soldier 2\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The bridge collapses behind them as they escape.\",\n      \"visual_description\": \"The party reaches safety as the bridge's remaining supports shatter, sending stone and soldiers tumbling into the abyss below.\",\n      \"characters\": [\"Eira\", \"Kael\", \"Maren\", \"Torben\", \"Lira\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party approaches the ruined city.",
+        "visual_description": "A group of four figures stands on a hill overlooking a shattered royal city, its towers silhouetted against a blood-red sunset.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople gather at the main gate.",
+        "visual_description": "A crowd of ragged townspeople huddles near the broken city gates, clutching bundles and staring in fear at the shadows beyond.",
+        "characters": [
+          "Townspeople"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "An armored patrol blocks the entrance.",
+        "visual_description": "Three soldiers in crested helms and dented breastplates stand with spears crossed before the iron portcullis, torchlight flickering on their armor.",
+        "characters": [
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party bribes or fights past the guards.",
+        "visual_description": "Eira tosses a coin pouch to the ground while Kael's hand rests on his sword hilt, the guards exchanging tense glances.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Inside, old royal banners hang torn from the walls.",
+        "visual_description": "Long crimson banners with faded golden crests droop from cracked stone walls along a debris-littered avenue.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Rumors of a dragon reach the party from a refugee.",
+        "visual_description": "A gaunt old woman clutches a child's hand and whispers urgently to Maren, her eyes wide with terror.",
+        "characters": [
+          "Maren",
+          "Refugee Woman",
+          "Child"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "They discover a cursed tower that twists the mind.",
+        "visual_description": "A spiral staircase of black stone rises into darkness, with faint runes glowing like eyes along the walls.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "A magic door puzzles the group.",
+        "visual_description": "A massive door of carved obsidian, inlaid with silver constellations that slowly rotate, blocks their path.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Torben solves the door's riddle.",
+        "visual_description": "Torben presses a sequence of stars on the door with his fingertips, and the stone grinds inward.",
+        "characters": [
+          "Torben",
+          "Eira",
+          "Kael",
+          "Maren"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Inside, they find the prisoner in a crystal cell.",
+        "visual_description": "A young woman with silver hair floats asleep inside a hexagonal crystal suspended from chains in a high chamber.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The rescue triggers a magical alarm.",
+        "visual_description": "Shimmering blue shockwaves erupt from the crystal's pedestal, ringing like a bell through the tower.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Armored patrols converge on the tower.",
+        "visual_description": "Soldiers in black-and-gold armor pour into the courtyard below, torches bobbing as they form ranks.",
+        "characters": [
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2",
+          "Soldier 3",
+          "Soldier 4"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "The party fights through the courtyard.",
+        "visual_description": "Kael deflects a sword strike while Eira fires an arrow past his shoulder, sparks flying from the clashing blades.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "A dragon's roar echoes from the castle.",
+        "visual_description": "A massive winged shadow passes over the moon, and a reptilian bellow shakes loose tiles from the rooftops.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "They flee through a crumbling market district.",
+        "visual_description": "The party sprints between collapsed stalls and toppled statues, with dust and cobwebs filling the air.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The escape bridge is partially destroyed.",
+        "visual_description": "A stone bridge arches over a deep chasm, its middle section broken into a gap of splintered masonry and dangling ropes.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The party crosses under fire from the patrols.",
+        "visual_description": "Arrows whistle past as Torben carries Lira across a narrow wooden plank, with Kael shielding them with a raised shield.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The bridge collapses behind them as they escape.",
+        "visual_description": "The party reaches safety as the bridge's remaining supports shatter, sending stone and soldiers tumbling into the abyss below.",
+        "characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 7,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 7,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3888888888888889,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople"
+        ],
+        "forbidden_words": [
+          "crowd"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": [
+          "guards"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Maren",
+          "Refugee Woman",
+          "Child"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Torben",
+          "Eira",
+          "Kael",
+          "Maren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2",
+          "Soldier 3",
+          "Soldier 4"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira",
+          "Guard Captain",
+          "Soldier 1",
+          "Soldier 2"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Eira",
+          "Kael",
+          "Maren",
+          "Torben",
+          "Lira"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      }
+    ]
+  },
+  "run_index": 14
+}

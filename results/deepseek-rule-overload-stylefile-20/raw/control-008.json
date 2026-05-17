@@ -1,0 +1,511 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/scene-format.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/scene-format.md:\n# Scene Format\n\nReturn a JSON object with a title and exactly 18 scenes.\nEach scene needs scene_number, caption, visual_description, and characters.\nCaptions should be short. Visual descriptions should describe one image, not a\nsequence of shots. Use JSON only, with no markdown wrapper.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "a0b9421e-438a-4d00-ac49-08b4064e4e3f",
+      "object": "chat.completion",
+      "created": 1779004532,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/scene-format.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "428f688a-e155-430f-b0c9-09fc65a09967",
+      "object": "chat.completion",
+      "created": 1779004533,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Ruin: A Rescue Through Temptation\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The ruined gates loom beneath a blood-red sky.\",\n      \"visual_description\": \"Two massive iron gates, twisted and broken, stand half-open beneath a crimson sunset. Faded royal banners hang tattered from the battlements.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople huddle in a market square.\",\n      \"visual_description\": \"A cobblestone square littered with overturned carts and scattered fruit. A group of gaunt townspeople press against a crumbling fountain, eyeing the shadows.\",\n      \"characters\": [\"Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march past a cursed tower.\",\n      \"visual_description\": \"Three black-armored soldiers stride in lockstep before a spiral tower whose stones pulse with faint green light. Dust swirls around their boots.\",\n      \"characters\": [\"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kaelen and Mira slip through a side alley.\",\n      \"visual_description\": \"A narrow alley strung with frayed laundry lines. Kaelen signals Mira to stop as a patrol passes the far end. Moss clings to the walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A magic door shimmers beside an old well.\",\n      \"visual_description\": \"Stone-carved doorframe engraved with runes, the doorway filled with a swirling silver light. An ancient well stands nearby, its bucket rotted.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The heroes decide the magic door is too risky.\",\n      \"visual_description\": \"Kaelen places a hand on the doorframe but pulls back as the runes flare. Mira shakes her head, pointing toward the castle interior.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors of a dragon echo in a tavern cellar.\",\n      \"visual_description\": \"Low-ceilinged cellar lit by a single candle. A hooded informant leans across a barrel, whispering. Dusty wine bottles line the walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Hooded Informant\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A dragon's shadow passes over the courtyard.\",\n      \"visual_description\": \"Broad courtyard bathed in late afternoon light. A massive winged shadow sweeps across the flagstones. Soldiers scatter for cover.\",\n      \"characters\": [\"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Kaelen and Mira climb the castle wall.\",\n      \"visual_description\": \"Side of the ruined castle wall, ivy and broken masonry offering handholds. Kaelen reaches for a ledge; Mira braces below.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside the throne room, a cursed crown glows.\",\n      \"visual_description\": \"Crumbled throne room with a shattered stained-glass window. A golden crown on a stone pedestal pulses with amber light. Dust motes hang in the air.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The heroes resist the temptation of the crown.\",\n      \"visual_description\": \"Kaelen reaches for the crown, but Mira grabs his wrist. Her eyes are fixed on the crown's flickering shadow, which writhes like a serpent.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the prisoner in an underground cell.\",\n      \"visual_description\": \"Dark cell with rusted bars and a straw-covered floor. A figure in chains sits against the far wall, head bowed.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Kaelen picks the lock while Mira watches the door.\",\n      \"visual_description\": \"Close-up of Kaelen's hands working a lockpick into the cell door's mechanism. Mira stands alert at the stairway, sword half-drawn.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Patrols close in as they flee the dungeon.\",\n      \"visual_description\": \"Torch-lit corridor, three armored soldiers running toward the camera. Kaelen, Mira, and Elara sprint the opposite way, past dripping walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\", \"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A magic door seals behind them, blocking pursuit.\",\n      \"visual_description\": \"Stone doorway in a narrow passage; Kaelen slams his palm on a rune, and a sheet of blue light solidifies across the opening. Soldiers' silhouettes pound against it.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They emerge onto the bridge under moonlight.\",\n      \"visual_description\": \"Long stone bridge arching over a dark river. Full moon reflects on the water. The ruined city looms behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The dragon circles overhead as they cross.\",\n      \"visual_description\": \"The three figures run across the bridge. Above, a dragon spirals down, its scales glinting silver and red. Wind whips their hair.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side as the bridge crumbles.\",\n      \"visual_description\": \"The trio stumbles onto grassy ground. Behind them, the bridge collapses into the river, and the dragon roars in frustration. Dawn breaks over distant hills.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 1516,
+        "total_tokens": 2020,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 120
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Ruin: A Rescue Through Temptation\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The ruined gates loom beneath a blood-red sky.\",\n      \"visual_description\": \"Two massive iron gates, twisted and broken, stand half-open beneath a crimson sunset. Faded royal banners hang tattered from the battlements.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople huddle in a market square.\",\n      \"visual_description\": \"A cobblestone square littered with overturned carts and scattered fruit. A group of gaunt townspeople press against a crumbling fountain, eyeing the shadows.\",\n      \"characters\": [\"Townspeople\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march past a cursed tower.\",\n      \"visual_description\": \"Three black-armored soldiers stride in lockstep before a spiral tower whose stones pulse with faint green light. Dust swirls around their boots.\",\n      \"characters\": [\"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Kaelen and Mira slip through a side alley.\",\n      \"visual_description\": \"A narrow alley strung with frayed laundry lines. Kaelen signals Mira to stop as a patrol passes the far end. Moss clings to the walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"A magic door shimmers beside an old well.\",\n      \"visual_description\": \"Stone-carved doorframe engraved with runes, the doorway filled with a swirling silver light. An ancient well stands nearby, its bucket rotted.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"The heroes decide the magic door is too risky.\",\n      \"visual_description\": \"Kaelen places a hand on the doorframe but pulls back as the runes flare. Mira shakes her head, pointing toward the castle interior.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors of a dragon echo in a tavern cellar.\",\n      \"visual_description\": \"Low-ceilinged cellar lit by a single candle. A hooded informant leans across a barrel, whispering. Dusty wine bottles line the walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Hooded Informant\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"A dragon's shadow passes over the courtyard.\",\n      \"visual_description\": \"Broad courtyard bathed in late afternoon light. A massive winged shadow sweeps across the flagstones. Soldiers scatter for cover.\",\n      \"characters\": [\"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"Kaelen and Mira climb the castle wall.\",\n      \"visual_description\": \"Side of the ruined castle wall, ivy and broken masonry offering handholds. Kaelen reaches for a ledge; Mira braces below.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Inside the throne room, a cursed crown glows.\",\n      \"visual_description\": \"Crumbled throne room with a shattered stained-glass window. A golden crown on a stone pedestal pulses with amber light. Dust motes hang in the air.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The heroes resist the temptation of the crown.\",\n      \"visual_description\": \"Kaelen reaches for the crown, but Mira grabs his wrist. Her eyes are fixed on the crown's flickering shadow, which writhes like a serpent.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the prisoner in an underground cell.\",\n      \"visual_description\": \"Dark cell with rusted bars and a straw-covered floor. A figure in chains sits against the far wall, head bowed.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Kaelen picks the lock while Mira watches the door.\",\n      \"visual_description\": \"Close-up of Kaelen's hands working a lockpick into the cell door's mechanism. Mira stands alert at the stairway, sword half-drawn.\",\n      \"characters\": [\"Kaelen\", \"Mira\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Patrols close in as they flee the dungeon.\",\n      \"visual_description\": \"Torch-lit corridor, three armored soldiers running toward the camera. Kaelen, Mira, and Elara sprint the opposite way, past dripping walls.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\", \"Armored Soldier 1\", \"Armored Soldier 2\", \"Armored Soldier 3\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A magic door seals behind them, blocking pursuit.\",\n      \"visual_description\": \"Stone doorway in a narrow passage; Kaelen slams his palm on a rune, and a sheet of blue light solidifies across the opening. Soldiers' silhouettes pound against it.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They emerge onto the bridge under moonlight.\",\n      \"visual_description\": \"Long stone bridge arching over a dark river. Full moon reflects on the water. The ruined city looms behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The dragon circles overhead as they cross.\",\n      \"visual_description\": \"The three figures run across the bridge. Above, a dragon spirals down, its scales glinting silver and red. Wind whips their hair.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\", \"Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side as the bridge crumbles.\",\n      \"visual_description\": \"The trio stumbles onto grassy ground. Behind them, the bridge collapses into the river, and the dragon roars in frustration. Dawn breaks over distant hills.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Prisoner Elara\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Ruin: A Rescue Through Temptation",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The ruined gates loom beneath a blood-red sky.",
+        "visual_description": "Two massive iron gates, twisted and broken, stand half-open beneath a crimson sunset. Faded royal banners hang tattered from the battlements.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople huddle in a market square.",
+        "visual_description": "A cobblestone square littered with overturned carts and scattered fruit. A group of gaunt townspeople press against a crumbling fountain, eyeing the shadows.",
+        "characters": [
+          "Townspeople"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrols march past a cursed tower.",
+        "visual_description": "Three black-armored soldiers stride in lockstep before a spiral tower whose stones pulse with faint green light. Dust swirls around their boots.",
+        "characters": [
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Kaelen and Mira slip through a side alley.",
+        "visual_description": "A narrow alley strung with frayed laundry lines. Kaelen signals Mira to stop as a patrol passes the far end. Moss clings to the walls.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "A magic door shimmers beside an old well.",
+        "visual_description": "Stone-carved doorframe engraved with runes, the doorway filled with a swirling silver light. An ancient well stands nearby, its bucket rotted.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "The heroes decide the magic door is too risky.",
+        "visual_description": "Kaelen places a hand on the doorframe but pulls back as the runes flare. Mira shakes her head, pointing toward the castle interior.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Rumors of a dragon echo in a tavern cellar.",
+        "visual_description": "Low-ceilinged cellar lit by a single candle. A hooded informant leans across a barrel, whispering. Dusty wine bottles line the walls.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Hooded Informant"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "A dragon's shadow passes over the courtyard.",
+        "visual_description": "Broad courtyard bathed in late afternoon light. A massive winged shadow sweeps across the flagstones. Soldiers scatter for cover.",
+        "characters": [
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "Kaelen and Mira climb the castle wall.",
+        "visual_description": "Side of the ruined castle wall, ivy and broken masonry offering handholds. Kaelen reaches for a ledge; Mira braces below.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Inside the throne room, a cursed crown glows.",
+        "visual_description": "Crumbled throne room with a shattered stained-glass window. A golden crown on a stone pedestal pulses with amber light. Dust motes hang in the air.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The heroes resist the temptation of the crown.",
+        "visual_description": "Kaelen reaches for the crown, but Mira grabs his wrist. Her eyes are fixed on the crown's flickering shadow, which writhes like a serpent.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They find the prisoner in an underground cell.",
+        "visual_description": "Dark cell with rusted bars and a straw-covered floor. A figure in chains sits against the far wall, head bowed.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Kaelen picks the lock while Mira watches the door.",
+        "visual_description": "Close-up of Kaelen's hands working a lockpick into the cell door's mechanism. Mira stands alert at the stairway, sword half-drawn.",
+        "characters": [
+          "Kaelen",
+          "Mira"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Patrols close in as they flee the dungeon.",
+        "visual_description": "Torch-lit corridor, three armored soldiers running toward the camera. Kaelen, Mira, and Elara sprint the opposite way, past dripping walls.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara",
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A magic door seals behind them, blocking pursuit.",
+        "visual_description": "Stone doorway in a narrow passage; Kaelen slams his palm on a rune, and a sheet of blue light solidifies across the opening. Soldiers' silhouettes pound against it.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They emerge onto the bridge under moonlight.",
+        "visual_description": "Long stone bridge arching over a dark river. Full moon reflects on the water. The ruined city looms behind them.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The dragon circles overhead as they cross.",
+        "visual_description": "The three figures run across the bridge. Above, a dragon spirals down, its scales glinting silver and red. Wind whips their hair.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara",
+          "Dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They reach the far side as the bridge crumbles.",
+        "visual_description": "The trio stumbles onto grassy ground. Behind them, the bridge collapses into the river, and the dragon roars in frustration. Dawn breaks over distant hills.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 7,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 7,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3888888888888889,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Townspeople"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Hooded Informant"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara",
+          "Armored Soldier 1",
+          "Armored Soldier 2",
+          "Armored Soldier 3"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara",
+          "Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Prisoner Elara"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 8
+}

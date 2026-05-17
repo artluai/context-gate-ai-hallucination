@@ -1,0 +1,594 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "6c2759f3-ae4d-4de2-af18-daefe7a5673c",
+      "object": "chat.completion",
+      "created": 1779004585,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 18,
+        "total_tokens": 419,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "b4a192af-24bf-4a89-b96e-23f0a1f47cb8",
+      "object": "chat.completion",
+      "created": 1779004586,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Ruin's Price\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined royal city.\",\n      \"visual_description\": \"A party of four stands on a hill overlooking a vast broken city. Crumbled towers, torn royal banners flapping in the wind, and a dim glow from the central castle.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"They pass through the broken outer gates.\",\n      \"visual_description\": \"The massive iron gates lie twisted on the ground. Kaelen touches the rusted metal while Mira scouts ahead; Thorn and Nari watch the shadows between collapsed buildings.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Townspeople whisper warnings from doorways.\",\n      \"visual_description\": \"Huddled figures in rags peek from shattered doorways, gesturing for the party to leave. One old woman points toward the central castle and shakes her head.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Old Woman\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Armored patrols march through the square.\",\n      \"visual_description\": \"Three hulking guards in dark plate armor stride across a cracked marble square, their helmets hiding faces. The party hides behind a fallen statue of a king.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Patrol Guard 1\", \"Patrol Guard 2\", \"Patrol Guard 3\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Mira reads a cryptic map in a ruined chapel.\",\n      \"visual_description\": \"Inside a roofless chapel, Mira unrolls a glowing map on an altar. Thorn peers over her shoulder while Kaelen watches the doorway and Nari traces lines on the floor.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They find a cursed tower with a whispering door.\",\n      \"visual_description\": \"A spiraling black tower looms before them. Its door is carved with faces that murmur promises of power. The party hesitates as the whispers grow louder.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Nari resists the door's temptation with magic.\",\n      \"visual_description\": \"Nari raises a glowing hand and speaks a counter-charm. The whispers fade, the faces go silent, and the door creaks open to reveal a dark staircase.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Climbing the tower, they see a dragon's silhouette.\",\n      \"visual_description\": \"Through a broken window, a massive winged shadow glides past the moon. Thorn gasps and steps back; the others freeze, watching the dragon circle the castle.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They reach the treasure room at the top.\",\n      \"visual_description\": \"A circular chamber filled with gold, gems, and a single ornate chest. The air shimmers with enchantment. Kaelen moves toward the chest, entranced.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira spots the real path behind a false wall.\",\n      \"visual_description\": \"Mira ignores the treasure and presses a loose stone. A section of wall slides away, revealing a narrow passage. She calls the others, snapping Kaelen from his trance.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The passage leads to a dungeon beneath the castle.\",\n      \"visual_description\": \"Damp stone corridors lit by flickering torches. Cells line the walls. In one, a prisoner in rags lifts his head—their rescue target, Prince Aldric.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Kaelen picks the lock while Mira keeps watch.\",\n      \"visual_description\": \"Kaelen kneels at the cell door, working small tools into the lock. Mira stands with bow drawn, listening for footsteps. Thorn and Nari help the prince stand.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Guards discover them; a fight breaks out.\",\n      \"visual_description\": \"Three patrol guards round the corner. Thorn shoves the prince behind him and draws a sword. Mira fires an arrow as Kaelen finishes the lock. Nari readies a spell.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\", \"Patrol Guard 1\", \"Patrol Guard 2\", \"Patrol Guard 3\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They escape into the courtyard under moonlight.\",\n      \"visual_description\": \"The party bursts through a door into a moonlit courtyard. Rubble and broken statues scatter the area. The dragon's silhouette passes overhead again, closer now.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A magic door blocks the exit path.\",\n      \"visual_description\": \"A shimmering portal of blue energy bars the way to the outer gate. It pulses with runes. Nari steps forward to analyze it while the others guard her.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Nari dispels the magic door with a ritual.\",\n      \"visual_description\": \"Nari traces glowing symbols in the air. The runes on the door flare and then fade, the portal dissolving into sparks. The path ahead clears.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race across the crumbling bridge.\",\n      \"visual_description\": \"A stone bridge spans a deep chasm, cracked and missing sections. The party runs, leaping gaps as stones fall behind them. The dragon roars in the distance.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side as the bridge collapses.\",\n      \"visual_description\": \"The last stone crumbles as Kaelen pulls the prince onto solid ground. The bridge falls into the chasm. Beyond, the open road stretches toward safety, the ruined city behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 506,
+        "completion_tokens": 1717,
+        "total_tokens": 2223,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 122
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Ruin's Price\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party arrives at the ruined royal city.\",\n      \"visual_description\": \"A party of four stands on a hill overlooking a vast broken city. Crumbled towers, torn royal banners flapping in the wind, and a dim glow from the central castle.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"They pass through the broken outer gates.\",\n      \"visual_description\": \"The massive iron gates lie twisted on the ground. Kaelen touches the rusted metal while Mira scouts ahead; Thorn and Nari watch the shadows between collapsed buildings.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Townspeople whisper warnings from doorways.\",\n      \"visual_description\": \"Huddled figures in rags peek from shattered doorways, gesturing for the party to leave. One old woman points toward the central castle and shakes her head.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Old Woman\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Armored patrols march through the square.\",\n      \"visual_description\": \"Three hulking guards in dark plate armor stride across a cracked marble square, their helmets hiding faces. The party hides behind a fallen statue of a king.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Patrol Guard 1\", \"Patrol Guard 2\", \"Patrol Guard 3\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Mira reads a cryptic map in a ruined chapel.\",\n      \"visual_description\": \"Inside a roofless chapel, Mira unrolls a glowing map on an altar. Thorn peers over her shoulder while Kaelen watches the doorway and Nari traces lines on the floor.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"They find a cursed tower with a whispering door.\",\n      \"visual_description\": \"A spiraling black tower looms before them. Its door is carved with faces that murmur promises of power. The party hesitates as the whispers grow louder.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Nari resists the door's temptation with magic.\",\n      \"visual_description\": \"Nari raises a glowing hand and speaks a counter-charm. The whispers fade, the faces go silent, and the door creaks open to reveal a dark staircase.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Climbing the tower, they see a dragon's silhouette.\",\n      \"visual_description\": \"Through a broken window, a massive winged shadow glides past the moon. Thorn gasps and steps back; the others freeze, watching the dragon circle the castle.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They reach the treasure room at the top.\",\n      \"visual_description\": \"A circular chamber filled with gold, gems, and a single ornate chest. The air shimmers with enchantment. Kaelen moves toward the chest, entranced.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira spots the real path behind a false wall.\",\n      \"visual_description\": \"Mira ignores the treasure and presses a loose stone. A section of wall slides away, revealing a narrow passage. She calls the others, snapping Kaelen from his trance.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"The passage leads to a dungeon beneath the castle.\",\n      \"visual_description\": \"Damp stone corridors lit by flickering torches. Cells line the walls. In one, a prisoner in rags lifts his head—their rescue target, Prince Aldric.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Kaelen picks the lock while Mira keeps watch.\",\n      \"visual_description\": \"Kaelen kneels at the cell door, working small tools into the lock. Mira stands with bow drawn, listening for footsteps. Thorn and Nari help the prince stand.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Guards discover them; a fight breaks out.\",\n      \"visual_description\": \"Three patrol guards round the corner. Thorn shoves the prince behind him and draws a sword. Mira fires an arrow as Kaelen finishes the lock. Nari readies a spell.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\", \"Patrol Guard 1\", \"Patrol Guard 2\", \"Patrol Guard 3\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"They escape into the courtyard under moonlight.\",\n      \"visual_description\": \"The party bursts through a door into a moonlit courtyard. Rubble and broken statues scatter the area. The dragon's silhouette passes overhead again, closer now.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A magic door blocks the exit path.\",\n      \"visual_description\": \"A shimmering portal of blue energy bars the way to the outer gate. It pulses with runes. Nari steps forward to analyze it while the others guard her.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"Nari dispels the magic door with a ritual.\",\n      \"visual_description\": \"Nari traces glowing symbols in the air. The runes on the door flare and then fade, the portal dissolving into sparks. The path ahead clears.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They race across the crumbling bridge.\",\n      \"visual_description\": \"A stone bridge spans a deep chasm, cracked and missing sections. The party runs, leaping gaps as stones fall behind them. The dragon roars in the distance.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They reach the far side as the bridge collapses.\",\n      \"visual_description\": \"The last stone crumbles as Kaelen pulls the prince onto solid ground. The bridge falls into the chasm. Beyond, the open road stretches toward safety, the ruined city behind them.\",\n      \"characters\": [\"Kaelen\", \"Mira\", \"Thorn\", \"Nari\", \"Prince Aldric\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Ruin's Price",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party arrives at the ruined royal city.",
+        "visual_description": "A party of four stands on a hill overlooking a vast broken city. Crumbled towers, torn royal banners flapping in the wind, and a dim glow from the central castle.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "They pass through the broken outer gates.",
+        "visual_description": "The massive iron gates lie twisted on the ground. Kaelen touches the rusted metal while Mira scouts ahead; Thorn and Nari watch the shadows between collapsed buildings.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Townspeople whisper warnings from doorways.",
+        "visual_description": "Huddled figures in rags peek from shattered doorways, gesturing for the party to leave. One old woman points toward the central castle and shakes her head.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Old Woman"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Armored patrols march through the square.",
+        "visual_description": "Three hulking guards in dark plate armor stride across a cracked marble square, their helmets hiding faces. The party hides behind a fallen statue of a king.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Patrol Guard 1",
+          "Patrol Guard 2",
+          "Patrol Guard 3"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Mira reads a cryptic map in a ruined chapel.",
+        "visual_description": "Inside a roofless chapel, Mira unrolls a glowing map on an altar. Thorn peers over her shoulder while Kaelen watches the doorway and Nari traces lines on the floor.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "They find a cursed tower with a whispering door.",
+        "visual_description": "A spiraling black tower looms before them. Its door is carved with faces that murmur promises of power. The party hesitates as the whispers grow louder.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Nari resists the door's temptation with magic.",
+        "visual_description": "Nari raises a glowing hand and speaks a counter-charm. The whispers fade, the faces go silent, and the door creaks open to reveal a dark staircase.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Climbing the tower, they see a dragon's silhouette.",
+        "visual_description": "Through a broken window, a massive winged shadow glides past the moon. Thorn gasps and steps back; the others freeze, watching the dragon circle the castle.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They reach the treasure room at the top.",
+        "visual_description": "A circular chamber filled with gold, gems, and a single ornate chest. The air shimmers with enchantment. Kaelen moves toward the chest, entranced.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Mira spots the real path behind a false wall.",
+        "visual_description": "Mira ignores the treasure and presses a loose stone. A section of wall slides away, revealing a narrow passage. She calls the others, snapping Kaelen from his trance.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "The passage leads to a dungeon beneath the castle.",
+        "visual_description": "Damp stone corridors lit by flickering torches. Cells line the walls. In one, a prisoner in rags lifts his head—their rescue target, Prince Aldric.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Kaelen picks the lock while Mira keeps watch.",
+        "visual_description": "Kaelen kneels at the cell door, working small tools into the lock. Mira stands with bow drawn, listening for footsteps. Thorn and Nari help the prince stand.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Guards discover them; a fight breaks out.",
+        "visual_description": "Three patrol guards round the corner. Thorn shoves the prince behind him and draws a sword. Mira fires an arrow as Kaelen finishes the lock. Nari readies a spell.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric",
+          "Patrol Guard 1",
+          "Patrol Guard 2",
+          "Patrol Guard 3"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "They escape into the courtyard under moonlight.",
+        "visual_description": "The party bursts through a door into a moonlit courtyard. Rubble and broken statues scatter the area. The dragon's silhouette passes overhead again, closer now.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A magic door blocks the exit path.",
+        "visual_description": "A shimmering portal of blue energy bars the way to the outer gate. It pulses with runes. Nari steps forward to analyze it while the others guard her.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "Nari dispels the magic door with a ritual.",
+        "visual_description": "Nari traces glowing symbols in the air. The runes on the door flare and then fade, the portal dissolving into sparks. The path ahead clears.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They race across the crumbling bridge.",
+        "visual_description": "A stone bridge spans a deep chasm, cracked and missing sections. The party runs, leaping gaps as stones fall behind them. The dragon roars in the distance.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They reach the far side as the bridge collapses.",
+        "visual_description": "The last stone crumbles as Kaelen pulls the prince onto solid ground. The bridge falls into the chasm. Beyond, the open road stretches toward safety, the ruined city behind them.",
+        "characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 9,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 9,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.5,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Old Woman"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Patrol Guard 1",
+          "Patrol Guard 2",
+          "Patrol Guard 3"
+        ],
+        "forbidden_words": [
+          "guards",
+          "king"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric",
+          "Patrol Guard 1",
+          "Patrol Guard 2",
+          "Patrol Guard 3"
+        ],
+        "forbidden_words": [
+          "guards",
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "guard"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Kaelen",
+          "Mira",
+          "Thorn",
+          "Nari",
+          "Prince Aldric"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      }
+    ]
+  },
+  "run_index": 9
+}

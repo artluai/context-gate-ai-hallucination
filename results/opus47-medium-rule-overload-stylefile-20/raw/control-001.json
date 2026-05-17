@@ -1,0 +1,587 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779016871-ZZtPHXhhZKn4sr1dm5WY",
+      "object": "chat.completion",
+      "created": 1779016871,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 207,
+        "total_tokens": 925,
+        "cost": 0.008765,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.008765,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.005175
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 75,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779016877-8Na8CldIr9H6efcBjm5C",
+      "object": "chat.completion",
+      "created": 1779016877,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of Ashenford\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A rescue party gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crest a windswept hill at dusk, looking down on a shattered royal city with broken spires and smoking rooftops; tattered banners flap in the foreground.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the fallen capital.\",\n      \"visual_description\": \"By a small campfire, Mira spreads a glowing vellum map across a flat stone, fingers tracing routes; the others lean in, faces lit orange.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the cracked castle gates at dawn.\",\n      \"visual_description\": \"Massive iron-bound gates hang askew between two crumbling towers; pale dawn light spills through the breach, illuminating the small party as silhouettes.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Sable slips ahead to scout the inner courtyard.\",\n      \"visual_description\": \"A lithe figure in gray hood vaults a broken statue, crouching low among shattered cobblestones and overturned market stalls.\",\n      \"characters\": [\"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople whisper warnings from a cellar.\",\n      \"visual_description\": \"Two gaunt civilians peer up from a cellar hatch in a ruined bakery, clutching a child; Sable kneels at the opening, finger to her lips.\",\n      \"characters\": [\"Sable the Scout\", \"Bram the Baker\", \"Lila the Child\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon coil over the rooftops.\",\n      \"visual_description\": \"From a high broken window, the party watches distant smoke spiral above the cursed tower; a serpentine shadow flickers behind the haze, just suggestion.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"An armored patrol marches through the plaza below.\",\n      \"visual_description\": \"Six black-armored soldiers in iron helms trudge past a fountain choked with weeds; the party flattens against a balustrade overhead, holding breath.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\", \"Iron Captain Vael\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Hob almost gives them away with a sneeze.\",\n      \"visual_description\": \"Hob's nose scrunches comically as dust drifts down; Rowan clamps a gauntleted hand over Hob's face, eyes wide; Sable glares.\",\n      \"characters\": [\"Old Hob\", \"Captain Rowan\", \"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They reach a sealed door etched with glowing runes.\",\n      \"visual_description\": \"A tall arched door of black stone pulses with pale blue sigils; Mira raises a hand, runes reflecting in her eyes, while the others wait tensely.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira coaxes the magic door open with a whispered key.\",\n      \"visual_description\": \"Tendrils of silver light unspool from Mira's lips into the door's central rune; the sigils flare and the slab grinds aside, revealing a dark stair.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They descend beneath the cursed tower.\",\n      \"visual_description\": \"A spiral stair winds down between dripping walls; lantern light flickers on chained banners of an old royal house pinned to the stone.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the captive prince in a glass cell.\",\n      \"visual_description\": \"Inside a circular chamber, a pale young man in tattered finery sits inside a tall cylinder of greenish crystal; sigils crawl across its surface.\",\n      \"characters\": [\"Prince Aldren\", \"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira shatters the binding while Sable watches the stair.\",\n      \"visual_description\": \"Mira slams a glowing palm to the crystal; cracks spiderweb outward in white light. Sable crouches at the doorway, bow drawn toward the stairwell.\",\n      \"characters\": [\"Mira the Mapwright\", \"Prince Aldren\", \"Sable the Scout\", \"Captain Rowan\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm bells ring as the patrol storms the tower.\",\n      \"visual_description\": \"Bronze bells swing wildly in a cracked belfry above; armored figures pour up the spiral stair with torches and spears, Vael at their head.\",\n      \"characters\": [\"Iron Captain Vael\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the burning market.\",\n      \"visual_description\": \"Stalls blaze on either side as the five sprint down a narrow lane; Rowan covers the rear with a raised shield, sparks raining around them.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A true dragon rises over the cursed tower behind them.\",\n      \"visual_description\": \"A vast red dragon uncoils from the tower's broken crown, wings spread against a smoke-orange sky; the runners are tiny silhouettes in the foreground.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\", \"The Ember Wyrm\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Old Hob leaps the broken span of the river bridge.\",\n      \"visual_description\": \"On a half-collapsed stone bridge, Hob soars mid-jump across a yawning gap, robes flapping; the prince stares in disbelief as the others wait on the far side.\",\n      \"characters\": [\"Old Hob\", \"Prince Aldren\", \"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to safety as the city burns behind them.\",\n      \"visual_description\": \"The party walks away across a green meadow at sunrise; behind them, the ruined city smolders under the circling dragon, banners curling to ash.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2662,
+        "total_tokens": 3548,
+        "cost": 0.07098,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.07098,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.06655
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of Ashenford\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A rescue party gathers at the edge of the ruined city.\",\n      \"visual_description\": \"Four travelers crest a windswept hill at dusk, looking down on a shattered royal city with broken spires and smoking rooftops; tattered banners flap in the foreground.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Mira unrolls a map of the fallen capital.\",\n      \"visual_description\": \"By a small campfire, Mira spreads a glowing vellum map across a flat stone, fingers tracing routes; the others lean in, faces lit orange.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"They approach the cracked castle gates at dawn.\",\n      \"visual_description\": \"Massive iron-bound gates hang askew between two crumbling towers; pale dawn light spills through the breach, illuminating the small party as silhouettes.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"Sable slips ahead to scout the inner courtyard.\",\n      \"visual_description\": \"A lithe figure in gray hood vaults a broken statue, crouching low among shattered cobblestones and overturned market stalls.\",\n      \"characters\": [\"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople whisper warnings from a cellar.\",\n      \"visual_description\": \"Two gaunt civilians peer up from a cellar hatch in a ruined bakery, clutching a child; Sable kneels at the opening, finger to her lips.\",\n      \"characters\": [\"Sable the Scout\", \"Bram the Baker\", \"Lila the Child\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Rumors of a dragon coil over the rooftops.\",\n      \"visual_description\": \"From a high broken window, the party watches distant smoke spiral above the cursed tower; a serpentine shadow flickers behind the haze, just suggestion.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"An armored patrol marches through the plaza below.\",\n      \"visual_description\": \"Six black-armored soldiers in iron helms trudge past a fountain choked with weeds; the party flattens against a balustrade overhead, holding breath.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\", \"Iron Captain Vael\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Old Hob almost gives them away with a sneeze.\",\n      \"visual_description\": \"Hob's nose scrunches comically as dust drifts down; Rowan clamps a gauntleted hand over Hob's face, eyes wide; Sable glares.\",\n      \"characters\": [\"Old Hob\", \"Captain Rowan\", \"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They reach a sealed door etched with glowing runes.\",\n      \"visual_description\": \"A tall arched door of black stone pulses with pale blue sigils; Mira raises a hand, runes reflecting in her eyes, while the others wait tensely.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Mira coaxes the magic door open with a whispered key.\",\n      \"visual_description\": \"Tendrils of silver light unspool from Mira's lips into the door's central rune; the sigils flare and the slab grinds aside, revealing a dark stair.\",\n      \"characters\": [\"Mira the Mapwright\", \"Captain Rowan\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They descend beneath the cursed tower.\",\n      \"visual_description\": \"A spiral stair winds down between dripping walls; lantern light flickers on chained banners of an old royal house pinned to the stone.\",\n      \"characters\": [\"Captain Rowan\", \"Sable the Scout\", \"Mira the Mapwright\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"They find the captive prince in a glass cell.\",\n      \"visual_description\": \"Inside a circular chamber, a pale young man in tattered finery sits inside a tall cylinder of greenish crystal; sigils crawl across its surface.\",\n      \"characters\": [\"Prince Aldren\", \"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Mira shatters the binding while Sable watches the stair.\",\n      \"visual_description\": \"Mira slams a glowing palm to the crystal; cracks spiderweb outward in white light. Sable crouches at the doorway, bow drawn toward the stairwell.\",\n      \"characters\": [\"Mira the Mapwright\", \"Prince Aldren\", \"Sable the Scout\", \"Captain Rowan\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Alarm bells ring as the patrol storms the tower.\",\n      \"visual_description\": \"Bronze bells swing wildly in a cracked belfry above; armored figures pour up the spiral stair with torches and spears, Vael at their head.\",\n      \"characters\": [\"Iron Captain Vael\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"The party flees through the burning market.\",\n      \"visual_description\": \"Stalls blaze on either side as the five sprint down a narrow lane; Rowan covers the rear with a raised shield, sparks raining around them.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"A true dragon rises over the cursed tower behind them.\",\n      \"visual_description\": \"A vast red dragon uncoils from the tower's broken crown, wings spread against a smoke-orange sky; the runners are tiny silhouettes in the foreground.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\", \"The Ember Wyrm\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"Old Hob leaps the broken span of the river bridge.\",\n      \"visual_description\": \"On a half-collapsed stone bridge, Hob soars mid-jump across a yawning gap, robes flapping; the prince stares in disbelief as the others wait on the far side.\",\n      \"characters\": [\"Old Hob\", \"Prince Aldren\", \"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"They cross to safety as the city burns behind them.\",\n      \"visual_description\": \"The party walks away across a green meadow at sunrise; behind them, the ruined city smolders under the circling dragon, banners curling to ash.\",\n      \"characters\": [\"Captain Rowan\", \"Mira the Mapwright\", \"Sable the Scout\", \"Old Hob\", \"Prince Aldren\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of Ashenford",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A rescue party gathers at the edge of the ruined city.",
+        "visual_description": "Four travelers crest a windswept hill at dusk, looking down on a shattered royal city with broken spires and smoking rooftops; tattered banners flap in the foreground.",
+        "characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Mira unrolls a map of the fallen capital.",
+        "visual_description": "By a small campfire, Mira spreads a glowing vellum map across a flat stone, fingers tracing routes; the others lean in, faces lit orange.",
+        "characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "They approach the cracked castle gates at dawn.",
+        "visual_description": "Massive iron-bound gates hang askew between two crumbling towers; pale dawn light spills through the breach, illuminating the small party as silhouettes.",
+        "characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "Sable slips ahead to scout the inner courtyard.",
+        "visual_description": "A lithe figure in gray hood vaults a broken statue, crouching low among shattered cobblestones and overturned market stalls.",
+        "characters": [
+          "Sable the Scout"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Frightened townspeople whisper warnings from a cellar.",
+        "visual_description": "Two gaunt civilians peer up from a cellar hatch in a ruined bakery, clutching a child; Sable kneels at the opening, finger to her lips.",
+        "characters": [
+          "Sable the Scout",
+          "Bram the Baker",
+          "Lila the Child"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Rumors of a dragon coil over the rooftops.",
+        "visual_description": "From a high broken window, the party watches distant smoke spiral above the cursed tower; a serpentine shadow flickers behind the haze, just suggestion.",
+        "characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "An armored patrol marches through the plaza below.",
+        "visual_description": "Six black-armored soldiers in iron helms trudge past a fountain choked with weeds; the party flattens against a balustrade overhead, holding breath.",
+        "characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob",
+          "Iron Captain Vael"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Old Hob almost gives them away with a sneeze.",
+        "visual_description": "Hob's nose scrunches comically as dust drifts down; Rowan clamps a gauntleted hand over Hob's face, eyes wide; Sable glares.",
+        "characters": [
+          "Old Hob",
+          "Captain Rowan",
+          "Sable the Scout"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They reach a sealed door etched with glowing runes.",
+        "visual_description": "A tall arched door of black stone pulses with pale blue sigils; Mira raises a hand, runes reflecting in her eyes, while the others wait tensely.",
+        "characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Mira coaxes the magic door open with a whispered key.",
+        "visual_description": "Tendrils of silver light unspool from Mira's lips into the door's central rune; the sigils flare and the slab grinds aside, revealing a dark stair.",
+        "characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They descend beneath the cursed tower.",
+        "visual_description": "A spiral stair winds down between dripping walls; lantern light flickers on chained banners of an old royal house pinned to the stone.",
+        "characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "They find the captive prince in a glass cell.",
+        "visual_description": "Inside a circular chamber, a pale young man in tattered finery sits inside a tall cylinder of greenish crystal; sigils crawl across its surface.",
+        "characters": [
+          "Prince Aldren",
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Mira shatters the binding while Sable watches the stair.",
+        "visual_description": "Mira slams a glowing palm to the crystal; cracks spiderweb outward in white light. Sable crouches at the doorway, bow drawn toward the stairwell.",
+        "characters": [
+          "Mira the Mapwright",
+          "Prince Aldren",
+          "Sable the Scout",
+          "Captain Rowan"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Alarm bells ring as the patrol storms the tower.",
+        "visual_description": "Bronze bells swing wildly in a cracked belfry above; armored figures pour up the spiral stair with torches and spears, Vael at their head.",
+        "characters": [
+          "Iron Captain Vael"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "The party flees through the burning market.",
+        "visual_description": "Stalls blaze on either side as the five sprint down a narrow lane; Rowan covers the rear with a raised shield, sparks raining around them.",
+        "characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "A true dragon rises over the cursed tower behind them.",
+        "visual_description": "A vast red dragon uncoils from the tower's broken crown, wings spread against a smoke-orange sky; the runners are tiny silhouettes in the foreground.",
+        "characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren",
+          "The Ember Wyrm"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "Old Hob leaps the broken span of the river bridge.",
+        "visual_description": "On a half-collapsed stone bridge, Hob soars mid-jump across a yawning gap, robes flapping; the prince stares in disbelief as the others wait on the far side.",
+        "characters": [
+          "Old Hob",
+          "Prince Aldren",
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "They cross to safety as the city burns behind them.",
+        "visual_description": "The party walks away across a green meadow at sunrise; behind them, the ruined city smolders under the circling dragon, banners curling to ash.",
+        "characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sable the Scout",
+          "Bram the Baker",
+          "Lila the Child"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Old Hob"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob",
+          "Iron Captain Vael"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Hob",
+          "Captain Rowan",
+          "Sable the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Captain Rowan",
+          "Sable the Scout",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Sable the Scout",
+          "Mira the Mapwright",
+          "Old Hob"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Aldren",
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mira the Mapwright",
+          "Prince Aldren",
+          "Sable the Scout",
+          "Captain Rowan"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Iron Captain Vael"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren",
+          "The Ember Wyrm"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Old Hob",
+          "Prince Aldren",
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Rowan",
+          "Mira the Mapwright",
+          "Sable the Scout",
+          "Old Hob",
+          "Prince Aldren"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      }
+    ]
+  },
+  "run_index": 1
+}

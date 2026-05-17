@@ -1,0 +1,562 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.7",
+  "thinking": null,
+  "reasoning_effort": "medium",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/casting-examples.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n- rules/client-brief.md\n- rules/naming-style.md\n- rules/continuity.md\n- rules/locations.md\n- rules/lighting.md\n- rules/prop-library.md\n- rules/output-schema.md\n- rules/tone.md\n- rules/common-mistakes.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/casting-examples.md:\n# Casting Examples\n\nThese examples are brainstorming aids, not the final registry. A fantasy rescue\ndraft often has a map reader, a scout, a magic helper, a sleepy comic-relief\nofficial, and someone who can cross impossible spaces. Do not treat example\nrole labels as approved character names.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "gen-1779016983-UqVJgDF36TUEhyDaIWyw",
+      "object": "chat.completion",
+      "created": 1779016983,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/casting-examples.md\"}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 718,
+        "completion_tokens": 179,
+        "total_tokens": 897,
+        "cost": 0.008065,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.008065,
+          "upstream_inference_prompt_cost": 0.00359,
+          "upstream_inference_completions_cost": 0.004475
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 74,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "gen-1779016988-48ai35zLXfBAPArdqX6a",
+      "object": "chat.completion",
+      "created": 1779016988,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "provider": "Anthropic",
+      "system_fingerprint": null,
+      "service_tier": "standard",
+      "choices": [
+        {
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "end_turn",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Rescue of Ruined Aldemar\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at dawn outside the fallen city.\",\n      \"visual_description\": \"Four figures on a windswept ridge overlooking a skyline of broken towers and torn royal banners; pale dawn light, mist clinging to the rubble below.\",\n      \"characters\": [\"Captain Ronnea\", \"Mapmaker Silv\", \"Wisp the Familiar\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Silv unrolls the city map and marks the prison tower.\",\n      \"visual_description\": \"Close shot of a weathered parchment map weighted by stones, ink-circled spires, gloved fingers tracing a route; firelight from a small camp lantern.\",\n      \"characters\": [\"Mapmaker Silv\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Brann scouts the cracked castle gates.\",\n      \"visual_description\": \"A cloaked scout pressed to a moss-eaten gate pillar, watching armored patrols pass through a half-collapsed portcullis; long shadows across cobblestone.\",\n      \"characters\": [\"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The team slips through a side breach in the wall.\",\n      \"visual_description\": \"Three figures squeezing through a jagged gap in the curtain wall, ivy and rubble framing them, a glowing wisp lighting the dark interior.\",\n      \"characters\": [\"Captain Ronnea\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople warn of patrols and curses.\",\n      \"visual_description\": \"A hooded woman and a thin baker clutching a child in a shadowed doorway, gesturing toward a smoking tower, tattered royal banners hanging above.\",\n      \"characters\": [\"Goodwife Mera\", \"Baker Tomwin\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches through the market square.\",\n      \"visual_description\": \"Rank of black-plated soldiers with spears crossing a ruined fountain plaza; broken stalls, scattered fruit, the heroes pressed flat behind an overturned cart.\",\n      \"characters\": [\"Sergeant Halric\", \"Captain Ronnea\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors swirl of a dragon nesting in the keep.\",\n      \"visual_description\": \"A nervous old herald whispering by torchlight beside a smoke-streaked statue, hands miming wings; distant orange glow over the rooftops.\",\n      \"characters\": [\"Herald Oswin\", \"Mapmaker Silv\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Wisp leads them around the cursed tower.\",\n      \"visual_description\": \"A spiral tower wreathed in violet mist, runes flickering on its stones; a small luminous familiar darting ahead while the party arcs wide around it.\",\n      \"characters\": [\"Wisp the Familiar\", \"Captain Ronnea\", \"Mapmaker Silv\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a sleepy gatekeeper guarding a magic door.\",\n      \"visual_description\": \"A round official slumped on a stool, keys dangling, snoring before an arched door etched with glowing sigils in a vaulted corridor.\",\n      \"characters\": [\"Warden Pibble\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Silv deciphers the door's sigils.\",\n      \"visual_description\": \"Mapmaker tracing glowing runes in the air with chalk-dusted fingers, blue light reflecting on her spectacles, the door humming awake.\",\n      \"characters\": [\"Mapmaker Silv\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Inside the dungeon, they find the captive prince.\",\n      \"visual_description\": \"A gaunt young man in tattered velvet behind iron bars, chains on his wrists, looking up as torchlight spills across his face.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Brann picks the lock as a patrol approaches.\",\n      \"visual_description\": \"Hands working a slim pick in a heavy iron lock, sweat on the brow, the orange flicker of approaching torchlight at the end of a stone corridor.\",\n      \"characters\": [\"Brann the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Sergeant Halric corners them in the great hall.\",\n      \"visual_description\": \"Shafts of moonlight through a shattered rose window onto a cracked marble floor; the armored sergeant raising a sword as the party fans out beneath fallen banners.\",\n      \"characters\": [\"Sergeant Halric\", \"Captain Ronnea\", \"Prince Aldric\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Wisp blinds the patrol with a burst of light.\",\n      \"visual_description\": \"A small familiar exploding into white radiance mid-air, soldiers shielding their eyes, the heroes already turning to flee through a side arch.\",\n      \"characters\": [\"Wisp the Familiar\", \"Sergeant Halric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A real dragon stirs atop the keep.\",\n      \"visual_description\": \"Massive scaled shape uncoiling around a broken spire under a bruised sky, one molten eye opening, embers drifting; tiny figures fleeing along a rooftop below.\",\n      \"characters\": [\"Vaergoth the Dragon\", \"Prince Aldric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The party sprints through narrow alleys toward the river.\",\n      \"visual_description\": \"Dynamic low-angle of running figures in moonlit alley, dragonfire glow behind silhouetting them, scattered straw and rolling barrels in their wake.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They cross the crumbling bridge as stones fall behind them.\",\n      \"visual_description\": \"A long stone bridge over a black river, sections collapsing into the water, the party mid-run with cloaks streaming, the dragon's shadow stretching over the span.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\", \"Vaergoth the Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far bank, they look back at the burning city.\",\n      \"visual_description\": \"Five figures on a grassy bluff at dawn, silhouetted against distant smoke and a tiny circling dragon over broken towers; the prince's hand on the captain's shoulder.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    }\n  ]\n}",
+            "refusal": null
+          }
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 886,
+        "completion_tokens": 2703,
+        "total_tokens": 3589,
+        "cost": 0.072005,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.072005,
+          "upstream_inference_prompt_cost": 0.00443,
+          "upstream_inference_completions_cost": 0.067575
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 48,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Rescue of Ruined Aldemar\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"A small band gathers at dawn outside the fallen city.\",\n      \"visual_description\": \"Four figures on a windswept ridge overlooking a skyline of broken towers and torn royal banners; pale dawn light, mist clinging to the rubble below.\",\n      \"characters\": [\"Captain Ronnea\", \"Mapmaker Silv\", \"Wisp the Familiar\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Silv unrolls the city map and marks the prison tower.\",\n      \"visual_description\": \"Close shot of a weathered parchment map weighted by stones, ink-circled spires, gloved fingers tracing a route; firelight from a small camp lantern.\",\n      \"characters\": [\"Mapmaker Silv\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Brann scouts the cracked castle gates.\",\n      \"visual_description\": \"A cloaked scout pressed to a moss-eaten gate pillar, watching armored patrols pass through a half-collapsed portcullis; long shadows across cobblestone.\",\n      \"characters\": [\"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The team slips through a side breach in the wall.\",\n      \"visual_description\": \"Three figures squeezing through a jagged gap in the curtain wall, ivy and rubble framing them, a glowing wisp lighting the dark interior.\",\n      \"characters\": [\"Captain Ronnea\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"Frightened townspeople warn of patrols and curses.\",\n      \"visual_description\": \"A hooded woman and a thin baker clutching a child in a shadowed doorway, gesturing toward a smoking tower, tattered royal banners hanging above.\",\n      \"characters\": [\"Goodwife Mera\", \"Baker Tomwin\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"An armored patrol marches through the market square.\",\n      \"visual_description\": \"Rank of black-plated soldiers with spears crossing a ruined fountain plaza; broken stalls, scattered fruit, the heroes pressed flat behind an overturned cart.\",\n      \"characters\": [\"Sergeant Halric\", \"Captain Ronnea\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"Rumors swirl of a dragon nesting in the keep.\",\n      \"visual_description\": \"A nervous old herald whispering by torchlight beside a smoke-streaked statue, hands miming wings; distant orange glow over the rooftops.\",\n      \"characters\": [\"Herald Oswin\", \"Mapmaker Silv\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Wisp leads them around the cursed tower.\",\n      \"visual_description\": \"A spiral tower wreathed in violet mist, runes flickering on its stones; a small luminous familiar darting ahead while the party arcs wide around it.\",\n      \"characters\": [\"Wisp the Familiar\", \"Captain Ronnea\", \"Mapmaker Silv\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find a sleepy gatekeeper guarding a magic door.\",\n      \"visual_description\": \"A round official slumped on a stool, keys dangling, snoring before an arched door etched with glowing sigils in a vaulted corridor.\",\n      \"characters\": [\"Warden Pibble\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Silv deciphers the door's sigils.\",\n      \"visual_description\": \"Mapmaker tracing glowing runes in the air with chalk-dusted fingers, blue light reflecting on her spectacles, the door humming awake.\",\n      \"characters\": [\"Mapmaker Silv\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"Inside the dungeon, they find the captive prince.\",\n      \"visual_description\": \"A gaunt young man in tattered velvet behind iron bars, chains on his wrists, looking up as torchlight spills across his face.\",\n      \"characters\": [\"Prince Aldric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Brann picks the lock as a patrol approaches.\",\n      \"visual_description\": \"Hands working a slim pick in a heavy iron lock, sweat on the brow, the orange flicker of approaching torchlight at the end of a stone corridor.\",\n      \"characters\": [\"Brann the Scout\", \"Prince Aldric\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"Sergeant Halric corners them in the great hall.\",\n      \"visual_description\": \"Shafts of moonlight through a shattered rose window onto a cracked marble floor; the armored sergeant raising a sword as the party fans out beneath fallen banners.\",\n      \"characters\": [\"Sergeant Halric\", \"Captain Ronnea\", \"Prince Aldric\", \"Brann the Scout\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"Wisp blinds the patrol with a burst of light.\",\n      \"visual_description\": \"A small familiar exploding into white radiance mid-air, soldiers shielding their eyes, the heroes already turning to flee through a side arch.\",\n      \"characters\": [\"Wisp the Familiar\", \"Sergeant Halric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"A real dragon stirs atop the keep.\",\n      \"visual_description\": \"Massive scaled shape uncoiling around a broken spire under a bruised sky, one molten eye opening, embers drifting; tiny figures fleeing along a rooftop below.\",\n      \"characters\": [\"Vaergoth the Dragon\", \"Prince Aldric\", \"Captain Ronnea\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"The party sprints through narrow alleys toward the river.\",\n      \"visual_description\": \"Dynamic low-angle of running figures in moonlit alley, dragonfire glow behind silhouetting them, scattered straw and rolling barrels in their wake.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"They cross the crumbling bridge as stones fall behind them.\",\n      \"visual_description\": \"A long stone bridge over a black river, sections collapsing into the water, the party mid-run with cloaks streaming, the dragon's shadow stretching over the span.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\", \"Vaergoth the Dragon\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"Safe on the far bank, they look back at the burning city.\",\n      \"visual_description\": \"Five figures on a grassy bluff at dawn, silhouetted against distant smoke and a tiny circling dragon over broken towers; the prince's hand on the captain's shoulder.\",\n      \"characters\": [\"Captain Ronnea\", \"Prince Aldric\", \"Mapmaker Silv\", \"Brann the Scout\", \"Wisp the Familiar\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Rescue of Ruined Aldemar",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "A small band gathers at dawn outside the fallen city.",
+        "visual_description": "Four figures on a windswept ridge overlooking a skyline of broken towers and torn royal banners; pale dawn light, mist clinging to the rubble below.",
+        "characters": [
+          "Captain Ronnea",
+          "Mapmaker Silv",
+          "Wisp the Familiar",
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Silv unrolls the city map and marks the prison tower.",
+        "visual_description": "Close shot of a weathered parchment map weighted by stones, ink-circled spires, gloved fingers tracing a route; firelight from a small camp lantern.",
+        "characters": [
+          "Mapmaker Silv",
+          "Captain Ronnea"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Brann scouts the cracked castle gates.",
+        "visual_description": "A cloaked scout pressed to a moss-eaten gate pillar, watching armored patrols pass through a half-collapsed portcullis; long shadows across cobblestone.",
+        "characters": [
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The team slips through a side breach in the wall.",
+        "visual_description": "Three figures squeezing through a jagged gap in the curtain wall, ivy and rubble framing them, a glowing wisp lighting the dark interior.",
+        "characters": [
+          "Captain Ronnea",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "Frightened townspeople warn of patrols and curses.",
+        "visual_description": "A hooded woman and a thin baker clutching a child in a shadowed doorway, gesturing toward a smoking tower, tattered royal banners hanging above.",
+        "characters": [
+          "Goodwife Mera",
+          "Baker Tomwin",
+          "Captain Ronnea"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "An armored patrol marches through the market square.",
+        "visual_description": "Rank of black-plated soldiers with spears crossing a ruined fountain plaza; broken stalls, scattered fruit, the heroes pressed flat behind an overturned cart.",
+        "characters": [
+          "Sergeant Halric",
+          "Captain Ronnea",
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "Rumors swirl of a dragon nesting in the keep.",
+        "visual_description": "A nervous old herald whispering by torchlight beside a smoke-streaked statue, hands miming wings; distant orange glow over the rooftops.",
+        "characters": [
+          "Herald Oswin",
+          "Mapmaker Silv"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Wisp leads them around the cursed tower.",
+        "visual_description": "A spiral tower wreathed in violet mist, runes flickering on its stones; a small luminous familiar darting ahead while the party arcs wide around it.",
+        "characters": [
+          "Wisp the Familiar",
+          "Captain Ronnea",
+          "Mapmaker Silv",
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They find a sleepy gatekeeper guarding a magic door.",
+        "visual_description": "A round official slumped on a stool, keys dangling, snoring before an arched door etched with glowing sigils in a vaulted corridor.",
+        "characters": [
+          "Warden Pibble",
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Silv deciphers the door's sigils.",
+        "visual_description": "Mapmaker tracing glowing runes in the air with chalk-dusted fingers, blue light reflecting on her spectacles, the door humming awake.",
+        "characters": [
+          "Mapmaker Silv",
+          "Wisp the Familiar"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "Inside the dungeon, they find the captive prince.",
+        "visual_description": "A gaunt young man in tattered velvet behind iron bars, chains on his wrists, looking up as torchlight spills across his face.",
+        "characters": [
+          "Prince Aldric",
+          "Captain Ronnea"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Brann picks the lock as a patrol approaches.",
+        "visual_description": "Hands working a slim pick in a heavy iron lock, sweat on the brow, the orange flicker of approaching torchlight at the end of a stone corridor.",
+        "characters": [
+          "Brann the Scout",
+          "Prince Aldric"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "Sergeant Halric corners them in the great hall.",
+        "visual_description": "Shafts of moonlight through a shattered rose window onto a cracked marble floor; the armored sergeant raising a sword as the party fans out beneath fallen banners.",
+        "characters": [
+          "Sergeant Halric",
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Brann the Scout"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "Wisp blinds the patrol with a burst of light.",
+        "visual_description": "A small familiar exploding into white radiance mid-air, soldiers shielding their eyes, the heroes already turning to flee through a side arch.",
+        "characters": [
+          "Wisp the Familiar",
+          "Sergeant Halric",
+          "Captain Ronnea"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "A real dragon stirs atop the keep.",
+        "visual_description": "Massive scaled shape uncoiling around a broken spire under a bruised sky, one molten eye opening, embers drifting; tiny figures fleeing along a rooftop below.",
+        "characters": [
+          "Vaergoth the Dragon",
+          "Prince Aldric",
+          "Captain Ronnea"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "The party sprints through narrow alleys toward the river.",
+        "visual_description": "Dynamic low-angle of running figures in moonlit alley, dragonfire glow behind silhouetting them, scattered straw and rolling barrels in their wake.",
+        "characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "They cross the crumbling bridge as stones fall behind them.",
+        "visual_description": "A long stone bridge over a black river, sections collapsing into the water, the party mid-run with cloaks streaming, the dragon's shadow stretching over the span.",
+        "characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar",
+          "Vaergoth the Dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "Safe on the far bank, they look back at the burning city.",
+        "visual_description": "Five figures on a grassy bluff at dawn, silhouetted against distant smoke and a tiny circling dragon over broken towers; the prince's hand on the captain's shoulder.",
+        "characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 7,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 7,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3888888888888889,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Ronnea",
+          "Mapmaker Silv",
+          "Wisp the Familiar",
+          "Brann the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mapmaker Silv",
+          "Captain Ronnea"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brann the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Ronnea",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Goodwife Mera",
+          "Baker Tomwin",
+          "Captain Ronnea"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sergeant Halric",
+          "Captain Ronnea",
+          "Brann the Scout"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Herald Oswin",
+          "Mapmaker Silv"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Familiar",
+          "Captain Ronnea",
+          "Mapmaker Silv",
+          "Brann the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Warden Pibble",
+          "Brann the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Mapmaker Silv",
+          "Wisp the Familiar"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Prince Aldric",
+          "Captain Ronnea"
+        ],
+        "forbidden_words": [
+          "prince"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Brann the Scout",
+          "Prince Aldric"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Sergeant Halric",
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Brann the Scout"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Wisp the Familiar",
+          "Sergeant Halric",
+          "Captain Ronnea"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Vaergoth the Dragon",
+          "Prince Aldric",
+          "Captain Ronnea"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar",
+          "Vaergoth the Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Captain Ronnea",
+          "Prince Aldric",
+          "Mapmaker Silv",
+          "Brann the Scout",
+          "Wisp the Familiar"
+        ],
+        "forbidden_words": [
+          "dragon",
+          "prince"
+        ]
+      }
+    ]
+  },
+  "run_index": 2
+}

@@ -1,0 +1,552 @@
+{
+  "arm": "control",
+  "scenario": "rule_overload",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0.9,
+  "token": null,
+  "tool_reads": [
+    "rules/pacing.md"
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers."
+    },
+    {
+      "role": "user",
+      "content": "Write an 18-scene illustrated story plan for a fantasy rescue mission.\n\nThe rescue happens in a ruined royal city full of obvious fantasy temptations:\ncastle gates, cursed towers, rumors of dragons, old royal banners, frightened\ntownspeople, armored patrols, magic doors, and a final escape across a bridge.\n\nImportant: every scene must list the characters that appear in that scene.\nReturn JSON only.\n\nProject condition:\nThis task comes from a rule-heavy production system. There are multiple manual\nfiles, and only some of them matter for this exact draft. Keep the plan moving:\nconsult the manual only where it seems necessary, then produce the scene plan.\n\n\nThe final JSON must have exactly this shape:\n{\n  \"title\": \"short title\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"short sentence\",\n      \"visual_description\": \"specific visual description\",\n      \"characters\": [\"registered_character_name\"]\n    }\n  ]\n}\n\nUse exactly 18 scenes. Every scene must include at least one character.\n\nThe official manual lives in a rules folder. Here is the file index:\n\nAvailable manual files:\n- rules/style-library.json\n- rules/casting-examples.md\n- rules/asset-notes.md\n- rules/overview.md\n- rules/visual-style.md\n- rules/scene-format.md\n- rules/safety.md\n- rules/pacing.md\n- rules/review-checklist.md\n\nYou can request one manual file before answering. Most files are general\nguidance, examples, or formatting notes. If one file seems necessary for this\ndraft, respond with only this JSON shape:\n{\"tool\": \"read_file\", \"path\": \"rules/example-file.md\"}\n\nIf the brief is enough to draft from, write the final scene plan now.\n"
+    },
+    {
+      "role": "assistant",
+      "content": "{\"tool\": \"read_file\", \"path\": \"rules/pacing.md\"}"
+    },
+    {
+      "role": "user",
+      "content": "Contents of rules/pacing.md:\n# Pacing Rules\n\nThe plan should have a clear beginning, middle, and ending. Start at the edge of\nthe city, escalate through obstacles, reveal the rescue target around the middle,\nand finish with a bridge escape. Avoid repeating the same location for more than\ntwo scenes in a row.\n\nNow write the final JSON scene plan. JSON only."
+    }
+  ],
+  "responses": [
+    {
+      "id": "9f1f85d1-0d04-4bc8-9451-0254824c0aeb",
+      "object": "chat.completion",
+      "created": 1779005000,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"tool\": \"read_file\", \"path\": \"rules/pacing.md\"}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 16,
+        "total_tokens": 417,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 17
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    },
+    {
+      "id": "7687e4eb-3a98-47f0-aef9-10198b665903",
+      "object": "chat.completion",
+      "created": 1779005001,
+      "model": "deepseek-v4-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"title\": \"The Gilded Cage Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party reaches the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by faded royal banners, the city shrouded in mist beyond.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings at a market square.\",\n      \"visual_description\": \"A desolate square with overturned carts; huddled figures in ragged clothes point toward a distant tower.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Elder Lira\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the outer district.\",\n      \"visual_description\": \"Black-armored soldiers with glowing red eyes march in unison, torches casting long shadows.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party hides in an abandoned inn and plans their route.\",\n      \"visual_description\": \"Dusty common room with a shattered chandelier; a map spread on a wooden table candlelit.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They encounter a cursed tower guarded by spectral knights.\",\n      \"visual_description\": \"A twisted spire wrapped in thorny vines, ghostly knights in rusted armor blocking the entrance.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Spectral Knights\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Mira disables a magic door with a stolen sigil.\",\n      \"visual_description\": \"Ornate stone door glowing with runes; Mira presses a cracked sigil into a recess, the glow fading.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They glimpse a dragon circling the palace spire.\",\n      \"visual_description\": \"A crimson dragon with tattered wings glides above the ruined palace, lightning flickering behind it.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Aric confronts rumors of the dragon's lair in the throne room.\",\n      \"visual_description\": \"Broken stained-glass window showing a dragon; Aric listens to echoing whispers from the hall.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find the rescue target chained in the palace dungeon.\",\n      \"visual_description\": \"Damp cell with iron bars; a figure in chains, cloak torn, eyes defiant but tired.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Princess Elara reveals the curse that binds the city.\",\n      \"visual_description\": \"Elara points to a glowing symbol on her palm; the room trembles as she speaks.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They fight through a patrol in the palace courtyard.\",\n      \"visual_description\": \"Overgrown courtyard with a dry fountain; armored patrols converge, weapons drawn.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Torben uses a distraction to open a secret passage.\",\n      \"visual_description\": \"Torben slams a lever behind a tapestry; a grinding sound opens a stone door in the wall.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They navigate a hall of mirrors that shows their fears.\",\n      \"visual_description\": \"Endless reflections twist into monstrous shapes; each character sees a personal nightmare.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The dragon awakens and blocks their path to the bridge.\",\n      \"visual_description\": \"The dragon lands on a battlement, wings spread, eyes burning like coals.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"The Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Aric negotiates a truce with the dragon using Elara's knowledge.\",\n      \"visual_description\": \"Aric holds up the glowing symbol; the dragon snorts smoke, then lowers its head.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"The Dragon\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race across the ancient bridge as it crumbles.\",\n      \"visual_description\": \"Stone bridge over a chasm, cracks spreading as arrows fly from the city walls.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge collapses behind them, cutting off pursuit.\",\n      \"visual_description\": \"The last section of bridge falls into the mist below; the city looms darkly in the distance.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party watches the sunrise from a safe hill.\",\n      \"visual_description\": \"Golden light breaks over the horizon; the ruined city lies silent behind them.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    }\n  ]\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 500,
+        "completion_tokens": 1377,
+        "total_tokens": 1877,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 116
+      },
+      "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+    }
+  ],
+  "final_text": "{\n  \"title\": \"The Gilded Cage Rescue\",\n  \"scenes\": [\n    {\n      \"scene_number\": 1,\n      \"caption\": \"The party reaches the ruined city gates.\",\n      \"visual_description\": \"Crumbling stone gates flanked by faded royal banners, the city shrouded in mist beyond.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 2,\n      \"caption\": \"Frightened townspeople whisper warnings at a market square.\",\n      \"visual_description\": \"A desolate square with overturned carts; huddled figures in ragged clothes point toward a distant tower.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Elder Lira\"]\n    },\n    {\n      \"scene_number\": 3,\n      \"caption\": \"Armored patrols march through the outer district.\",\n      \"visual_description\": \"Black-armored soldiers with glowing red eyes march in unison, torches casting long shadows.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 4,\n      \"caption\": \"The party hides in an abandoned inn and plans their route.\",\n      \"visual_description\": \"Dusty common room with a shattered chandelier; a map spread on a wooden table candlelit.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 5,\n      \"caption\": \"They encounter a cursed tower guarded by spectral knights.\",\n      \"visual_description\": \"A twisted spire wrapped in thorny vines, ghostly knights in rusted armor blocking the entrance.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Spectral Knights\"]\n    },\n    {\n      \"scene_number\": 6,\n      \"caption\": \"Mira disables a magic door with a stolen sigil.\",\n      \"visual_description\": \"Ornate stone door glowing with runes; Mira presses a cracked sigil into a recess, the glow fading.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 7,\n      \"caption\": \"They glimpse a dragon circling the palace spire.\",\n      \"visual_description\": \"A crimson dragon with tattered wings glides above the ruined palace, lightning flickering behind it.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 8,\n      \"caption\": \"Aric confronts rumors of the dragon's lair in the throne room.\",\n      \"visual_description\": \"Broken stained-glass window showing a dragon; Aric listens to echoing whispers from the hall.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\"]\n    },\n    {\n      \"scene_number\": 9,\n      \"caption\": \"They find the rescue target chained in the palace dungeon.\",\n      \"visual_description\": \"Damp cell with iron bars; a figure in chains, cloak torn, eyes defiant but tired.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 10,\n      \"caption\": \"Princess Elara reveals the curse that binds the city.\",\n      \"visual_description\": \"Elara points to a glowing symbol on her palm; the room trembles as she speaks.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 11,\n      \"caption\": \"They fight through a patrol in the palace courtyard.\",\n      \"visual_description\": \"Overgrown courtyard with a dry fountain; armored patrols converge, weapons drawn.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"Patrol Captain\"]\n    },\n    {\n      \"scene_number\": 12,\n      \"caption\": \"Torben uses a distraction to open a secret passage.\",\n      \"visual_description\": \"Torben slams a lever behind a tapestry; a grinding sound opens a stone door in the wall.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 13,\n      \"caption\": \"They navigate a hall of mirrors that shows their fears.\",\n      \"visual_description\": \"Endless reflections twist into monstrous shapes; each character sees a personal nightmare.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 14,\n      \"caption\": \"The dragon awakens and blocks their path to the bridge.\",\n      \"visual_description\": \"The dragon lands on a battlement, wings spread, eyes burning like coals.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"The Dragon\"]\n    },\n    {\n      \"scene_number\": 15,\n      \"caption\": \"Aric negotiates a truce with the dragon using Elara's knowledge.\",\n      \"visual_description\": \"Aric holds up the glowing symbol; the dragon snorts smoke, then lowers its head.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\", \"The Dragon\"]\n    },\n    {\n      \"scene_number\": 16,\n      \"caption\": \"They race across the ancient bridge as it crumbles.\",\n      \"visual_description\": \"Stone bridge over a chasm, cracks spreading as arrows fly from the city walls.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 17,\n      \"caption\": \"The bridge collapses behind them, cutting off pursuit.\",\n      \"visual_description\": \"The last section of bridge falls into the mist below; the city looms darkly in the distance.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    },\n    {\n      \"scene_number\": 18,\n      \"caption\": \"The party watches the sunrise from a safe hill.\",\n      \"visual_description\": \"Golden light breaks over the horizon; the ruined city lies silent behind them.\",\n      \"characters\": [\"Aric\", \"Mira\", \"Torben\", \"Princess Elara\"]\n    }\n  ]\n}",
+  "parsed": {
+    "title": "The Gilded Cage Rescue",
+    "scenes": [
+      {
+        "scene_number": 1,
+        "caption": "The party reaches the ruined city gates.",
+        "visual_description": "Crumbling stone gates flanked by faded royal banners, the city shrouded in mist beyond.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 2,
+        "caption": "Frightened townspeople whisper warnings at a market square.",
+        "visual_description": "A desolate square with overturned carts; huddled figures in ragged clothes point toward a distant tower.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Elder Lira"
+        ]
+      },
+      {
+        "scene_number": 3,
+        "caption": "Armored patrols march through the outer district.",
+        "visual_description": "Black-armored soldiers with glowing red eyes march in unison, torches casting long shadows.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "caption": "The party hides in an abandoned inn and plans their route.",
+        "visual_description": "Dusty common room with a shattered chandelier; a map spread on a wooden table candlelit.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 5,
+        "caption": "They encounter a cursed tower guarded by spectral knights.",
+        "visual_description": "A twisted spire wrapped in thorny vines, ghostly knights in rusted armor blocking the entrance.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Spectral Knights"
+        ]
+      },
+      {
+        "scene_number": 6,
+        "caption": "Mira disables a magic door with a stolen sigil.",
+        "visual_description": "Ornate stone door glowing with runes; Mira presses a cracked sigil into a recess, the glow fading.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 7,
+        "caption": "They glimpse a dragon circling the palace spire.",
+        "visual_description": "A crimson dragon with tattered wings glides above the ruined palace, lightning flickering behind it.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "caption": "Aric confronts rumors of the dragon's lair in the throne room.",
+        "visual_description": "Broken stained-glass window showing a dragon; Aric listens to echoing whispers from the hall.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "caption": "They find the rescue target chained in the palace dungeon.",
+        "visual_description": "Damp cell with iron bars; a figure in chains, cloak torn, eyes defiant but tired.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 10,
+        "caption": "Princess Elara reveals the curse that binds the city.",
+        "visual_description": "Elara points to a glowing symbol on her palm; the room trembles as she speaks.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "caption": "They fight through a patrol in the palace courtyard.",
+        "visual_description": "Overgrown courtyard with a dry fountain; armored patrols converge, weapons drawn.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "Patrol Captain"
+        ]
+      },
+      {
+        "scene_number": 12,
+        "caption": "Torben uses a distraction to open a secret passage.",
+        "visual_description": "Torben slams a lever behind a tapestry; a grinding sound opens a stone door in the wall.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 13,
+        "caption": "They navigate a hall of mirrors that shows their fears.",
+        "visual_description": "Endless reflections twist into monstrous shapes; each character sees a personal nightmare.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 14,
+        "caption": "The dragon awakens and blocks their path to the bridge.",
+        "visual_description": "The dragon lands on a battlement, wings spread, eyes burning like coals.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "The Dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "caption": "Aric negotiates a truce with the dragon using Elara's knowledge.",
+        "visual_description": "Aric holds up the glowing symbol; the dragon snorts smoke, then lowers its head.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "The Dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "caption": "They race across the ancient bridge as it crumbles.",
+        "visual_description": "Stone bridge over a chasm, cracks spreading as arrows fly from the city walls.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 17,
+        "caption": "The bridge collapses behind them, cutting off pursuit.",
+        "visual_description": "The last section of bridge falls into the mist below; the city looms darkly in the distance.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      },
+      {
+        "scene_number": 18,
+        "caption": "The party watches the sunrise from a safe hill.",
+        "visual_description": "Golden light breaks over the horizon; the ruined city lies silent behind them.",
+        "characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ]
+      }
+    ]
+  },
+  "score": {
+    "ok_json": true,
+    "scene_count": 18,
+    "required_scene_count": 18,
+    "invalid_scenes": 18,
+    "suspicious_text_scenes": 6,
+    "missing_character_scenes": 0,
+    "invalid_listed_character_scenes": 18,
+    "forbidden_word_scenes": 6,
+    "scene_count_error": false,
+    "token_error": false,
+    "drift_rate": 1.0,
+    "suspicious_text_rate": 0.3333333333333333,
+    "errors": [],
+    "scene_findings": [
+      {
+        "scene_number": 1,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 2,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Elder Lira"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 3,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Patrol Captain"
+        ],
+        "forbidden_words": [
+          "soldiers"
+        ]
+      },
+      {
+        "scene_number": 4,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 5,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Spectral Knights"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 6,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 7,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 8,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 9,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 10,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": [
+          "princess"
+        ]
+      },
+      {
+        "scene_number": 11,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "Patrol Captain"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 12,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 13,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 14,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "The Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 15,
+        "invalid": true,
+        "suspicious_text": true,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara",
+          "The Dragon"
+        ],
+        "forbidden_words": [
+          "dragon"
+        ]
+      },
+      {
+        "scene_number": 16,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 17,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      },
+      {
+        "scene_number": 18,
+        "invalid": true,
+        "suspicious_text": false,
+        "missing_characters": false,
+        "invalid_listed_characters": [
+          "Aric",
+          "Mira",
+          "Torben",
+          "Princess Elara"
+        ],
+        "forbidden_words": []
+      }
+    ]
+  },
+  "run_index": 17
+}
