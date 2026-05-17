@@ -1,5 +1,7 @@
 # Context Gate AI Hallucination Experiment
 
+[**Open the interactive demo**](https://artluai.github.io/context-gate-ai-hallucination/)
+
 This repository contains a small controlled experiment testing whether
 Context Gates reduce a common AI-agent failure: answering before the source of
 truth is actually in context.
@@ -31,6 +33,7 @@ model's context.
 ## What's Included
 
 - `run_experiment.py` - the experiment harness.
+- `index.html` - GitHub Pages entrypoint for the interactive demo.
 - `demo/index.html` - self-contained public HTML demo.
 - `results/` - raw outputs, summaries, configs, rule files, and authority files.
 - `docs/method.md` - experiment design.

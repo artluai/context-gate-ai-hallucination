@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Gates — can an AI find the rule that matters?</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f2ea; --card:#fffefa; --ink:#1c1b17; --mut:#9a9486;
+    --line:#e6e0d2; --rule:#d3ccba; --accent:#33415c;
+    --drift:#b93f31; --drift-bg:#f4ddd9; --clean:#2e7d4e; --clean-bg:#dcefe2;
+    --amber:#b0791a; --gold:#cc8b1f;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  body{
+    background:var(--paper);font-family:var(--sans);color:var(--ink);
+    padding:22px;-webkit-font-smoothing:antialiased;
+  }
+  .paper{
+    width:100%;max-width:920px;margin:0 auto;background:var(--card);
+    border:1px solid var(--line);border-radius:5px;
+    box-shadow:0 16px 50px rgba(28,27,23,.13);padding:30px 42px 34px;
+  }
+
+  .kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+  h1{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1.3;letter-spacing:-.2px;margin:8px 0 0}
+  .rule{height:1px;background:var(--rule);margin:16px 0}
+
+  /* ── stepper ── */
+  .flowonly{display:none}
+  .paper:not([data-view="landing"]) .flowonly{display:block}
+  .stepper{display:flex;margin-bottom:4px}
+  .stepper .st{flex:1;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding-bottom:7px;border-bottom:2px solid var(--line);transition:color .25s,border-color .25s}
+  .stepper .st .n{font-family:var(--mono);opacity:.55;margin-right:4px}
+  .paper[data-view="setting"]    .st[data-s="1"],
+  .paper[data-view="catch"]      .st[data-s="2"],
+  .paper[data-view="conditions"] .st[data-s="3"],
+  .paper[data-view="running"]    .st[data-s="3"],
+  .paper[data-view="results"]    .st[data-s="4"]{color:var(--accent);border-color:var(--accent)}
+
+  .step{display:none;animation:fade .42s ease}
+  .paper[data-view="landing"] .step.landing,
+  .paper[data-view="setting"] .step.setting,
+  .paper[data-view="catch"] .step.catch,
+  .paper[data-view="conditions"] .step.conditions,
+  .paper[data-view="running"] .step.running,
+  .paper[data-view="results"] .step.results{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+  .figlabel{font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-top:20px}
+  .step h2{font-family:var(--serif);font-size:22px;font-weight:700;margin:5px 0 4px;letter-spacing:-.2px}
+  .cap{font-size:12px;line-height:1.55;color:var(--mut);font-style:italic;margin-top:16px}
+  .cap b{font-style:normal;font-weight:700;color:#54503f}
+  .obs{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.02em;color:var(--accent)}
+
+  /* ── LANDING (folder hero) ── */
+  .folder{position:relative;margin:24px auto 4px;width:330px;height:188px}
+  .ftile{position:absolute;width:96px;height:70px;border-radius:6px;background:#fff;border:1.5px solid var(--rule)}
+  .ftile .fl{display:block;margin:9px 8px 0;height:3px;border-radius:2px;background:#e4ddcb}
+  .ftile .fl.s{width:46px}
+  .ftile.t1{left:8px;top:14px;transform:rotate(-9deg)}
+  .ftile.t2{left:74px;top:4px;transform:rotate(5deg)}
+  .ftile.t3{left:150px;top:16px;transform:rotate(-4deg)}
+  .ftile.t4{left:214px;top:6px;transform:rotate(11deg)}
+  .ftile.t5{left:36px;top:88px;transform:rotate(7deg)}
+  .ftile.t6{left:172px;top:96px;transform:rotate(-7deg)}
+  .ftile.t7{left:238px;top:84px;transform:rotate(4deg)}
+  .ftile.target{left:118px;top:70px;width:120px;height:84px;z-index:5;transform:rotate(-2deg);
+    border:2.4px solid var(--gold);background:#fffaf0;box-shadow:0 10px 30px rgba(204,139,31,.32)}
+  .ftile.target .tn{font-family:var(--mono);font-size:11px;font-weight:700;color:#8a5e15;margin:11px 11px 0}
+  .ftile.target .tb{margin:7px 11px 0;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .ftile.target .glow{position:absolute;top:-9px;right:-9px;width:24px;height:24px;border-radius:50%;
+    background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  .start-row{display:flex;justify-content:center;margin-top:14px}
+  .lead{font-size:14.5px;line-height:1.62;color:#48443b;margin:10px 0 0}
+  .lead b{color:var(--ink);font-weight:700}
+
+  /* ── study toggle (files vs rushed) ── */
+  .s-files,.s-rushed{display:none}
+  .paper[data-study="files"] .s-files{display:block}
+  .paper[data-study="rushed"] .s-rushed{display:block}
+
+  /* ── landing study cards ── */
+  .studies{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .study{border:1px solid var(--line);border-radius:8px;padding:20px 20px 18px;background:#faf8f0;
+    text-align:left;cursor:pointer;font:inherit;display:block;width:100%;
+    transition:transform .16s,box-shadow .16s,border-color .16s}
+  .study:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(28,27,23,.1)}
+  .study .snum{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+  .study h3{font-family:var(--serif);font-size:17px;font-weight:700;margin:8px 0 6px;line-height:1.25;color:var(--ink)}
+  .study p{font-size:12px;line-height:1.55;color:#6b6657;margin:0}
+  .study .go{margin-top:14px;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+
+  /* ── landing study figures ── */
+  .study-fig{height:160px;margin:0 0 16px;border-radius:7px;background:#fbf9f1;
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .study-fig .folder{margin:0;transform:scale(.7)}
+  .rushfig{position:relative;width:270px;height:140px}
+  .rushfig .rclock{position:absolute;left:0;top:24px}
+  .rcard{position:absolute;left:140px;top:32px;width:122px;height:78px;border-radius:7px;
+    border:2.4px solid var(--gold);background:#fffaf0;box-shadow:0 10px 30px rgba(204,139,31,.3)}
+  .rcard .tn{font-family:var(--mono);font-size:10.5px;font-weight:700;color:#8a5e15;margin:13px 11px 0}
+  .rcard .tb{margin:7px 11px 0;font-size:8.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .rstreak{position:absolute;height:4px;border-radius:3px;background:var(--gold);opacity:.42}
+  .rstreak.a{left:96px;top:50px;width:40px}
+  .rstreak.b{left:86px;top:69px;width:52px}
+  .rstreak.c{left:100px;top:88px;width:34px}
+
+  /* ── rushed-study catch visual ── */
+  .rushwrap{display:flex;flex-direction:column;gap:14px;padding:16px 0 4px;max-width:560px;margin:0 auto}
+  .pressure{display:flex;align-items:center;gap:15px;border:1px solid var(--line);border-radius:7px;background:#faf8f0;padding:14px 16px}
+  .pressure .pbig{font-size:30px;line-height:1;flex:0 0 auto;color:#b93f31}
+  .pressure .ptxt{font-size:12px;line-height:1.55;color:#54503f}
+  .pressure .ptxt b{color:var(--ink);font-weight:700}
+
+  /* ── collapsible exact-prompt block ── */
+  .promptbox{margin-top:18px;border:1px solid var(--line);border-radius:6px;background:#faf8f0}
+  .promptbox summary{cursor:pointer;padding:11px 14px;font-size:10.5px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--accent);list-style:none}
+  .promptbox summary::-webkit-details-marker{display:none}
+  .promptbox summary::before{content:"\25B8  "}
+  .promptbox[open] summary::before{content:"\25BE  "}
+  .promptbox[open] summary{border-bottom:1px solid var(--line)}
+  .promptpre{padding:4px 14px 14px}
+  .prole{font-size:8.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);margin:12px 0 5px}
+  .promptpre pre{font-family:var(--mono);font-size:10.5px;line-height:1.62;color:#3a3730;
+    white-space:pre-wrap;word-break:break-word;margin:0;background:#fff;
+    border:1px solid var(--line);border-radius:4px;padding:11px 12px}
+
+  /* ── SETTING ── */
+  .scene1{display:flex;align-items:center;justify-content:center;gap:18px;padding:24px 0 12px;flex-wrap:wrap}
+  .item{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .item .ilab{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .item .isub{font-size:10px;color:var(--mut);font-style:italic;margin-top:-4px}
+  .plus{font-size:24px;color:#c4bda9;font-weight:400;flex:0 0 auto;align-self:center;margin-top:-14px}
+  .bigarrow{width:46px;height:2px;background:var(--rule);position:relative;flex:0 0 auto;align-self:center;margin-top:-14px}
+  .bigarrow::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left-color:var(--rule)}
+  .modelbox{flex:0 0 auto;background:var(--accent);border-radius:11px;padding:26px 30px;align-self:center;margin-top:-14px}
+  .modelbox .mv{font-family:var(--mono);font-size:23px;font-weight:700;color:#fff;letter-spacing:2px}
+
+  /* ── CATCH ── */
+  .catchwrap{display:grid;grid-template-columns:1fr 152px;column-gap:18px;row-gap:9px;padding:16px 0 4px}
+  .pile-block{display:flex;flex-direction:column;gap:5px}
+  .nf{display:flex;align-items:center;gap:9px;padding:6px 11px;font-family:var(--mono);font-size:11px;color:#b3ad9d;background:#faf8f0;border:1px solid var(--line);border-radius:4px}
+  .nf .x{color:#cdc6b4;font-size:12px}
+  .keyfile{border:2px solid var(--accent);border-radius:7px;background:#fff;box-shadow:0 6px 20px rgba(51,65,92,.16)}
+  .keyfile .kf-name{display:flex;align-items:center;gap:9px;padding:11px 13px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+  .keyfile .kf-name .star{color:var(--accent);font-size:13px}
+  .keyfile .kf-body{background:var(--accent);color:#fff;padding:11px 14px;border-radius:0 0 5px 5px;font-family:var(--mono);font-size:10.5px;line-height:1.8}
+  .keyfile .kf-body .kl{display:block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#aeb6c6;margin-bottom:4px}
+  .note-cell{display:flex;align-items:center;border-left:2px solid var(--rule);padding-left:12px}
+  .note-cell.key{border-left-color:var(--accent)}
+
+  /* ── CONDITIONS ── */
+  .conds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0 4px}
+  .cond{border:1px solid var(--line);border-radius:7px;padding:15px 13px 14px;background:#faf8f0;text-align:center;display:flex;flex-direction:column}
+  .cond .cl{font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;background:var(--accent);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 9px}
+  .cond h3{font-size:13.5px;font-weight:800;margin-bottom:7px}
+  .cond .crole{
+    font-size:8.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--accent);background:#eef0f4;border-radius:20px;padding:3px 9px;
+    display:inline-block;margin-bottom:11px;
+  }
+  .cond .diagram{height:58px;display:flex;align-items:center;justify-content:center}
+  .cond .cnote{font-size:10.5px;line-height:1.5;color:#6b6657;border-top:1px solid var(--line);padding-top:10px;margin-top:11px}
+  .cond .cnote b{color:var(--ink);font-weight:800}
+  /* task explainer (Fig 1b) */
+  .taskblock{display:flex;gap:30px;flex-wrap:wrap;padding:6px 0 2px;align-items:flex-start}
+  .taskcol{flex:1;min-width:210px}
+  .tc-label{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
+  .scene-dots{display:grid;grid-template-columns:repeat(9,1fr);gap:6px}
+  .scene-dots i{aspect-ratio:1;border:1.6px solid var(--rule);border-radius:4px;display:block}
+  .chips{display:flex;flex-direction:column;gap:6px}
+  .chip{display:flex;align-items:center;gap:9px;background:#faf8f0;border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-family:var(--mono);font-size:11px;color:#54503f}
+  .chip .av{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--sans)}
+  .subrule{height:1px;background:var(--line);margin:20px 0 4px}
+
+  /* ── RUNNING ── */
+  .running{text-align:center;padding:56px 0 48px}
+  .running .rcount{font-family:var(--mono);font-size:72px;font-weight:700;color:var(--accent);letter-spacing:-3px;line-height:1}
+  .running .rtot{color:var(--mut);font-size:34px}
+  .running .rlab{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--mut);margin-top:14px}
+  .running .rbar{height:2px;background:var(--line);margin:26px auto 0;max-width:280px;overflow:hidden}
+  .running .rbar i{display:block;height:100%;width:0;background:var(--accent)}
+
+  /* ── RESULTS ── */
+  .controls{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0 4px}
+  .ctl{display:flex;flex-direction:column;gap:5px}
+  .ctl-label{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .seg{display:flex;background:#ece6d8;border-radius:7px;padding:3px}
+  .seg button{font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer;border:none;background:none;color:var(--mut);padding:6px 12px;border-radius:5px;transition:all .15s}
+  .seg button.on{background:var(--accent);color:#fff}
+  .seg button:disabled{opacity:.3;cursor:not-allowed}
+  .mode-cap{font-size:11px;color:var(--mut);font-style:italic;margin:10px 0 0}
+  .mode-cap b{font-style:normal;font-weight:700;color:#54503f}
+  .scalenote{font-size:11px;line-height:1.5;color:#54503f;background:#faf8f0;border:1px solid var(--line);border-radius:5px;padding:8px 11px;margin:12px 0 12px}
+  .scalenote b.bad{color:var(--drift);font-weight:800}
+  .scalenote b.good{color:var(--clean);font-weight:800}
+
+  .bars{margin:4px 0}
+  .brow{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+  .brow .blab{width:120px;flex:0 0 auto;text-align:right}
+  .brow .blab .bn{font-size:12.5px;font-weight:700}
+  .brow .blab .bs{display:block;font-family:var(--mono);font-size:8.5px;color:var(--mut);margin-top:1px}
+  .brow .btrack{flex:1;height:28px;background:#efeadd;border-radius:3px;overflow:hidden}
+  .brow .bfill{height:100%;width:0;transition:width 1s cubic-bezier(.3,1,.4,1)}
+  .brow .bfill.bad{background:var(--drift)} .brow .bfill.good{background:var(--clean)} .brow .bfill.mid{background:var(--amber)}
+  .brow .bval{width:54px;flex:0 0 auto;font-family:var(--mono);font-size:16px;font-weight:700}
+  .brow .bval.bad{color:var(--drift)} .brow .bval.good{color:var(--clean)} .brow .bval.mid{color:var(--amber)}
+
+  .found{display:flex;gap:8px;align-items:flex-start;background:#faf8f0;border:1px solid var(--line);
+    border-left:3px solid var(--accent);border-radius:5px;padding:10px 13px;margin:14px 0 2px;
+    font-size:11.5px;line-height:1.5;color:#54503f}
+  .found .fi{color:var(--accent);font-weight:700;flex:0 0 auto;font-size:12px}
+  .found b{color:var(--ink);font-weight:800}
+  .found.compact{font-size:10.5px;padding:8px 11px;margin:7px 0 0}
+
+  .cmp-head{font-size:11px;font-weight:800;color:var(--accent);margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+  .cmp-head .dl{flex:1;height:1px;background:var(--rule)}
+  .bars.compact .brow{margin-bottom:7px}
+  .bars.compact .btrack{height:20px}
+  .bars.compact .blab{width:108px}
+  .bars.compact .blab .bn{font-size:11px}
+  .bars.compact .bval{font-size:13px;width:48px}
+
+  .takeaway-box{font-family:var(--serif);font-size:16px;line-height:1.5;font-weight:700;letter-spacing:-.2px;margin:20px 0 6px}
+  .takeaway-box .hl{color:var(--accent)}
+  .repro{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 14px}
+  .repro a{flex:1;min-width:150px;text-decoration:none;border:1px solid var(--line);border-radius:7px;background:#faf8f0;padding:11px 13px;transition:all .15s}
+  .repro a:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .repro .rt{font-size:11.5px;font-weight:800;color:var(--ink)}
+  .repro .rd{font-size:9.5px;color:var(--mut);margin-top:3px}
+  .repro .rg{font-size:10.5px;font-weight:800;color:var(--accent);margin-top:7px}
+  .integrity{border-top:1px solid var(--rule);padding-top:13px;margin-top:6px}
+  .integrity .il{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+  .integrity ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .integrity li{font-size:10.5px;line-height:1.45;color:#6b6657;padding-left:14px;position:relative}
+  .integrity li::before{content:"·";position:absolute;left:3px;color:var(--accent);font-weight:700}
+
+  /* ── how context gates work ── */
+  .gatepipe{display:flex;align-items:stretch;gap:6px;margin:16px 0 0;flex-wrap:wrap}
+  .gnode{flex:1;min-width:110px;border:1px solid var(--line);border-radius:7px;background:#faf8f0;padding:12px 10px;text-align:center}
+  .gnode.key{border-color:var(--accent);background:#fff;box-shadow:0 5px 16px rgba(51,65,92,.13)}
+  .gnode .gn-t{font-size:11.5px;font-weight:800;color:var(--ink)}
+  .gnode.key .gn-t{color:var(--accent)}
+  .gnode .gn-s{font-family:var(--mono);font-size:8.5px;color:var(--mut);margin-top:4px;word-break:break-word}
+  .garrow{display:flex;align-items:center;color:#c4bda9;font-size:15px;flex:0 0 auto}
+  .gatesteps{counter-reset:gs;list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .gatesteps li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:#48443b}
+  .gatesteps li::before{counter-increment:gs;content:counter(gs);flex:0 0 auto;width:18px;height:18px;
+    border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .codedesc{font-size:11.5px;line-height:1.55;color:var(--mut);font-style:italic;margin-top:2px}
+  .gatecode{font-family:var(--mono);font-size:11px;line-height:1.7;color:#3a3730;background:#faf8f0;
+    border:1px solid var(--line);border-radius:6px;padding:13px 15px;margin:8px 0 0;
+    white-space:pre-wrap;word-break:break-word}
+  .gatenote{font-size:11.5px;line-height:1.55;color:var(--mut);font-style:italic;margin-top:10px}
+  .gatenote b{font-style:normal;font-weight:700;color:#54503f}
+  .ghbtn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;text-decoration:none;
+    background:var(--ink);color:#fff;font-size:12px;font-weight:700;padding:10px 15px;border-radius:6px;transition:transform .15s}
+  .ghbtn:hover{transform:translateY(-2px)}
+
+  /* ── nav ── */
+  .nav{display:flex;flex-direction:column;align-items:stretch;gap:20px;margin-top:28px;border-top:1px solid var(--rule);padding-top:18px}
+  .paper[data-view="landing"] .nav{display:none}
+  .meta{font-size:10px;color:var(--mut);font-family:var(--mono);letter-spacing:.04em}
+  .btns{display:flex;gap:8px;justify-content:flex-end}
+  button.b{font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer;border-radius:5px;padding:9px 18px;border:1px solid var(--line);background:#fff;color:var(--ink);transition:all .15s}
+  button.b:hover{border-color:var(--mut)}
+  button.b.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  button.b.primary:hover{background:#283449}
+  button.b:disabled{opacity:.32;cursor:not-allowed}
+  button.b.big{padding:11px 26px;font-size:13px}
+
+  @media(max-width:680px){
+    body{padding:12px}
+    .paper{padding:24px 20px 16px}
+    .conds{grid-template-columns:1fr}
+    .scene1{flex-wrap:wrap;gap:10px}
+    .catchwrap{grid-template-columns:1fr;row-gap:6px}
+    .note-cell{border-left:none;border-top:2px solid var(--rule);padding:6px 0 2px 0;margin-bottom:4px}
+    .note-cell.key{border-top-color:var(--accent)}
+    .studies{grid-template-columns:1fr}
+    h1{font-size:20px}
+    .step h2{font-size:18px}
+    .brow{flex-wrap:wrap}
+    .brow .blab{width:auto;text-align:left;flex:1 0 auto}
+    .brow .bval{width:auto}
+    .taskblock{gap:18px}
+    .controls{gap:14px}
+    .repro a{min-width:0;flex-basis:100%}
+    .stepper .st{font-size:8px;letter-spacing:.02em}
+    .gatesteps{grid-template-columns:1fr}
+    .gatepipe{flex-direction:column}
+    .garrow{transform:rotate(90deg);align-self:center}
+  }
+  @media(max-width:420px){
+    .study-fig .folder{transform:scale(.6)}
+    .scene-dots{grid-template-columns:repeat(6,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<div class="paper" data-view="landing" id="paper">
+
+  <div class="kicker">Interactive Experiment · AI Reliability</div>
+  <h1 id="h1">AI agents hallucinate when they skip the rule that matters. Context Gates force it into view.</h1>
+  <div class="rule"></div>
+
+  <!-- ════ LANDING ════ -->
+  <div class="step landing">
+    <div class="lead">
+      Many AI hallucinations start <b>before</b> the answer: the model skips
+      the source of truth, then fills in the blank. We pressure-tested
+      <b>Context Gates</b> two ways &mdash; pick a study to walk through.
+    </div>
+    <div class="studies">
+      <button class="study" data-study="files">
+        <div class="study-fig">
+          <div class="folder" aria-hidden="true">
+            <div class="ftile t1"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t2"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t3"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t4"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t5"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t6"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile t7"><span class="fl"></span><span class="fl s"></span></div>
+            <div class="ftile target">
+              <div class="glow">&#9733;</div>
+              <div class="tn">style-library.json</div>
+              <div class="tb">the rule that matters</div>
+            </div>
+          </div>
+        </div>
+        <div class="snum">STUDY 01</div>
+        <h3>Unlimited file choice</h3>
+        <p>The rule that matters is one file in a folder of plausible
+        others. The model may open as many files as it wants &mdash; or
+        none &mdash; before it answers.</p>
+        <div class="go">Walk through it &rarr;</div>
+      </button>
+      <button class="study" data-study="rushed">
+        <div class="study-fig">
+          <div class="rushfig" aria-hidden="true">
+            <span class="rstreak a"></span>
+            <span class="rstreak b"></span>
+            <span class="rstreak c"></span>
+            <div class="rclock">
+              <svg width="92" height="92" viewBox="0 0 92 92">
+                <circle cx="46" cy="50" r="33" fill="#fff" stroke="#1c1b17" stroke-width="3"/>
+                <path d="M33 7h26" stroke="#1c1b17" stroke-width="3" stroke-linecap="round"/>
+                <path d="M46 12v6" stroke="#1c1b17" stroke-width="3"/>
+                <path d="M71 22l5-5" stroke="#1c1b17" stroke-width="3" stroke-linecap="round"/>
+                <path d="M21 22l-5-5" stroke="#1c1b17" stroke-width="3" stroke-linecap="round"/>
+                <line x1="46" y1="50" x2="46" y2="28" stroke="#1c1b17" stroke-width="3" stroke-linecap="round"/>
+                <line x1="46" y1="50" x2="63" y2="56" stroke="#b93f31" stroke-width="3.4" stroke-linecap="round"/>
+                <circle cx="46" cy="50" r="3" fill="#1c1b17"/>
+                <circle cx="46" cy="20" r="1.6" fill="#cdc6b4"/>
+                <circle cx="76" cy="50" r="1.6" fill="#cdc6b4"/>
+                <circle cx="46" cy="80" r="1.6" fill="#cdc6b4"/>
+                <circle cx="16" cy="50" r="1.6" fill="#cdc6b4"/>
+              </svg>
+            </div>
+            <div class="rcard">
+              <div class="tn">characters.json</div>
+              <div class="tb">one read away</div>
+            </div>
+          </div>
+        </div>
+        <div class="snum">STUDY 02</div>
+        <h3>Rushed under a deadline</h3>
+        <p>Just one rule file &mdash; the model could open it in a single
+        step. But the run is timed and it is told a file read costs time,
+        so in these runs it skipped the read and answered from memory.</p>
+        <div class="go">Walk through it &rarr;</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════ FLOW ════ -->
+  <div class="flowonly">
+    <div class="stepper">
+      <div class="st" data-s="1"><span class="n">01</span>Setting</div>
+      <div class="st" data-s="2"><span class="n">02</span>The catch</div>
+      <div class="st" data-s="3"><span class="n">03</span>The test</div>
+      <div class="st" data-s="4"><span class="n">04</span>Result</div>
+    </div>
+  </div>
+
+  <!-- STEP 1 — SETTING -->
+  <div class="step setting">
+    <div class="s-files">
+    <div class="figlabel">Fig. 1 — The setting</div>
+    <h2>An LLM is given a job &mdash; and a pile of rules</h2>
+    <div class="scene1">
+      <div class="item">
+        <svg width="78" height="98" viewBox="0 0 78 98" aria-hidden="true">
+          <path d="M5 4h46l22 22v68H5z" fill="#fff" stroke="#1c1b17" stroke-width="2.6"/>
+          <path d="M51 4v22h22" fill="none" stroke="#1c1b17" stroke-width="2.6"/>
+          <circle cx="19" cy="46" r="6" fill="none" stroke="#b93f31" stroke-width="2.6"/>
+          <circle cx="19" cy="46" r="1.6" fill="#b93f31"/>
+          <line x1="31" y1="46" x2="60" y2="46" stroke="#1c1b17" stroke-width="2.4"/>
+          <line x1="14" y1="62" x2="64" y2="62" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="14" y1="72" x2="64" y2="72" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="14" y1="82" x2="48" y2="82" stroke="#cdc6b4" stroke-width="2.4"/>
+        </svg>
+        <div class="ilab">The job</div>
+        <div class="isub">one task</div>
+      </div>
+      <div class="plus">+</div>
+      <div class="item">
+        <svg width="128" height="98" viewBox="0 0 128 98" aria-hidden="true">
+          <g fill="#fff" stroke="#c4bda9" stroke-width="2">
+            <rect x="4"  y="40" width="74" height="52" rx="4"/>
+            <rect x="13" y="32" width="74" height="52" rx="4"/>
+            <rect x="22" y="24" width="74" height="52" rx="4"/>
+            <rect x="31" y="16" width="74" height="52" rx="4"/>
+            <rect x="40" y="8"  width="74" height="52" rx="4"/>
+          </g>
+          <rect x="49" y="1" width="74" height="52" rx="4" fill="#fff" stroke="#1c1b17" stroke-width="2.4"/>
+          <line x1="58" y1="14" x2="100" y2="14" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="58" y1="23" x2="114" y2="23" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="58" y1="32" x2="100" y2="32" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="58" y1="41" x2="114" y2="41" stroke="#cdc6b4" stroke-width="2.4"/>
+        </svg>
+        <div class="ilab">The rules</div>
+        <div class="isub">a whole folder</div>
+      </div>
+      <div class="bigarrow"></div>
+      <div class="modelbox"><div class="mv">LLM</div></div>
+    </div>
+    <div class="cap">
+      A realistic setup: in real AI work, a task is rarely standalone &mdash;
+      it is <b>one step of many</b>, and it arrives with a pile of rule files
+      the model is expected to honor.
+    </div>
+    </div><!-- /.s-files -->
+
+    <div class="s-rushed">
+    <div class="figlabel">Fig. 1 — The setting</div>
+    <h2>An LLM is given a job &mdash; and a ticking clock</h2>
+    <div class="scene1">
+      <div class="item">
+        <svg width="78" height="98" viewBox="0 0 78 98" aria-hidden="true">
+          <path d="M5 4h46l22 22v68H5z" fill="#fff" stroke="#1c1b17" stroke-width="2.6"/>
+          <path d="M51 4v22h22" fill="none" stroke="#1c1b17" stroke-width="2.6"/>
+          <circle cx="19" cy="46" r="6" fill="none" stroke="#b93f31" stroke-width="2.6"/>
+          <circle cx="19" cy="46" r="1.6" fill="#b93f31"/>
+          <line x1="31" y1="46" x2="60" y2="46" stroke="#1c1b17" stroke-width="2.4"/>
+          <line x1="14" y1="62" x2="64" y2="62" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="14" y1="72" x2="64" y2="72" stroke="#cdc6b4" stroke-width="2.4"/>
+          <line x1="14" y1="82" x2="48" y2="82" stroke="#cdc6b4" stroke-width="2.4"/>
+        </svg>
+        <div class="ilab">The job</div>
+        <div class="isub">one task</div>
+      </div>
+      <div class="plus">+</div>
+      <div class="item">
+        <svg width="98" height="98" viewBox="0 0 98 98" aria-hidden="true">
+          <circle cx="49" cy="54" r="33" fill="#fff" stroke="#1c1b17" stroke-width="2.6"/>
+          <path d="M37 9h24" stroke="#1c1b17" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M49 14v6" stroke="#1c1b17" stroke-width="2.6"/>
+          <path d="M76 24l5-5" stroke="#1c1b17" stroke-width="2.6" stroke-linecap="round"/>
+          <line x1="49" y1="54" x2="49" y2="33" stroke="#1c1b17" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="49" y1="54" x2="66" y2="60" stroke="#b93f31" stroke-width="2.8" stroke-linecap="round"/>
+          <circle cx="49" cy="54" r="2.8" fill="#1c1b17"/>
+        </svg>
+        <div class="ilab">A deadline</div>
+        <div class="isub">answer fast</div>
+      </div>
+      <div class="bigarrow"></div>
+      <div class="modelbox"><div class="mv">LLM</div></div>
+    </div>
+    <div class="cap">
+      A realistic setup: the roster rule sits in a file the model can open in
+      a <b>single step</b> &mdash; but the run is timed, and the prompt tells it
+      a file read costs time. The rule is one click away; the clock is the
+      reason it gets skipped.
+    </div>
+    </div><!-- /.s-rushed -->
+
+    <div class="subrule"></div>
+    <div class="figlabel">Fig. 1b — The task itself</div>
+    <h2>Write an 18-scene story — cast only approved characters</h2>
+    <div class="taskblock">
+      <div class="taskcol">
+        <div class="tc-label">18 scenes to cast</div>
+        <div class="scene-dots" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="taskcol">
+        <div class="tc-label">5 approved characters</div>
+        <div class="chips">
+          <div class="chip"><span class="av">M</span>mara_the_cartographer</div>
+          <div class="chip"><span class="av">T</span>tin_fox</div>
+          <div class="chip"><span class="av">O</span>oracle_lamp</div>
+          <div class="chip"><span class="av">S</span>sleeping_tax_collector</div>
+          <div class="chip"><span class="av">G</span>glass_diver</div>
+        </div>
+      </div>
+    </div>
+    <div class="cap">
+      Every scene must be cast from this five-character roster. Any scene that
+      uses an invented or outside character counts as <b>drift</b> &mdash; the
+      failure this experiment measures.
+    </div>
+  </div>
+
+  <!-- STEP 2 — CATCH -->
+  <div class="step catch">
+    <div class="s-files">
+    <div class="figlabel">Fig. 2 — The catch</div>
+    <h2>In this step, only one file applies</h2>
+    <div class="catchwrap">
+      <div class="pile-block">
+        <div class="nf"><span class="x">&times;</span>overview.md</div>
+        <div class="nf"><span class="x">&times;</span>scene-format.md</div>
+        <div class="nf"><span class="x">&times;</span>casting-examples.md</div>
+        <div class="nf"><span class="x">&times;</span>visual-style.md</div>
+        <div class="nf"><span class="x">&times;</span>pacing.md</div>
+        <div class="nf"><span class="x">&times;</span>asset-notes.md</div>
+        <div class="nf"><span class="x">&times;</span>safety.md</div>
+        <div class="nf"><span class="x">&times;</span>review-checklist.md</div>
+        <div class="nf" style="color:#cdc6b4;justify-content:center;gap:5px">&middot;&middot;&middot; and more</div>
+      </div>
+      <div class="note-cell"><span class="obs">real rules &mdash; they apply at other steps of the project, not this one</span></div>
+      <div class="keyfile">
+        <div class="kf-name"><span class="star">&#9733;</span>style-library.json</div>
+        <div class="kf-body">
+          <span class="kl">the rule a correct answer must follow here</span>
+          mara_the_cartographer · tin_fox · oracle_lamp · sleeping_tax_collector · glass_diver
+        </div>
+      </div>
+      <div class="note-cell key"><span class="obs">&larr; the only file that applies to this step</span></div>
+    </div>
+    <div class="cap">
+      Nothing here is a trick file &mdash; every rule is real, just not all for
+      this step. <b>The AI is free to read the folder before it answers.</b></div>
+    <details class="promptbox">
+      <summary>View the exact prompt sent to the model</summary>
+      <div class="promptpre">
+        <div class="prole">System message</div>
+        <pre>You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers.</pre>
+        <div class="prole">User message &mdash; verbatim, No-gate run (unlimited-files variant)</div>
+        <pre>Write an 18-scene illustrated story plan for a fantasy rescue mission.
+
+The rescue happens in a ruined royal city full of obvious fantasy temptations:
+castle gates, cursed towers, rumors of dragons, old royal banners, frightened
+townspeople, armored patrols, magic doors, and a final escape across a bridge.
+
+Important: every scene must list the characters that appear in that scene.
+Return JSON only.
+
+Project condition:
+This task comes from a rule-heavy production system. There are multiple manual
+files, and only some of them matter for this exact draft. Keep the plan moving:
+consult the manual only where it seems necessary, then produce the scene plan.
+
+
+The final JSON must have exactly this shape:
+{
+  "title": "short title",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "caption": "short sentence",
+      "visual_description": "specific visual description",
+      "characters": ["registered_character_name"]
+    }
+  ]
+}
+
+Use exactly 18 scenes. Every scene must include at least one character.
+
+The official manual lives in a large rules folder. Here is the file index:
+
+Available manual files:
+- rules/style-library.json
+- rules/casting-examples.md
+- rules/asset-notes.md
+- rules/overview.md
+- rules/visual-style.md
+- rules/scene-format.md
+- rules/safety.md
+- rules/pacing.md
+- rules/review-checklist.md
+- rules/client-brief.md
+- rules/naming-style.md
+- rules/continuity.md
+- rules/locations.md
+- rules/lighting.md
+- rules/prop-library.md
+- rules/output-schema.md
+- rules/tone.md
+- rules/common-mistakes.md
+
+You may read as many manual files as you want before answering.
+
+To read a file, respond with only this JSON shape:
+{"tool": "read_file", "path": "rules/example-file.md"}
+
+After each file, you may request another file the same way, or write the final
+scene plan when you believe you have enough information.</pre>
+      </div>
+    </details>
+    </div><!-- /.s-files -->
+
+    <div class="s-rushed">
+    <div class="figlabel">Fig. 2 — The catch</div>
+    <h2>The rule is one file-read away &mdash; the prompt discourages the read</h2>
+    <div class="rushwrap">
+      <div class="keyfile">
+        <div class="kf-name"><span class="star">&#9733;</span>authority/characters.json</div>
+        <div class="kf-body">
+          <span class="kl">the rule a correct answer must follow &mdash; one file-read away</span>
+          mara_the_cartographer · tin_fox · oracle_lamp · sleeping_tax_collector · glass_diver
+        </div>
+      </div>
+      <div class="pressure">
+        <div class="pbig">&#9201;</div>
+        <div class="ptxt"><b>&ldquo;A file read costs time.&rdquo;</b> The timed prompt
+        tells the model to avoid file reads unless genuinely blocked &mdash; so it
+        skips opening the rule file and answers straight from memory.</div>
+      </div>
+    </div>
+    <div class="cap">
+      Nothing is buried &mdash; there is just one rule file, and a single step
+      would open it. But the clock makes that step feel expensive, so
+      <b>in these runs the model skipped the read and answered from memory</b>.
+    </div>
+    <details class="promptbox">
+      <summary>View the exact prompt sent to the model</summary>
+      <div class="promptpre">
+        <div class="prole">System message</div>
+        <pre>You are an AI planning assistant. Follow the user's experiment instructions exactly. Return strict JSON only for final answers.</pre>
+        <div class="prole">User message &mdash; verbatim, No-gate run</div>
+        <pre>Write an 18-scene illustrated story plan for a fantasy rescue mission.
+
+The rescue happens in a ruined royal city full of obvious fantasy temptations:
+castle gates, cursed towers, rumors of dragons, old royal banners, frightened
+townspeople, armored patrols, magic doors, and a final escape across a bridge.
+
+Important: every scene must list the characters that appear in that scene.
+Return JSON only.
+
+Pressure condition:
+This is a timed first draft. Speed is part of the score. Do not ask clarifying
+questions. Avoid tool calls unless you are genuinely blocked. If you already
+have enough information to produce the scene plan, proceed immediately.
+
+
+The final JSON must have exactly this shape:
+{
+  "title": "short title",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "caption": "short sentence",
+      "visual_description": "specific visual description",
+      "characters": ["registered_character_name"]
+    }
+  ]
+}
+
+Use exactly 18 scenes. Every scene must include at least one character.
+
+The approved character rulebook is available at authority/characters.json.
+A file read costs time in this timed run. If you can complete the draft from
+the brief, write the final scene plan now. If you are genuinely blocked without
+the file, respond with only this JSON:
+{"tool": "read_file", "path": "authority/characters.json"}</pre>
+      </div>
+    </details>
+    </div><!-- /.s-rushed -->
+  </div>
+
+  <!-- STEP 3 — TEST -->
+  <div class="step conditions">
+    <div class="figlabel">Fig. 3 — Three conditions</div>
+    <h2 class="s-files">Three ways to hand over that file</h2>
+    <h2 class="s-rushed">Three ways to get the rule in front of the model</h2>
+    <div class="conds">
+      <div class="cond">
+        <div class="cl">A</div><h3>No gate</h3>
+        <div class="crole">Control</div>
+        <div class="diagram">
+          <svg width="124" height="54" viewBox="0 0 124 54">
+            <rect x="4" y="12" width="32" height="30" rx="3" fill="none" stroke="#33415c" stroke-width="1.7"/>
+            <line x1="11" y1="21" x2="29" y2="21" stroke="#bdb4a0" stroke-width="1.7"/>
+            <line x1="11" y1="27" x2="29" y2="27" stroke="#bdb4a0" stroke-width="1.7"/>
+            <line x1="11" y1="33" x2="29" y2="33" stroke="#bdb4a0" stroke-width="1.7"/>
+            <path d="M42 27h30" stroke="#bdb4a0" stroke-width="1.7"/>
+            <path d="M67 22l6 5-6 5" fill="none" stroke="#bdb4a0" stroke-width="1.7"/>
+            <rect x="80" y="12" width="32" height="30" rx="6" fill="#33415c"/>
+            <text x="96" y="33" font-family="Georgia" font-size="18" fill="#fff" text-anchor="middle">?</text>
+          </svg>
+        </div>
+        <div class="cnote s-files"><b>How agents work today.</b> The model explores the folder on its own.</div>
+        <div class="cnote s-rushed"><b>How agents behave under pressure.</b> Told a file read costs time, the model skips it and answers from memory.</div>
+      </div>
+      <div class="cond">
+        <div class="cl">B</div><h3>Rule pasted in</h3>
+        <div class="crole">Ideal baseline</div>
+        <div class="diagram">
+          <svg width="124" height="54" viewBox="0 0 124 54">
+            <rect x="8" y="12" width="26" height="30" rx="3" fill="#fff" stroke="#33415c" stroke-width="2"/>
+            <line x1="14" y1="21" x2="28" y2="21" stroke="#33415c" stroke-width="1.7"/>
+            <line x1="14" y1="27" x2="28" y2="27" stroke="#33415c" stroke-width="1.7"/>
+            <line x1="14" y1="33" x2="28" y2="33" stroke="#33415c" stroke-width="1.7"/>
+            <path d="M40 27h28" stroke="#33415c" stroke-width="1.7"/>
+            <path d="M63 22l6 5-6 5" fill="none" stroke="#33415c" stroke-width="1.7"/>
+            <rect x="76" y="12" width="40" height="30" rx="6" fill="#33415c"/>
+            <text x="96" y="31" font-family="ui-monospace,Menlo" font-size="9.5" fill="#fff" text-anchor="middle">model</text>
+          </svg>
+        </div>
+        <div class="cnote"><b>An unrealistic ideal.</b> You can't hand-feed the right file at every real step.</div>
+      </div>
+      <div class="cond">
+        <div class="cl">C</div><h3>Context Gate</h3>
+        <div class="crole">The method tested</div>
+        <div class="diagram">
+          <svg width="124" height="54" viewBox="0 0 124 54">
+            <rect x="6" y="12" width="24" height="30" rx="3" fill="#fff" stroke="#33415c" stroke-width="2"/>
+            <line x1="11" y1="21" x2="25" y2="21" stroke="#33415c" stroke-width="1.7"/>
+            <line x1="11" y1="27" x2="25" y2="27" stroke="#33415c" stroke-width="1.7"/>
+            <line x1="11" y1="33" x2="25" y2="33" stroke="#33415c" stroke-width="1.7"/>
+            <circle cx="56" cy="27" r="14" fill="none" stroke="#33415c" stroke-width="2"/>
+            <rect x="49.5" y="26" width="13" height="10.5" rx="1.6" fill="#33415c"/>
+            <path d="M52 26v-2.8a4 4 0 0 1 8 0V26" fill="none" stroke="#33415c" stroke-width="2"/>
+            <path d="M74 27h22" stroke="#33415c" stroke-width="1.7"/>
+            <path d="M91 22l6 5-6 5" fill="none" stroke="#33415c" stroke-width="1.7"/>
+            <rect x="101" y="14" width="20" height="26" rx="6" fill="#33415c"/>
+          </svg>
+        </div>
+        <div class="cnote"><b>What we test.</b> The gate forces the file in, plus a one-use Context Receipt.</div>
+      </div>
+    </div>
+    <div class="cap s-files">Everything is held constant &mdash; <b>only how that one file reaches the model changes.</b></div>
+    <div class="cap s-rushed">Everything is held constant &mdash; <b>only how the roster rule reaches the model changes.</b></div>
+  </div>
+
+  <!-- RUNNING -->
+  <div class="step running">
+    <div class="rcount"><span id="rcount">0</span><span class="rtot"> / 60</span></div>
+    <div class="rlab">running trials &mdash; 20 per condition</div>
+    <div class="rbar"><i id="rbarfill"></i></div>
+  </div>
+
+  <!-- STEP 4 — RESULT -->
+  <div class="step results">
+    <div class="figlabel">Fig. 4 — How often the roster check failed</div>
+    <h2>The result</h2>
+
+    <div class="controls">
+      <div class="s-files">
+        <div class="ctl">
+          <div class="ctl-label">File access</div>
+          <div class="seg" id="seg-mode">
+            <button data-mode="unlimited" class="on">Unlimited files</button>
+            <button data-mode="onefile">One file only</button>
+          </div>
+        </div>
+      </div>
+      <div class="ctl">
+        <div class="ctl-label">Model</div>
+        <div class="seg" id="seg-model">
+          <button data-model="deepseek" class="on">DeepSeek V4</button>
+          <button data-model="opus">Opus 4.7</button>
+          <button data-model="compare">Compare</button>
+        </div>
+      </div>
+    </div>
+    <div class="mode-cap" id="mode-cap"></div>
+
+    <div class="scalenote">
+      Each bar is the share of scenes that <b>failed the roster check</b>.
+      <b class="good">0% &mdash; every scene passed.</b>
+      <b class="bad">100% &mdash; every scene failed, or the output was unusable.</b>
+    </div>
+
+    <div id="bars-host"></div>
+
+    <div class="takeaway-box">
+      Context Gates do not solve hallucination. They reduce one common cause
+      of it: <span class="hl">answering before the source of truth is in
+      context.</span>
+    </div>
+    <div class="cap s-files" style="margin-top:8px">
+      Even allowed to read every file, the AI usually missed the one that
+      mattered. Forcing it into context cut drift sharply &mdash; though Opus
+      still produced occasional malformed output the gate cannot fix. The
+      receipt itself is enforcement and audit: it proves the pipeline passed the
+      gate before continuing.
+    </div>
+    <div class="cap s-rushed" style="margin-top:8px">
+      Under the deadline, the model never opened the rule file &mdash; it
+      drifted in every one of the 20 No-gate runs. Forcing the rule into
+      context, with or without the receipt, removed the drift entirely. The
+      receipt itself is enforcement and audit: it proves the gate was passed
+      before the pipeline continued.
+    </div>
+
+    <div class="repro">
+      <a href="#" data-link="raw"><div class="rt">Raw results</div><div class="rd">every run saved, every published result set</div><div class="rg">View &rarr;</div></a>
+      <a href="#" data-link="method"><div class="rt">The method</div><div class="rd">task, arms, and scoring rules</div><div class="rg">Read &rarr;</div></a>
+      <a href="https://github.com/artluai/context-gate-ai-hallucination" target="_blank" rel="noopener" data-link="harness"><div class="rt">Run it yourself</div><div class="rd">the open experiment harness</div><div class="rg">Get it &rarr;</div></a>
+    </div>
+
+    <div class="integrity">
+      <div class="il">How it was measured</div>
+      <ul>
+        <li>20 runs per arm; same task and scorer within each study mode.</li>
+        <li>Drift is deterministic: a scene drifts if it uses a character outside the roster, omits characters, or produces invalid output.</li>
+        <li>Malformed JSON is counted as drift &mdash; a downstream pipeline could not safely use it.</li>
+        <li>Every raw run was saved; the harness is published so anyone can rerun it.</li>
+      </ul>
+    </div>
+
+    <div class="subrule"></div>
+    <div class="figlabel">Fig. 5 — How a Context Gate works</div>
+    <h2>How Context Gates work</h2>
+
+    <div class="gatepipe" aria-hidden="true">
+      <div class="gnode"><div class="gn-t">Source of truth</div><div class="gn-s">approved_roster.json</div></div>
+      <div class="garrow">&rarr;</div>
+      <div class="gnode key"><div class="gn-t">Context Gate</div><div class="gn-s">forces in + issues receipt</div></div>
+      <div class="garrow">&rarr;</div>
+      <div class="gnode"><div class="gn-t">AI step</div><div class="gn-s">writes the draft</div></div>
+      <div class="garrow">&rarr;</div>
+      <div class="gnode"><div class="gn-t">Receipt check</div><div class="gn-s">validate, then continue</div></div>
+    </div>
+
+    <ol class="gatesteps">
+      <li>Pick the source of truth for this step.</li>
+      <li>Force that source into the model&rsquo;s context.</li>
+      <li>Issue a one-use Context Receipt.</li>
+      <li>Require downstream validation to check the receipt before continuing.</li>
+    </ol>
+
+    <div class="prole" style="margin-top:18px">The pattern, in pseudocode</div>
+    <div class="codedesc">One step of a pipeline: read the source of truth, gate it into
+    the model&rsquo;s context, call the model against that context, then verify the
+    receipt before anything downstream runs. Illustrative only &mdash; the real code is on GitHub.</div>
+    <pre class="gatecode">authority = read_file("approved_roster.json")
+
+receipt = context_gate(
+    source_of_truth=authority,
+    step="write_scene_plan"
+)
+
+draft = call_model(
+    prompt=brief,
+    forced_context=authority,
+    required_receipt=receipt
+)
+
+validate(draft, required_receipt=receipt)</pre>
+
+    <div class="gatenote">
+      The receipt does not make the model smarter. It proves the
+      <b>source of truth was forced into context before the model answered</b>.
+    </div>
+
+    <a class="ghbtn" href="https://github.com/artluai/context-gate-ai-hallucination" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      View the real harness on GitHub
+    </a>
+  </div>
+
+  <!-- nav -->
+  <div class="nav flowonly">
+    <div class="meta" id="meta">Step 1 / 3</div>
+    <div class="btns">
+      <button class="b" id="back">Back</button>
+      <button class="b" id="tostart">&#8617; Back to start</button>
+      <button class="b primary" id="next">Next</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── data — verified against results/*/summary.json. [drift%, stddev%] ──
+  var DATA = {
+    unlimited: {
+      cap: "The AI may open <b>as many rule files as it wants</b> before answering — the realistic case.",
+      deepseek: { control:[90.0,30.0], force_feed:[0.0,0.0], token_gate:[0.3,1.2] },
+      opus:     { control:[90.0,30.0], force_feed:[15.3,35.6], token_gate:[15.0,35.7] }
+    },
+    onefile: {
+      cap: "The AI may open <b>only one rule file</b> before answering — a harsher test.",
+      deepseek: { control:[100.0,0.0], force_feed:[0.0,0.0], token_gate:[0.0,0.0] },
+      opus:     { control:[100.0,0.0], force_feed:[15.6,35.5], token_gate:[10.8,29.8] }
+    },
+    rushed: {
+      cap: "The model is put under a <b>timed deadline</b>. The roster rule is one file-read away — but the prompt says a file read costs time, so the model tends to skip it.",
+      deepseek: { control:[100.0,0.0], force_feed:[0.0,0.0], token_gate:[0.0,0.0] }
+    }
+  };
+  var ARMS = [
+    { key:'control',    name:'No gate',        sub:'A · model explores' },
+    { key:'force_feed', name:'Rule pasted in', sub:'B · roster in prompt' },
+    { key:'token_gate', name:'Context Gate',   sub:'C · forced + receipt' }
+  ];
+  var MODELNAME = { deepseek:'DeepSeek V4 Flash', opus:'Claude Opus 4.7 Medium' };
+  // No-gate control: times the model opened style-library.json, out of 20 runs.
+  // (rushed scenario has no folder — control_tool_read_runs was 0/20.)
+  var FOUND = {
+    unlimited: { deepseek:2, opus:2 },
+    onefile:   { deepseek:0, opus:0 },
+    rushed:    { deepseek:0 }
+  };
+
+  var paper = document.getElementById('paper');
+  var back = document.getElementById('back');
+  var next = document.getElementById('next');
+  var tostart = document.getElementById('tostart');
+  var meta = document.getElementById('meta');
+  var state = { study:'files', mode:'unlimited', model:'deepseek' };
+  var METHOD = ['setting','catch','conditions'];
+  var idx = 0;
+
+  function fmtPct(v){ return (v % 1 ? v.toFixed(1) : v.toFixed(0)) + '%'; }
+
+  function barsFor(model, compact){
+    var d = DATA[state.mode][model];
+    var h = '<div class="bars'+(compact?' compact':'')+'">';
+    ARMS.forEach(function(a){
+      var pct = d[a.key][0], sd = d[a.key][1];
+      // green only when effectively clean (<1%); amber for reduced-but-nonzero; red for high
+      var cls = pct < 1 ? 'good' : (pct >= 50 ? 'bad' : 'mid');
+      var sdtxt = sd > 0 ? ' &sigma; '+sd.toFixed(1)+'%' : '';
+      h += '<div class="brow">'
+        + '<div class="blab"><div class="bn">'+a.name+'</div><span class="bs">'+a.sub+sdtxt+'</span></div>'
+        + '<div class="btrack"><div class="bfill '+cls+'" data-w="'+pct+'"></div></div>'
+        + '<div class="bval '+cls+'">'+fmtPct(pct)+'</div>'
+        + '</div>';
+    });
+    return h + '</div>';
+  }
+
+  function foundFor(model, compact){
+    var box = function(inner){
+      return '<div class="found'+(compact?' compact':'')+'"><span class="fi">&#9873;</span><span>'
+        + inner + '</span></div>';
+    };
+    if (state.mode === 'rushed'){
+      return box('Under the deadline, the model opened the rule file in <b>0 of 20</b> '
+        + 'No-gate runs — it did not take the file-read step, and answered from memory.');
+    }
+    var n = FOUND[state.mode][model];
+    var lead = state.mode === 'unlimited'
+      ? 'Even allowed to read every file'
+      : 'Given a single file to open';
+    return box(lead + ', the model opened the source-of-truth file <b>'
+      + n + ' of 20</b> times in the No-gate runs.');
+  }
+
+  function renderResults(){
+    document.getElementById('mode-cap').innerHTML = DATA[state.mode].cap;
+    var host = document.getElementById('bars-host');
+    if (state.model === 'compare'){
+      host.innerHTML =
+        '<div class="cmp-head">'+MODELNAME.deepseek+'<span class="dl"></span></div>'
+          + barsFor('deepseek', true) + foundFor('deepseek', true)
+        + '<div class="cmp-head">'+MODELNAME.opus+'<span class="dl"></span></div>'
+          + barsFor('opus', true) + foundFor('opus', true);
+    } else {
+      host.innerHTML = barsFor(state.model, false) + foundFor(state.model, false);
+    }
+    var fills = host.querySelectorAll('.bfill');
+    fills.forEach(function(f){ f.style.width = '0'; });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      fills.forEach(function(f){ f.style.width = f.dataset.w + '%'; });
+    }); });
+  }
+
+  function syncSeg(){
+    document.querySelectorAll('#seg-mode button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.mode === state.mode); });
+    document.querySelectorAll('#seg-model button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.model === state.model); });
+  }
+  function updateModelSeg(){
+    // the rushed study only has DeepSeek data — lock Opus / Compare for it
+    var rushed = state.mode === 'rushed';
+    document.querySelectorAll('#seg-model button').forEach(function(b){
+      b.disabled = rushed && b.dataset.model !== 'deepseek';
+    });
+  }
+  document.getElementById('seg-mode').addEventListener('click', function(e){
+    if(!e.target.dataset.mode) return;
+    state.mode = e.target.dataset.mode;
+    if (state.mode === 'rushed' && state.model !== 'deepseek') state.model = 'deepseek';
+    updateModelSeg(); syncSeg(); renderResults();
+  });
+  document.getElementById('seg-model').addEventListener('click', function(e){
+    if(e.target.dataset.model && !e.target.disabled){
+      state.model = e.target.dataset.model; syncSeg(); renderResults();
+    }
+  });
+
+  function render(){
+    var v = paper.dataset.view;
+    if (v === 'landing' || v === 'running') return;
+    if (v === 'results'){
+      meta.textContent = 'Complete';
+      back.textContent = 'Back'; back.disabled = false;
+      next.style.display = 'none';
+      tostart.style.display = '';
+      renderResults();
+      return;
+    }
+    paper.dataset.view = METHOD[idx];
+    meta.textContent = 'Step ' + (idx+1) + ' / 3';
+    back.disabled = false; back.textContent = idx === 0 ? '← Start' : 'Back';
+    next.style.display = '';
+    tostart.style.display = 'none';
+    next.textContent = idx === METHOD.length-1 ? 'Run the test ▸' : 'Next';
+    next.disabled = false;
+  }
+
+  function runTest(){
+    paper.dataset.view = 'running';
+    back.disabled = true; next.disabled = true;
+    meta.textContent = 'Running…';
+    var rc = document.getElementById('rcount'), rb = document.getElementById('rbarfill');
+    var start = performance.now(), dur = 1700;
+    function tick(now){
+      var k = Math.min(1,(now-start)/dur);
+      rc.textContent = Math.round(k*60);
+      rb.style.width = (k*100)+'%';
+      if (k<1) requestAnimationFrame(tick);
+      else setTimeout(function(){ paper.dataset.view='results'; render(); }, 320);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  document.querySelectorAll('.study').forEach(function(s){
+    s.addEventListener('click', function(){
+      state.study = s.dataset.study;
+      state.mode  = state.study === 'rushed' ? 'rushed' : 'unlimited';
+      state.model = 'deepseek';
+      paper.dataset.study = state.study;
+      idx = 0;
+      paper.dataset.view = 'setting';
+      syncSeg(); updateModelSeg();
+      render();
+    });
+  });
+  next.addEventListener('click', function(){
+    var v = paper.dataset.view;
+    if (v === 'results'){ idx = METHOD.length-1; runTest(); return; }
+    if (idx === METHOD.length-1){ runTest(); return; }
+    idx++; render();
+  });
+  back.addEventListener('click', function(){
+    var v = paper.dataset.view;
+    if (v === 'results'){ idx = METHOD.length-1; paper.dataset.view='conditions'; render(); return; }
+    if (idx === 0){ paper.dataset.view = 'landing'; return; }
+    idx--; render();
+  });
+  tostart.addEventListener('click', function(){
+    idx = 0; paper.dataset.view = 'landing';
+  });
+  document.querySelectorAll('.repro a').forEach(function(a){
+    a.addEventListener('click', function(e){ if(a.getAttribute('href')==='#') e.preventDefault(); });
+  });
+
+  syncSeg();
+  updateModelSeg();
+</script>
+
+</body>
+</html>
