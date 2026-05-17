@@ -1,7 +1,7 @@
-# Rule-Gating AI Hallucination Experiment
+# Context Gate AI Hallucination Experiment
 
 This repository contains a small controlled experiment testing whether
-rule-gating reduces a common AI-agent failure: answering before the source of
+Context Gates reduce a common AI-agent failure: answering before the source of
 truth is actually in context.
 
 The experiment asks a model to write an 18-scene story plan using only an
@@ -10,17 +10,21 @@ somewhere in the rules, but the model must choose to read or use it. In the
 gated conditions, the roster is placed directly into context before the model
 answers.
 
+This project was called "rule-gating" during the experiment. The public name is
+**Context Gate**, because the core mechanism is forcing source-of-truth context
+into the model before the step can proceed.
+
 ## Headline Result
 
 In the main "unlimited files" study, the model was allowed to read as many rule
 files as it wanted before answering.
 
-| Study | Model | No gate | Rule pasted in | Token gate |
+| Study | Model | No gate | Rule pasted in | Context Gate |
 | --- | --- | ---: | ---: | ---: |
 | Unlimited files | DeepSeek V4 Flash | 90.0% drift | 0.0% | 0.3% |
 | Unlimited files | Claude Opus 4.7 Medium | 90.0% drift | 15.3% | 15.0% |
 
-Rule-gating does not make models hallucination-proof. It reduces one common
+Context Gates do not make models hallucination-proof. They reduce one common
 cause of hallucination: answering before the source-of-truth rule is in the
 model's context.
 
@@ -86,6 +90,5 @@ python3 run_experiment.py \
   characters, or produced unusable output.
 - Malformed JSON is counted as drift because a downstream pipeline could not
   safely validate or use it.
-- The token is enforcement/audit proof, not model intelligence. The accuracy
-  gain mostly comes from forcing the source-of-truth rule into context.
-
+- The Context Receipt is enforcement/audit proof, not model intelligence. The
+  accuracy gain mostly comes from forcing the source-of-truth rule into context.

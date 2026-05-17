@@ -2,7 +2,7 @@
 
 ## Question
 
-Does rule-gating reduce hallucination-like drift in an AI agent step?
+Do Context Gates reduce hallucination-like drift in an AI agent step?
 
 This experiment focuses on one specific failure mode: the source-of-truth rule
 exists, but the model answers before that rule is actually in context.
@@ -31,11 +31,12 @@ The experiment has three arms:
 | --- | --- |
 | No gate | The model is told the rule exists and may inspect rules itself. |
 | Rule pasted in | The approved roster is pasted directly into the prompt. |
-| Token gate | The approved roster is pasted into context and the output must include a one-use token. |
+| Context Gate | The approved roster is pasted into context and the output must include a one-use Context Receipt. |
 
-The token-gate arm tests enforcement and auditability. The force-feed arm tests
-whether the main accuracy gain comes from putting the source of truth into
-context.
+The Context Gate arm tests enforcement and auditability. The force-feed arm
+tests whether the main accuracy gain comes from putting the source of truth into
+context. Internally, the harness still names this arm `token_gate` because that
+was the original experiment label.
 
 ## Scenarios
 
@@ -74,4 +75,3 @@ invalid scenes / 18
 
 Malformed JSON is treated as full drift because the downstream system cannot
 safely validate or use it.
-

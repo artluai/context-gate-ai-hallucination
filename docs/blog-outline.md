@@ -2,12 +2,12 @@
 
 ## Working Title
 
-Rule Gates: A Small Experiment in Reducing AI Agent Hallucinations
+Context Gates: A Small Experiment in Reducing AI Agent Hallucinations
 
 ## Thesis
 
 Many AI hallucinations start before the answer: the model skips the source of
-truth, then fills in the blank. Rule-gating reduces that failure by forcing the
+truth, then fills in the blank. Context Gates reduce that failure by forcing the
 relevant rule into context before the model acts.
 
 ## Narrative
@@ -21,11 +21,11 @@ relevant rule into context before the model acts.
    - More explicit instructions.
    - Louder prompts.
    - Post-hoc validation.
-   - Rule-gating.
-4. Rule-gating design:
+   - Context Gates.
+4. Context Gate design:
    - Force the right authority file into context.
-   - Issue a one-use token.
-   - Downstream validation refuses to continue without the token.
+   - Issue a one-use Context Receipt.
+   - Downstream validation refuses to continue without the receipt.
 5. Experiment:
    - Three arms.
    - 20 runs per arm.
@@ -36,7 +36,6 @@ relevant rule into context before the model acts.
    - Unlimited-files study.
    - One-file study.
 7. Honest conclusion:
-   - Rule-gating does not make models perfect.
+   - Context Gates do not make models perfect.
    - It reduces missed-rule hallucinations.
-   - The token is enforcement and audit, not intelligence.
-
+   - The receipt is enforcement and audit, not intelligence.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rule Gating — can an AI find the rule that matters?</title>
+<title>Context Gate — can an AI find the rule that matters?</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -230,7 +230,7 @@
 <div class="paper" data-view="landing" id="paper">
 
   <div class="kicker">Interactive Experiment · AI Reliability</div>
-  <h1 id="h1">AI agents hallucinate when they skip the rule that matters. Rule gates force it into view.</h1>
+  <h1 id="h1">AI agents hallucinate when they skip the rule that matters. Context Gates force it into view.</h1>
   <div class="rule"></div>
 
   <!-- ════ LANDING ════ -->
@@ -419,7 +419,7 @@
         <div class="cnote"><b>An unrealistic ideal.</b> You can't hand-feed the right file at every real step.</div>
       </div>
       <div class="cond">
-        <div class="cl">C</div><h3>Token gate</h3>
+        <div class="cl">C</div><h3>Context Gate</h3>
         <div class="crole">The method tested</div>
         <div class="diagram">
           <svg width="124" height="54" viewBox="0 0 124 54">
@@ -435,7 +435,7 @@
             <rect x="101" y="14" width="20" height="26" rx="6" fill="#33415c"/>
           </svg>
         </div>
-        <div class="cnote"><b>What we test.</b> The gate forces the file in, plus a one-use proof token.</div>
+        <div class="cnote"><b>What we test.</b> The gate forces the file in, plus a one-use Context Receipt.</div>
       </div>
     </div>
     <div class="cap">Everything is held constant &mdash; <b>only how that one file reaches the model changes.</b></div>
@@ -482,7 +482,7 @@
     <div id="bars-host"></div>
 
     <div class="takeaway-box">
-      Rule-gating does not solve hallucination. It reduces one common cause
+      Context Gates do not solve hallucination. They reduce one common cause
       of it: <span class="hl">answering before the source of truth is in
       context.</span>
     </div>
@@ -490,8 +490,8 @@
       Even allowed to read every file, the AI usually missed the one that
       mattered. Forcing it into context cut drift sharply &mdash; though Opus
       still produced occasional malformed output the gate cannot fix. The
-      token itself is enforcement and audit: it proves the pipeline passed the
-      gate before continuing.
+      receipt is enforcement and audit: it proves the pipeline passed the gate
+      before continuing.
     </div>
 
     <div class="repro">
@@ -543,7 +543,7 @@
   var ARMS = [
     { key:'control',    name:'No gate',        sub:'A · model explores' },
     { key:'force_feed', name:'Rule pasted in', sub:'B · roster in prompt' },
-    { key:'token_gate', name:'Token gate',     sub:'C · forced + token' }
+    { key:'token_gate', name:'Context Gate',   sub:'C · forced + receipt' }
   ];
   var MODELNAME = { deepseek:'DeepSeek V4 Flash', opus:'Claude Opus 4.7 Medium' };
   // No-gate control: times the model opened style-library.json, out of 20 runs.

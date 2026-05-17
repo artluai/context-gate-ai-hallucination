@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""MVP experiment: does rule-gated authority injection reduce made-up characters?
+"""Experiment: do Context Gates reduce made-up characters?
 
 Runs three conditions against the same model:
   A control: model is told a rulebook exists and may ask to read it.
   B force_feed: rulebook is pasted into the prompt.
-  C token_gate: rulebook is pasted into the prompt and output must carry a token.
+  C token_gate: rulebook is pasted into the prompt and output must carry a receipt.
 
 The task is intentionally high-pressure: the brief sounds like a generic fantasy
 story, but the rulebook allows only five odd named characters.
@@ -396,7 +396,7 @@ Otherwise, write the final scene plan now.
         if scenario in {"rule_overload", "rule_overload_unlimited"}:
             return (
                 shared
-                + "\nThe project has a larger rules folder. The rule gate selected "
+                + "\nThe project has a larger rules folder. The Context Gate selected "
                 "the relevant authority file for this stage and placed it below.\n"
                 + "This file overrides any character names that seem natural from the brief:\n"
                 + authority_text()
@@ -412,8 +412,8 @@ Otherwise, write the final scene plan now.
         return (
             shared
             + f"""
-The rule gate has already run. The gate printed the authoritative rulebook
-below and issued this one-use receipt token:
+The Context Gate has already run. The gate printed the authoritative rulebook
+below and issued this one-use Context Receipt:
 
 GATE_TOKEN: {token}
 
@@ -452,7 +452,7 @@ def chat_completion(
     if provider == "openrouter":
         extra_headers = {
             "HTTP-Referer": "https://artlu.ai",
-            "X-Title": "Rule Gate Hallucination Experiment MVP",
+            "X-Title": "Context Gate Hallucination Experiment",
         }
         if reasoning_effort != "none":
             body["reasoning"] = {
@@ -751,9 +751,9 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 
 def write_markdown(summary: dict[str, Any], out_path: Path) -> None:
     lines = [
-        "# Rule Gate MVP Results",
+        "# Context Gate Experiment Results",
         "",
-        "| Arm | Runs | Mean drift | Stddev | Variance | Invalid JSON | Scene count errors | Token errors | Tool reads |",
+        "| Arm | Runs | Mean drift | Stddev | Variance | Invalid JSON | Scene count errors | Receipt errors | Tool reads |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for arm in ARMS:
@@ -771,7 +771,7 @@ def write_markdown(summary: dict[str, Any], out_path: Path) -> None:
 
 
 def main(argv: list[str]) -> int:
-    p = argparse.ArgumentParser(description="Run the rule-gate hallucination MVP.")
+    p = argparse.ArgumentParser(description="Run the Context Gate hallucination experiment.")
     p.add_argument("--runs", type=int, default=3, help="runs per arm")
     p.add_argument("--provider", choices=sorted(DEFAULT_MODEL_BY_PROVIDER), default="openrouter")
     p.add_argument("--model", default=None)
